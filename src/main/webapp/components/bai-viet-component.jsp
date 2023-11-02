@@ -14,6 +14,7 @@
 			</div>
 
 		</div>
+
 		<div class="profile-right">
 
 
@@ -26,6 +27,14 @@
 					<i class="fa fa-trash" aria-hidden="true"></i> <span>Xóa</span>
 				</div>
 
+
+
+		<div class="">
+			<div>...</div>
+			<div>
+				<div>Chỉnh sửa</div>
+				<div>Xóa</div>
+				<i class="fa fa-star"></i>
 
 			</div>
 		</div>
