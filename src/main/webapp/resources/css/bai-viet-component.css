@@ -92,6 +92,9 @@
 
 .profile-more-hover span {
 	width: 70px;
+}
 
-
+.profile-item{
+	display: flex;
+	
 }

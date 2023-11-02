@@ -19,10 +19,10 @@
 
 			<i class="fa fa-ellipsis-h"></i>
 			<div class="profile-more-hover">
-				<div>
+				<div class="profile-item">
 					<i class="fa fa-cog" aria-hidden="true"></i> <span>Chỉnh sửa</span>
 				</div>
-				<div>
+				<div class="profile-item">
 					<i class="fa fa-trash" aria-hidden="true"></i> <span>Xóa</span>
 				</div>
 
