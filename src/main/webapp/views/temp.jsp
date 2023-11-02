@@ -11,6 +11,16 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/bootstrap-5.0.2-dist/css/bootstrap.min.css' />">
 </head>
 <body>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
 	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -32,6 +42,6 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-	<script type="text/javascript" src="<c:url value='/bootstrap-5.0.2-dist/js/bootstrap.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js' />"></script>
 </body>
 </html>
