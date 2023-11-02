@@ -32,6 +32,6 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-	<script type="text/javascript" src="<c:url value='/bootstrap-5.0.2-dist/js/bootstrap.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js' />"></script>
 </body>
 </html>
