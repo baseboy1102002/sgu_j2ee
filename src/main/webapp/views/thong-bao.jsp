@@ -5,7 +5,7 @@
 
 <html>
 
-<link rel="stylesheet" type="text/css" href="<c:url value='/bootstrap-5.0.2-dist/css/bootstrap.css' />">
+<link rel="stylesheet" type="text/css" href="<c:url value='/bootstrap/css/bootstrap.css' />">
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/globalstyle.css' />">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/thong-bao.css' />">
@@ -14,7 +14,6 @@
 <title>NienHope | Thông báo</title>
 
 <body>
-
 <div class="noti-wrapper pt-5 d-flex justify-content-center">
     <div class="noti-container col-10">
       <div class="noti-header d-flex flex-column mb-2">
@@ -342,5 +341,5 @@
 
 
 </body>
-<script type="text/javascript" src="<c:url value='/bootstrap-5.0.2-dist/js/bootstrap.js' />"></script>
+<script type="text/javascript" src="<c:url value='/bootstrap/js/bootstrap.bundle.js' />"></script>
 </html>
