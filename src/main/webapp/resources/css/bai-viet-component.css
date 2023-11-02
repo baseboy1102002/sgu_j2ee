@@ -1,0 +1,97 @@
+@charset "ISO-8859-1";
+
+
+
+
+/* content wrapper */
+.bai-viet-content-wrapper {
+	width: 90%;
+	margin: auto 0;
+}
+
+/* profile */
+
+.profile-wrapper {
+	width: 100%;
+}
+
+/* profile left */
+
+.profile-left {
+	gap: 5px;
+}
+
+.profile-img {
+	--width: 40px;
+	width: var(--width);
+	height: var(--width);
+	border-radius: 9999px;
+	background-color: var(--greyDisabledColor);
+
+	display: flex;
+	justify-content: center;
+}
+
+.profile-img img {
+	margin: auto 0;
+	width: 70%;
+	height: 70%;
+
+}
+
+.profile-info h1 {
+	font-size: 13px;
+	margin-bottom: 0;
+}
+
+
+.profile-info span {
+	font-size: 11px;
+	color: var(--greyDisabledColor);
+}
+
+
+
+/* profile :right*/
+
+
+.profile-right {
+	width: 30px;
+	height: 30px;
+	color: white;
+	background: var(--greyDisabledColor);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 9999px;
+	position: relative;
+	cursor: pointer;
+}
+
+.profile-right:hover .profile-more-hover {
+	visibility: visible;
+
+}
+
+.profile-more-hover {
+
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	padding: 5px;
+	background: red;
+	right: 0;
+	top: 98%;
+	border-radius: 5px;
+	visibility: hidden;
+	
+}
+
+
+
+
+.profile-more-hover span {
+	width: 70px;
+
+
+}
