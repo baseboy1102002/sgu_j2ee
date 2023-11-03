@@ -26,15 +26,36 @@
 
 </head>
 <body>
-	<div class="container d-flex flex-column container ">
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Bạn có chắc chắn muốn xóa bài viết này</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container d-flex flex-column chi-tiet-wrapper">
 		<div>Header</div>
 
 		<div class="d-flex content ">
-			<jsp:include page="../components/bai-viet-component.jsp"></jsp:include>
+			<jsp:include page="../components/bai-viet-component.jsp">
+				<jsp:param value="true" name="isDetailMode"/>
+			
+			</jsp:include>
 
 		</div>
 
-	
+
 
 
 
@@ -45,7 +66,8 @@
 
 	<script type="text/javascript"
 		src="<c:url value='/fontawesome6/js/all.min.js' />"></script>
-
+	<script type="text/javascript"
+		src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
 
 
 </body>

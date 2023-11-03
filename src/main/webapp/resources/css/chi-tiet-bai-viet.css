@@ -1,7 +1,10 @@
 @charset "ISO-8859-1";
 
 
+
+
 .content{
 	width: 100%;
-	
+	background-color: white;
+	margin: 10px 0;
 }

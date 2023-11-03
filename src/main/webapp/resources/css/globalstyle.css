@@ -15,13 +15,15 @@
     --errorColor: rgba(238, 52, 37, 1);
     --warningColor: rgba(247, 188, 10, 1);
     --fadeBackground: rgba(26, 26, 26, .37);
-    
+    --bodyBackground: #f1f6ff;
+    --controlBackground : #f5f5f5;
 }
 
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+
 }
 
 html {
@@ -32,6 +34,7 @@ body {
     line-height: 1;
     font-size: 1.6rem;
     text-rendering: optimizeSpeed;
+    background-color: var(--bodyBackground);
 }
 
 input {

@@ -5,8 +5,9 @@
 
 /* content wrapper */
 .bai-viet-content-wrapper {
-	width: 90%;
-	margin: auto 0;
+	width: 100%;
+	padding: 2rem;
+	gap: 10px;
 }
 
 /* profile */
@@ -22,7 +23,7 @@
 }
 
 .profile-img {
-	--width: 40px;
+	--width: 35px;
 	width: var(--width);
 	height: var(--width);
 	border-radius: 9999px;
@@ -58,8 +59,8 @@
 .profile-right {
 	width: 30px;
 	height: 30px;
-	color: white;
-	background: var(--greyDisabledColor);
+	color: var(--greyColorText);
+	background-color: var(--controlBackground);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -68,33 +69,160 @@
 	cursor: pointer;
 }
 
-.profile-right:hover .profile-more-hover {
-	visibility: visible;
 
-}
+
+
 
 .profile-more-hover {
-
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	padding: 5px;
-	background: red;
+	padding: 10px;
+	background-color: var(--controlBackground);
+	color: var(--greyColorText);
 	right: 0;
 	top: 98%;
 	border-radius: 5px;
+	gap: 5px;
 	visibility: hidden;
-	
 }
 
 
 
 
 .profile-more-hover span {
+	text-align: left;
 	width: 70px;
 }
 
-.profile-item{
+.profile-item {
+	padding: 0;
+	gap: 6px;
+	font-size: 14px;
 	display: flex;
-	
+	text-align: center;
+	align-items: center;
+}
+
+.profile-item:hover {
+	color: var(--bs-primary);
+}
+
+
+/* main content */
+
+
+.not-detail-mode p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	/* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+
+.see-more {
+	justify-content: center;
+	display: flex;
+}
+
+
+.bai-viet-data {
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.img-content {
+   	width: 100%;
+    height: 300px;
+	margin-bottom: 10px;
+
+}
+
+/* data */
+
+.react-data {
+	display: flex;
+	gap: 2px;
+	align-items: center;
+}
+
+.react-data-item {
+	--iconWidth: 15px;
+	width: var(--iconWidth);
+	height: var(--iconWidth);
+}
+
+.react-data-item img {
+	width: 100%;
+	height: 100%;
+}
+
+.comment-data {
+	display: flex;
+	align-items: center;
+}
+
+
+/* actions */
+
+.react-action,
+.comment-action {
+	align-items: center;
+	display: flex;
+	gap: 5px;
+	padding: 4px 5px;
+	border-radius: 5px;
+}
+
+
+.bai-viet-actions {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+
+.more-action {
+	background-color: var(--bodyBackground);
+	padding: 5px;
+	bottom: 100%;
+	left: 0;
+	position: absolute;
+	gap: 2px;
+	display: none;
+	border-radius: 10px;
+}
+
+.react-action span,
+.comment-action span {
+	font-size: 12px;
+}
+
+
+.react-action:hover,
+.comment-action:hover {
+	background-color: var(--bodyBackground);
+	cursor: pointer;
+}
+
+.react-action:hover .more-action {
+	display: flex;
+}
+
+.react-action-item {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.react-action-item:hover {
+	transition: .3s all ease-in-out;
+	transform: translateY(-10%);
+}
+
+.react-action-item img {
+	width: 100%;
+	height: 100%;
 }
