@@ -3,6 +3,36 @@
   <display-name>sgu_j2ee</display-name>
   
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>/views/Index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>loginServlet</display-name>
+    <servlet-name>loginServlet</servlet-name>
+    <servlet-class>controller.web.loginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controller.web.loginServlet</servlet-name>
+    <url-pattern>/dang-nhap</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>signupServlet</display-name>
+    <servlet-name>signupServlet</servlet-name>
+    <servlet-class>controller.web.signupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controller.web.signupServlet</servlet-name>
+    <url-pattern>/dang-ky</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>confirmServlet</display-name>
+    <servlet-name>confirmServlet</servlet-name>
+    <servlet-class>controller.web.confirmServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controller.web.confirmServlet</servlet-name>
+    <url-pattern>/xac-nhan</url-pattern>
+  </servlet-mapping>
 </web-app>
