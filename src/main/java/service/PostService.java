@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 import model.Post;
+import model.NguoiDung;
 import modelMapper.PostMapper;
 
 public class PostService extends DAOService<Post> {
@@ -38,5 +39,10 @@ public class PostService extends DAOService<Post> {
 	public Boolean deletePost(int postId) {
 		String sql="delete from Post where id=?";
 		return update(sql, postId);
+	}
+	public List<Post> getPostByIsFriend(NguoiDung nguoiDung){
+		String sql = "";
+		
+		return null;
 	}
 }

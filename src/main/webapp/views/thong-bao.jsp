@@ -54,7 +54,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -84,7 +84,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -114,7 +114,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -144,7 +144,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -174,7 +174,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -204,7 +204,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -234,7 +234,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -264,7 +264,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -294,7 +294,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -324,7 +324,7 @@
                       class="text-nowrap d-inline-block text-truncate">Lorem ipsum, dolor sit amet consectetur
                       adipisicing
                       elit. Voluptatibus odio, quasi voluptas possimus
-                      .....</span></a>
+                      .....</span>
                   </div>
                   <!-- Hiển thị thời gian -->
                   <div class="noti-info-time mt-3">
@@ -337,6 +337,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 
 

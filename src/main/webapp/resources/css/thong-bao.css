@@ -1,48 +1,56 @@
 @charset "UTF-8";
+
 /*1 thông báo*/
 .noti-info-image img {
-  height: 60px !important;
-  width: 60px !important;
-  border: solid 1px !important;
-  border-radius: 45px !important;
-}
-.noti-info-wrapper {
-  background-color: white;
-  border-radius: 15px !important;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-}
-.noti-info-time {
-    margin-top: 10px !important;
-}
-.noti-info-container {
-  margin-left: 10px !important;
-  margin-right: 5px !important;
-}
-.noti-username {
-    margin-right: 4px;
-}
-/*đầu thông báo*/
-.noti-header-number-container span {
-  font-size: 20px !important;
-  color: white !important;
-  font-weight: 600 !important;
-  background-color: #5adc70;
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
-  padding-left: 8px !important;
-  padding-right: 8px !important;
-  border-radius: 9px;
-}
-.noti-header-text-container span {
-  font-size: 25px !important;
-  font-weight: 500 !important;
-  padding-top: 3px;
-}
-.noti-seperator-line {
-    height: 1px;
-    background-color: black;
-    margin-top: 5px;
-    margin-bottom: 1em;
+	height: 60px !important;
+	width: 60px !important;
+	border: solid 1px !important;
+	border-radius: 45px !important;
 }
 
+.noti-info-wrapper {
+	background-color: white;
+	border-radius: 15px !important;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	cursor: pointer;
+}
+
+.noti-info-time {
+	margin-top: 10px !important;
+}
+
+.noti-info-container {
+	margin-left: 10px !important;
+	margin-right: 5px !important;
+}
+
+.noti-username {
+	margin-right: 4px;
+}
+
+/*đầu thông báo*/
+.noti-header-number-container span {
+	font-size: 20px !important;
+	color: white !important;
+	font-weight: 600 !important;
+	background-color: #5adc70;
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+	padding-left: 8px !important;
+	padding-right: 8px !important;
+	border-radius: 9px;
+}
+
+.noti-header-text-container span {
+	font-size: 25px !important;
+	font-weight: 500 !important;
+	padding-top: 3px;
+}
+
+.noti-seperator-line {
+	height: 1px;
+	background-color: black;
+	margin-top: 5px;
+	margin-bottom: 1em;
+}
