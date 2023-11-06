@@ -2,13 +2,13 @@ package service;
 
 import java.util.List;
 
-import model.BaiViet;
-import model.NguoiDung;
+import model.baiviet;
+import model.nguoidung;
 import modelMapper.BaiVietMapper;
 
-public class BaiVietService extends DAOService<BaiViet> {
+public class BaiVietService extends DAOService<baiviet> {
 	
-	public List<BaiViet> getFriendsBaiViet(NguoiDung currentUser){
+	public List<baiviet> getFriendsBaiViet(nguoidung currentUser){
 		String sql = "SELECT b.*\r\n"
 				+ "FROM baiviet b\r\n"
 				+ "INNER JOIN thongtinketban t ON (b.MaNguoiDung = t.MaNguoiDung1 OR b.MaNguoiDung = t.MaNguoiDung2)\r\n"

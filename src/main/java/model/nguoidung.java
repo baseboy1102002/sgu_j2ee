@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
-public class NguoiDung {
+public class nguoidung {
 	int MaNguoiDung;
 	String Email;
 	String HoVaTen;
@@ -17,10 +17,10 @@ public class NguoiDung {
 	String MaXacNhan;
 	String MatKhau;
 	String TrangThai;
-	public NguoiDung() {
+	public nguoidung() {
 	}
 	
-	public NguoiDung(int maNguoiDung, String email, String hoVaTen, String maQR, String hinhDaiDien, String soDienThoai,
+	public nguoidung(int maNguoiDung, String email, String hoVaTen, String maQR, String hinhDaiDien, String soDienThoai,
 			Date ngaySinh, String tenTaiKhoan, String loaiTaiKhoan, String maXacNhan, String matKhau,
 			String trangThai) {
 		super();
@@ -109,6 +109,5 @@ public class NguoiDung {
 	}
 	public void setTrangThai(String trangThai) {
 		TrangThai = trangThai;
-	}
-	
+	}	
 }

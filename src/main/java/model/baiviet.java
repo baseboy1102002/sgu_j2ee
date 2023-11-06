@@ -2,19 +2,17 @@ package model;
 
 import java.util.Date;
 
-public class BaiViet {
+public class baiviet {
 	int MaBaiViet;
 	Date NgayDang;
 	String NoiDung;
 	String TrangThai;
 	int MaNguoiDung;
 	
-	public BaiViet() {
-		super();
+	public baiviet() {
 	}
 
-	public BaiViet(int maBaiViet, Date ngayDang, String noiDung, String trangThai, int maNguoiDung) {
-		super();
+	public baiviet(int maBaiViet, Date ngayDang, String noiDung, String trangThai, int maNguoiDung) {
 		MaBaiViet = maBaiViet;
 		NgayDang = ngayDang;
 		NoiDung = noiDung;

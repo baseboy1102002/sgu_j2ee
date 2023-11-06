@@ -3,13 +3,13 @@ import java.sql.ResultSet;
 
 import org.eclipse.jdt.internal.compiler.lookup.TagBits;
 
-import model.BaiViet;
+import model.baiviet;
 
-public class BaiVietMapper implements rowMapper<BaiViet>{
+public class BaiVietMapper implements rowMapper<baiviet>{
 	@Override
-	public BaiViet mapRow(ResultSet rs) {
+	public baiviet mapRow(ResultSet rs) {
 		try {
-			BaiViet bViet = new BaiViet();
+			baiviet bViet = new baiviet();
 			bViet.setMaBaiViet(rs.getInt("MaBaiViet"));
 			bViet.setNgayDang(rs.getDate("NgayDang"));
 			bViet.setNoiDung(rs.getString("NoiDung"));

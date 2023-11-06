@@ -2,7 +2,7 @@ package service;
 
 import java.util.List;
 import model.Post;
-import model.NguoiDung;
+import model.nguoidung;
 import modelMapper.PostMapper;
 
 public class PostService extends DAOService<Post> {
@@ -40,7 +40,7 @@ public class PostService extends DAOService<Post> {
 		String sql="delete from Post where id=?";
 		return update(sql, postId);
 	}
-	public List<Post> getPostByIsFriend(NguoiDung nguoiDung){
+	public List<Post> getPostByIsFriend(nguoidung nguoidung){
 		String sql = "";
 		
 		return null;
