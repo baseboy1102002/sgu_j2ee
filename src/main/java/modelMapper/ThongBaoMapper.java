@@ -13,8 +13,9 @@ public class ThongBaoMapper implements rowMapper<thongbao> {
 			Thongbao.setUsersPost("HoVaTen");
 			BaiVietMapper bvMapper = new BaiVietMapper();
 			Thongbao.setBaiviet(bvMapper.mapRow(rs));
+			return Thongbao;
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return null;
 	}

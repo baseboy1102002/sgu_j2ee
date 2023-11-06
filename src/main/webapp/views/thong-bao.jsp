@@ -16,8 +16,8 @@
 
 <body>
 <c:forEach items="thongbaos" var="thisItem">
-          	<p>{$thisItem.NoiDung}</p>
-          </c:forEach>
+          	<p>{$thisItem.UsersPost}</p>
+</c:forEach>
 <div class="noti-wrapper pt-5 d-flex justify-content-center">
     <div class="noti-container col-10">
       <div class="noti-header d-flex flex-column mb-2">
@@ -45,7 +45,7 @@
               <!-- Hình ảnh thông báo -->
               <div
                 class="noti-info-image col-3 col-lg-1 col-md-1 media d-flex ml-auto justify-content-center p-lg-1 p-md-2 align-items-center">
-                <img class="mr-3 col-9" src="./108410800_p0.png" alt="img" />
+                <img class="mr-3 col-9" src="<c:url value='/views/108410800_p0.png' />" alt="img" />
               </div>
               <!-- Thông tin thông báo -->
               <div
