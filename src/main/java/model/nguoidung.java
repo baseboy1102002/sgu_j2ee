@@ -2,21 +2,19 @@ package model;
 
 import java.util.Date;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
-
 public class nguoidung {
-	int MaNguoiDung;
-	String Email;
-	String HoVaTen;
-	String MaQR;
-	String HinhDaiDien;
-	String SoDienThoai;
-	Date NgaySinh;
-	String TenTaiKhoan;
-	String LoaiTaiKhoan;
-	String MaXacNhan;
-	String MatKhau;
-	String TrangThai;
+	private int MaNguoiDung;
+	private String Email;
+	private String HoVaTen;
+	private String MaQR;
+	private String HinhDaiDien;
+	private String SoDienThoai;
+	private Date NgaySinh;
+	private String TenTaiKhoan;
+	private String LoaiTaiKhoan;
+	private String MaXacNhan;
+	private String MatKhau;
+	private String TrangThai;
 	public nguoidung() {
 	}
 	
