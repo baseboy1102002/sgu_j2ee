@@ -21,7 +21,7 @@
 </div>
 
 
-<div class="d-flex flex-column  bai-viet-content-wrapper">
+<div class="d-flex flex-column  bai-viet-content-wrapper" data-id=3>
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
@@ -35,14 +35,12 @@
 
 		</div>
 
-		<div class="profile-right" onclick="showDiv('profile-more-hover')">
-
-
+		<div class="profile-right">
 			<i class="fa fa-ellipsis-h"></i>
 			<div class="profile-more-hover">
 
-				<button type="button" class="btn profile-item "
-					data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<button type="button" class="btn profile-item edit-post-btn"
+					>
 					<i class="fa fa-cog" aria-hidden="true"></i><span> Chỉnh sửa
 					</span>
 				</button>
@@ -50,7 +48,7 @@
 
 
 
-				<button type="button" class="btn profile-item"
+				<button type="button" class="btn profile-item delete-post-btn"
 					data-bs-toggle="modal" data-bs-target="#exampleModal">
 					<i class="fa fa-trash" aria-hidden="true"></i> <span> Xóa </span>
 				</button>

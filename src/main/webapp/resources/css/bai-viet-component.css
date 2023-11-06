@@ -69,6 +69,10 @@
 	cursor: pointer;
 }
 
+.profile-right:hover {
+    background: var(--primaryColor);
+    color: white;
+}
 
 
 
@@ -203,7 +207,8 @@
 
 .react-action:hover,
 .comment-action:hover {
-	background-color: var(--bodyBackground);
+	color: white;
+	background-color: var(--primaryColor);
 	cursor: pointer;
 }
 
