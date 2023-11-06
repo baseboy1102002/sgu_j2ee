@@ -8,7 +8,7 @@ public class baiviet {
 	String NoiDung;
 	String TrangThai;
 	int MaNguoiDung;
-	
+
 	public baiviet() {
 	}
 
@@ -59,6 +59,6 @@ public class baiviet {
 	public void setMaNguoiDung(int maNguoiDung) {
 		MaNguoiDung = maNguoiDung;
 	}
-	
-	
+
+
 }

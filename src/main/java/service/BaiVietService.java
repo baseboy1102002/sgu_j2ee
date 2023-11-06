@@ -7,7 +7,7 @@ import model.nguoidung;
 import modelMapper.BaiVietMapper;
 
 public class BaivietService extends DAOService<baiviet> {
-	
+
 	public List<baiviet> getFriendsBaiViet(nguoidung currentUser){
 		String sql = "SELECT b.*\r\n"
 				+ "FROM baiviet b\r\n"

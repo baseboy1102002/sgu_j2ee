@@ -2,11 +2,9 @@ package service;
 
 import java.util.List;
 
-import model.baiviet;
 import model.nguoidung;
 import model.thongbao;
 import modelMapper.ThongBaoMapper;
-import modelMapper.rowMapper;
 
 public class ThongbaoService extends DAOService<thongbao> {
 	public List<thongbao> getThongBao(nguoidung currentUser) {

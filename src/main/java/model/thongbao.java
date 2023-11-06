@@ -23,6 +23,6 @@ public class thongbao {
 	public void setUsersPost(String usersPost) {
 		UsersPost = usersPost;
 	}
-	
-	
+
+
 }

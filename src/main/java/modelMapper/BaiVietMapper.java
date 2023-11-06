@@ -1,8 +1,6 @@
 package modelMapper;
 import java.sql.ResultSet;
 
-import org.eclipse.jdt.internal.compiler.lookup.TagBits;
-
 import model.baiviet;
 
 public class BaiVietMapper implements rowMapper<baiviet>{
@@ -20,6 +18,6 @@ public class BaiVietMapper implements rowMapper<baiviet>{
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
 }

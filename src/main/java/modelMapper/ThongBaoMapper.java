@@ -2,11 +2,10 @@ package modelMapper;
 
 import java.sql.ResultSet;
 
-import model.baiviet;
 import model.thongbao;
 
 public class ThongBaoMapper implements rowMapper<thongbao> {
-	
+
 	@Override
 	public thongbao mapRow(ResultSet rs) {
 		try {
@@ -19,5 +18,5 @@ public class ThongBaoMapper implements rowMapper<thongbao> {
 		}
 		return null;
 	}
-	
+
 }

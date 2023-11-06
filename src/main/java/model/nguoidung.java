@@ -17,7 +17,7 @@ public class nguoidung {
 	private String TrangThai;
 	public nguoidung() {
 	}
-	
+
 	public nguoidung(int maNguoiDung, String email, String hoVaTen, String maQR, String hinhDaiDien, String soDienThoai,
 			Date ngaySinh, String tenTaiKhoan, String loaiTaiKhoan, String maXacNhan, String matKhau,
 			String trangThai) {
@@ -107,5 +107,5 @@ public class nguoidung {
 	}
 	public void setTrangThai(String trangThai) {
 		TrangThai = trangThai;
-	}	
+	}
 }
