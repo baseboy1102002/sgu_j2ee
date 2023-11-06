@@ -10,6 +10,7 @@ public class NguoiDung {
 	private String hinhdaidien;
 	private String sodienthoai;
 	private Date ngaysinh;
+	private String tentaikhoan;
 	private String loaitaikhoan;
 	private String maxacnhan;
 	private String matkhau;
@@ -19,6 +20,9 @@ public class NguoiDung {
 		super();
 	}
 	
+	
+
+
 	public NguoiDung(int manguoidung, String hovaten, String hinhdaidien) {
 		super();
 		this.setManguoidung(manguoidung);
@@ -129,4 +133,17 @@ public class NguoiDung {
 	public void setTrangthai(String trangthai) {
 		this.trangthai = trangthai;
 	}
+	
+	
+	public String getTentaikhoan() {
+		return tentaikhoan;
+	}
+
+
+
+	public void setTentaikhoan(String tentaikhoan) {
+		this.tentaikhoan = tentaikhoan;
+	}
+
+
 }
