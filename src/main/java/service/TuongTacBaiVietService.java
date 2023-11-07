@@ -50,8 +50,8 @@ public class TuongTacBaiVietService extends DAOService<TuongTacBaiViet> {
 
 //	Cái này để lấy tương tác của người dùng cụ thể với một bài viết cụ thể
 	public TuongTacBaiViet getUserTuongTacBaiViet(int maBaiViet, int maNguoiDung) {
-		String sql = "Select * from MaNguoiDung =? AND MaBaiViet = ?";
-		List<TuongTacBaiViet> tuongTacBaiViets = query(sql, new TuongTacBaiVietMapper(), maBaiViet, maNguoiDung);
+		String sql = "Select * from `tuongtacbaiviet` Where MaNguoiDung =? AND MaBaiViet = ?";
+		List<TuongTacBaiViet> tuongTacBaiViets = query(sql, new TuongTacBaiVietMapper(), maNguoiDung, maBaiViet);
 		return tuongTacBaiViets.isEmpty() ? null : tuongTacBaiViets.get(0);
 	}
 }

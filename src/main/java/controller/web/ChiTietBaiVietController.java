@@ -1,6 +1,7 @@
 package controller.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import model.BaiViet;
 import model.BaiVietView;
 import model.FileBaiViet;
+import model.NguoiDung;
 import model.TuongTacBaiViet;
 import service.BaiVietService;
 import service.FileBaiVietService;
+import service.NguoiDungService;
 import service.TuongTacBaiVietService;
 import service.TuongTacBinhLuanService;
 
@@ -39,15 +42,15 @@ public class ChiTietBaiVietController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		String maBaiViet = request.getParameter("maBaiViet");
 		int maNguoiDung = 1;
+		
 		BaiVietView baiVietView = getDataBaiVietForView(Integer.parseInt(maBaiViet), maNguoiDung);
-		response.getWriter().print(baiVietView);
+		request.setAttribute("baiVietView", baiVietView);
 		
-		
+		request.getRequestDispatcher("views/chi-tiet-bai-viet.jsp").forward(request, response);
 		
 	}
 
@@ -62,6 +65,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 	public BaiVietView getDataBaiVietForView(int maBaiViet,int maNguoiDung) {
 		BaiVietService baiVietService = new BaiVietService();
 		BaiViet baiViet = baiVietService.getBaiVietById(maBaiViet);
+
 		
 		TuongTacBaiVietService tuongTacBaiVietService = new TuongTacBaiVietService();
 		TuongTacBaiViet loginUserTuongTacBaiViet = tuongTacBaiVietService.getUserTuongTacBaiViet(maBaiViet, maNguoiDung);
@@ -73,18 +77,29 @@ public class ChiTietBaiVietController extends HttpServlet {
 		
 		FileBaiVietService fileBaiVietService = new FileBaiVietService();
 		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(maBaiViet);
-		List<FileBaiViet> fileHinhAnhs = fileBaiViets.stream()
-			    .filter(file -> "Anh".equals(file.getTrangThai()))
-			    .collect(Collectors.toList());
-		List<FileBaiViet> fileDinhKems = fileBaiViets.stream()
-			    .filter(file -> "File".equals(file.getTrangThai()))
-			    .collect(Collectors.toList());
+		List<FileBaiViet> fileHinhAnhs = new ArrayList<FileBaiViet>();
+		List<FileBaiViet> fileDinhKems = new ArrayList<FileBaiViet>();
+		for (FileBaiViet fileBaiViet : fileBaiViets) {
+			if(fileBaiViet.getLoaiFile().equals("Anh")) {
+				fileHinhAnhs.add(fileBaiViet);
+			}
+			else if(fileBaiViet.getLoaiFile().equals("File")) {
+				fileDinhKems.add(fileBaiViet);
+			}
+		}
 		
 		
-		BaiVietView baiVietView = new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems, top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac);
 		
+		NguoiDungService nguoiDungService = new NguoiDungService();
+		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
+		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
+		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
+		
+		BaiVietView baiVietView =  new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems, top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+		System.out.println("login : "+loginUserTuongTacBaiViet);
 		
 		return baiVietView;
+		
 	}
 	
 }

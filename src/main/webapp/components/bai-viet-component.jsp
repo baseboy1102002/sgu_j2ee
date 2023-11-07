@@ -25,12 +25,13 @@
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
-				<img alt=""
-					src="<c:url value='/assets/images/defaultProfileImage.png' />">
+				<img
+					src=<c:url value='${empty baiVietView.anhDaiDienNguoiDang ? "/assets/images/defaultProfileImage.png" :baiVietView.anhDaiDienNguoiDang   }' />
+					alt="" />
 			</div>
 			<div class="profile-info">
-				<h1>Châu Quốc Thanh</h1>
-				<span>Đã đăng vào lúc 7:54 1/11/2023</span>
+				<h1>${baiVietView.hoVaTenNguoiDang}</h1>
+				<span>Đã đăng vào lúc ${baiVietView.baiViet.ngayDang} </span>
 			</div>
 
 		</div>
@@ -39,8 +40,7 @@
 			<i class="fa fa-ellipsis-h"></i>
 			<div class="profile-more-hover">
 
-				<button type="button" class="btn profile-item edit-post-btn"
-					>
+				<button type="button" class="btn profile-item edit-post-btn">
 					<i class="fa fa-cog" aria-hidden="true"></i><span> Chỉnh sửa
 					</span>
 				</button>
@@ -60,23 +60,7 @@
 	</div>
 	<div
 		class="d-flex flex-column bai-viet-main-content <c:if test="${!param.isDetailMode }">not-detail-mode</c:if>	">
-		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-			Repudiandae repellat vero eum laboriosam itaque corporis
-			exercitationem, eius sit officia. Dolorem magnam nam nesciunt
-			exercitationem debitis obcaecati explicabo nihil inventore
-			accusantium!Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-			Repudiandae repellat vero eum laboriosam itaque corporis
-			exercitationem, eius sit officia. Dolorem magnam nam nesciunt
-			exercitationem debitis obcaecati explicabo nihil inventore
-			accusantium! Lorem, ipsum dolor sit amet consectetur adipisicing
-			elit. Repudiandae repellat vero eum laboriosam itaque corporis
-			exercitationem, eius sit officia. Dolorem magnam nam nesciunt
-			exercitationem debitis obcaecati explicabo nihil inventore
-			accusantium!Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-			Repudiandae repellat vero eum laboriosam itaque corporis
-			exercitationem, eius sit officia. Dolorem magnam nam nesciunt
-			exercitationem debitis obcaecati explicabo nihil inventore
-			accusantium!</p>
+		<p>${baiVietView.baiViet.noiDung }</p>
 		<c:if test="${!param.isDetailMode }">
 
 			<div class="see-more">
@@ -84,42 +68,45 @@
 			</div>
 		</c:if>
 
-		<div id="carouselExampleIndicators" class="carousel slide img-content"
-			data-bs-ride="carousel">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="0" class="active" aria-current="true"
-					aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="2" aria-label="Slide 3"></button>
-			</div>
-			<div class="carousel-inner w-100 h-100">
-				<div class="carousel-item active w-100 h-100">
-					<img src="<c:url value='/assets/images/bangcuc.jpg' />"
-						class="img-thumbnail d-block w-100 h-100" alt="...">
+
+		<c:if test="${param.isDetailMode }">
+			<c:if test="${!empty baiVietView.fileHinhAnhs }">
+				<div id="carouselExampleIndicators"
+					class="carousel slide img-content" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<c:forEach items="${baiVietView.fileHinhAnhs}" varStatus="loop">
+							<button type="button" data-bs-target="#carouselExampleIndicators"
+								data-bs-slide-to="${loop.index}"
+								${loop.index == 0 ? 'class="active" aria-current="true"' : '' }
+								aria-label="${loop.index + 1}"></button>
+						</c:forEach>
+					</div>
+					<div class="carousel-inner w-100 h-100">
+						<c:forEach items="${baiVietView.fileHinhAnhs}" var="item"
+							varStatus="loop">
+							<div
+								class='carousel-item  w-100 h-100 ${loop.index == 0 ? "active" : "" }'>
+								<img src="<c:url value='${item.tenFile}' />"
+									class="img-thumbnail d-block w-100 h-100" alt="...">
+							</div>
+						</c:forEach>
+					</div>
+
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
-				<div class="carousel-item  w-100 h-100">
-					<img src="<c:url value='/assets/images/nui.jpg' />"
-						class="img-thumbnail d-block w-100 h-100" alt="...">
-				</div>
-				<div class="carousel-item w-100 h-100">
-					<img src="<c:url value='/assets/images/Sahara.jpg' />"
-						class="img-thumbnail d-block w-100 h-100" alt="...">
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
+
+			</c:if>
+		</c:if>
+
 
 
 
@@ -127,31 +114,31 @@
 
 		<div class="bai-viet-data">
 			<div class="react-data">
-				<div class="react-data-item">
-					<img alt="" src="<c:url value='/assets/images/like.png' />">
-				</div>
-				<div class="react-data-item">
-					<img alt="" src="<c:url value='/assets/images/heart.png' />">
-				</div>
-				<div class="react-data-item">
-					<img alt="" src="<c:url value='/assets/images/sad.png' />">
-				</div>
-				<div class="react-data-item">
-					<img alt="" src="<c:url value='/assets/images/haha.png' />">
-				</div>
-				<div class="react-data-item">
-					<img alt="" src="<c:url value='/assets/images/mad.png' />">
-				</div>
-				<span> 230 </span>
+				<c:forEach var="item" items="${baiVietView.top3TuongTac }">
+					<div class="react-data-item">
+						<img alt=""
+							src="<c:url value='/assets/images/${item.trangThai }.png' />">
+					</div>
+				</c:forEach>
+				<span> ${baiVietView.tongLuotTuongTac} </span>
 			</div>
-			<div class="comment-data">22 Bình luận</div>
+			<div class="comment-data">${baiVietView.binhLuanCount} Bình luận</div>
 		</div>
 		<hr>
 		<div class="bai-viet-actions">
-			<div class="react-action">
+			<div class="react-action ${empty baiVietView.loginUserTuongTacBaiViet ? '' : 'active' }">
 
-				<i class="fa fa-thumbs-up" aria-hidden="true"></i> <span>Thích</span>
+				<c:if test="${empty baiVietView.loginUserTuongTacBaiViet }">
+					${baiVietView.loginUserTuongTacBaiViet }			
+					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+					<span>Thích</span>
+				</c:if>
 
+				<c:if test="${!empty baiVietView.loginUserTuongTacBaiViet }">
+					<img alt=""
+						src="<c:url value='/assets/images/${baiVietView.loginUserTuongTacBaiViet.trangThai }.png' />">
+					<span class="${baiVietView.loginUserTuongTacBaiViet.trangThai }">${baiVietView.loginUserTuongTacBaiViet.trangThai }</span>
+				</c:if>
 				<div class="more-action">
 					<div class="react-action-item">
 						<img alt="" src="<c:url value='/assets/images/like.png' />">

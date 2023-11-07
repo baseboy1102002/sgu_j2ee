@@ -10,15 +10,19 @@ public class BaiVietView {
 	private List<TuongTacBaiViet> top3TuongTac;
 	private int binhLuanCount;
 	private int tongLuotTuongTac;
-	
+	private String anhDaiDienNguoiDang;
+	private String hoVaTenNguoiDang;
 	
 	
 	public BaiVietView() {
 	}
 
+	
+	
+
 	public BaiVietView(BaiViet baiViet, TuongTacBaiViet loginUserTuongTacBaiViet, List<FileBaiViet> fileHinhAnhs,
-			List<FileBaiViet> fileDinhKems, List<TuongTacBaiViet> top3TuongTac, int binhLuanCount,
-			int tongLuotTuongTac) {
+			List<FileBaiViet> fileDinhKems, List<TuongTacBaiViet> top3TuongTac, int binhLuanCount, int tongLuotTuongTac,
+			String anhDaiDienNguoiDang, String hoVaTenNguoiDang) {
 		this.baiViet = baiViet;
 		this.loginUserTuongTacBaiViet = loginUserTuongTacBaiViet;
 		this.fileHinhAnhs = fileHinhAnhs;
@@ -26,6 +30,8 @@ public class BaiVietView {
 		this.top3TuongTac = top3TuongTac;
 		this.binhLuanCount = binhLuanCount;
 		this.tongLuotTuongTac = tongLuotTuongTac;
+		this.anhDaiDienNguoiDang = anhDaiDienNguoiDang;
+		this.hoVaTenNguoiDang = hoVaTenNguoiDang;
 	}
 
 	public BaiViet getBaiViet() {
@@ -83,14 +89,42 @@ public class BaiVietView {
 	public void setTongLuotTuongTac(int tongLuotTuongTac) {
 		this.tongLuotTuongTac = tongLuotTuongTac;
 	}
+	
+	
+	public String getAnhDaiDienNguoiDang() {
+		return anhDaiDienNguoiDang;
+	}
+
+
+	public void setAnhDaiDienNguoiDang(String anhDaiDienNguoiDang) {
+		this.anhDaiDienNguoiDang = anhDaiDienNguoiDang;
+	}
+
+
+	public String getHoVaTenNguoiDang() {
+		return hoVaTenNguoiDang;
+	}
+
+
+	public void setHoVaTenNguoiDang(String hoVaTenNguoiDang) {
+		this.hoVaTenNguoiDang = hoVaTenNguoiDang;
+	}
+
+
+
 
 	@Override
 	public String toString() {
 		return "BaiVietView [baiViet=" + baiViet + ", loginUserTuongTacBaiViet=" + loginUserTuongTacBaiViet
 				+ ", fileHinhAnhs=" + fileHinhAnhs + ", fileDinhKems=" + fileDinhKems + ", top3TuongTac=" + top3TuongTac
-				+ ", binhLuanCount=" + binhLuanCount + ", tongLuotTuongTac=" + tongLuotTuongTac + "]";
+				+ ", binhLuanCount=" + binhLuanCount + ", tongLuotTuongTac=" + tongLuotTuongTac
+				+ ", anhDaiDienNguoiDang=" + anhDaiDienNguoiDang + ", hoVaTenNguoiDang=" + hoVaTenNguoiDang + "]";
 	}
-	
+
+
+
+
+
 	
 	
 }

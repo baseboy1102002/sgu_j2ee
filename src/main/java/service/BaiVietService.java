@@ -20,4 +20,7 @@ public class BaiVietService extends DAOService<BaiViet> {
 		return baiViets.isEmpty() ? null : baiViets.get(0);
 	}
 	
+	
+	
+	
 }

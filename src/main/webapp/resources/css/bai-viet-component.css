@@ -89,6 +89,7 @@
 	border-radius: 5px;
 	gap: 5px;
 	visibility: hidden;
+	z-index: 9999;
 }
 
 
@@ -106,10 +107,12 @@
 	display: flex;
 	text-align: center;
 	align-items: center;
+	padding: 3px 5px;
 }
 
 .profile-item:hover {
-	color: var(--bs-primary);
+    color: white;
+    background-color: var(--primaryColor);
 }
 
 
@@ -181,6 +184,15 @@
 	border-radius: 5px;
 }
 
+.react-action.active {
+    background: #eeeeee;
+}
+
+.react-action > img {
+    width: 16px;
+    height: 16px;
+}
+
 
 .bai-viet-actions {
 	display: flex;
@@ -202,6 +214,22 @@
 .react-action span,
 .comment-action span {
 	font-size: 12px;
+	text-transform: capitalize;
+}
+
+.like {
+    color: #2d86ff;
+}
+
+.heart {
+    color: #f34260;
+}
+.haha,.sad{
+	color: #facb57;
+}
+
+.mad{
+	color: rgb(233, 113, 15);
 }
 
 

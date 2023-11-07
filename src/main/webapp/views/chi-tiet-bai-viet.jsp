@@ -101,7 +101,9 @@
 		<div class="d-flex flex-column content ">
 			<jsp:include page="../components/bai-viet-component.jsp">
 				<jsp:param value="true" name="isDetailMode" />
-
+				<jsp:param value="${baiVietView}" name="baiVietView" />
+				
+				
 			</jsp:include>
 
 			<div class="comment-wrapper">

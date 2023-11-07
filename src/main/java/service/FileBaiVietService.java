@@ -13,7 +13,7 @@ public class FileBaiVietService extends DAOService<FileBaiViet> {
 	}
 	
 	public List<FileBaiViet> getFileBaiVietsByMaBaiViet(int maBaiViet){
-		String sql = "Select * From MaBaiViet = ?";
+		String sql = "Select * From filebaiviet where MaBaiViet = ?";
 		return query(sql, new FileBaiVietMapper(), maBaiViet);
 	}
 	
