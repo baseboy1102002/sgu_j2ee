@@ -46,10 +46,8 @@ public class ThongBaoController extends HttpServlet {
 		
 		for (thongbao thongbao : thongbaos) {
 			Date currntDate = new Date();
-			System.out.println(currntDate + "Thơi  giàn  ");
 			TimeDifference timeDiff =  new TimeDifference();
 			timeDiff.setTimeDiff(fTime.formatTimeDifferences(thongbao.getBaiviet().getNgayDang()));
-			System.out.println(thongbao.getBaiviet().getNgayDang() + "Thơi  giàn  ");
 			timeDifference.add(timeDiff);
 		}
 		
