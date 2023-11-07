@@ -3,147 +3,129 @@ package model;
 import java.util.Date;
 
 public class NguoiDung {
-	private int manguoidung;
+	private int maNguoiDung;
 	private String email;
-	private String hovaten;
-	private String maqr;
-	private String hinhdaidien;
-	private String sodienthoai;
-	private Date ngaysinh;
-	private String tentaikhoan;
-	private String loaitaikhoan;
-	private String maxacnhan;
-	private String matkhau;
-	private String trangthai;
-
+	private String hoVaTen;
+	private String maQR;
+	private String hinhDaiDien;
+	private String soDienThoai;
+	private Date ngaySinh;
+	private String tenTaiKhoan;
+	private String loaiTaiKhoan;
+	private String maXacNhan;
+	private String matKhau;
+	private String trangThai;
+	
+	
+	
+	
 	public NguoiDung() {
 		super();
 	}
-	
-	
-
-
-	public NguoiDung(int manguoidung, String hovaten, String hinhdaidien) {
+	public NguoiDung(int maNguoiDung, String hinhDaiDien, String maXacNhan) {
 		super();
-		this.setManguoidung(manguoidung);
-		this.setHovaten(hovaten);
-		this.setHinhdaidien(hinhdaidien);
+		this.maNguoiDung = maNguoiDung;
+		this.hinhDaiDien = hinhDaiDien;
+		this.maXacNhan = maXacNhan;
 	}
-
-	public NguoiDung(int manguoidung, String email, String hovaten, String maqr, String hinhdaidien, String sodienthoai,
-			Date ngaysinh, String loaitaikhoan, String maxacnhan, String matkhau, String trangthai) {
+	public NguoiDung(int maNguoiDung, String email, String hoVaTen, String maQR, String hinhDaiDien, String soDienThoai,
+			Date ngaySinh, String tenTaiKhoan, String loaiTaiKhoan, String maXacNhan, String matKhau,
+			String trangThai) {
 		super();
-		this.manguoidung = manguoidung;
+		this.maNguoiDung = maNguoiDung;
 		this.email = email;
-		this.hovaten = hovaten;
-		this.maqr = maqr;
-		this.hinhdaidien = hinhdaidien;
-		this.sodienthoai = sodienthoai;
-		this.ngaysinh = ngaysinh;
-		this.loaitaikhoan = loaitaikhoan;
-		this.maxacnhan = maxacnhan;
-		this.matkhau = matkhau;
-		this.trangthai = trangthai;
+		this.hoVaTen = hoVaTen;
+		this.maQR = maQR;
+		this.hinhDaiDien = hinhDaiDien;
+		this.soDienThoai = soDienThoai;
+		this.ngaySinh = ngaySinh;
+		this.tenTaiKhoan = tenTaiKhoan;
+		this.loaiTaiKhoan = loaiTaiKhoan;
+		this.maXacNhan = maXacNhan;
+		this.matKhau = matKhau;
+		this.trangThai = trangThai;
 	}
-
-	public int getManguoidung() {
-		return manguoidung;
+	public int getMaNguoiDung() {
+		return maNguoiDung;
 	}
-
-	public void setManguoidung(int manguoidung) {
-		this.manguoidung = manguoidung;
+	public void setMaNguoiDung(int maNguoiDung) {
+		this.maNguoiDung = maNguoiDung;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getHovaten() {
-		return hovaten;
+	public String getHoVaTen() {
+		return hoVaTen;
 	}
-
-	public void setHovaten(String hovaten) {
-		this.hovaten = hovaten;
+	public void setHoVaTen(String hoVaTen) {
+		this.hoVaTen = hoVaTen;
 	}
-
-	public String getMaqr() {
-		return maqr;
+	public String getMaQR() {
+		return maQR;
 	}
-
-	public void setMaqr(String maqr) {
-		this.maqr = maqr;
+	public void setMaQR(String maQR) {
+		this.maQR = maQR;
 	}
-
-	public String getHinhdaidien() {
-		return hinhdaidien;
+	public String getHinhDaiDien() {
+		return hinhDaiDien;
 	}
-
-	public void setHinhdaidien(String hinhdaidien) {
-		this.hinhdaidien = hinhdaidien;
+	public void setHinhDaiDien(String hinhDaiDien) {
+		this.hinhDaiDien = hinhDaiDien;
 	}
-
-	public String getSodienthoai() {
-		return sodienthoai;
+	public String getSoDienThoai() {
+		return soDienThoai;
 	}
-
-	public void setSodienthoai(String sodienthoai) {
-		this.sodienthoai = sodienthoai;
+	public void setSoDienThoai(String soDienThoai) {
+		this.soDienThoai = soDienThoai;
 	}
-
-	public Date getNgaysinh() {
-		return ngaysinh;
+	public Date getNgaySinh() {
+		return ngaySinh;
 	}
-
-	public void setNgaysinh(Date ngaysinh) {
-		this.ngaysinh = ngaysinh;
+	public void setNgaySinh(Date ngaySinh) {
+		this.ngaySinh = ngaySinh;
 	}
-
-	public String getLoaitaikhoan() {
-		return loaitaikhoan;
+	public String getTenTaiKhoan() {
+		return tenTaiKhoan;
 	}
-
-	public void setLoaitaikhoan(String loaitaikhoan) {
-		this.loaitaikhoan = loaitaikhoan;
+	public void setTenTaiKhoan(String tenTaiKhoan) {
+		this.tenTaiKhoan = tenTaiKhoan;
 	}
-
-	public String getMaxacnhan() {
-		return maxacnhan;
+	public String getLoaiTaiKhoan() {
+		return loaiTaiKhoan;
 	}
-
-	public void setMaxacnhan(String maxacnhan) {
-		this.maxacnhan = maxacnhan;
+	public void setLoaiTaiKhoan(String loaiTaiKhoan) {
+		this.loaiTaiKhoan = loaiTaiKhoan;
 	}
-
-	public String getMatkhau() {
-		return matkhau;
+	public String getMaXacNhan() {
+		return maXacNhan;
 	}
-
-	public void setMatkhau(String matkhau) {
-		this.matkhau = matkhau;
+	public void setMaXacNhan(String maXacNhan) {
+		this.maXacNhan = maXacNhan;
 	}
-
-	public String getTrangthai() {
-		return trangthai;
+	public String getMatKhau() {
+		return matKhau;
 	}
-
-	public void setTrangthai(String trangthai) {
-		this.trangthai = trangthai;
+	public void setMatKhau(String matKhau) {
+		this.matKhau = matKhau;
+	}
+	public String getTrangThai() {
+		return trangThai;
+	}
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
+	@Override
+	public String toString() {
+		return "NguoiDung [maNguoiDung=" + maNguoiDung + ", email=" + email + ", hoVaTen=" + hoVaTen + ", maQR=" + maQR
+				+ ", hinhDaiDien=" + hinhDaiDien + ", soDienThoai=" + soDienThoai + ", ngaySinh=" + ngaySinh
+				+ ", tenTaiKhoan=" + tenTaiKhoan + ", loaiTaiKhoan=" + loaiTaiKhoan + ", maXacNhan=" + maXacNhan
+				+ ", matKhau=" + matKhau + ", trangThai=" + trangThai + "]";
 	}
 	
 	
-	public String getTentaikhoan() {
-		return tentaikhoan;
-	}
 
-
-
-	public void setTentaikhoan(String tentaikhoan) {
-		this.tentaikhoan = tentaikhoan;
-	}
-
-
+	
 }
