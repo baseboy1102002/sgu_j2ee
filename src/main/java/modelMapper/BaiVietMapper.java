@@ -9,7 +9,7 @@ public class BaiVietMapper implements rowMapper<baiviet>{
 		try {
 			baiviet bViet = new baiviet();
 			bViet.setMaBaiViet(rs.getInt("MaBaiViet"));
-			bViet.setNgayDang(rs.getDate("NgayDang"));
+			bViet.setNgayDang(rs.getTimestamp("NgayDang"));
 			bViet.setNoiDung(rs.getString("NoiDung"));
 			bViet.setTrangThai(rs.getString("TrangThai"));
 			bViet.setMaNguoiDung(rs.getInt("MaNguoiDung"));

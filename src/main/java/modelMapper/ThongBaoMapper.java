@@ -10,7 +10,7 @@ public class ThongBaoMapper implements rowMapper<thongbao> {
 	public thongbao mapRow(ResultSet rs) {
 		try {
 			thongbao Thongbao = new thongbao();
-			Thongbao.setUsersPost("HoVaTen");
+			Thongbao.setUsersPost(rs.getString("HoVaTen"));
 			BaiVietMapper bvMapper = new BaiVietMapper();
 			Thongbao.setBaiviet(bvMapper.mapRow(rs));
 			return Thongbao;

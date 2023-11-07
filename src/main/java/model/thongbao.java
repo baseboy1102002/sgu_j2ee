@@ -2,14 +2,15 @@ package model;
 
 public class thongbao {
 	private baiviet baiviet;
-	private String UsersPost;
+	private String usersPost;
+	
 	public thongbao() {
 		super();
 	}
 	public thongbao(model.baiviet baiviet, String usersPost) {
 		super();
 		this.baiviet = baiviet;
-		UsersPost = usersPost;
+		this.usersPost = usersPost;
 	}
 	public baiviet getBaiviet() {
 		return baiviet;
@@ -18,11 +19,10 @@ public class thongbao {
 		this.baiviet = baiviet;
 	}
 	public String getUsersPost() {
-		return UsersPost;
+		return usersPost;
 	}
 	public void setUsersPost(String usersPost) {
-		UsersPost = usersPost;
+		this.usersPost = usersPost;
 	}
-
 
 }
