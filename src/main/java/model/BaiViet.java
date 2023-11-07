@@ -8,7 +8,7 @@ public class BaiViet {
 	private String noiDung;
 	private String trangThai;
 	private int maNguoiDung;
-	
+
 	public BaiViet() {
 		super();
 	}
@@ -67,6 +67,5 @@ public class BaiViet {
 		return "BaiViet [maBaiViet=" + maBaiViet + ", ngayDang=" + ngayDang + ", noiDung=" + noiDung + ", trangThai="
 				+ trangThai + ", maNguoiDung=" + maNguoiDung + "]";
 	}
-	
-	
+
 }

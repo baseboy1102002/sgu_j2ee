@@ -10,9 +10,7 @@ public class BaiVietView {
 	private List<TuongTacBaiViet> top3TuongTac;
 	private int binhLuanCount;
 	private int tongLuotTuongTac;
-	
-	
-	
+
 	public BaiVietView() {
 	}
 
@@ -83,7 +81,5 @@ public class BaiVietView {
 	public void setTongLuotTuongTac(int tongLuotTuongTac) {
 		this.tongLuotTuongTac = tongLuotTuongTac;
 	}
-	
-	
-	
+
 }

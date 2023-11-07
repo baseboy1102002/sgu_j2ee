@@ -8,16 +8,12 @@ public class ThongTinKetBan {
 	public ThongTinKetBan() {
 		super();
 	}
-	
-	
 
 	public ThongTinKetBan(int maNguoiDung1, int maNguoidung2, String trangThai) {
 		this.maNguoiDung1 = maNguoiDung1;
 		this.maNguoidung2 = maNguoidung2;
 		this.trangThai = trangThai;
 	}
-
-
 
 	public int getMaNguoiDung1() {
 		return maNguoiDung1;
@@ -49,6 +45,4 @@ public class ThongTinKetBan {
 				+ trangThai + "]";
 	}
 
-	
-	
 }
