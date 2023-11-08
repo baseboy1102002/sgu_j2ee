@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Date"%>
-<%@page import="model.thongbao"%>
+<%@page import="model.ThongBao"%>
 <%@page import="model.TimeDifference"%>
 <!DOCTYPE html>
 
@@ -64,7 +64,7 @@
 												class="noti-username text-nowrap">${thisItem.usersPost}</span> <span
 												class="text-nowrap" style=" margin-right: 5px;">vừa mới tạo một bài đăng: </span> <span
 												style="font-weight: 500; max-width: 500px;"
-												class="text-nowrap d-inline-block text-truncate">${thisItem.baiviet.noiDung}</span>
+												class="text-nowrap d-inline-block text-truncate">${thisItem.BaiViet.noiDung}</span>
 										</div>
 										<!-- Hiển thị thời gian -->
 										<div class="noti-info-time mt-3">

@@ -1,21 +1,21 @@
 package model;
 
-public class thongbao {
-	private baiviet baiviet;
+public class ThongBao {
+	private BaiViet baiviet;
 	private String usersPost;
 	
-	public thongbao() {
+	public ThongBao() {
 		super();
 	}
-	public thongbao(model.baiviet baiviet, String usersPost) {
+	public ThongBao(model.BaiViet baiviet, String usersPost) {
 		super();
 		this.baiviet = baiviet;
 		this.usersPost = usersPost;
 	}
-	public baiviet getBaiviet() {
+	public BaiViet getBaiviet() {
 		return baiviet;
 	}
-	public void setBaiviet(baiviet baiviet) {
+	public void setBaiviet(BaiViet baiviet) {
 		this.baiviet = baiviet;
 	}
 	public String getUsersPost() {

@@ -2,14 +2,14 @@ package modelMapper;
 
 import java.sql.ResultSet;
 
-import model.thongbao;
+import model.ThongBao;
 
-public class ThongBaoMapper implements rowMapper<thongbao> {
+public class ThongBaoMapper implements rowMapper<ThongBao> {
 
 	@Override
-	public thongbao mapRow(ResultSet rs) {
+	public ThongBao mapRow(ResultSet rs) {
 		try {
-			thongbao Thongbao = new thongbao();
+			ThongBao Thongbao = new ThongBao();
 			Thongbao.setUsersPost(rs.getString("HoVaTen"));
 			BaiVietMapper bvMapper = new BaiVietMapper();
 			Thongbao.setBaiviet(bvMapper.mapRow(rs));
