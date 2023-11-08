@@ -10,7 +10,7 @@ public class BaiVietService extends DAOService<BaiViet>{
 	}
 	
 	public Boolean deleteBaiViet(int MaBaiViet) {
-		String sql = "update baiviet set TrangThai = 'No' where MaBaiViet = ?";
+		String sql = "update baiviet set TrangThai = 'xoa' where MaBaiViet = ?";
 		return update(sql, MaBaiViet);
 	}
 	
