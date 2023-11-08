@@ -19,6 +19,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/bai-viet-component.css' />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/post-edit-form.css' />">
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/fontawesome6/css/all.min.css' />">
@@ -26,6 +28,7 @@
 
 </head>
 <body>
+
 	<div class="modal fade" id="deleteCommentConfirm" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -104,7 +107,6 @@
 			<c:set var="baiVietView" value="${baiVietView}" scope="request" />
 			<jsp:include page="../components/bai-viet-component.jsp">
 				<jsp:param value="true" name="isDetailMode" />
-				<jsp:param value="${baiVietView }" name="baiVietView"/>
 			</jsp:include>
 
 
@@ -223,6 +225,8 @@
 
 	</div>
 
+	<script type="text/javascript"
+		src="<c:url value='/bootstrap/js/bootstrap.min.js' />"></script>
 
 	<script type="text/javascript"
 		src="<c:url value='/bootstrap/js/bootstrap.bundle.min.js' />"></script>
@@ -232,9 +236,15 @@
 	<script type="text/javascript"
 		src="<c:url value='/fontawesome6/js/all.min.js' />"></script>
 
+	<script type="text/javascript">
+		let contextPath = "${pageContext.request.contextPath}"
+	</script>
 
 	<script type="text/javascript"
 		src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
+	<script type="text/javascript"
+		src="<c:url value='/resources/js/post-edit-form.js' />"></script>
+
 	<script type="text/javascript"
 		src="<c:url value='/resources/js/chi-tiet-bai-viet.js' />"></script>
 

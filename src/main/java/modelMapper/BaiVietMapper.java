@@ -15,7 +15,7 @@ public class BaiVietMapper implements rowMapper<BaiViet> {
 			baiViet.setMaBaiViet(rs.getInt("MaBaiViet"));
 			baiViet.setMaNguoiDung(rs.getInt("MaNguoiDung"));
 			
-			baiViet.setNgayDang(new Date(rs.getTimestamp("NgayDang").getTime()));
+			baiViet.setNgayDang(rs.getTimestamp("NgayDang"));
 			baiViet.setNoiDung(rs.getString("NoiDung"));
 			baiViet.setTrangThai(rs.getString("TrangThai"));
 			return baiViet;

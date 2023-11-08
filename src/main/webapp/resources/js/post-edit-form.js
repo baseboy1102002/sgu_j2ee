@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	console.log($('#modal_post'))
     $('#btn_file').click(function (e) { 
         $('#input_file').click()
     })
@@ -7,6 +8,7 @@ $(document).ready(function () {
     })
 
     $('#btn_add_post').click(function (e) {
+		console.log("AAAAAAAAAAAAAAAAA")
         $.ajax({
             method: "post",
             url: contextPath+"/api/post",

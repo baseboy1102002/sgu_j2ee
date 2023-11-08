@@ -2,8 +2,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
-
-
+<%@include file="/components/post-edit-form.jsp"%>
 
 <div class="modal fade" id="notifyModal" aria-hidden="true"
 	data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
@@ -51,7 +50,8 @@
 </div>
 
 
-<div class="d-flex flex-column  bai-viet-content-wrapper" data-post-id=${baiVietView.baiViet.maBaiViet }>
+<div class="d-flex flex-column  bai-viet-content-wrapper"
+	data-post-id=${baiVietView.baiViet.maBaiViet }>
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
