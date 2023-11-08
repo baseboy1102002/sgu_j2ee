@@ -64,7 +64,7 @@
 												class="noti-username text-nowrap">${thisItem.usersPost}</span> <span
 												class="text-nowrap" style=" margin-right: 5px;">vừa mới tạo một bài đăng: </span> <span
 												style="font-weight: 500; max-width: 500px;"
-												class="text-nowrap d-inline-block text-truncate">${thisItem.BaiViet.noiDung}</span>
+												class="text-nowrap d-inline-block text-truncate">${thisItem.baiviet.noiDung}</span>
 										</div>
 										<!-- Hiển thị thời gian -->
 										<div class="noti-info-time mt-3">

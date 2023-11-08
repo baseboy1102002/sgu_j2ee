@@ -1,18 +1,16 @@
 package controller.web;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.Date;
 
 
 
 public class formatTime {
-	public static String formatTimeDifferences(Timestamp timeFromDB) {
+	public static String formatTimeDifferences(Date timeFromDB) {
 		Date currentTime = new Date();
 		long timeDifference = currentTime.getTime() - timeFromDB.getTime();
 		long seconds = timeDifference / 1000;
-		
-		
+
+
 
         if (seconds < 60) {
             return seconds + " giây trước";

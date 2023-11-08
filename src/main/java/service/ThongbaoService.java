@@ -2,7 +2,6 @@ package service;
 
 import java.util.List;
 
-import model.nguoidung;
 import model.NguoiDung;
 import model.ThongBao;
 import modelMapper.ThongBaoMapper;

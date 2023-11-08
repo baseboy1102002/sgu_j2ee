@@ -18,5 +18,5 @@ public class TimeDifference {
 	public void setTimeDiff(String timeDiff) {
 		this.timeDiff = timeDiff;
 	}
-	
+
 }

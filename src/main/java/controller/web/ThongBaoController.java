@@ -1,7 +1,6 @@
 package controller.web;
 
 
-import java.awt.print.Printable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,10 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.TimeDifference;
-import model.nguoidung;
 import model.NguoiDung;
 import model.ThongBao;
+import model.TimeDifference;
 import service.ThongbaoService;
 
 
@@ -37,19 +35,20 @@ public class ThongBaoController extends HttpServlet {
 
 		ThongbaoService tbService = new ThongbaoService();
 		List<ThongBao> ThongBaos = new ArrayList<>();
-		NguoiDung user = new NguoiDung(1, null, null, null, null, null, null, null, null, null, null);
+		NguoiDung user = new NguoiDung(1, null, null);
 
 
 
 		ThongBaos = tbService.getThongBao(user);
 		formatTime fTime = new formatTime();
 		List<TimeDifference> timeDifference = new ArrayList<>();
-		
+
 		for (ThongBao ThongBao : ThongBaos) {
 			Date currntDate = new Date();
 			TimeDifference timeDiff =  new TimeDifference();
-			timeDiff.setTimeDiff(fTime.formatTimeDifferences(ThongBao.getBaiviet().getNgayDang()));
+			timeDiff.setTimeDiff(formatTime.formatTimeDifferences(ThongBao.getBaiviet().getNgayDang()));
 			timeDifference.add(timeDiff);
+			System.out.println(ThongBao.getBaiviet().getNgayDang());
 		}
 		
 		request.setAttribute("timeDifference", timeDifference);
@@ -61,5 +60,5 @@ public class ThongBaoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
+
 }

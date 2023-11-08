@@ -3,7 +3,7 @@ package model;
 public class ThongBao {
 	private BaiViet baiviet;
 	private String usersPost;
-	
+
 	public ThongBao() {
 		super();
 	}
