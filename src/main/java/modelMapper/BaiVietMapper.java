@@ -1,23 +1,29 @@
 package modelMapper;
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import model.baiviet;
+import model.BaiViet;
 
-public class BaiVietMapper implements rowMapper<baiviet>{
+public class BaiVietMapper implements rowMapper<BaiViet> {
 	@Override
-	public baiviet mapRow(ResultSet rs) {
+	public BaiViet mapRow(ResultSet rs) {
+		// TODO Auto-generated method stub
+		BaiViet baiViet = new BaiViet();
 		try {
-			baiviet bViet = new baiviet();
-			bViet.setMaBaiViet(rs.getInt("MaBaiViet"));
-			bViet.setNgayDang(rs.getTimestamp("NgayDang"));
-			bViet.setNoiDung(rs.getString("NoiDung"));
-			bViet.setTrangThai(rs.getString("TrangThai"));
-			bViet.setMaNguoiDung(rs.getInt("MaNguoiDung"));
-			return bViet;
-		} catch (Exception e) {
+			baiViet.setMaBaiViet(rs.getInt("MaBaiViet"));
+			baiViet.setMaNguoiDung(rs.getInt("MaNguoiDung"));
+			baiViet.setNgayDang(rs.getDate("NgayDang"));
+			baiViet.setNoiDung(rs.getString("NoiDung"));
+			baiViet.setTrangThai(rs.getString("TrangThai"));
+			return baiViet;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		return null;
-
 	}
 }
