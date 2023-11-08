@@ -51,7 +51,7 @@
 </div>
 
 
-<div class="d-flex flex-column  bai-viet-content-wrapper" data-id=3>
+<div class="d-flex flex-column  bai-viet-content-wrapper" data-post-id=${baiVietView.baiViet.maBaiViet }>
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
