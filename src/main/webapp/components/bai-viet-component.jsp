@@ -1,8 +1,37 @@
+
 <%@ page pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
+
+
+
+<div class="modal fade" id="notifyModal" aria-hidden="true"
+	data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
+	aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalToggleLabel">Thông báo</h5>
+
+			</div>
+			<div class="modal-body">
+				<i class="fa-solid fa-circle-check"></i>
+				<p>Xóa thành công</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary"
+					id="confirm-notify-btn">Quay lại</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	aria-labelledby="exampleModalLabel" aria-hidden="true"
+	data-id-bai-viet="${baiVietView.baiViet.maBaiViet}"
+	data-is-detail-mode="${param.isDetailMode }">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -14,7 +43,8 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary"
 					data-bs-dismiss="modal">Hủy bỏ</button>
-				<button type="button" class="btn btn-primary">Xác nhận</button>
+				<button type="button" class="btn btn-primary"
+					id="delete-baiviet-btn">Xác nhận</button>
 			</div>
 		</div>
 	</div>
@@ -52,8 +82,6 @@
 					data-bs-toggle="modal" data-bs-target="#exampleModal">
 					<i class="fa fa-trash" aria-hidden="true"></i> <span> Xóa </span>
 				</button>
-
-
 			</div>
 		</div>
 
@@ -64,7 +92,9 @@
 		<c:if test="${!param.isDetailMode }">
 
 			<div class="see-more">
-				<a href="#">Xem thêm</a>
+				<a
+					href="/sgu_j2ee/chitietbaiviet?maBaiViet=${baiVietView.baiViet.maBaiViet }">Xem
+					thêm</a>
 			</div>
 		</c:if>
 
@@ -86,7 +116,7 @@
 							varStatus="loop">
 							<div
 								class='carousel-item  w-100 h-100 ${loop.index == 0 ? "active" : "" }'>
-								<img src="<c:url value='${item.tenFile}' />"
+								<img src="/sgu_j2ee/files/${item.tenFile}"
 									class="img-thumbnail d-block w-100 h-100" alt="...">
 							</div>
 						</c:forEach>
@@ -122,11 +152,12 @@
 				</c:forEach>
 				<span> ${baiVietView.tongLuotTuongTac} </span>
 			</div>
-			<div class="comment-data">${baiVietView.binhLuanCount} Bình luận</div>
+			<div class="comment-data">${baiVietView.binhLuanCount}bìnhluận</div>
 		</div>
 		<hr>
 		<div class="bai-viet-actions">
-			<div class="react-action ${empty baiVietView.loginUserTuongTacBaiViet ? '' : 'active' }">
+			<div
+				class="react-action ${empty baiVietView.loginUserTuongTacBaiViet ? '' : 'active' }">
 
 				<c:if test="${empty baiVietView.loginUserTuongTacBaiViet }">
 					${baiVietView.loginUserTuongTacBaiViet }			
@@ -158,6 +189,10 @@
 				</div>
 			</div>
 			<div class="comment-action">
+				<c:if test="${!param.isDetailMode }">
+					<a
+						href="/sgu_j2ee/chitietbaiviet?maBaiViet=${baiVietView.baiViet.maBaiViet }"></a>
+				</c:if>
 				<i class="fa fa-comment" aria-hidden="true"></i> <span>Bình
 					luận</span>
 			</div>

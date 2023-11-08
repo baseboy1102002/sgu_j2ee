@@ -113,13 +113,6 @@ public class BaiVietView {
 
 
 
-	@Override
-	public String toString() {
-		return "BaiVietView [baiViet=" + baiViet + ", loginUserTuongTacBaiViet=" + loginUserTuongTacBaiViet
-				+ ", fileHinhAnhs=" + fileHinhAnhs + ", fileDinhKems=" + fileDinhKems + ", top3TuongTac=" + top3TuongTac
-				+ ", binhLuanCount=" + binhLuanCount + ", tongLuotTuongTac=" + tongLuotTuongTac
-				+ ", anhDaiDienNguoiDang=" + anhDaiDienNguoiDang + ", hoVaTenNguoiDang=" + hoVaTenNguoiDang + "]";
-	}
 
 
 

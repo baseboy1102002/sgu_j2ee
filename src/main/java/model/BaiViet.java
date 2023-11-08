@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 public class BaiViet {
 	private int maBaiViet;
-	private Timestamp ngayDang;
+	private Date ngayDang;
 	private String noiDung;
 	private String trangThai;
 	private int maNguoiDung;
@@ -15,7 +15,7 @@ public class BaiViet {
 		super();
 	}
 
-	public BaiViet(int maBaiViet, Timestamp ngayDang, String noiDung, String trangThai, int maNguoiDung) {
+	public BaiViet(int maBaiViet, Date ngayDang, String noiDung, String trangThai, int maNguoiDung) {
 		super();
 		this.maBaiViet = maBaiViet;
 		this.ngayDang = ngayDang;
@@ -34,11 +34,11 @@ public class BaiViet {
 
 	
 
-	public Timestamp getNgayDang() {
+	public Date getNgayDang() {
 		return ngayDang;
 	}
 
-	public void setNgayDang(Timestamp ngayDang) {
+	public void setNgayDang(Date ngayDang) {
 		this.ngayDang = ngayDang;
 	}
 

@@ -99,12 +99,15 @@
 		<div>Header</div>
 
 		<div class="d-flex flex-column content ">
+
+
+			<c:set var="baiVietView" value="${baiVietView}" scope="request" />
 			<jsp:include page="../components/bai-viet-component.jsp">
 				<jsp:param value="true" name="isDetailMode" />
-				<jsp:param value="${baiVietView}" name="baiVietView" />
-				
-				
+				<jsp:param value="${baiVietView }" name="baiVietView"/>
 			</jsp:include>
+
+
 
 			<div class="comment-wrapper">
 				<div class="comment-form-wrapper">

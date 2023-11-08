@@ -48,6 +48,8 @@ public class ChiTietBaiVietController extends HttpServlet {
 		int maNguoiDung = 1;
 		
 		BaiVietView baiVietView = getDataBaiVietForView(Integer.parseInt(maBaiViet), maNguoiDung);
+		
+		
 		request.setAttribute("baiVietView", baiVietView);
 		
 		request.getRequestDispatcher("views/chi-tiet-bai-viet.jsp").forward(request, response);
@@ -96,7 +98,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 		
 		BaiVietView baiVietView =  new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems, top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, anhDaiDienNguoiDang, hoVaTenNguoiDang);
-		System.out.println("login : "+loginUserTuongTacBaiViet);
+
 		
 		return baiVietView;
 		

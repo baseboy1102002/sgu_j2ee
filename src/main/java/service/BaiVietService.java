@@ -20,7 +20,11 @@ public class BaiVietService extends DAOService<BaiViet> {
 		return baiViets.isEmpty() ? null : baiViets.get(0);
 	}
 	
-	
+	public Boolean deleteBaiVietById(int maBaiViet) {
+		String sql ="update baiviet set TrangThai = 'xoa' Where MaBaiViet=?";
+		return update(sql, maBaiViet);
+		
+	}
 	
 	
 }
