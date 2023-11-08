@@ -2,56 +2,11 @@
 <%@ page pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
-<%@include file="/components/post-edit-form.jsp"%>
-
-<div class="modal fade" id="notifyModal" aria-hidden="true"
-	data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
-	aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalToggleLabel">Thông báo</h5>
-
-			</div>
-			<div class="modal-body">
-				<i class="fa-solid fa-circle-check"></i>
-				<p>Xóa thành công</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary"
-					id="confirm-notify-btn">Quay lại</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1"
-	aria-labelledby="exampleModalLabel" aria-hidden="true"
-	data-id-bai-viet="${baiVietView.baiViet.maBaiViet}"
-	data-is-detail-mode="${param.isDetailMode }">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal"
-					aria-label="Close"></button>
-			</div>
-			<div class="modal-body">Bạn có chắc chắn muốn xóa bài viết này</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary"
-					data-bs-dismiss="modal">Hủy bỏ</button>
-				<button type="button" class="btn btn-primary"
-					id="delete-baiviet-btn">Xác nhận</button>
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <div class="d-flex flex-column  bai-viet-content-wrapper"
-	data-post-id=${baiVietView.baiViet.maBaiViet }>
+	data-post-id=${baiVietView.baiViet.maBaiViet }
+	data-is-detail-mode=${param.isDetailMode } data-user-login="4">
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
@@ -66,7 +21,7 @@
 
 		</div>
 
-		<div class="profile-right">
+		<div class="profile-right" onclick="showMore(this)">
 			<i class="fa fa-ellipsis-h"></i>
 			<div class="profile-more-hover">
 
@@ -79,7 +34,8 @@
 
 
 				<button type="button" class="btn profile-item delete-post-btn"
-					data-bs-toggle="modal" data-bs-target="#exampleModal">
+					data-bs-toggle="modal" data-bs-target="#deletePostConfirm"
+					onclick="onPostDeleteClick(this)">
 					<i class="fa fa-trash" aria-hidden="true"></i> <span> Xóa </span>
 				</button>
 			</div>
@@ -152,38 +108,52 @@
 				</c:forEach>
 				<span> ${baiVietView.tongLuotTuongTac} </span>
 			</div>
-			<div class="comment-data">${baiVietView.binhLuanCount}bìnhluận</div>
+			<div class="comment-data">${baiVietView.binhLuanCount} bình luận</div>
 		</div>
 		<hr>
 		<div class="bai-viet-actions">
-			<div
-				class="react-action ${empty baiVietView.loginUserTuongTacBaiViet ? '' : 'active' }">
-
-				<c:if test="${empty baiVietView.loginUserTuongTacBaiViet }">
+			<div class="react-action ">
+				<div onclick="handleOnClickReact(this)"
+					class=" react-action-btn ${empty baiVietView.loginUserTuongTacBaiViet ? '' : 'active' } "
+					data-active=${empty baiVietView.loginUserTuongTacBaiViet ? false : true }>
+					<c:if test="${empty baiVietView.loginUserTuongTacBaiViet }">
 					${baiVietView.loginUserTuongTacBaiViet }			
 					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-					<span>Thích</span>
-				</c:if>
+						<span>Thích</span>
+					</c:if>
 
-				<c:if test="${!empty baiVietView.loginUserTuongTacBaiViet }">
-					<img alt=""
-						src="<c:url value='/assets/images/${baiVietView.loginUserTuongTacBaiViet.trangThai }.png' />">
-					<span class="${baiVietView.loginUserTuongTacBaiViet.trangThai }">${baiVietView.loginUserTuongTacBaiViet.trangThai }</span>
-				</c:if>
+					<c:if test="${!empty baiVietView.loginUserTuongTacBaiViet }">
+
+
+						<img alt=""
+							src="<c:url value='/assets/images/${baiVietView.loginUserTuongTacBaiViet.trangThai }.png' />">
+						<span class="${baiVietView.loginUserTuongTacBaiViet.trangThai }">${baiVietView.loginUserTuongTacBaiViet.trangThai }</span>
+
+					</c:if>
+
+				</div>
+
+
+
 				<div class="more-action">
-					<div class="react-action-item">
+					<div class="react-action-item" data-react="like"
+						onclick="onReactClick(this)">
 						<img alt="" src="<c:url value='/assets/images/like.png' />">
 					</div>
-					<div class="react-action-item">
+					<div class="react-action-item" data-react=heart
+						onclick="onReactClick(this)">
 						<img alt="" src="<c:url value='/assets/images/heart.png' />">
 					</div>
-					<div class="react-action-item">
+					<div class="react-action-item" data-react="sad"
+						onclick="onReactClick(this)">
 						<img alt="" src="<c:url value='/assets/images/sad.png' />">
 					</div>
-					<div class="react-action-item">
+					<div class="react-action-item" data-react="haha"
+						onclick="onReactClick(this)">
 						<img alt="" src="<c:url value='/assets/images/haha.png' />">
 					</div>
-					<div class="react-action-item">
+					<div class="react-action-item" data-react="mad"
+						onclick="onReactClick(this)">
 						<img alt="" src="<c:url value='/assets/images/mad.png' />">
 					</div>
 				</div>

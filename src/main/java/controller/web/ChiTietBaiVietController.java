@@ -45,7 +45,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String maBaiViet = request.getParameter("maBaiViet");
-		int maNguoiDung = 1;
+		int maNguoiDung = 4;
 		
 		BaiVietView baiVietView = getDataBaiVietForView(Integer.parseInt(maBaiViet), maNguoiDung);
 		

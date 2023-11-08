@@ -89,4 +89,7 @@ $(document).ready(function() {
 
 	})
 
+	/*Xử lí thêm bình luận*/
+	
+
 });

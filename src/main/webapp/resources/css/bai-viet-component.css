@@ -182,19 +182,27 @@
 .react-action,
 .comment-action {
 	align-items: center;
-	display: flex;
-	gap: 5px;
-	padding: 4px 5px;
-	border-radius: 5px;
+
 }
 
-.react-action.active {
-    background: #eeeeee;
-}
-
-.react-action > img {
+.react-action-btn img {
     width: 20px;
-    /* height: 16px; */
+    height: 20px;
+}
+
+.react-action-btn {
+    width: 100%;
+    height: 100%;
+    padding: 4px 5px;
+    display: flex;
+    gap: 5px;
+    /* padding: 4px 5px; */
+    border-radius: 5px;
+    align-items: center;
+}
+
+.react-action-btn.active {
+    background: #eeeeee;
 }
 
 

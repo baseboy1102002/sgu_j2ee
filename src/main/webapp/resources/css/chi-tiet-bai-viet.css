@@ -77,6 +77,10 @@ img[src=""] {
 	/* opacity: .7; */
 }
 
+#submit-comment-btn:disabled svg:hover {
+    color: #dedede;
+}
+
 #comment-icon,
 #submit-comment-btn {
 	color: #dedede;

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import model.TuongTacBaiViet;
@@ -14,7 +15,6 @@ public class TuongTacBaiVietService extends DAOService<TuongTacBaiViet> {
 
 	}
 
-	
 //	Lấy tổng lượt tương tác của 1 bài viết
 	public int getTongLuotTuongTacBaiViet(int maBaiViet) {
 		String sql = "SELECT COUNT(*) AS tongLuotTT FROM `tuongtacbaiviet` WHERE MaBaiViet = ? ";
@@ -54,4 +54,23 @@ public class TuongTacBaiVietService extends DAOService<TuongTacBaiViet> {
 		List<TuongTacBaiViet> tuongTacBaiViets = query(sql, new TuongTacBaiVietMapper(), maNguoiDung, maBaiViet);
 		return tuongTacBaiViets.isEmpty() ? null : tuongTacBaiViets.get(0);
 	}
+
+	public Integer addTuongTacBaiViet(TuongTacBaiViet tuongTacBaiViet) {
+		System.out.println("tuong tac bai viet" + tuongTacBaiViet);
+		String sql ="INSERT INTO `tuongtacbaiviet` (`MaNguoiDung`, `MaBaiViet`, `NgayGioTuongTac`, `TrangThai`) VALUES (?, ?, ?, ?)";
+		return insert(sql, tuongTacBaiViet.getMaNguoiDung(),tuongTacBaiViet.getMaBaiViet(),tuongTacBaiViet.getNgayGioTuongTac(),tuongTacBaiViet.getTrangThai());
+	}
+
+	public boolean updateTuongTacBaiViet(TuongTacBaiViet tuongTacBaiViet) {
+		String sql="UPDATE `tuongtacbaiviet` SET  `NgayGioTuongTac` = ?, `TrangThai` = ? WHERE `tuongtacbaiviet`.`MaNguoiDung` = ? AND `tuongtacbaiviet`.`MaBaiViet` = ?";
+		return update(sql, tuongTacBaiViet.getNgayGioTuongTac(),tuongTacBaiViet.getTrangThai(),tuongTacBaiViet.getMaNguoiDung(),tuongTacBaiViet.getMaBaiViet());
+	}
+	
+	public boolean deleteTuongTacBaiViet(int maBaiViet, int maNguoiDung) {
+		String sql="DELETE FROM `tuongtacbaiviet` WHERE `tuongtacbaiviet`.`MaNguoiDung` = ? AND `tuongtacbaiviet`.`MaBaiViet` = ?";
+		return update(sql, maNguoiDung,maBaiViet);
+		
+		
+	}
+	
 }

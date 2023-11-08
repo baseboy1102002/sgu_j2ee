@@ -19,8 +19,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/bai-viet-component.css' />">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/post-edit-form.css' />">
+<%-- <link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/post-edit-form.css' />"> --%>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/fontawesome6/css/all.min.css' />">
@@ -28,6 +28,49 @@
 
 </head>
 <body>
+
+	<%@include file="/components/post-edit-form.jsp"%>
+
+	<div class="modal fade" id="notifyModal" aria-hidden="true"
+		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
+		aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalToggleLabel">Thông báo</h5>
+
+				</div>
+				<div class="modal-body">
+					<i class="fa-solid fa-circle-check"></i>
+					<p>Xóa thành công</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						id="confirm-notify-btn">Quay lại</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="deletePostConfirm" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Bạn có chắc chắn muốn xóa bài viết này</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="delete-baiviet-btn">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="modal fade" id="deleteCommentConfirm" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
