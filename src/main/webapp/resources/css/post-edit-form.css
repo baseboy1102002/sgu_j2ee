@@ -1,0 +1,105 @@
+img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+textarea {
+    resize: none;
+}
+
+#post_text {
+    border-radius: 5px;
+}
+
+#post_file {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+#post_image {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-wrapper .img-overlay {
+    background: rgba(0,0,0,0.4);
+    position: absolute;
+    height: 99%;
+    width: 99%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;
+}
+
+.img-wrapper:hover .img-overlay {
+    opacity: 1;
+}
+
+.img-btn {
+    position: absolute;
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.img-wrapper:hover .img-btn {
+    top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+
+.fadeIn-top {
+    top: 20%;
+}
+
+.badge {
+ background-color: aqua;
+}
+
+@media only screen and (min-width: 768px) {
+    img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

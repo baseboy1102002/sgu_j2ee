@@ -15,7 +15,7 @@ public class DAOService<T> {
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/ten_db", "username", "password");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/sgu_j2ee_socialapp", "root", "root");
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
 		}
@@ -147,6 +147,8 @@ public class DAOService<T> {
 					pstm.setInt(currInx, (Integer)param);
 				else if(param instanceof String)
 					pstm.setString(currInx, (String)param);
+				else if(param instanceof java.util.Date)
+					pstm.setTimestamp(currInx, new Timestamp(((java.util.Date) param).getTime()));
 				else if(param instanceof Timestamp)
 					pstm.setTimestamp(currInx, (Timestamp)param);
 			}

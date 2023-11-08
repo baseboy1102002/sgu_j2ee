@@ -1,0 +1,51 @@
+@charset "ISO-8859-1";
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+/* Default css */
+:root {
+    --primaryColor: #53D068;
+    --primaryLighterColor: rgba(33, 174, 132, .65);
+    --secondaryColor: rgba(34, 147, 209, 1);
+    --greyColorText: rgba(77, 77, 77, 1);
+    --greyDisabledColor: rgba(202, 202, 202, 1);
+    --errorColor: rgba(238, 52, 37, 1);
+    --warningColor: rgba(247, 188, 10, 1);
+    --fadeBackground: rgba(26, 26, 26, .37);
+    --bodyBackground: #ebebeb;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    line-height: 1;
+    font-size: 1.6rem;
+    text-rendering: optimizeSpeed;
+    background-color: var(--bodyBackground);
+}
+
+input {
+    outline: none;
+    background-color: transparent;
+}
+
+button {
+    border: none;
+}
+
+a[href] {
+    text-decoration: none;
+}
+
+
