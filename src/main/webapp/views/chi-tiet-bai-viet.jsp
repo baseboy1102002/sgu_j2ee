@@ -178,84 +178,110 @@
 					</div>
 				</div>
 				<div class="comment-record-wrapper">
-					<div class="comment-record-item" data-id=1>
-						<img class="comment-record-profile-img"
-							src="<c:url value='/assets/images/defaultProfileImage.png' />" />
-						<div class="comment-record-right">
-							<div class="comment-record-content">
-								<div class="comment-record-title">
-									<div class="comment-record-title-content">
-										<h5>Châu Quốc Thanh</h5>
-										<span> 6/11/2023 </span>
-									</div>
-									<div class="comment-record-title-right">
-										<i class="fa fa-ellipsis-h"></i>
-										<div class="comment-more-hover">
+					<c:forEach var="item" items="${binhLuanBaiViewList}">
 
-											<button type="button" class="btn edit-comment-btn  "
-												data-bs-toggle="modal" data-bs-target="#updateCommentPopup">
-												<i class="fa fa-cog" aria-hidden="true"></i><span>
-													Chỉnh sửa </span>
-											</button>
-											<button type="button" class="btn delete-comment-btn "
-												data-bs-toggle="modal"
-												data-bs-target="#deleteCommentConfirm">
-												<i class="fa fa-trash" aria-hidden="true"></i> <span>
-													Xóa </span>
-											</button>
+						<div class="comment-record-item" data-id="1">
+							<c:if test="${empty item.anhDaiDienNguoiDang}">
+								<img class="comment-record-profile-img"
+									src="<c:url value='/assets/images/defaultProfileImage.png' />" />
+
+							</c:if>
+							<c:if test="${!empty item.anhDaiDienNguoiDang} ">
+								<img class="comment-record-profile-img"
+									src="/sgu_j2ee/files/${item.anhDaiDienNguoiDang }" />
+
+							</c:if>
+
+							<div class="comment-record-right">
+								<div class="comment-record-content">
+									<div class="comment-record-title">
+										<div class="comment-record-title-content">
+											<h5>${item.hoVaTenNguoiDang }</h5>
+											<span> ${item.binhLuanBaiViet.ngayGioBinhLuan } </span>
 										</div>
+										<div class="comment-record-title-right">
+											<i class="fa fa-ellipsis-h"></i>
+											<div class="comment-more-hover">
 
+												<button type="button" class="btn edit-comment-btn  "
+													data-bs-toggle="modal" data-bs-target="#updateCommentPopup">
+													<i class="fa fa-cog" aria-hidden="true"></i><span>
+														Chỉnh sửa </span>
+												</button>
+												<button type="button" class="btn delete-comment-btn "
+													data-bs-toggle="modal"
+													data-bs-target="#deleteCommentConfirm">
+													<i class="fa fa-trash" aria-hidden="true"></i> <span>
+														Xóa </span>
+												</button>
+											</div>
+
+										</div>
+									</div>
+									<p>${item.binhLuanBaiViet.noiDung }</p>
+									<div class="comment-record-react">
+										<div class="react-data">
+											<c:forEach var="tuongTacBinhLuan"
+												items="${item.top3TuongTac }">
+												<div class="react-data-item">
+													<img alt=""
+														src="<c:url value='/assets/images/${tuongTacBinhLuan.trangThai }.png' />">
+												</div>
+
+											</c:forEach>
+
+											<span> ${item.tongLuotTuongTac }</span>
+										</div>
+										<button class="comment-record-react-action">
+											<div
+												class=" comment-record-react-action-btn ${empty item.loginUserTuongTacBinhLuan ? '' : 'active' } "
+												data-active=${empty item.loginUserTuongTacBinhLuan ? false : true }>
+												<c:if test="${empty item.loginUserTuongTacBinhLuan }">
+
+													<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+													<span>Thích</span>
+												</c:if>
+
+												<c:if test="${!empty item.loginUserTuongTacBinhLuan }">
+
+
+													<img alt=""
+														src="<c:url value='/assets/images/${item.loginUserTuongTacBinhLuan.trangThai }.png' />">
+													<span class="${item.loginUserTuongTacBinhLuan.trangThai }">${item.loginUserTuongTacBinhLuan.trangThai }</span>
+
+												</c:if>
+
+											</div>
+
+											<div class="comment-record-more-action">
+												<div class="comment-record-react-item">
+													<img alt="" src="<c:url value='/assets/images/like.png' />">
+												</div>
+												<div class="comment-record-react-item">
+													<img alt=""
+														src="<c:url value='/assets/images/heart.png' />">
+												</div>
+												<div class="comment-record-react-item">
+													<img alt="" src="<c:url value='/assets/images/sad.png' />">
+												</div>
+												<div class="comment-record-react-item">
+													<img alt="" src="<c:url value='/assets/images/haha.png' />">
+												</div>
+												<div class="comment-record-react-item">
+													<img alt="" src="<c:url value='/assets/images/mad.png' />">
+												</div>
+											</div>
+										</button>
 									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Architecto eaque ipsum incidunt, alias placeat sequi obcaecati
-									debitis sint ut, rem accusamus, voluptas perspiciatis illo?
-									Culpa exercitationem dolore iure aut. Minus.</p>
-								<div class="comment-record-react">
-									<div class="react-data">
-										<div class="react-data-item">
-											<img alt="" src="<c:url value='/assets/images/like.png' />">
-										</div>
-										<div class="react-data-item">
-											<img alt="" src="<c:url value='/assets/images/heart.png' />">
-										</div>
-										<div class="react-data-item">
-											<img alt="" src="<c:url value='/assets/images/sad.png' />">
-										</div>
-										<div class="react-data-item">
-											<img alt="" src="<c:url value='/assets/images/haha.png' />">
-										</div>
-										<div class="react-data-item">
-											<img alt="" src="<c:url value='/assets/images/mad.png' />">
-										</div>
-										<span> 230 </span>
-									</div>
-									<button class="comment-record-react-action">
-										<i class="fa-solid fa-thumbs-up"></i> <span>Thích</span>
-										<div class="comment-record-more-action">
-											<div class="comment-record-react-item">
-												<img alt="" src="<c:url value='/assets/images/like.png' />">
-											</div>
-											<div class="comment-record-react-item">
-												<img alt="" src="<c:url value='/assets/images/heart.png' />">
-											</div>
-											<div class="comment-record-react-item">
-												<img alt="" src="<c:url value='/assets/images/sad.png' />">
-											</div>
-											<div class="comment-record-react-item">
-												<img alt="" src="<c:url value='/assets/images/haha.png' />">
-											</div>
-											<div class="comment-record-react-item">
-												<img alt="" src="<c:url value='/assets/images/mad.png' />">
-											</div>
-										</div>
-									</button>
-								</div>
+								<c:if test="${!empty item.binhLuanBaiViet.anhBinhLuan }">
+									<img class="comment-record-img"
+										src="/sgu_j2ee/files/${item.binhLuanBaiViet.anhBinhLuan}" />
+								</c:if>
 							</div>
-							<img class="comment-record-img"
-								src="<c:url value='/assets/images/bangcuc.jpg' />" />
 						</div>
-					</div>
+
+					</c:forEach>
 
 				</div>
 			</div>

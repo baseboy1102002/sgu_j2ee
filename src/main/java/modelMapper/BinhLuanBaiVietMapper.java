@@ -15,7 +15,7 @@ public class BinhLuanBaiVietMapper implements rowMapper<BinhLuanBaiViet> {
 			binhLuanBaiViet.setMaBinhLuan(rs.getInt("MaBinhLuan"));
 			binhLuanBaiViet.setMaBaiViet(rs.getInt("MaBaiViet"));
 			binhLuanBaiViet.setMaNguoiDung(rs.getInt("MaNguoiDung"));
-			binhLuanBaiViet.setNgayGioBinhLuan(rs.getDate("NgayGioBinhLuan"));
+			binhLuanBaiViet.setNgayGioBinhLuan(rs.getTimestamp("NgayGioBinhLuan"));
 			binhLuanBaiViet.setNoiDung(rs.getString("NoiDung"));
 			binhLuanBaiViet.setTrangThai(rs.getString("TrangThai"));
 			binhLuanBaiViet.setAnhBinhLuan(rs.getString("AnhBinhLuan"));

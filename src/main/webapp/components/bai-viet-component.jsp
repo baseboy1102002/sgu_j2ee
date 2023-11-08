@@ -10,9 +10,16 @@
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
-				<img
-					src=<c:url value='${empty baiVietView.anhDaiDienNguoiDang ? "/assets/images/defaultProfileImage.png" :baiVietView.anhDaiDienNguoiDang   }' />
-					alt="" />
+				<c:if test="${empty baiVietView.anhDaiDienNguoiDang }">
+					<img src="<c:url value='/assets/images/defaultProfileImage.png' />"
+						alt="" />
+
+				</c:if>
+				<c:if test="${!empty baiVietView.anhDaiDienNguoiDang }">
+					<img src="/sgu_j2ee/files/${baiVietView.anhDaiDienNGuoiDang }"
+						alt="" />
+
+				</c:if>
 			</div>
 			<div class="profile-info">
 				<h1>${baiVietView.hoVaTenNguoiDang}</h1>
@@ -108,7 +115,7 @@
 				</c:forEach>
 				<span> ${baiVietView.tongLuotTuongTac} </span>
 			</div>
-			<div class="comment-data">${baiVietView.binhLuanCount} bình luận</div>
+			<div class="comment-data">${baiVietView.binhLuanCount}bình luận</div>
 		</div>
 		<hr>
 		<div class="bai-viet-actions">
