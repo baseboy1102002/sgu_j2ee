@@ -1,0 +1,71 @@
+.setting {
+    padding-top: 130px;
+}
+
+.setting .card {
+
+    border-radius: 20px;
+    border: solid 1px #53d068;
+    overflow: hidden;
+}
+
+.setting .card-header {
+    background-color: #53d068;
+    color: #fff;
+}
+
+.setting .image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.setting .circle-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #53d068;
+    border-collapse: separate;
+    border-spacing: 15px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.setting .gear-icon {
+    position: absolute;
+    top: 10px;
+    left: 55%;
+    color: #eeeeee;
+    font-size: 50px;
+    text-shadow: 0 0 3px #000;
+}
+
+.setting .input__item label {
+    display: block;
+    font-size: 20px;
+}
+
+.setting .input__item input {
+    display: block;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 50px;
+}
+.setting button {
+    height: 50px;
+    width: 150px;
+    background-color: #eeeeee;
+    border: #53d068 1px solid;
+    border-radius: 10px;
+    font-size: 25px;
+}
+.setting button i {
+    margin-right: 15px;
+}
+.setting button:hover{
+    background-color:#53d068;
+    color: #fff;
+    }

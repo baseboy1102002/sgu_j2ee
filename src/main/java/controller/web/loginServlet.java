@@ -2,6 +2,7 @@ package controller.web;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import controller.web.SessionManager;
 
 /**
@@ -19,7 +22,6 @@ import controller.web.SessionManager;
  */
 @WebServlet({ "/dang-nhap" })
 public class loginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,14 +34,20 @@ public class loginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("views/Index.jsp").forward(request, response);
 		request.setCharacterEncoding("utf-8");
+		//logout
+        HttpSession session = request.getSession();
+        session.invalidate();
+        
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");
 		String checkRemember = request.getParameter("checkRemember");
 		String userName = null, userConfirmCode = null, userPhone = null;
+		Date userDoB = null; 
+		int userID = 0;
 		//JDBC connection
 		Connection conn = null;
 		Statement st = null;
@@ -56,6 +64,8 @@ public class loginServlet extends HttpServlet {
 		        userName = rs.getString("HoVaTen");
 		        userConfirmCode = rs.getString("MaXacNhan");
 		        userPhone = rs.getString("SoDienThoai");
+		        userDoB = rs.getDate("NgaySinh");
+		        userID = rs.getInt("MaNguoiDung");
 		    }
 		} catch (ClassNotFoundException e) {
 		    e.printStackTrace();
@@ -85,23 +95,34 @@ public class loginServlet extends HttpServlet {
 		        }
 		    }
 		}
-
+		
+		
 		// Perform the redirection outside the try-catch block
 		if (userExists) {
 		    // Store user information in session
-		    SessionManager.storeUserInfo(request, inputEmail, inputPassword, userName, userConfirmCode, userPhone); // Replace userID with the actual user ID
-
+		    SessionManager.storeUserInfo(request, inputEmail, inputPassword, userName, userConfirmCode, userPhone, userDoB, userID);
+		    System.out.println("ok");
+		    
 		    // Redirect to a different page (e.g., home page)
-		    response.sendRedirect("views/Home.jsp"); // Replace with your desired page
+		    if (SessionManager.getConfirmCode(request).equals("confirmed!") ) {
+		    	response.sendRedirect(request.getContextPath() + "/views/Home.jsp"); 
+			    return;
+		    }
+		    else {
+		    	response.sendRedirect(request.getContextPath() + "/views/Confirm_Account.jsp"); 
+    		    return;
+            }
 		} else {
-		    System.out.println("not ok");
+		    System.out.println("not  ok");
 		}
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

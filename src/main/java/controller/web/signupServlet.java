@@ -39,7 +39,7 @@ public class signupServlet extends HttpServlet {
 		String inputName = request.getParameter("inputName");
 		String inputCheckPassword = request.getParameter("inputCheckPassword");
 		String confirmationCode = generateConfirmationCode();
-
+		int userID = 0;
 		// JDBC connection
 		Connection conn = null;
 		PreparedStatement checkStatement = null;
@@ -59,6 +59,7 @@ public class signupServlet extends HttpServlet {
 			rs = checkStatement.executeQuery();
 			if (rs.next()) {
 				userExists = true;
+		        userID = rs.getInt("MaNguoiDung");
 			}
 			if (userExists == false && wrongPassword == false) {
 				String insertQuery = "INSERT INTO nguoidung (Email, HoVaTen, MaXacNhan, MatKhau) VALUES (?, ?, ?, ?)";
@@ -74,6 +75,7 @@ public class signupServlet extends HttpServlet {
 					System.out.println(
 							"New account inserted: Email=" + inputEmail + ", ConfirmationCode=" + confirmationCode);
 					EmailSender.sendActivationCode(inputEmail, inputName, confirmationCode);
+					SessionManager.storeUserInfo(request, inputEmail, inputPassword, inputName, confirmationCode, SessionManager.getPhone(request), SessionManager.getDoB(request), userID); 
 					request.getRequestDispatcher("/views/Confirm_Account.jsp").forward(request, response);
 				} else {
 					// Handle insertion failure

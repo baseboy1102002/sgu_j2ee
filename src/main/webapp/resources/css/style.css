@@ -4,7 +4,7 @@ body {
 	height: 100%;
 	font-family: "Mulish", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	background: #DAD7CD;
+	background: #eeeeee;
 }
 
 h1,
@@ -104,20 +104,23 @@ ol {
 -----------------------*/
 .form-group.has-search {
 	position: relative;
-	padding: 17px 0 17px;
+	padding: 25px 0 17px;
   }
   
   .form-control-feedback {
 	position: absolute;
-	top: 37%;
-	left: 10px; /* Adjust this value to control the icon's position */
+	top: 45%;
+	left: 20px; /* Adjust this value to control the icon's position */
 	z-index: 2;
 	color: #aaa; /* Adjust the color of the icon as needed */
 	pointer-events: none; /* Prevent the icon from being selectable or clickable */
   }
   
   #SearchInput {
-	padding-left: 40px; /* Adjust this value to make space for the icon */
+	padding-left: 50px; /* Adjust this value to make space for the icon */
+	height: 50px;
+	border-radius: 10px;
+	background-color: #eeeeee;
   }
 @keyframes loader {
 	0% {
@@ -163,9 +166,10 @@ ol {
 -----------------------*/
 
 .header {
-	background: #DAD7CD;
+	background: #ffff;
 	position: fixed;
 	top: 0;
+	height: auto;
 	z-index: 1000;
 	width: 100%;
 	align-items: center;
@@ -183,22 +187,25 @@ ol {
 
 .header__right {
 	text-align: center;
-	padding: 25px 0 17px;
+	padding: 25px 0 0 17px;
 }
 .header__right i {
 	color: #53D068;
+	padding: 17px 0 17px;
+}
+.icon_group_circle {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #eeeeee;
 }
 
 .header__right a {
 	display: inline-block;
 	font-size: 18px;
 	color: #53D068;
-	margin-right: 30px;
 }
 
-.header__right a:last-child {
-	margin-right: 0;
-}
 .header__right .dropdown-toggle::after {
     display: none;
 }
@@ -207,5 +214,5 @@ ol {
 }
 .header__right .dropdown-item:hover {
 	background-color: #53D068;
-	color:#DAD7CD;
+	color:black;
 }

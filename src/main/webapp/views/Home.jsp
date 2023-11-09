@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +10,7 @@
 <meta name="description" content="Mạng Xã Hội NienHope">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Đăng Kí - NienHope</title>
+<title>Trang Chủ - NienHope</title>
 <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/images/favicon.png">
 
 <!-- Google Font -->
@@ -61,7 +63,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-4">
 					<div class="header__logo">
-						<a href="/sgu_j2ee/views/Index.jsp"> <img
+						<a href="/sgu_j2ee/views/Home.jsp"> <img
 							src="${pageContext.request.contextPath}/assets/images/logo.png"
 							alt="">
 						</a>
@@ -97,8 +99,10 @@
 								data-toggle="dropdown"> <i class="fa fa-user" aria-hidden="true"></i>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
-								<!-- Login -->
-								<a class="dropdown-item" href="/sgu_j2ee/views/Index.jsp">Đăng Nhập</a> 
+								<!-- Cài Đặt -->
+								<a class="dropdown-item" href="/sgu_j2ee/views/Setting.jsp"">Cài Đặt</a>
+								<!-- Logout -->
+								<a class="dropdown-item" href="/sgu_j2ee/dang-xuat">Đăng Xuất</a> 
 							</div>
 						</div>
 					</div>
@@ -117,56 +121,10 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="login__form">
-						<h3>Đăng Kí Tài Khoản</h3>
-						<form action="/sgu_j2ee/dang-ky" method="post">
-							<div class="input__item">
-								<span class="icon_profile"></span> <input type="text"
-									name="inputName" required placeholder="Họ và Tên">
-							</div>
-							<div class="input__item">
-								<span class="icon_mail"></span> <input type="email"
-									name="inputEmail" required placeholder="Địa chỉ Email">
-							</div>
-							<div class="input__item">
-								<span class="icon_lock"></span> <input type="password"
-									name="inputPassword" required placeholder="Mật khẩu">
-							</div>
-							<div class="input__item">
-								<span class="icon_lock"></span> <input type="password"
-									name="inputCheckPassword" required
-									placeholder="Xác nhận lại mật khẩu">
-							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="checkRemember">
-										<input type="checkbox" required name=agreePolicy
-											id="checkRemember" /> <label for="checkRemember"
-											class="terms-label"> <svg class="checkbox-svg"
-												viewBox="0 0 200 200" fill="none"
-												xmlns="http://www.w3.org/2000/svg">
-											<mask id="path-1-inside-1_476_5-37" fill="white">
-											  <rect width="200" height="200" />
-											</mask>
-											<rect width="200" height="200" class="checkbox-box"
-													stroke-width="40" mask="url(#path-1-inside-1_476_5-37)" />
-											<path class="checkbox-tick"
-													d="M52 111.018L76.9867 136L149 64" stroke-width="15" />
-										  </svg> <span class="label-text">Chấp nhận điều khoản sử
-												dụng</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div>
-								<button type="submit" id="loginBtn">Đăng Ký</button>
-							</div>
-							<div>
-								<a href="${pageContext.request.contextPath}/views/Index.jsp">
-									<button type="button" id="signUpBtn">Đã có tài khoản?
-										Đăng nhập ngay!</button>
-								</a>
-							</div>
-						</form>
+						<h1>
+							Welcome,
+							<c:out value="${sessionScope.Name}" />
+						</h1>
 					</div>
 				</div>
 			</div>
@@ -174,8 +132,6 @@
 	</section>
 	<!-- Login Section End -->
 </body>
-
-<!-- Js Plugins -->
 
 <!-- Js Plugins -->
 <script

@@ -8,8 +8,8 @@
 <meta name="description" content="Mạng Xã Hội NienHope">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Trang Chủ - NienHope</title>
-
+<title>Đăng Nhập - NienHope</title>
+<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/images/favicon.png">
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap"
@@ -58,34 +58,46 @@
 	<header class="header">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-2 col-4">
+				<div class="col-lg-3 col-4">
 					<div class="header__logo">
-						<a href="./index.html"> <img
+						<a href="/sgu_j2ee/views/Index.jsp"> <img
 							src="${pageContext.request.contextPath}/assets/images/logo.png"
 							alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-7 col-8">
+				<div class="col-lg-5 col-8">
 					<div class="form-group has-search">
 						<span class="fa fa-search form-control-feedback"></span> <input
 							type="text" id="SearchInput" class="form-control"
-							placeholder="Search">
+							placeholder="Nhập từ khoá...">
 					</div>
 				</div>
-				<div class="col-lg-3 col-12">
+				<div class="col-lg-4 col-12">
 					<div class="header__right d-flex justify-content-between">
-						<a href="./login.html"><span class="icon_group "></span></a> 
-						<a href="./login.html"><span class="icon_chat"></span></a>
-						<a href="./login.html"><i class="fa fa-bell" aria-hidden="true"></i></a>
+						
+						<!-- Friends -->
+						<a href="./login.html" class="icon_group_circle">
+  							<i class="fa fa-users" aria-hidden="true"></i>
+						</a>
+						
+						<!-- Chat -->
+						<a href="./login.html" class="icon_group_circle">
+  							<i class="fa fa-comments" aria-hidden="true"></i>
+						</a>
+						
+						<!-- Thông Báo -->
+						<a href="./login.html" class="icon_group_circle">
+  							<i class="fa fa-bell" aria-hidden="true"></i>
+						</a>
+						
 						<div class="dropdown">
-							<a href="#" class="dropdown-toggle" id="profileDropdown"
-								data-toggle="dropdown"> <span class="icon_profile"></span>
+							<a href="#" class="dropdown-toggle icon_group_circle" id="profileDropdown"
+								data-toggle="dropdown"> <i class="fa fa-user" aria-hidden="true"></i>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
-								<a class="dropdown-item" href="#">Đăng Nhập</a> 
-								<a class="dropdown-item" href="#">Đăng Xuất</a> 
-								<a class="dropdown-item" href="#">Cài Đặt</a>
+								<!-- Login -->
+								<a class="dropdown-item" href="/sgu_j2ee/views/Index.jsp">Đăng Nhập</a> 
 							</div>
 						</div>
 					</div>

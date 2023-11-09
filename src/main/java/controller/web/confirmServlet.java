@@ -20,11 +20,17 @@ public class confirmServlet extends HttpServlet {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 5245843161862142442L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String inputEmail = request.getParameter("inputEmail");  // Get the email from the hidden input field
-        String inputConfirmCode = request.getParameter("inputConfirmCode");
+		String inputEmail = null, inputConfirmCode = null;
+		if (SessionManager.getEmail(request) != null && SessionManager.getPassword(request) != null) {
+			inputEmail = SessionManager.getEmail(request);
+			inputConfirmCode = SessionManager.getConfirmCode(request);
+		}
+		else {
+			inputEmail = request.getParameter("inputEmail");
+			inputConfirmCode = request.getParameter("inputConfirmCode");
+		}
 
         // JDBC connection
         Connection conn = null;
@@ -42,10 +48,11 @@ public class confirmServlet extends HttpServlet {
 
             int rowsUpdated = updateStatement.executeUpdate();
             
+            
             if (rowsUpdated > 0) {
                 // Confirmation code matched, and the status is updated
                 System.out.println("Account confirmed: Email=" + inputEmail + ", ConfirmationCode=" + inputConfirmCode);
-                
+		    	response.sendRedirect(request.getContextPath() + "/views/Index.jsp"); 
                 // You can redirect to a success page or perform further actions here
             } else {
                 // Handle incorrect confirmation code or email
@@ -72,6 +79,7 @@ public class confirmServlet extends HttpServlet {
                 }
             }
         }
+        
     }
 }
 

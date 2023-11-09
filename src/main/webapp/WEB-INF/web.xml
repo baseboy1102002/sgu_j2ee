@@ -35,4 +35,14 @@
     <servlet-name>controller.web.confirmServlet</servlet-name>
     <url-pattern>/xac-nhan</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>logoutServlet</display-name>
+    <servlet-name>logoutServlet</servlet-name>
+    <servlet-class>controller.web.logoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controller.web.logoutServlet</servlet-name>
+    <url-pattern>/dang-xuat</url-pattern>
+  </servlet-mapping>
 </web-app>
