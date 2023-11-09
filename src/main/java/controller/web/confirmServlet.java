@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class confirmServlet
  */
-@WebServlet({ "/confirmServlet", "/xac-nhan" })
+@WebServlet({ "/xac-nhan" })
 public class confirmServlet extends HttpServlet {
     /**
 	 * 

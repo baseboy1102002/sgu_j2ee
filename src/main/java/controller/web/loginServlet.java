@@ -12,11 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import controller.web.SessionManager;
 
 /**
  * Servlet implementation class loginServlet
  */
-@WebServlet({ "/loginServlet", "/dang-nhap" })
+@WebServlet({ "/dang-nhap" })
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,7 +39,7 @@ public class loginServlet extends HttpServlet {
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");
 		String checkRemember = request.getParameter("checkRemember");
-		
+		String userName = null, userConfirmCode = null, userPhone = null;
 		//JDBC connection
 		Connection conn = null;
 		Statement st = null;
@@ -52,6 +53,9 @@ public class loginServlet extends HttpServlet {
 		    rs = st.executeQuery(query);
 		    if (rs.next()) {
 		        userExists = true;
+		        userName = rs.getString("HoVaTen");
+		        userConfirmCode = rs.getString("MaXacNhan");
+		        userPhone = rs.getString("SoDienThoai");
 		    }
 		} catch (ClassNotFoundException e) {
 		    e.printStackTrace();
@@ -84,11 +88,14 @@ public class loginServlet extends HttpServlet {
 
 		// Perform the redirection outside the try-catch block
 		if (userExists) {
-		    System.out.println("ok");
+		    // Store user information in session
+		    SessionManager.storeUserInfo(request, inputEmail, inputPassword, userName, userConfirmCode, userPhone); // Replace userID with the actual user ID
+
+		    // Redirect to a different page (e.g., home page)
+		    response.sendRedirect("views/Home.jsp"); // Replace with your desired page
 		} else {
 		    System.out.println("not ok");
 		}
-		
 	}
 
 	/**

@@ -34,13 +34,6 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/main/java/sqlQuery/j2ee.sql</name>
-			<type>1</type>
-			<location>C:/Users/Admin/Desktop/j2ee.sql</location>
-		</link>
-	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1698826735035</id>
