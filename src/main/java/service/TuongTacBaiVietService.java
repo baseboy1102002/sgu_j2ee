@@ -56,7 +56,6 @@ public class TuongTacBaiVietService extends DAOService<TuongTacBaiViet> {
 	}
 
 	public Integer addTuongTacBaiViet(TuongTacBaiViet tuongTacBaiViet) {
-		System.out.println("tuong tac bai viet" + tuongTacBaiViet);
 		String sql ="INSERT INTO `tuongtacbaiviet` (`MaNguoiDung`, `MaBaiViet`, `NgayGioTuongTac`, `TrangThai`) VALUES (?, ?, ?, ?)";
 		return insert(sql, tuongTacBaiViet.getMaNguoiDung(),tuongTacBaiViet.getMaBaiViet(),tuongTacBaiViet.getNgayGioTuongTac(),tuongTacBaiViet.getTrangThai());
 	}

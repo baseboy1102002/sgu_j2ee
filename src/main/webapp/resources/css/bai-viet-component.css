@@ -6,7 +6,7 @@
 /* content wrapper */
 .bai-viet-content-wrapper {
 	width: 100%;
-	padding: 2rem;
+	padding: 0 2rem;
 	gap: 10px;
 }
 
@@ -185,6 +185,9 @@
 
 }
 
+
+
+
 .react-action-btn img {
     width: 20px;
     height: 20px;
@@ -200,6 +203,13 @@
     border-radius: 5px;
     align-items: center;
 }
+
+.react-action-btn:hover {
+    color: white;
+    background-color: var(--primaryColor);
+    cursor: pointer;
+}
+
 
 .react-action-btn.active {
     background: #eeeeee;
@@ -237,7 +247,11 @@
 }
 
 .comment-action {
-    position: relative;
+    display: flex;
+    border-radius: 5px;
+    padding: 0 5px;
+    gap: 5px;
+    align-items: center;
 }
 
 .like {
@@ -256,7 +270,7 @@
 }
 
 
-.react-action:hover,
+
 .comment-action:hover {
 	color: white;
 	background-color: var(--primaryColor);

@@ -29,7 +29,7 @@ public class PostFile extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	private FileBaiVietService fileBaiVietService = new FileBaiVietService();
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		File dir = new File(req.getServletContext().getRealPath("/files"));

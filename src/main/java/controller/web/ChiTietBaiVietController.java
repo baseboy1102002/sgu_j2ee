@@ -1,15 +1,25 @@
 package controller.web;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import model.BaiViet;
 import model.BaiVietView;
@@ -30,6 +40,10 @@ import service.TuongTacBinhLuanService;
  * Servlet implementation class ChiTietBaiVietController
  */
 @WebServlet("/chitietbaiviet")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+		maxFileSize = 1024 * 1024 * 10, // 10 MB
+		maxRequestSize = 1024 * 1024 * 100 // 100 MB
+)
 public class ChiTietBaiVietController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BaiVietService baiVietService = new BaiVietService();
@@ -37,7 +51,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 	private NguoiDungService nguoiDungService = new NguoiDungService();
 	private TuongTacBinhLuanService tuongTacBinhLuanService = new TuongTacBinhLuanService();
 	private BinhLuanBaiVietService binhLuanBaiVietService = new BinhLuanBaiVietService();
-	
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -60,8 +74,9 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 		BaiVietView baiVietView = getDataBaiVietForView(Integer.parseInt(maBaiViet), maNguoiDung);
 		List<BinhLuanView> binhLuanViews = new ArrayList<BinhLuanView>();
-		List<BinhLuanBaiViet> binhLuanBaiViets = binhLuanBaiVietService.getBinhLuansByBaiVietId(Integer.parseInt(maBaiViet));
-		for(BinhLuanBaiViet binhLuanBaiViet : binhLuanBaiViets) {
+		List<BinhLuanBaiViet> binhLuanBaiViets = binhLuanBaiVietService
+				.getBinhLuansByBaiVietId(Integer.parseInt(maBaiViet));
+		for (BinhLuanBaiViet binhLuanBaiViet : binhLuanBaiViets) {
 			binhLuanViews.add(getDataForBinhLuanView(binhLuanBaiViet, maNguoiDung));
 		}
 
@@ -78,8 +93,124 @@ public class ChiTietBaiVietController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String action = request.getParameter("action");
+		PrintWriter printWriter = response.getWriter();
+
+		File dir = new File(request.getServletContext().getRealPath("/files"));
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+
+		switch (action) {
+		case "addBinhLuan": {
+
+			BinhLuanBaiViet binhLuanBaiViet = new BinhLuanBaiViet();
+
+			String noiDung = request.getParameter("noiDung");
+			int maBaiViet = Integer.parseInt(request.getParameter("maBaiViet"));
+			int maNguoiDung = 4;
+			Date ngayGioBinhLuan = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.0");
+			SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+			String formattedDate = dateFormat.format(ngayGioBinhLuan);
+			String formattedDate2 = dateFormat2.format(ngayGioBinhLuan);
+			Part filePart = request.getPart("anhBinhLuan");
+
+			binhLuanBaiViet.setMaBaiViet(maBaiViet);
+			binhLuanBaiViet.setMaNguoiDung(maNguoiDung);
+			binhLuanBaiViet.setNgayGioBinhLuan(ngayGioBinhLuan);
+			binhLuanBaiViet.setTrangThai("new");
+			binhLuanBaiViet.setNoiDung(noiDung);
+			String fileName = "";
+			if (filePart.getSubmittedFileName() != null) {
+
+				fileName = "comment_" + maBaiViet + "_" + maNguoiDung + "_" + formattedDate2
+						+ filePart.getSubmittedFileName();
+
+				File file = new File(dir, fileName);
+				filePart.write(file.getAbsolutePath());
+			}
+			binhLuanBaiViet.setAnhBinhLuan(fileName);
+
+			NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(maNguoiDung);
+			Integer maBinhLuan = binhLuanBaiVietService.addBinhLuan(binhLuanBaiViet);
+
+			Map<String, String> json = new LinkedHashMap<String, String>();
+			json.put("maBinhLuan", String.valueOf(maBinhLuan));
+			json.put("anhBinhLuan", fileName);
+			json.put("ngayGioBinhLuan", formattedDate);
+			json.put("anhDaiDienNguoiDang", nguoiDang.getHinhDaiDien());
+			json.put("hoVaTenNguoiDang", nguoiDang.getHoVaTen());
+
+			String jsonObject = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(json);
+
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			printWriter.write(jsonObject);
+
+			break;
+		}
+		case "editBinhLuan": {
+			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan"));
+			BinhLuanBaiViet binhLuanBaiViet = binhLuanBaiVietService.getBinhLuanBaiVietById(maBinhLuan);
+			Date ngayGioBinhLuan = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.0");
+			SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+
+			String formattedDate = dateFormat.format(ngayGioBinhLuan);
+			String formattedDate2 = dateFormat2.format(ngayGioBinhLuan);
+
+			String noiDung = request.getParameter("noiDung");
+			Part filePart = request.getPart("anhBinhLuan");
+			String imgSrc = request.getParameter("imgSrc");
+			File deleteFile = new File(dir, binhLuanBaiViet.getAnhBinhLuan());
+
+			String fileName = binhLuanBaiViet.getAnhBinhLuan(); // Default to the existing file name
+			System.out.println(imgSrc);
+			if (filePart.getSubmittedFileName() != null ) {
+				fileName = "comment_" + binhLuanBaiViet.getMaBaiViet() + "_" + binhLuanBaiViet.getMaNguoiDung() + "_"
+						+ formattedDate2 + filePart.getSubmittedFileName();
+
+				File file = new File(dir, fileName);
+				filePart.write(file.getAbsolutePath());
+				// Delete the old file only if a new file is uploaded
+				if (deleteFile.exists()) {
+					deleteFile.delete();
+				}
+			} else if ( (imgSrc == null || imgSrc.isEmpty())) {
+				// No new file is selected, and imgSrc is null or empty, do not delete the old
+				// file
+				if (deleteFile.exists()) {
+					deleteFile.delete();
+				}
+				fileName = "";
+			} else {
+				// No new file is selected, delete the old file
+				
+			}
+			System.out.println("file name là :"+fileName);
+			binhLuanBaiViet.setAnhBinhLuan(fileName);
+			binhLuanBaiViet.setNoiDung(noiDung);
+
+			binhLuanBaiVietService.updateBinhLuan(binhLuanBaiViet);
+
+			Map<String, String> json = new LinkedHashMap<>();
+			json.put("anhBinhLuan", fileName);
+			json.put("ngayGioBinhLuan", formattedDate);
+
+			String jsonObject = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(json);
+
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			printWriter.write(jsonObject);
+
+			break;
+		}
+
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + action);
+		}
+
 	}
 
 	public BaiVietView getDataBaiVietForView(int maBaiViet, int maLoginUser) {
@@ -116,18 +247,19 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 	}
 
-	public BinhLuanView getDataForBinhLuanView(BinhLuanBaiViet binhLuanBaiViet,int maLoginUser) {
+	public BinhLuanView getDataForBinhLuanView(BinhLuanBaiViet binhLuanBaiViet, int maLoginUser) {
 		int tongLuotTT = tuongTacBinhLuanService.getTongSoTuongTacBinhLuan(binhLuanBaiViet.getMaBinhLuan());
-		TuongTacBinhLuan loginUserTuongTacBinhLuan = tuongTacBinhLuanService.getUserTuongTacBinhLuan(binhLuanBaiViet.getMaBinhLuan(), maLoginUser);
-		List<TuongTacBinhLuan> top3TuongTacBinhLuans = tuongTacBinhLuanService.getTop3TuongTacBinhLuan(binhLuanBaiViet.getMaBinhLuan());
+		TuongTacBinhLuan loginUserTuongTacBinhLuan = tuongTacBinhLuanService
+				.getUserTuongTacBinhLuan(binhLuanBaiViet.getMaBinhLuan(), maLoginUser);
+		List<TuongTacBinhLuan> top3TuongTacBinhLuans = tuongTacBinhLuanService
+				.getTop3TuongTacBinhLuan(binhLuanBaiViet.getMaBinhLuan());
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(binhLuanBaiViet.getMaNguoiDung());
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
-		
-		
-		BinhLuanView binhLuanView = new BinhLuanView(binhLuanBaiViet, tongLuotTT, loginUserTuongTacBinhLuan, top3TuongTacBinhLuans, anhDaiDienNguoiDang, hoVaTenNguoiDang);
-		
-		
+
+		BinhLuanView binhLuanView = new BinhLuanView(binhLuanBaiViet, tongLuotTT, loginUserTuongTacBinhLuan,
+				top3TuongTacBinhLuans, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+
 		return binhLuanView;
 	}
 

@@ -30,10 +30,9 @@
 <body>
 
 	<%@include file="/components/post-edit-form.jsp"%>
-
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
 		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
-		aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+		tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -52,8 +51,24 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="loadingModal" aria-hidden="true"
+		data-bs-backdrop="static" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<!-- Nội dung modal -->
+				<div class="modal-body">
+					<img src="/sgu_j2ee/assets/images/loading.gif" alt="Loading..." />
+				</div>
+				<!-- Kết thúc nội dung modal -->
+			</div>
+		</div>
+	</div>
+
+
+
+
 	<div class="modal fade" id="deletePostConfirm" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -73,7 +88,7 @@
 	</div>
 
 	<div class="modal fade" id="deleteCommentConfirm" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -93,7 +108,7 @@
 	</div>
 
 	<div class="modal fade" id="updateCommentPopup" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -131,9 +146,10 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
+					<button type="button" class="btn btn-secondary dismiss-btn"
 						data-bs-dismiss="modal">Hủy bỏ</button>
-					<button type="button" class="btn btn-primary">Xác nhận</button>
+					<button type="button" class="btn btn-primary"
+						id="submit-edit-comment-btn">Xác nhận</button>
 				</div>
 			</div>
 		</div>
@@ -153,10 +169,10 @@
 			</jsp:include>
 
 
-
-			<div class="comment-wrapper">
+			<div class="comment-wrapper"
+				data-post-id="${baiVietView.baiViet.maBaiViet }">
 				<div class="comment-form-wrapper">
-					<form action="#" class="comment-form">
+					<div class="comment-form">
 						<i class="fa-solid fa-comment" id="comment-icon"></i> <input
 							placeholder="Nhập bình luận..." id="comment-input"
 							name="comment-input" /> <label id="image-comment-label"
@@ -169,7 +185,7 @@
 						<button id="submit-comment-btn" disabled>
 							<i class="fa-solid fa-paper-plane"></i>
 						</button>
-					</form>
+					</div>
 					<div class="comment-image-attach" id="comment-image-attach">
 						<img id="comment-show-img" src="" /> <span id="comment-file-name"></span>
 						<button id="comment-delete-file">
@@ -177,10 +193,11 @@
 						</button>
 					</div>
 				</div>
-				<div class="comment-record-wrapper">
+				<div class="comment-record-wrapper" id="comment-record-wrapper">
 					<c:forEach var="item" items="${binhLuanBaiViewList}">
 
-						<div class="comment-record-item" data-id="1">
+						<div class="comment-record-item"
+							data-id=${item.binhLuanBaiViet.maBinhLuan }>
 							<c:if test="${empty item.anhDaiDienNguoiDang}">
 								<img class="comment-record-profile-img"
 									src="<c:url value='/assets/images/defaultProfileImage.png' />" />
@@ -199,18 +216,21 @@
 											<h5>${item.hoVaTenNguoiDang }</h5>
 											<span> ${item.binhLuanBaiViet.ngayGioBinhLuan } </span>
 										</div>
-										<div class="comment-record-title-right">
+										<div class="comment-record-title-right"
+											onclick="handleShowMore(this)">
 											<i class="fa fa-ellipsis-h"></i>
 											<div class="comment-more-hover">
 
 												<button type="button" class="btn edit-comment-btn  "
-													data-bs-toggle="modal" data-bs-target="#updateCommentPopup">
+													data-bs-toggle="modal" data-bs-target="#updateCommentPopup"
+													onclick="handleClickEditComment(this)">
 													<i class="fa fa-cog" aria-hidden="true"></i><span>
 														Chỉnh sửa </span>
 												</button>
 												<button type="button" class="btn delete-comment-btn "
 													data-bs-toggle="modal"
-													data-bs-target="#deleteCommentConfirm">
+													data-bs-target="#deleteCommentConfirm"
+													onclick="handleSetId(this)">
 													<i class="fa fa-trash" aria-hidden="true"></i> <span>
 														Xóa </span>
 												</button>
@@ -230,7 +250,9 @@
 
 											</c:forEach>
 
-											<span> ${item.tongLuotTuongTac }</span>
+											<span><c:if test=" ${item.tongLuotTuongTac > 0 }">
+													 ${item.tongLuotTuongTac }
+											</c:if></span>
 										</div>
 										<button class="comment-record-react-action">
 											<div
@@ -274,10 +296,16 @@
 										</button>
 									</div>
 								</div>
-								<c:if test="${!empty item.binhLuanBaiViet.anhBinhLuan }">
-									<img class="comment-record-img"
-										src="/sgu_j2ee/files/${item.binhLuanBaiViet.anhBinhLuan}" />
-								</c:if>
+								<c:choose>
+									<c:when test="${not empty item.binhLuanBaiViet.anhBinhLuan}">
+										<img class="comment-record-img"
+											src="/sgu_j2ee/files/${item.binhLuanBaiViet.anhBinhLuan}" />
+									</c:when>
+									<c:otherwise>
+										<img class="comment-record-img" src="" />
+									</c:otherwise>
+								</c:choose>
+
 							</div>
 						</div>
 

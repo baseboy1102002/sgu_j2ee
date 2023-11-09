@@ -1,6 +1,5 @@
 package controller.web;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import model.TuongTacBaiViet;
 import service.BaiVietService;
@@ -80,7 +78,6 @@ public class BaiVietController extends HttpServlet {
 				tempTuongTacBaiViet.setNgayGioTuongTac(new Date());
 				tempTuongTacBaiViet.setTrangThai(trangThai);
 				
-				System.out.println("aaa => " +tuongTacBaiVietService.addTuongTacBaiViet(tempTuongTacBaiViet));
 //				get dữ liệu trả về
 					
 				response.setContentType("application/json");
