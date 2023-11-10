@@ -31,13 +31,13 @@
 							<span>Thông báo</span>
 						</div>
 						<div
-							class="noti-header-number-container col-lg-1 col-md-2 col-1 d-flex align-items-start">
+							class="noti-header-number-container ms-4 col-lg-1 col-md-2 col-1 d-flex align-items-start">
 							<span>20</span>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="noti-seperator d-flex justify-content-center">
+			<div class="noti-seperator d-flex justify-content-center mt-4 mb-4">
 				<div class="noti-seperator-line col-10"></div>
 			</div>
 			<div class="noti-detail-wrapper">
@@ -61,8 +61,8 @@
 										<!-- Hiển thị tên người dùng và bài đăng -->
 										<div class="d-flex">
 											<span style="font-weight: 500"
-												class="noti-username text-nowrap">${thisItem.usersPost}</span> <span
-												class="text-nowrap" style=" margin-right: 5px;">vừa mới tạo một bài đăng: </span> <span
+												class="noti-username me-2 text-nowrap">${thisItem.usersPost}</span> <span
+												class="text-nowrap me-2">vừa mới tạo một bài đăng: </span> <span
 												style="font-weight: 500; max-width: 500px;"
 												class="text-nowrap d-inline-block text-truncate">${thisItem.baiviet.noiDung}</span>
 										</div>

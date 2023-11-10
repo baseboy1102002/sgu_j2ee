@@ -33,6 +33,7 @@ body {
     font-size: 1.6rem !important;
     text-rendering: optimizeSpeed !important;
     background-color: var(--bodyBackground) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 input {
