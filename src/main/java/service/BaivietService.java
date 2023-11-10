@@ -1,14 +1,12 @@
 package service;
 
 import java.util.List;
-import model.Post;
 import modelMapper.BaiVietMapper;
-import modelMapper.PostMapper;
 import model.BaiViet;
 import model.NguoiDung;
 import modelMapper.BaiVietMapper;
 
-public class BaivietService extends DAOService<BaiViet> {
+public class BaiVietService extends DAOService<BaiViet> {
 
 	public List<BaiViet> getFriendsBaiViet(NguoiDung currentUser){
 		String sql = "SELECT b.*\r\n"
