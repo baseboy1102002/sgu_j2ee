@@ -19,33 +19,33 @@
 }
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 62.5% !important;
 }
 
 body {
-    line-height: 1;
-    font-size: 1.6rem;
-    text-rendering: optimizeSpeed;
-    background-color: var(--bodyBackground);
+    line-height: 1 !important;
+    font-size: 1.6rem !important;
+    text-rendering: optimizeSpeed !important;
+    background-color: var(--bodyBackground) !important;
 }
 
 input {
-    outline: none;
-    background-color: transparent;
+    outline: none !important;
+    background-color: transparent !important;
 }
 
 button {
-    border: none;
+    border: none !important;
 }
 
 a[href] {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 
