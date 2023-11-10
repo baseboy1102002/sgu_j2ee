@@ -11,8 +11,7 @@
 <html>
 
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/bootstrap/css/bootstrap.css' />">
-
+	href="<c:url value='/bootstrap/css/bootstrap.min.css' />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/globalstyle.css' />">
 <link rel="stylesheet" type="text/css"
@@ -20,6 +19,7 @@
 <head>
 <meta charset="UTF-8">
 <title>NienHope | Thông báo</title>
+</head>
 <body>
 	<div class="noti-wrapper pt-5 d-flex justify-content-center">
 		<div class="noti-container col-10">
