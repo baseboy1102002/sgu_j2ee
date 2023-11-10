@@ -50,7 +50,7 @@ public class ThongBaoController extends HttpServlet {
 			timeDifference.add(timeDiff);
 			System.out.println(ThongBao.getBaiviet().getNgayDang());
 		}
-		
+
 		request.setAttribute("timeDifference", timeDifference);
 		request.setAttribute("thongbaos", ThongBaos);
 		request.getRequestDispatcher("views/thong-bao.jsp").forward(request, response);
