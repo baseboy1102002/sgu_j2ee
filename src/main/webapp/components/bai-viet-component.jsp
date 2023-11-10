@@ -100,9 +100,9 @@
 			</c:if>
 		</c:if>
 		<c:if test="${param.isDetailMode }">
-			<c:if test="${!empty baiVietView.fileDinhKems }">
+			<c:if test="${!empty baiVietView.fileHinhAnhs }">
 				<div class="attachments">
-					<c:forEach var="attachment" items="${baiVietView.fileDinhKems}">
+					<c:forEach var="attachment" items="${baiVietView.fileHinhAnhs}">
 						<div class="attachment">
 							<a href="/sgu_j2ee/files/${attachment.tenFile}"
 								download="/sgu_j2ee/files/${attachment.tenFile}"> <span
@@ -132,9 +132,12 @@
 							src="<c:url value='/assets/images/${item.trangThai }.png' />">
 					</div>
 				</c:forEach>
-				<span> ${baiVietView.tongLuotTuongTac} </span>
+				<span> <c:if test="${baiVietView.tongLuotTuongTac > 0}">
+       								 ${baiVietView.tongLuotTuongTac}
+   												 </c:if>
+				</span>
 			</div>
-			<div class="comment-data">${baiVietView.binhLuanCount}bìnhluận</div>
+			<div class="comment-data">${baiVietView.binhLuanCount} bình luận</div>
 		</div>
 		<hr>
 		<div class="bai-viet-actions">

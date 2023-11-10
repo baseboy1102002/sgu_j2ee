@@ -13,6 +13,12 @@ public class BaiVietService extends DAOService<BaiViet> {
 		
 	}
 	
+	
+	public List<BaiViet> getAllBaiViet() {
+		String sql = "select * from baiviet";
+		return query(sql,new BaiVietMapper());
+	}
+	
 //	Lấy bài viết dựa theo khóa của nó
 	public BaiViet getBaiVietById(int maBaiViet) {
 		String sql = "select * from baiviet where MaBaiViet = ?";

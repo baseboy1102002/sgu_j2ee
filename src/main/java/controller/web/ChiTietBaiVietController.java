@@ -73,6 +73,8 @@ public class ChiTietBaiVietController extends HttpServlet {
 		String maBaiViet = request.getParameter("maBaiViet");
 		int maNguoiDung = 4;
 
+		
+	
 		BaiVietView baiVietView = getDataBaiVietForView(Integer.parseInt(maBaiViet), maNguoiDung);
 		List<BinhLuanView> binhLuanViews = new ArrayList<BinhLuanView>();
 		List<BinhLuanBaiViet> binhLuanBaiViets = binhLuanBaiVietService
@@ -81,7 +83,17 @@ public class ChiTietBaiVietController extends HttpServlet {
 			binhLuanViews.add(getDataForBinhLuanView(binhLuanBaiViet, maNguoiDung));
 		}
 
+		
+//		Test
+		List<BaiViet> baiViets = baiVietService.getAllBaiViet();
+		List<BaiVietView> baiVietViews = new ArrayList<BaiVietView>();
+		for(BaiViet baiViet : baiViets) {
+			baiVietViews.add(getDataBaiVietForView(baiViet.getMaBaiViet(), maNguoiDung));
+		}
+		
+		
 		request.setAttribute("baiVietView", baiVietView);
+		request.setAttribute("baiVietViews", baiVietViews);
 		request.setAttribute("binhLuanBaiViewList", binhLuanViews);
 
 		request.getRequestDispatcher("views/chi-tiet-bai-viet.jsp").forward(request, response);

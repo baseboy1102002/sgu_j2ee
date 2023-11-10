@@ -27,15 +27,16 @@ import service.TuongTacBaiVietService;
 @WebServlet("/baiviet")
 public class BaiVietController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TuongTacBaiVietService tuongTacBaiVietService = new TuongTacBaiVietService();
-	private BaiVietService baiVietService = new BaiVietService();
+	private TuongTacBaiVietService tuongTacBaiVietService ;
+	private BaiVietService baiVietService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public BaiVietController() {
 		super();
-
+		baiVietService = new BaiVietService();
+		tuongTacBaiVietService = new TuongTacBaiVietService();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -65,19 +66,19 @@ public class BaiVietController extends HttpServlet {
 		}
 		case "react": {
 			String maBaiViet = request.getParameter("maBaiViet");
-			String maNguoiDung = request.getParameter("maNguoiDung");
+			int maNguoiDung = 4; //Session
 			String trangThai = request.getParameter("trangThai");
 			TuongTacBaiViet tuongTacBaiViet = tuongTacBaiVietService.getUserTuongTacBaiViet(Integer.parseInt(maBaiViet),
-					Integer.parseInt(maNguoiDung));
+					maNguoiDung);
 		
 			if (tuongTacBaiViet == null) {
 //				Thêm tuongTacBaiViet nếu null
 				TuongTacBaiViet tempTuongTacBaiViet = new TuongTacBaiViet();
 				tempTuongTacBaiViet.setMaBaiViet(Integer.parseInt(maBaiViet));
-				tempTuongTacBaiViet.setMaNguoiDung(Integer.parseInt(maNguoiDung));
+				tempTuongTacBaiViet.setMaNguoiDung(maNguoiDung);
 				tempTuongTacBaiViet.setNgayGioTuongTac(new Date());
 				tempTuongTacBaiViet.setTrangThai(trangThai);
-				
+				tuongTacBaiVietService.addTuongTacBaiViet(tempTuongTacBaiViet);
 //				get dữ liệu trả về
 					
 				response.setContentType("application/json");

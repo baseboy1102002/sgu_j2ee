@@ -44,8 +44,8 @@
 					<p>Xóa thành công</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-						id="confirm-notify-btn">Quay lại</button>
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal" id="confirm-notify-btn">Quay lại</button>
 				</div>
 			</div>
 		</div>
@@ -101,7 +101,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Hủy bỏ</button>
-					<button type="button" class="btn btn-primary" id="delete-comment-btn">Xác nhận</button>
+					<button type="button" class="btn btn-primary"
+						id="delete-comment-btn">Xác nhận</button>
 				</div>
 			</div>
 		</div>
@@ -260,8 +261,7 @@
 											<div
 												class=" comment-record-react-action-btn ${empty item.loginUserTuongTacBinhLuan ? '' : 'active' } "
 												data-active=${empty item.loginUserTuongTacBinhLuan ? false : true }
-												onclick="handleOnClickReactComment(this)"
-												>
+												onclick="handleOnClickReactComment(this)">
 												<c:if test="${empty item.loginUserTuongTacBinhLuan }">
 
 													<i class="fa fa-thumbs-up" aria-hidden="true"></i>
@@ -298,7 +298,7 @@
 													<img alt="" src="<c:url value='/assets/images/haha.png' />">
 												</div>
 												<div class="comment-record-react-item" data-trang-thai="mad"
-													onclick="reactHoverComment(this)" >
+													onclick="reactHoverComment(this)">
 													<img alt="" src="<c:url value='/assets/images/mad.png' />">
 												</div>
 											</div>

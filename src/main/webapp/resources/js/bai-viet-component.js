@@ -166,7 +166,7 @@ function handleOnClickReact(e) {
         <img alt="" src="/sgu_j2ee/assets/images/${value}.png">
     </div>`;
 			});
-			innerReactDataHtml += `<span>${data.tongLuotTT} </span>`
+			innerReactDataHtml += data.tongLuotTT > 0 ? `<span>${data.tongLuotTT}</span>` : '';
 			reactDataElement.html(innerReactDataHtml)
 		},
 		error: function(xhr) {
@@ -217,9 +217,9 @@ $(document).ready(function() {
 						if (isDetailMode) {
 							history.back();
 						}
-						$("#deletePostConfirm").modal('hide');
+						
 					}
-
+					$("#deletePostConfirm").modal('hide');
 					notify(true, "Xóa thành công", handleOnClickSubmit)
 
 
