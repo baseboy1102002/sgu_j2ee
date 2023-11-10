@@ -11,7 +11,7 @@ public class BinhLuanBaiVietService extends DAOService<BinhLuanBaiViet> {
 	}
 
 	public List<BinhLuanBaiViet> getBinhLuansByBaiVietId(int maBaiViet) {
-		String sql = "Select * from binhluanbaiviet where MaBaiViet = ? order by NgayGioBinhLuan desc";
+		String sql = "Select * from binhluanbaiviet where MaBaiViet = ? and TrangThai <> 'xoa' order by NgayGioBinhLuan desc";
 		return query(sql, new BinhLuanBaiVietMapper(), maBaiViet);
 	}
 
@@ -36,9 +36,10 @@ public class BinhLuanBaiVietService extends DAOService<BinhLuanBaiViet> {
 	}
 
 	public Boolean deleteBinhLuanById(int maBinhLuan) {
-		String sql = "UPDATE `binhluanbaiviet` SET  TrangThai = ?,  WHERE `binhluanbaiviet`.`MaBinhLuan` = ? ";
+		String sql = "UPDATE `binhluanbaiviet` SET  TrangThai = ?  WHERE `binhluanbaiviet`.`MaBinhLuan` = ? ";
 		return update(sql,"xoa" ,maBinhLuan);
 	
 	}
 	
+
 }

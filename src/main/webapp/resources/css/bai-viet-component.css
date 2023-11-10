@@ -70,8 +70,8 @@
 }
 
 .profile-right:hover {
-    background: var(--primaryColor);
-    color: white;
+	background: var(--primaryColor);
+	color: white;
 }
 
 
@@ -111,8 +111,8 @@
 }
 
 .profile-item:hover {
-    color: white;
-    background-color: var(--primaryColor);
+	color: white;
+	background-color: var(--primaryColor);
 }
 
 
@@ -142,16 +142,17 @@
 }
 
 .img-content {
-   	width: 100%;
-    height: 500px;
+	width: 100%;
+	height: 500px;
 	margin-bottom: 10px;
 
 }
 
 
 .img-content img {
-    object-fit: cover;
+	object-fit: cover;
 }
+
 /* data */
 
 .react-data {
@@ -189,30 +190,30 @@
 
 
 .react-action-btn img {
-    width: 20px;
-    height: 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .react-action-btn {
-    width: 100%;
-    height: 100%;
-    padding: 4px 5px;
-    display: flex;
-    gap: 5px;
-    /* padding: 4px 5px; */
-    border-radius: 5px;
-    align-items: center;
+	width: 100%;
+	height: 100%;
+	padding: 4px 5px;
+	display: flex;
+	gap: 5px;
+	/* padding: 4px 5px; */
+	border-radius: 5px;
+	align-items: center;
 }
 
 .react-action-btn:hover {
-    color: white;
-    background-color: var(--primaryColor);
-    cursor: pointer;
+	color: white;
+	background-color: var(--primaryColor);
+	cursor: pointer;
 }
 
 
 .react-action-btn.active {
-    background: #eeeeee;
+	background: #eeeeee;
 }
 
 
@@ -240,32 +241,34 @@
 }
 
 .comment-action a {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: transparent;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: transparent;
 }
 
 .comment-action {
-    display: flex;
-    border-radius: 5px;
-    padding: 0 5px;
-    gap: 5px;
-    align-items: center;
+	display: flex;
+	border-radius: 5px;
+	padding: 0 5px;
+	gap: 5px;
+	align-items: center;
 }
 
 .like {
-    color: #2d86ff;
+	color: #2d86ff;
 }
 
 .heart {
-    color: #f34260;
+	color: #f34260;
 }
-.haha,.sad{
+
+.haha,
+.sad {
 	color: #facb57;
 }
 
-.mad{
+.mad {
 	color: rgb(233, 113, 15);
 }
 
@@ -301,46 +304,115 @@
 /* notify */
 
 #notifyModal .modal-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	gap: 1.5rem;
 }
 
 #notifyModal .modal-body svg {
-    font-size: 10rem;
+	font-size: 10rem;
 }
 
 #notifyModal .modal-body p {
-    font-size: 20px;
+	font-size: 20px;
 }
 
 #notifyModal .modal-footer {
-    justify-content: center;
+	justify-content: center;
 }
 
 #confirm-notify-btn {
-    font-size: 14px;
-    padding: 1rem 5rem;
+	font-size: 14px;
+	padding: 1rem 5rem;
 }
 
 #notifyModal #exampleModalToggleLabel {
-    font-size: 28px;
+	font-size: 28px;
 }
 
 .success-notify {
-    color: var(--primaryColor);
+	color: var(--primaryColor);
 }
 
 .fail-notify {
-    color: var(--errorColor);
+	color: var(--errorColor);
 }
 
 .fail-notify #confirm-notify-btn {
-    background: var(--errorColor);
+	background: var(--errorColor);
 }
 
 #notifyModal .modal-header {
-    justify-content: center;
+	justify-content: center;
+}
+
+
+/*ChÃ¡Â»â€” Ã„â€˜ÃƒÂ­nh kÃƒÂ¨m file*/
+/* CSS cho mÃƒÂ n hÃƒÂ¬nh lÃ¡Â»â€ºn */
+.attachments {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.attachment {
+	flex: 0 0 calc(33.33% - 20px);
+	/* Ã„ÂÃ¡Â»Æ’ lÃ¡ÂºÂ¡i khoÃ¡ÂºÂ£ng cÃƒÂ¡ch 20px cho margin giÃ¡Â»Â¯a cÃƒÂ¡c item */
+	box-sizing: border-box;
+	padding: 10px;
+	text-align: center;
+	border-radius: 8px;
+	background-color: #f2f2f2;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.attachment:hover {
+	background-color: #e0e0e0;
+	/* color: white; */
+}
+
+.attachment-icon {
+	font-size: 20px;
+	margin-bottom: 5px;
+	display: block;
+}
+
+.attachment-name {
+	display: block;
+	margin-bottom: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.attachment-download {
+	text-decoration: none;
+	color: #007bff;
+	display: block;
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #007bff;
+	border-radius: 5px;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.attachment-download:hover {
+	background-color: #007bff;
+	color: #fff;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+	.attachment {
+		flex: 0 0 calc(50% - 20px);
+	
+	}
+}
+
+@media (max-width: 767px) {
+	.attachment {
+		flex: 0 0 calc(50% - 20px);
+	}
 }

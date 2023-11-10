@@ -30,6 +30,8 @@ $(document).ready(function() {
 
 	})
 
+
+	/*Xử lí khi xóa image chỗ popup*/
 	$("#comment-delete-file").click(function() {
 		$("#imageCommentFile").val('');
 		$("#comment-show-img").attr("src", null);
@@ -111,29 +113,28 @@ $(document).ready(function() {
 										<button class="comment-record-react-action">
 											<div
 												class=" comment-record-react-action-btn"
-												data - active=${false} >
+												data - active=${false} onclick="handleOnClickReactComment(this)" >
 													<i class="fa fa-thumbs-up" aria-hidden="true"></i>
 													<span>Thích</span>
 
 											</div >
 				<div class="comment-record-more-action">
-					<div class="comment-record-react-item">
-						<img alt="" src="/sgu_j2ee/assets/images/like.png">
-					</div>
-					<div class="comment-record-react-item">
-						<img alt=""
-							src="/sgu_j2ee/assets/images/heart.png">
-					</div>
-					<div class="comment-record-react-item">
-						<img alt="" src="/sgu_j2ee/assets/images/sad.png">
-					</div>
-					<div class="comment-record-react-item">
-						<img alt="" src="/sgu_j2ee/assets/images/haha.png">
-					</div>
-					<div class="comment-record-react-item">
-						<img alt="" src="/sgu_j2ee/assets/images/mad.png">
-					</div>
-				</div>
+												<div class="comment-record-react-item" data-trang-thai="like" onclick="reactHoverComment(this)">
+													<img alt="" src="/sgu_j2ee/assets/images/like.png">
+												</div>
+												<div class="comment-record-react-item" data-trang-thai="heart" onclick="reactHoverComment(this)">
+													<img alt="" src="/sgu_j2ee/assets/images/heart.png">
+												</div>
+												<div class="comment-record-react-item" data-trang-thai="sad" onclick="reactHoverComment(this)">
+													<img alt="" src="/sgu_j2ee/assets/images/sad.png">
+												</div>
+												<div class="comment-record-react-item" data-trang-thai="haha" onclick="reactHoverComment(this)">
+													<img alt="" src="/sgu_j2ee/assets/images/haha.png">
+												</div>
+												<div class="comment-record-react-item" data-trang-thai="mad" onclick="reactHoverComment(this)">
+													<img alt="" src="/sgu_j2ee/assets/images/mad.png">
+												</div>
+											</div>
 										</button >
 									</div >
 								</div >
@@ -241,7 +242,39 @@ $(document).ready(function() {
 
 	})
 
+	/*Xử lí xóa comment*/
+	$("#delete-comment-btn").click(function(e) {
+		var parentElement = getParentElement(e.target, "#deleteCommentConfirm");
+		var maBinhLuan = $(parentElement).data("id");
+		$.ajax({
+			url: "/sgu_j2ee/chitietbaiviet",
+			type: "post", //send it through get method
+			data: {
+				maBinhLuan: maBinhLuan,
+				action: "deleteComment"
+			},
+			success: function(response) {
+				//Do Something
+				if (response === "true") {
 
+
+					$("#deleteCommentConfirm").modal('hide');
+					notify(true, "Xóa thành công")
+
+
+					/*khi thành công thì sẽ remove cái bình luận có id đó*/
+					$(".comment-record-item[data-id=" + maBinhLuan + "]").remove()
+				}
+				else {
+					$("#deleteCommentConfirm").modal('hide');
+					notify(false, "Xóa thất bại")
+				}
+			},
+			error: function(xhr) {
+				//Do Something to handle error
+			}
+		});
+	})
 
 });
 /* tắt mở cái more bên phải của comment */
@@ -278,5 +311,109 @@ function handleSetId(e) {
 	$("#deleteCommentConfirm").data("id", $(parentElement).data("id"))
 }
 
+/*Xử lí react chỗ hover*/
+function reactHoverComment(e) {
+	var parentElement = getParentElement(e, ".comment-record-item");
+	var trangThaiValue = $(e).data("trang-thai")
+	var maBinhLuan = $(parentElement).data("id")
+
+	$.ajax({
+		url: "/sgu_j2ee/chitietbaiviet",
+		type: "post", //send it through get method
+		data: {
+			maBinhLuan: maBinhLuan,
+
+			trangThai: trangThaiValue,
+			action: 'react'
+		},
+		success: function(response) {
+			var data = JSON.parse(response)
+			var top3TuongTac = JSON.parse(data.topTuongTac)
 
 
+			var reactActionElemen = $(parentElement).find(".comment-record-react-action-btn");
+			var innerReactActionElementHtml = `
+					<img alt="" src="/sgu_j2ee/assets/images/${trangThaiValue}.png"> <span class="${trangThaiValue}">${trangThaiValue}</span>`;
+
+			$(reactActionElemen).html(innerReactActionElementHtml);
+			if (!$(reactActionElemen).hasClass("active")) {
+				$(reactActionElemen).addClass("active")
+			}
+			$(reactActionElemen).data("active", true)
+			var innerReactDataHtml = ``;
+			$.each(top3TuongTac, function(index, value) {
+				innerReactDataHtml += `<div class="react-data-item">
+        <img alt="" src="/sgu_j2ee/assets/images/${value}.png">
+    </div>`;
+			});
+			innerReactDataHtml += `<span>${data.tongLuotTT} </span>`
+
+			var reactDataElement = $(parentElement).find(".react-data");
+			reactDataElement.html(innerReactDataHtml)
+		},
+		error: function(xhr) {
+			//Do Something to handle error
+
+		}
+	});
+}
+
+
+/*Xử lí react chỗ button bên ngoài*/
+function handleOnClickReactComment(e) {
+	var action = ''
+	var parentElement = getParentElement(e, ".comment-record-item");
+	var maBinhLuan = $(parentElement).data("id")
+	var trangThaiValue = "like";
+
+	if ($(e).data("active")) {
+
+		action = 'deleteTuongBinhLuan'
+		$(e).data("active", false)
+		if ($(e).hasClass("active")) {
+			$(e).removeClass("active")
+		}
+	}
+	else {
+		action = 'react';
+		$(e).data("active", true)
+		if (!$(e).hasClass("active")) {
+			$(e).addClass("active")
+		}
+	}
+	$.ajax({
+		url: "/sgu_j2ee/chitietbaiviet",
+		type: "post", //send it through get method
+		data: {
+			maBinhLuan: maBinhLuan,
+			trangThai: trangThaiValue,
+			action: action
+		},
+		success: function(response) {
+			var data = JSON.parse(response)
+			var top3TuongTac = JSON.parse(data.topTuongTac)
+
+			var innerReactActionElementHtml = (action === 'deleteTuongBinhLuan')
+				? '<i class="fa fa-thumbs-up" aria-hidden="true"></i><span>Thích</span>'
+				: `<img alt="" src="/sgu_j2ee/assets/images/${trangThaiValue}.png"><span class="${trangThaiValue}">${trangThaiValue}</span>`;
+			$(e).html(innerReactActionElementHtml);
+
+
+			var reactDataElement = $(parentElement).find(".react-data");
+			var innerReactDataHtml = ``;
+			$.each(top3TuongTac, function(index, value) {
+				innerReactDataHtml += `<div class="react-data-item">
+        <img alt="" src="/sgu_j2ee/assets/images/${value}.png">
+    </div>`;
+			});
+
+			innerReactDataHtml += data.tongLuotTT > 0 ? `<span>${data.tongLuotTT}</span>` : '';
+
+			reactDataElement.html(innerReactDataHtml)
+		},
+		error: function(xhr) {
+			//Do Something to handle error
+
+		}
+	});
+}

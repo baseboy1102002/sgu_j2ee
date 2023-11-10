@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 
 import model.BaiViet;
 import model.BaiVietView;
@@ -166,7 +167,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 			File deleteFile = new File(dir, binhLuanBaiViet.getAnhBinhLuan());
 
 			String fileName = binhLuanBaiViet.getAnhBinhLuan(); // Default to the existing file name
-			System.out.println(imgSrc);
+
 			if (filePart.getSubmittedFileName() != null ) {
 				fileName = "comment_" + binhLuanBaiViet.getMaBaiViet() + "_" + binhLuanBaiViet.getMaNguoiDung() + "_"
 						+ formattedDate2 + filePart.getSubmittedFileName();
@@ -188,7 +189,6 @@ public class ChiTietBaiVietController extends HttpServlet {
 				// No new file is selected, delete the old file
 				
 			}
-			System.out.println("file name là :"+fileName);
 			binhLuanBaiViet.setAnhBinhLuan(fileName);
 			binhLuanBaiViet.setNoiDung(noiDung);
 
@@ -203,10 +203,61 @@ public class ChiTietBaiVietController extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			printWriter.write(jsonObject);
-
+			
 			break;
 		}
+		case "react":{
+			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan"));
+			int maNguoiDung = 4; //Lấy session
+			String trangThai = request.getParameter("trangThai");
+			Date ngayGioTuong = new Date();
+			TuongTacBinhLuan loginUserTuongTacBinhLuanBaiViet = tuongTacBinhLuanService.getUserTuongTacBinhLuan(maBinhLuan, maNguoiDung);
+			if(loginUserTuongTacBinhLuanBaiViet == null) {
+				
+				
+				TuongTacBinhLuan tempTuongTacBinhLuan = new TuongTacBinhLuan(maNguoiDung, maBinhLuan, ngayGioTuong, trangThai);
+				tuongTacBinhLuanService.addTuongTacBinhLuan(tempTuongTacBinhLuan);
+			}
+			else {
+				loginUserTuongTacBinhLuanBaiViet.setNgayGioTuongTac(ngayGioTuong);
+				loginUserTuongTacBinhLuanBaiViet.setTrangThai(trangThai);
+				tuongTacBinhLuanService.updateTuongTacBinhLuan(loginUserTuongTacBinhLuanBaiViet);
+			}
+			
+			printWriter.print(layDuLieuTuongTacTraVe(maBinhLuan));
+			
+			break;
+		}
+		case "deleteTuongBinhLuan":{
+			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan")) ;
+			int maNguoiDung = 4;
+		
+			
+			tuongTacBinhLuanService.deleteTuongTacBinhLuan(maBinhLuan, maNguoiDung);
+			
+			
+//			get dữ liệu trả về
+			response.setContentType("application/json");
+			response.setContentType("UTF-8");
+			printWriter.print(layDuLieuTuongTacTraVe(maBinhLuan));
+			
+			break;
+		}
+		case "deleteComment":{
+			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan")) ;
 
+			
+			BinhLuanBaiViet binhLuanBaiViet = binhLuanBaiVietService.getBinhLuanBaiVietById(maBinhLuan);
+			File oldFile = new File(dir,binhLuanBaiViet.getAnhBinhLuan());
+			if(oldFile.exists()) {
+				oldFile.delete();
+			}
+			
+			
+			printWriter.print(binhLuanBaiVietService.deleteBinhLuanById(maBinhLuan));
+			
+			break;
+		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + action);
 		}
@@ -261,6 +312,23 @@ public class ChiTietBaiVietController extends HttpServlet {
 				top3TuongTacBinhLuans, anhDaiDienNguoiDang, hoVaTenNguoiDang);
 
 		return binhLuanView;
+	}
+	
+	
+	private String layDuLieuTuongTacTraVe(int maBinhLuan) {
+		List<TuongTacBinhLuan> top3TuongTacBinhLuans = tuongTacBinhLuanService.getTop3TuongTacBinhLuan(maBinhLuan);
+		List<String> top3TuongTacBinhLuanStrings = new ArrayList<String>();
+		int tongLuotTT = tuongTacBinhLuanService.getTongSoTuongTacBinhLuan(maBinhLuan);
+		for(TuongTacBinhLuan tuongTacBinhLuan : top3TuongTacBinhLuans) {
+			top3TuongTacBinhLuanStrings.add(tuongTacBinhLuan.getTrangThai());
+		}
+		JsonArray top3TuongJsonArray = new Gson().toJsonTree(top3TuongTacBinhLuanStrings).getAsJsonArray();
+
+		Map<String, String> json = new LinkedHashMap<String, String>();
+		json.put("tongLuotTT", String.valueOf(tongLuotTT));
+		json.put("topTuongTac", top3TuongJsonArray.toString());
+		String jsonObject = new Gson().toJson(json);
+		return jsonObject;
 	}
 
 }

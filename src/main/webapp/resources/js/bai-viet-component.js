@@ -2,7 +2,7 @@
  * 
  */
 
-function notify(isSuccess, message, handle = () => {}) {
+function notify(isSuccess, message, handle = () => { }) {
 	if (isSuccess) {
 		$("#notifyModal").addClass("success-notify");
 		$("#notifyModal").modal('show');
@@ -12,6 +12,8 @@ function notify(isSuccess, message, handle = () => {}) {
 			// Gọi hàm handle khi người dùng click nút
 			handle();
 			$("#notifyModal").modal('hide');
+			$('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
 		});
 	}
 	else {
@@ -23,6 +25,8 @@ function notify(isSuccess, message, handle = () => {}) {
 			// Gọi hàm handle khi người dùng click nút
 			handle();
 			$("#notifyModal").modal('hide');
+			$('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
 		});
 	}
 }
@@ -84,7 +88,7 @@ function onReactClick(e) {
 			var top3TuongTac = JSON.parse(data.topTuongTac)
 			var reactActionElemen = $(parentElement).find(".react-action-btn");
 			var innerReactActionElementHtml = `
-					<img alt="" src="/sgu_j2ee/assets/images/${reactValue}.png"> <span class="like">${reactValue}</span>`;
+					<img alt="" src="/sgu_j2ee/assets/images/${reactValue}.png"> <span class="${reactValue}">${reactValue}</span>`;
 
 			$(reactActionElemen).html(innerReactActionElementHtml);
 			if (!$(reactActionElemen).hasClass("active")) {
@@ -151,7 +155,7 @@ function handleOnClickReact(e) {
 
 			var innerReactActionElementHtml = (action === 'deleteTuongTacBaiViet')
 				? '<i class="fa fa-thumbs-up" aria-hidden="true"></i><span>Thích</span>'
-				: `<img alt="" src="/sgu_j2ee/assets/images/${reactValue}.png"><span class="like">${reactValue}</span>`;
+				: `<img alt="" src="/sgu_j2ee/assets/images/${reactValue}.png"><span class="${reactValue}">${reactValue}</span>`;
 			$(e).html(innerReactActionElementHtml);
 
 
@@ -218,7 +222,7 @@ $(document).ready(function() {
 
 					notify(true, "Xóa thành công", handleOnClickSubmit)
 
-					
+
 					/*khi thành công thì sẽ remove cái bài viết có id đó*/
 					$(".bai-viet-content-wrapper[data-post-id=" + postID + "]").remove()
 				}
@@ -235,7 +239,4 @@ $(document).ready(function() {
 
 
 });
-
-
-
 
