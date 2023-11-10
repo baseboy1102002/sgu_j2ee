@@ -84,16 +84,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		}
 
 		
-//		Test
-		List<BaiViet> baiViets = baiVietService.getAllBaiViet();
-		List<BaiVietView> baiVietViews = new ArrayList<BaiVietView>();
-		for(BaiViet baiViet : baiViets) {
-			baiVietViews.add(getDataBaiVietForView(baiViet.getMaBaiViet(), maNguoiDung));
-		}
-		
-		
 		request.setAttribute("baiVietView", baiVietView);
-		request.setAttribute("baiVietViews", baiVietViews);
 		request.setAttribute("binhLuanBaiViewList", binhLuanViews);
 
 		request.getRequestDispatcher("views/chi-tiet-bai-viet.jsp").forward(request, response);
