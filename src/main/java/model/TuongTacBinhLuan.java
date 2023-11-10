@@ -7,7 +7,7 @@ public class TuongTacBinhLuan {
 	private int maBinhLuan;
 	private Date ngayGioTuongTac;
 	private String trangThai;
-
+	
 	public TuongTacBinhLuan() {
 		super();
 	}
@@ -57,5 +57,6 @@ public class TuongTacBinhLuan {
 		return "TuongTacBinhLuan [maNguoiDung=" + maNguoiDung + ", maBinhLuan=" + maBinhLuan + ", ngayGioTuongTac="
 				+ ngayGioTuongTac + ", trangThai=" + trangThai + "]";
 	}
-
+	
+	
 }

@@ -15,6 +15,7 @@ public FileBaiViet mapRow(ResultSet rs) {
 		fileBaiViet.setTenFile(rs.getString("TenFile"));
 		fileBaiViet.setTrangThai(rs.getString("TrangThai"));
 		fileBaiViet.setLoaiFile(rs.getString("LoaiFile"));
+		return fileBaiViet;
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

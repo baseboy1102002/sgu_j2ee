@@ -149,6 +149,8 @@ public class DAOService<T> {
 					pstm.setInt(currInx, (Integer)param);
 				else if(param instanceof String)
 					pstm.setString(currInx, (String)param);
+				else if(param instanceof java.util.Date)
+					pstm.setTimestamp(currInx, new Timestamp(((java.util.Date) param).getTime()));
 				else if(param instanceof Timestamp)
 					pstm.setTimestamp(currInx, (Timestamp)param);
 			}

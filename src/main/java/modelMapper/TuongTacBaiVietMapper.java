@@ -20,9 +20,9 @@ public class TuongTacBaiVietMapper implements rowMapper<TuongTacBaiViet> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }

@@ -15,6 +15,7 @@ public class TuongTacBinhLuanMapper implements rowMapper<TuongTacBinhLuan> {
 			tuongTacBinhLuan.setMaNguoiDung(rs.getInt("MaNguoiDung"));
 			tuongTacBinhLuan.setNgayGioTuongTac(rs.getDate("NgayGioTuongTac"));
 			tuongTacBinhLuan.setTrangThai(rs.getString("TrangThai"));
+			return tuongTacBinhLuan;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
