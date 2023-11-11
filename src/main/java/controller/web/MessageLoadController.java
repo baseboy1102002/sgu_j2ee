@@ -55,7 +55,7 @@ public class MessageLoadController extends HttpServlet {
 		if(type.equalsIgnoreCase("loadall")) {
 			out.println("            <div class=\"chatbox_header\">\r\n"
 					+ "                <a href=\"\" class=\"chatbox_header_info_wrapper\" id=\"chatbox_header_info_wrapper\">\r\n"
-					+ "                    <img src=\"/MidTerm/files/" + nd2.getHinhDaiDien() + ".png\" alt=\"\" class=\"chatbox_header_image\">\r\n"
+					+ "                    <img src=\"/sgu_j2ee/files/" + nd2.getHinhDaiDien() + ".png\" alt=\"\" class=\"chatbox_header_image\">\r\n"
 					+ "                    <div class=\"chatbox_header_info\">\r\n"
 					+ "                        <div class=\"chatbox_info_name\">\r\n"
 					+ "                            " + nd2.getHoVaTen() + "\r\n"
@@ -88,11 +88,11 @@ public class MessageLoadController extends HttpServlet {
 						+ "		                        <div class=\"sender_time\">" + timeformattedlist.get(index) + "</div>\r\n"
 						+ "		                        <div class=\"sender_message\">" + tn.getNoiDung() + "</div>\r\n"
 						+ "		                    </div>\r\n"
-						+ "		                    <img src=\"/MidTerm/files/" + nd1.getHinhDaiDien() + ".png\" alt=\"\" class=\"sender_image\"></img>\r\n"
+						+ "		                    <img src=\"/sgu_j2ee/files/" + nd1.getHinhDaiDien() + ".png\" alt=\"\" class=\"sender_image\"></img>\r\n"
 						+ "		                </div>");
 			} else {
 				out.println("<div class=\"chatbox_content_receiver\">\r\n"
-						+ "		                    <img src=\"/MidTerm/files/" + nd2.getHinhDaiDien() + ".png\" alt=\"\" class=\"receiver_image\"></img>\r\n"
+						+ "		                    <img src=\"/sgu_j2ee/files/" + nd2.getHinhDaiDien() + ".png\" alt=\"\" class=\"receiver_image\"></img>\r\n"
 						+ "		                    <div class=\"receiver_value\">\r\n"
 						+ "		                        <div class=\"receiver_time\">" + timeformattedlist.get(index) + "</div>\r\n"
 						+ "		                        <div class=\"receiver_message\">" + tn.getNoiDung() + "</div>\r\n"

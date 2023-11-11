@@ -13,8 +13,10 @@ import java.util.List;
 public class FriendController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String suserid = request.getParameter("userid");
+		int iuserid = Integer.parseInt(suserid);
 		FriendService FS = new FriendService();
-		List<NguoiDung> userlist = FS.getAllBanBeByID(1);
+		List<NguoiDung> userlist = FS.getAllBanBeByID(iuserid);
 		int listlength = userlist.size();
 		int numpage = listlength / 8 + 1;
 
