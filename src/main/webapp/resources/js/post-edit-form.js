@@ -36,7 +36,7 @@ $('#input_image').on('change', function () {
 	    contentType: false,
 	    enctype: 'multipart/form-data', 
 	    success: function (response) {
-	        let imgDiv = `<div class="col-4 img-wrapper" data-post-image-id="${response.file_id}">
+	        let imgDiv = `<div class="col-4 img-wrapper" data-post-image-id="${response.file_id}" data-file-name="${response.file_name}" data-img-delete-status="false">
 	                        <img src="/sgu_j2ee/files/${response.file_name}">
 	                        <div class="img-overlay"></div>
 	                        <div class="img-btn fadeIn-top">
@@ -51,16 +51,21 @@ $('#input_image').on('change', function () {
    })
 });
 
-function delete_post_image(post_image_id) {
+/*function delete_post_image(post_image_id, file_name) {
 	console.log(post_image_id)
 	$.ajax({
 	    method: "delete",
-	    url: contextPath+"/api/post_file?" + $.param({MaFile: post_image_id}),
+	    url: contextPath+"/api/post_file?" + $.param({MaFile: post_image_id, TenFile: file_name}),
 	    success: function (response) {
 			console.log(response)
 	        $(`div[data-post-image-id="${post_image_id}"]`).remove()
 	    }
    })
+}
+*/
+function delete_post_image(post_image_id) {
+	$(`div[data-post-image-id="${post_image_id}"]`).attr('data-img-delete-status', 'true')
+    $(`div[data-post-image-id="${post_image_id}"]`).hide()
 }
 
 $('#modal_post_close_btn').click(function (e) {
@@ -77,6 +82,7 @@ $('#modal_post_close_btn').click(function (e) {
    		})
 	} else {
 		$('#modal_post').modal('hide')
+		clear_post_modal()
 	}
 })
 
@@ -87,14 +93,21 @@ function clear_post_modal() {
 
 $('#modal_post_save_btn').click(function (e) {
 	const postId = $('#modal_post').data('post-id')
+	let data = {noi_dung: $('#post_text').val(), file_id: [], file_names:[]}
+	$(`div[data-img-delete-status="true"]`).each(function (index, element) {
+		let file_id = $(this).data('post-image-id')
+		let file_name = $(this).data('file-name')
+		data.file_names.push(file_name)
+		data.file_id.push(file_id)
+	})
 	$.ajax({
 	    method: "put",
 	    url: contextPath+"/api/post?" + $.param({MaBaiViet: postId}),
-	    data: $('#post_text').val(),
+	    data: JSON.stringify(data),
+	    contentType: "application/json",
 	    success: function (response) {
 			console.log(response)
 	        $('#modal_post').modal('hide')
-	        setTimeout(() => window.location.reload(), 2000);
 	    }
 	})
 })

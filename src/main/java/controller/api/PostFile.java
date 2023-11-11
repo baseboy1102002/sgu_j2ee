@@ -66,12 +66,14 @@ public class PostFile extends HttpServlet{
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/plain");
-		resp.setCharacterEncoding("UTF-8");
-		int MaFile = Integer.parseInt(req.getParameter("MaFile"));
-		fileBaiVietService.deleteFileBaiViet(MaFile);
-		resp.getWriter().write("Xóa file thành công");
+//		req.setCharacterEncoding("UTF-8");
+//		resp.setContentType("text/plain");
+//		resp.setCharacterEncoding("UTF-8");
+//		int MaFile = Integer.parseInt(req.getParameter("MaFile"));
+//		String TenFile = req.getParameter("TenFile");
+//		File filetoDelete = new File(req.getServletContext().getRealPath("/files/"+TenFile));
+//		fileBaiVietService.deleteFileBaiViet(MaFile, filetoDelete);
+//		resp.getWriter().write("Xóa file thành công");
 	}
 	
 }

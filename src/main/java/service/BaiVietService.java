@@ -1,6 +1,9 @@
 package service;
 
+import java.util.List;
+
 import model.BaiViet;
+import modelMapper.BaiVietMapper;
 
 public class BaiVietService extends DAOService<BaiViet>{
 	public int saveBaiViet(BaiViet baiviet) {
@@ -18,4 +21,5 @@ public class BaiVietService extends DAOService<BaiViet>{
 		String sql = "update baiviet set NoiDung = ? where MaBaiViet = ?";
 		return update(sql, NoiDung, MaBaiViet);
 	}
+
 }
