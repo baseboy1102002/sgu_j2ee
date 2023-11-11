@@ -34,7 +34,7 @@
 				</select>
 			</div>
 
-			<input type="text" class="content_header_search_input" id="search_input" placeholder="Nhập tên để tìm kiếm">
+			<input type="text" class="content_header_search_input" id="search_input" placeholder="Nhập tên để tìm kiếm" onkeydown="handleKeyDown(event, ${sessionScope.ID})">
 		</div>
 		
 		<ul class="content_listfriend" id="content_listfriend">
@@ -63,8 +63,8 @@
 		</ul>
 	
 		<ul class="pagination">
-			<li class="pagination_item" id="prevButton">Trước</li>
-			<li class="pagination_item" id="nextButton">Sau</li>
+			<li class="pagination_item" id="prevButton" onclick="prevClick(${sessionScope.ID})">Trước</li>
+			<li class="pagination_item" id="nextButton" onclick="nextClick(${sessionScope.ID}")>Sau</li>
 		</ul>
 	</div>
 </body>

@@ -28,28 +28,26 @@ function loadContent(page, userid) {
 	});
 }
 
-$(document).ready(function() {
-	$("#nextButton").on("click", function() {
-		var listItems = document.getElementsByClassName("listfriend_item");
-		if (listItems.length == 8) {
-			currentPage++;
-			loadContent(currentPage, 1);
-		}
-	});
+function nextClick(id) {
+	var listItems = document.getElementsByClassName("listfriend_item");
+	if (listItems.length == 8) {
+		currentPage++;
+		loadContent(currentPage, id);
+	}
+}
 
-	$("#prevButton").on("click", function() {
-		if (currentPage > 1) {
-			currentPage--;
-			loadContent(currentPage, 1);
-		}
-	});
+function prevClick(id) {
+	if (currentPage > 1) {
+		currentPage--;
+		loadContent(currentPage, 1);
+	}
+}
 
-	$("#search_input").on("keydown", function(e) {
-		if (e.key === "Enter") {
-			loadContent(1, 1);
-		}
-	});
-});
+function handleKeyDown(event, id) {
+	if (event.key === "Enter") {
+		loadContent(1, id);
+	}
+}
 
 function autoSelectOption() {
 	var selectedValue = document.getElementById("selectedType").value;

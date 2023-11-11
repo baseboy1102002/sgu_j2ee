@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MessageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -62,16 +63,29 @@ public class MessageController extends HttpServlet {
 	}
 
 	public List<String> FormatList(List<TinNhan> messlist) {
-		List<String> timeformattedlist = new ArrayList<>();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+	    List<String> timeformattedlist = new ArrayList<>();
+	    SimpleDateFormat shortFormat = new SimpleDateFormat("hh:mm a");
+	    SimpleDateFormat longFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
 
-		for (TinNhan tn : messlist) {
-			Date ngaygioguiDate = tn.getNgayGioGui();
-			Timestamp ngaygiogui = new Timestamp(ngaygioguiDate.getTime());
-			String formattedTime = dateFormat.format(ngaygiogui);
-			timeformattedlist.add(formattedTime);
-		}
+	    for (TinNhan tn : messlist) {
+	        Date ngaygioguiDate = tn.getNgayGioGui();
+	        Timestamp ngaygiogui = new Timestamp(ngaygioguiDate.getTime());
 
-		return timeformattedlist;
+	        long timeDifferenceMillis = System.currentTimeMillis() - ngaygiogui.getTime();
+	        long hoursDifference = TimeUnit.MILLISECONDS.toHours(timeDifferenceMillis);
+
+	        String formattedTime;
+
+	        if (hoursDifference < 24) {
+	            formattedTime = shortFormat.format(ngaygiogui);
+	        } else {
+	            formattedTime = longFormat.format(ngaygiogui);
+	        }
+
+	        timeformattedlist.add(formattedTime);
+	    }
+
+	    return timeformattedlist;
 	}
+
 }
