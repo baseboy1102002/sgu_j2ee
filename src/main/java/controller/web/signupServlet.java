@@ -2,10 +2,12 @@ package controller.web;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -62,12 +64,22 @@ public class signupServlet extends HttpServlet {
 		        userID = rs.getInt("MaNguoiDung");
 			}
 			if (userExists == false && wrongPassword == false) {
-				String insertQuery = "INSERT INTO nguoidung (Email, HoVaTen, MaXacNhan, MatKhau) VALUES (?, ?, ?, ?)";
+				String insertQuery = "INSERT INTO nguoidung (Email, HoVaTen, MaXacNhan, MatKhau, MaQR, SoDienThoai, HinhDaiDien, NgaySinh, LoaiTaiKhoan, TrangThai) "
+						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				insertStatement = conn.prepareStatement(insertQuery);
 				insertStatement.setString(1, inputEmail);
 				insertStatement.setString(2, inputName);
 				insertStatement.setString(3, confirmationCode);
 				insertStatement.setString(4, inputPassword);
+				insertStatement.setString(5, " ");
+				insertStatement.setString(6, " ");
+				insertStatement.setString(7, " ");
+				
+				Date now = new Date(1); 
+				insertStatement.setDate(8, now);
+				
+				insertStatement.setString(9, " ");
+				insertStatement.setString(10, " ");
 				// Execute the insert query
 				int rowsInserted = insertStatement.executeUpdate();
 				if (rowsInserted > 0) {
