@@ -30,7 +30,7 @@
 					<div class="header__right d-flex justify-content-between">
 						
 						<!-- Friends -->
-						<a href="./login.html" class="icon_group_circle">
+						<a href="/sgu_j2ee/friend?userid=${sessionScope.ID}" class="icon_group_circle">
   							<i class="fa fa-users" aria-hidden="true"></i>
 						</a>
 						

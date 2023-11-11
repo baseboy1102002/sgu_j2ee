@@ -25,6 +25,14 @@ public class NguoiDung {
 		this.hoVaTen = hoVaTen;
 		this.hinhDaiDien = hinhDaiDien;
 	}
+	
+	public NguoiDung(int maNguoiDung, String hoVaTen, String hinhDaiDien, String trangThai) {
+		super();
+		this.maNguoiDung = maNguoiDung;
+		this.hoVaTen = hoVaTen;
+		this.hinhDaiDien = hinhDaiDien;
+		this.trangThai = trangThai;
+	}
 
 	public NguoiDung(int maNguoiDung, String email, String hoVaTen, String maQR, String hinhDaiDien, String soDienThoai,
 			Date ngaySinh, String loaiTaiKhoan, String maXacNhan, String matKhau, String trangThai) {
@@ -134,7 +142,7 @@ public class NguoiDung {
 	public String toString() {
 		return "NguoiDung [maNguoiDung=" + maNguoiDung + ", email=" + email + ", hoVaTen=" + hoVaTen + ", maQR=" + maQR
 				+ ", hinhDaiDien=" + hinhDaiDien + ", soDienThoai=" + soDienThoai + ", ngaySinh=" + ngaySinh
-				+ ", tenTaiKhoan=" + ", loaiTaiKhoan=" + loaiTaiKhoan + ", maXacNhan=" + maXacNhan + ", matKhau="
+				+ ", loaiTaiKhoan=" + loaiTaiKhoan + ", maXacNhan=" + maXacNhan + ", matKhau="
 				+ matKhau + ", trangThai=" + trangThai + "]";
 	}
 
