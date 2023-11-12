@@ -1,4 +1,6 @@
 const listItems = document.querySelectorAll('.sidebar_listfriend_item');
+let manguoiguiGlobal;
+let manguoinhanGlobal;
 
 listItems.forEach(item => {
 	item.addEventListener('click', () => {
@@ -30,31 +32,29 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function loadNewUser(id1, id2) {
-	$.ajax({
-		url: "/sgu_j2ee/messload",
-		type: "get",
-		data: {
-			userid1: id1,
-			userid2: id2,
-			type: 'loadall'
-		},
-		success: function(response) {
-			var chatbox = document.getElementById("chatbox");
-			chatbox.innerHTML = response;
-			scrollToBottm();
-
-		},
-		error: function(xhr) {
-			alert(xhr);
-		}
-	});
+    $.ajax({
+        url: "/sgu_j2ee/messload",
+        type: "get",
+        data: {
+            userid1: id1,
+            userid2: id2,
+            type: 'loadall'
+        },
+        success: function (response) {
+            var chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML = response;
+            manguoiguiGlobal = id1;
+            manguoinhanGlobal = id2;
+            loadNewMessAutomatic();
+            setInterval(loadNewMessAutomatic, 3000);
+        },
+        error: function (xhr) {
+            alert(xhr);
+        }
+    });
 }
 
 function loadNewMess(id1, id2) {
-	var ndfocus = {
-        maNguoiDung: '<c:out value="${ndfocus.maNguoiDung}" />',
-    };
-	
 	$.ajax({
 		url: "/sgu_j2ee/messload",
 		type: "get",
@@ -64,9 +64,9 @@ function loadNewMess(id1, id2) {
 			type: 'loadmess'
 		},
 		success: function(response) {
-			var chatbox_content = document.getElementById("chatbox_content");
+            var chatbox_content = document.querySelector('.chatbox_content');
 			chatbox_content.innerHTML = response;
-			scrollToBottm();
+			scrollToBottom();
 		},
 		error: function(xhr) {
 			alert(xhr);
@@ -74,7 +74,7 @@ function loadNewMess(id1, id2) {
 	});
 }
 
-function scrollToBottm() {
+function scrollToBottom() {
 	var chatboxContent = document.querySelector('.chatbox_content');
 	chatboxContent.scrollTop = chatboxContent.scrollHeight;
 }
@@ -106,4 +106,8 @@ function sendMessage(manguoigui, manguoinhan) {
 	
 	loadNewMess(manguoigui, manguoinhan);
 	$('#inputs_text').val('').focus();
+}
+
+function loadNewMessAutomatic() {
+    loadNewMess(manguoiguiGlobal, manguoinhanGlobal);
 }

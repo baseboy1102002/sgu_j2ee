@@ -24,24 +24,14 @@ public class MessageController extends HttpServlet {
 		String suserid1 = request.getParameter("userid1");
 		String suserid2 = request.getParameter("userid2");
 		int iuserid1 = Integer.parseInt(suserid1);
-		int iuserid2 = 0;
+		int iuserid2 = Integer.parseInt(suserid2);
 
-		try {
-			iuserid2 = Integer.parseInt(suserid2);
-		} catch (Exception e) {
-			iuserid2 = 0;
-		}
-
-		NguoiDung nd = new NguoiDung(0, "empty", "empty", "empty");
+		NguoiDung nd = MS.getNguoiDungFocus(iuserid2);
 
 		List<NguoiDung> userlist = MS.getAllSortedBanBeByID(iuserid1, iuserid2);
 		List<TinNhan> messlist = MS.getAllTinNhanById(iuserid1, iuserid2);
 		List<String> timeformattedlist = FormatList(messlist);
-
-		if (iuserid2 != 0) {
-			nd = MS.getNguoiDungFocus(iuserid2);
-		}
-
+		
 		request.setAttribute("ndfocus", nd);
 		request.setAttribute("userlist", userlist);
 		request.setAttribute("messlist", messlist);

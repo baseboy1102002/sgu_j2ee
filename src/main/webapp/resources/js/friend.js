@@ -39,7 +39,7 @@ function nextClick(id) {
 function prevClick(id) {
 	if (currentPage > 1) {
 		currentPage--;
-		loadContent(currentPage, 1);
+		loadContent(currentPage, id);
 	}
 }
 

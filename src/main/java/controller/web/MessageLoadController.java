@@ -109,8 +109,8 @@ public class MessageLoadController extends HttpServlet {
 					+ "                <div class=\"inputs_file\">\r\n"
 					+ "                    <i class=\"fa-regular fa-image\"></i>\r\n"
 					+ "                </div>\r\n"
-					+ "                <textarea type=\"text\" class=\"inputs_text\"></textarea>\r\n"
-					+ "                <div class=\"inputs_buttonsend\">\r\n"
+					+ "                <textarea type=\"text\" class=\"inputs_text\" id=\"inputs_text\" onkeydown=\"checkEnterKey(event, " + userid1 + ", " + userid2 + ")\"></textarea>\r\n"
+					+ "                <div class=\"inputs_buttonsend\" onclick=\"sendMessage(" + userid1 + ", " + userid2 + ")\">\r\n"
 					+ "                    <i class=\"fa-regular fa-paper-plane\"></i>\r\n"
 					+ "                </div>\r\n"
 					+ "            </div>");
