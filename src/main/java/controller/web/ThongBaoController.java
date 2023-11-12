@@ -48,7 +48,6 @@ public class ThongBaoController extends HttpServlet {
 			TimeDifference timeDiff =  new TimeDifference();
 			timeDiff.setTimeDiff(formatTime.formatTimeDifferences(ThongBao.getBaiviet().getNgayDang()));
 			timeDifference.add(timeDiff);
-			System.out.println(ThongBao.getBaiviet().getNgayDang());
 		}
 
 		request.setAttribute("timeDifference", timeDifference);

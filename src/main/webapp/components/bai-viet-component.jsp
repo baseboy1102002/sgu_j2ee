@@ -3,6 +3,8 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
 
+<c:set var = "anh" value = "${baiVietView.anhDaiDienNguoiDang}" />
+
 
 <div class="d-flex flex-column  bai-viet-content-wrapper"
 	data-post-id=${baiVietView.baiViet.maBaiViet }
@@ -10,16 +12,17 @@
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
-				<c:if test="${empty baiVietView.anhDaiDienNguoiDang }">
+<%-- 				<c:if test="${empty baiVietView.anhDaiDienNguoiDang }">
 					<img src="<c:url value='/assets/images/defaultProfileImage.png' />"
 						alt="" />
 
-				</c:if>
-				<c:if test="${!empty baiVietView.anhDaiDienNguoiDang }">
-					<img src="/sgu_j2ee/files/${baiVietView.anhDaiDienNGuoiDang }"
+				</c:if> --%>
+<%-- 				<c:if test="${!empty baiVietView.anhDaiDienNguoiDang }"> --%>
+					
+					<img src="/sgu_j2ee/files/${anh}"
 						alt="" />
 
-				</c:if>
+<%-- 				</c:if> --%>
 			</div>
 			<div class="profile-info">
 				<h1>${baiVietView.hoVaTenNguoiDang}</h1>

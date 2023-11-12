@@ -12,13 +12,13 @@ public class BaiVietView {
 	private int tongLuotTuongTac;
 	private String anhDaiDienNguoiDang;
 	private String hoVaTenNguoiDang;
-	
-	
+
+
 	public BaiVietView() {
 	}
 
-	
-	
+
+
 
 	public BaiVietView(BaiViet baiViet, TuongTacBaiViet loginUserTuongTacBaiViet, List<FileBaiViet> fileHinhAnhs,
 			List<FileBaiViet> fileDinhKems, List<TuongTacBaiViet> top3TuongTac, int binhLuanCount, int tongLuotTuongTac,
@@ -89,8 +89,8 @@ public class BaiVietView {
 	public void setTongLuotTuongTac(int tongLuotTuongTac) {
 		this.tongLuotTuongTac = tongLuotTuongTac;
 	}
-	
-	
+
+
 	public String getAnhDaiDienNguoiDang() {
 		return anhDaiDienNguoiDang;
 	}
@@ -106,6 +106,17 @@ public class BaiVietView {
 	}
 
 
+	@Override
+	public String toString() {
+		return "BaiVietView [baiViet=" + baiViet + ", loginUserTuongTacBaiViet=" + loginUserTuongTacBaiViet
+				+ ", fileHinhAnhs=" + fileHinhAnhs + ", fileDinhKems=" + fileDinhKems + ", top3TuongTac=" + top3TuongTac
+				+ ", binhLuanCount=" + binhLuanCount + ", tongLuotTuongTac=" + tongLuotTuongTac
+				+ ", anhDaiDienNguoiDang=" + anhDaiDienNguoiDang + ", hoVaTenNguoiDang=" + hoVaTenNguoiDang + "]";
+	}
+
+
+
+
 	public void setHoVaTenNguoiDang(String hoVaTenNguoiDang) {
 		this.hoVaTenNguoiDang = hoVaTenNguoiDang;
 	}
@@ -118,6 +129,6 @@ public class BaiVietView {
 
 
 
-	
-	
+
+
 }

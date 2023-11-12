@@ -42,28 +42,28 @@ public class PostFile extends HttpServlet{
 			filePart = req.getPart("img_file");
 			isImageFile = true;
 		} else filePart = req.getPart("file");
-		
+
 		String fileName = filePart.getSubmittedFileName()+String.valueOf(new Date().getTime());
 		File file = new File(dir, fileName);
 		filePart.write(file.getAbsolutePath());
-		
+
 		FileBaiViet fileBaiViet = new FileBaiViet();
 		fileBaiViet.setTenFile(fileName);
 		fileBaiViet.setLoaiFile(isImageFile ? "Anh":"File");
 		fileBaiViet.setMaBaiViet(Integer.parseInt(req.getParameter("postId")));
 		fileBaiViet.setTrangThai("yes");
 		int fileId = fileBaiVietService.saveFileBaiViet(fileBaiViet);
-		
+
 		Map<String, String> json = new LinkedHashMap<>();
 		json.put("file_id", String.valueOf(fileId));
 		json.put("file_name", fileBaiViet.getTenFile());
 		String jsonObject = new Gson().toJson(json);
-		
+
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 		resp.getWriter().write(jsonObject);
 	}
-	
+
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -73,5 +73,5 @@ public class PostFile extends HttpServlet{
 		fileBaiVietService.deleteFileBaiViet(MaFile);
 		resp.getWriter().write("Xóa file thành công");
 	}
-	
+
 }

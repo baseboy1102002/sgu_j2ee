@@ -30,6 +30,7 @@ public class BaiVietController extends HttpServlet {
 	private TuongTacBaiVietService tuongTacBaiVietService ;
 	private BaiVietService baiVietService;
 
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -44,6 +45,7 @@ public class BaiVietController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -53,6 +55,7 @@ public class BaiVietController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
@@ -70,7 +73,7 @@ public class BaiVietController extends HttpServlet {
 			String trangThai = request.getParameter("trangThai");
 			TuongTacBaiViet tuongTacBaiViet = tuongTacBaiVietService.getUserTuongTacBaiViet(Integer.parseInt(maBaiViet),
 					maNguoiDung);
-		
+
 			if (tuongTacBaiViet == null) {
 //				Thêm tuongTacBaiViet nếu null
 				TuongTacBaiViet tempTuongTacBaiViet = new TuongTacBaiViet();
@@ -80,7 +83,7 @@ public class BaiVietController extends HttpServlet {
 				tempTuongTacBaiViet.setTrangThai(trangThai);
 				tuongTacBaiVietService.addTuongTacBaiViet(tempTuongTacBaiViet);
 //				get dữ liệu trả về
-					
+
 				response.setContentType("application/json");
 				response.setContentType("UTF-8");
 				printWriter.print(getDuLieuTuongTacTraVe(Integer.parseInt(maBaiViet)));
@@ -108,10 +111,10 @@ public class BaiVietController extends HttpServlet {
 			response.setContentType("application/json");
 			response.setContentType("UTF-8");
 			printWriter.print(getDuLieuTuongTacTraVe(Integer.parseInt(maBaiViet)));
-			
-			
-			
-			
+
+
+
+
 			break;
 
 		}
@@ -124,14 +127,14 @@ public class BaiVietController extends HttpServlet {
 
 	private String getDuLieuTuongTacTraVe(int maBaiViet) {
 		List<TuongTacBaiViet> top3TuongTacBaiViets = tuongTacBaiVietService.getTop3TuongTacBaiViet(maBaiViet);
-		List<String> top3TuongTacStrings = new ArrayList<String>();
+		List<String> top3TuongTacStrings = new ArrayList<>();
 		int tongLuotTT = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
 		for (TuongTacBaiViet item : top3TuongTacBaiViets) {
 			top3TuongTacStrings.add(item.getTrangThai());
 		}
 		JsonArray top3TuongJsonArray = new Gson().toJsonTree(top3TuongTacStrings).getAsJsonArray();
 
-		Map<String, String> json = new LinkedHashMap<String, String>();
+		Map<String, String> json = new LinkedHashMap<>();
 		json.put("tongLuotTT", String.valueOf(tongLuotTT));
 		json.put("topTuongTac", top3TuongJsonArray.toString());
 		String jsonObject = new Gson().toJson(json);

@@ -9,9 +9,9 @@ public class BinhLuanView {
 	private List<TuongTacBinhLuan> top3TuongTac;
 	private String anhDaiDienNguoiDang;
 	private String hoVaTenNguoiDang;
-	
-	
-	
+
+
+
 	public BinhLuanView() {
 	}
 
@@ -109,8 +109,8 @@ public class BinhLuanView {
 				+ ", anhDaiDienNguoiDang=" + anhDaiDienNguoiDang + ", hoVaTenNguoiDang=" + hoVaTenNguoiDang + "]";
 	}
 
-	
-	
-	
-	
+
+
+
+
 }

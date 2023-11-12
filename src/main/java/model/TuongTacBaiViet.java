@@ -7,8 +7,8 @@ public class TuongTacBaiViet {
 	private int maBaiViet;
 	private Date ngayGioTuongTac;
 	private String trangThai;
-	
-	
+
+
 	public TuongTacBaiViet() {
 		super();
 	}
@@ -68,6 +68,6 @@ public class TuongTacBaiViet {
 		return "TuongTacBaiViet [maNguoiDung=" + maNguoiDung + ", maBaiViet=" + maBaiViet + ", ngayGioTuongTac="
 				+ ngayGioTuongTac + ", trangThai=" + trangThai + "]";
 	}
-	
-	
+
+
 }
