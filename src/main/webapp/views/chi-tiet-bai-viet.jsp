@@ -201,16 +201,9 @@
 
 						<div class="comment-record-item"
 							data-id=${item.binhLuanBaiViet.maBinhLuan }>
-							<c:if test="${empty item.anhDaiDienNguoiDang}">
-								<img class="comment-record-profile-img"
-									src="<c:url value='/assets/images/defaultProfileImage.png' />" />
+							<img class="comment-record-profile-img"
+									src="/sgu_j2ee/files/${item.anhDaiDienNguoiDang}" />
 
-							</c:if>
-							<c:if test="${!empty item.anhDaiDienNguoiDang} ">
-								<img class="comment-record-profile-img"
-									src="/sgu_j2ee/files/${item.anhDaiDienNguoiDang }" />
-
-							</c:if>
 
 							<div class="comment-record-right">
 								<div class="comment-record-content">

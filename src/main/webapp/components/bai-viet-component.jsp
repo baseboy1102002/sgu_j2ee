@@ -2,7 +2,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
-
+<c:set var="anhDaiDienNguoiDung" value="${baiVietView.anhDaiDienNguoiDang }"/>
 
 
 <div class="d-flex flex-column  bai-viet-content-wrapper"
@@ -11,16 +11,8 @@
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
 			<div class="profile-img">
-				<c:if test="${empty baiVietView.anhDaiDienNguoiDang }">
-					<img src="<c:url value='/assets/images/defaultProfileImage.png' />"
+				<img src="/sgu_j2ee/files/${anhDaiDienNguoiDung}"
 						alt="" />
-
-				</c:if>
-				<c:if test="${!empty baiVietView.anhDaiDienNguoiDang }">
-					<img src="/sgu_j2ee/files/${baiVietView.anhDaiDienNGuoiDang }"
-						alt="" />
-
-				</c:if>
 			</div>
 			<div class="profile-info">
 				<h1>${baiVietView.hoVaTenNguoiDang}</h1>

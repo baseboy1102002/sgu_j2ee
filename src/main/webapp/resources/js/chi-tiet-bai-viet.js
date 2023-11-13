@@ -65,7 +65,6 @@ $(document).ready(function() {
 				beforeSend: function() {
 
 					$("#comment-delete-file").trigger('click')
-					$("#loadingModal").modal('show')
 				},
 				success: function(response) {
 
@@ -196,7 +195,7 @@ $(document).ready(function() {
 				contentType: false,
 				enctype: 'multipart/form-data',
 				beforeSend: function() {
-					console.log(imgSrc)
+					
 					$(parentElement).find(".dismiss-btn").trigger("click")
 				},
 				success: function(response) {
