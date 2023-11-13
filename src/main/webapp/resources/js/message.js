@@ -32,26 +32,26 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function loadNewUser(id1, id2) {
-    $.ajax({
-        url: "/sgu_j2ee/messload",
-        type: "get",
-        data: {
-            userid1: id1,
-            userid2: id2,
-            type: 'loadall'
-        },
-        success: function (response) {
-            var chatbox = document.getElementById("chatbox");
-            chatbox.innerHTML = response;
-            manguoiguiGlobal = id1;
-            manguoinhanGlobal = id2;
-            loadNewMessAutomatic();
-            setInterval(loadNewMessAutomatic, 3000);
-        },
-        error: function (xhr) {
-            alert(xhr);
-        }
-    });
+	$.ajax({
+		url: "/sgu_j2ee/messload",
+		type: "get",
+		data: {
+			userid1: id1,
+			userid2: id2,
+			type: 'loadall'
+		},
+		success: function(response) {
+			var chatbox = document.getElementById("chatbox");
+			chatbox.innerHTML = response;
+			manguoiguiGlobal = id1;
+			manguoinhanGlobal = id2;
+			loadNewMessAutomatic();
+			setInterval(loadNewMessAutomatic, 1000);
+		},
+		error: function(xhr) {
+			alert(xhr);
+		}
+	});
 }
 
 function loadNewMess(id1, id2) {
@@ -64,7 +64,7 @@ function loadNewMess(id1, id2) {
 			type: 'loadmess'
 		},
 		success: function(response) {
-            var chatbox_content = document.querySelector('.chatbox_content');
+			var chatbox_content = document.querySelector('.chatbox_content');
 			chatbox_content.innerHTML = response;
 			scrollToBottom();
 		},
@@ -89,6 +89,10 @@ function checkEnterKey(event, manguoigui, manguoinhan) {
 function sendMessage(manguoigui, manguoinhan) {
 	var noidung = document.getElementById('inputs_text').value;
 
+	if (noidung.trim() === '') {
+		return;
+	}
+
 	$.ajax({
 		url: "/sgu_j2ee/mess",
 		type: "post",
@@ -103,11 +107,11 @@ function sendMessage(manguoigui, manguoinhan) {
 			alert(xhr);
 		}
 	});
-	
+
 	loadNewMess(manguoigui, manguoinhan);
 	$('#inputs_text').val('').focus();
 }
 
 function loadNewMessAutomatic() {
-    loadNewMess(manguoiguiGlobal, manguoinhanGlobal);
+	loadNewMess(manguoiguiGlobal, manguoinhanGlobal);
 }
