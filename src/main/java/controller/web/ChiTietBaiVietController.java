@@ -73,8 +73,9 @@ public class ChiTietBaiVietController extends HttpServlet {
 		String maBaiViet = request.getParameter("maBaiViet");
 		int maNguoiDung = 4;
 
+
 		
-	
+		
 		BaiVietView baiVietView = getDataBaiVietForView(Integer.parseInt(maBaiViet), maNguoiDung);
 		List<BinhLuanView> binhLuanViews = new ArrayList<BinhLuanView>();
 		List<BinhLuanBaiViet> binhLuanBaiViets = binhLuanBaiVietService
@@ -289,8 +290,9 @@ public class ChiTietBaiVietController extends HttpServlet {
 				fileDinhKems.add(fileBaiViet);
 			}
 		}
-
+		System.out.println(baiViet.getMaNguoiDung());
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
+		
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 

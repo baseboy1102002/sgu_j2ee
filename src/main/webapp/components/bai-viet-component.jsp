@@ -4,6 +4,7 @@
 
 
 
+
 <div class="d-flex flex-column  bai-viet-content-wrapper"
 	data-post-id=${baiVietView.baiViet.maBaiViet }
 	data-is-detail-mode=${param.isDetailMode } data-user-login="4">
