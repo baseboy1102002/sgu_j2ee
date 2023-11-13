@@ -10,7 +10,7 @@
 <meta name="description" content="Mạng Xã Hội NienHope">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Cài Đặt- NienHope</title>
+<title>Điều Khoản Sử Dụng - NienHope</title>
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/assets/images/favicon.png">
 
@@ -59,7 +59,7 @@
 	</div>
 
 	<!-- Header Section Begin -->
-	<jsp:include page="Header.jsp"></jsp:include>
+	<jsp:include page="Header(SignedOut).jsp"></jsp:include>
 	<!-- Header End -->
 
 	<!-- Setting Section Begin -->
@@ -68,59 +68,81 @@
 			<div class="card">
 				<h3 class="card-header">
 					<i class="fa fa-user" aria-hidden="true"
-						style="margin-right: 10px;"></i> Thông Tin Cá Nhân
+						style="margin-right: 10px;"></i> Điều Khoản Sử Dụng
 				</h3>
 				<div class="card-body">
-					<form action="/sgu_j2ee/cai-dat" method="post" enctype="multipart/form-data">
-						<div class="row">
-							<div class="col-12 edit__information">
-								<div class="image-container"
-									onclick="document.getElementById('inputImage').click();">
-									<img
-										src="https://i.pinimg.com/1200x/c0/29/5a/c0295a690ba4e121e0ab092279d8ed6b.jpg"
-										alt="Image" class="circle-image" id="previewImage" name="previewImage">  
-										<i class="fa fa-cog gear-icon" aria-hidden="true"></i> 
-									<input
-										type="file" id="inputImage" name="inputImage" accept="image/*"
-										style="display: none;" onchange="previewFile()">
-								</div>
+					<p>Chào mừng bạn đến với NienHope, mạng xã hội của bạn trên
+						internet! Trước khi bạn bắt đầu sử dụng dịch vụ của chúng tôi, hãy
+						đọc và hiểu rõ các điều khoản sau đây.</p>
 
+					<h2>1. Bảo Mật Tài Khoản</h2>
 
-							</div>
-							<div class="col-6">
-								<div class="input__item">
-									<label for="">Họ và tên</label> <input type="text"
-										name="inputName" value="${sessionScope.Name}">
-								</div>
-								<div class="input__item">
-									<label for="">Email</label> <input type="email"
-										name="inputEmail" value="${sessionScope.Email}">
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="input__item">
-									<label for="">Ngày sinh</label> <input type="date"
-										name="inputDoB" value="${sessionScope.DoB}">
-								</div>
-								<div class="input__item">
-									<label for="">Số điện thoại</label> <input type="tel"
-										name="inputPhone" value="${sessionScope.Phone}">
-								</div>
-							</div>
-							<div class="col-6">
-								<button type="submit">
-									<i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu
-								</button>
-							</div>
-							<div class="col-6 text-right">
-									<a href="${pageContext.request.contextPath}/views/ChangePassword.jsp">
-										<button type="button">
-											<i class="fa fa-key" aria-hidden="true"></i>Đổi Mật Khẩu
-										</button>
-									</a>
-							</div>
-						</div>
-					</form>
+					<p>
+						<strong>1.1. Bảo mật Tài Khoản:</strong> Bạn chịu trách nhiệm duy
+						trì bảo mật tài khoản của mình. Không chia sẻ thông tin đăng nhập
+						với người khác.
+					</p>
+
+					<p>
+						<strong>1.2. Báo Cáo Sự Cố:</strong> Nếu bạn phát hiện bất kỳ sự
+						xâm phạm bảo mật nào đối với tài khoản của mình, hãy báo cáo ngay
+						lập tức cho chúng tôi.
+					</p>
+
+					<h2>2. Quyền và Trách Nhiệm</h2>
+
+					<p>
+						<strong>2.1. Nội Dung Người Dùng:</strong> Bạn chịu trách nhiệm về
+						nội dung bạn đăng tải trên NienHope. Không chấp nhận nội dung bạo
+						lực, đồi trụy, hoặc vi phạm quy định pháp luật.
+					</p>
+
+					<p>
+						<strong>2.2. Quyền Riêng Tư:</strong> Chúng tôi tôn trọng quyền
+						riêng tư của bạn. Hãy kiểm soát cài đặt quyền riêng tư của mình để
+						quyết định ai có thể xem thông tin cá nhân của bạn.
+					</p>
+
+					<h2>3. Hành Vi Cấm</h2>
+
+					<p>
+						<strong>3.1. Quấy Rối và Bạo Lực:</strong> Bất kỳ hành vi quấy
+						rối, đe dọa hoặc bạo lực đối với thành viên khác sẽ bị xử lý
+						nghiêm túc.
+					</p>
+
+					<p>
+						<strong>3.2. Pháp Lý và Bản Quyền:</strong> Không sử dụng NienHope
+						để phổ biến thông tin vi phạm bản quyền hoặc pháp luật.
+					</p>
+
+					<h2>4. Chấm Dứt Tài Khoản</h2>
+
+					<p>
+						<strong>4.1. Xâm Phạm Điều Khoản:</strong> Chúng tôi có quyền chấm
+						dứt tài khoản của bạn nếu bạn vi phạm bất kỳ điều khoản nào trong
+						chính sách này.
+					</p>
+
+					<p>
+						<strong>4.2. Tự Đăng Xuất:</strong> Bạn có quyền tự do đăng xuất
+						và ngừng sử dụng NienHope bất cứ lúc nào.
+					</p>
+
+					<h2>5. Liên Hệ và Hỗ Trợ</h2>
+
+					<p>
+						<strong>5.1. Hỗ Trợ Người Dùng:</strong> Nếu bạn có bất kỳ câu hỏi
+						hoặc gặp vấn đề, liên hệ với chúng tôi qua trang Hỗ Trợ Người Dùng
+						trên NienHope.
+					</p>
+
+					<p>
+						<strong>5.2. Cập Nhật Điều Khoản:</strong> Chúng tôi có thể cập
+						nhật và thay đổi điều khoản này. Bạn sẽ được thông báo về bất kỳ
+						thay đổi nào.
+					</p>
+
 				</div>
 			</div>
 		</div>

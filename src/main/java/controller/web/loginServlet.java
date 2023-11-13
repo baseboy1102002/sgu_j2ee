@@ -113,7 +113,9 @@ public class loginServlet extends HttpServlet {
     		    return;
             }
 		} else {
-		    System.out.println("not  ok");
+			request.setAttribute("loginStatus", "failed");
+		    System.out.println("login failed");
+            request.getRequestDispatcher("/views/Index.jsp").forward(request, response);
 		}
 
 	}

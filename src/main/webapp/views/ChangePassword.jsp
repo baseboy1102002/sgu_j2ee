@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +10,10 @@
 <meta name="description" content="Mạng Xã Hội NienHope">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Đăng Nhập - NienHope</title>
+<title>Đổi Mật Khẩu - NienHope</title>
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/assets/images/favicon.png">
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap"
@@ -46,7 +48,7 @@
 	href="${pageContext.request.contextPath}/resources/css/style.css"
 	type="text/css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/login_logup.css"
+	href="${pageContext.request.contextPath}/resources/css/setting.css"
 	type="text/css">
 </head>
 
@@ -57,81 +59,73 @@
 	</div>
 
 	<!-- Header Section Begin -->
-	<jsp:include page="Header(SignedOut).jsp"></jsp:include>
+	<jsp:include page="Header.jsp"></jsp:include>
 	<!-- Header End -->
 
-	<!-- Login Section Begin -->
-	<section class="login spad">
+	<!-- Setting Section Begin -->
+	<section class="setting spad">
 		<div class="container">
-			<div class="row login__panel">
-				<div class="col-lg-7">
-					<div class="banner__login"></div>
-				</div>
-				<div class="col-lg-5">
-					<div class="login__form">
-						<h3>Đăng Nhập</h3>
-						<form action="/sgu_j2ee/dang-nhap" method="post">
-							<div class="input__item">
-								<span class="icon_mail"></span> <input type="email"
-									name="inputEmail" placeholder="Địa chỉ Email" required
-									value="${email}">
-							</div>
-							<div class="input__item">
-								<span class="icon_lock"></span> <input type="password"
-									name="inputPassword" placeholder="Mật khẩu" required
-									value="${password}">
-							</div>
-							<c:if
-								test="${not empty requestScope.loginStatus and requestScope.loginStatus eq 'failed'}">
-								<div class="error-message">
-									<p>Đăng nhâp thất bại. Vui lòng kiểm tra lại tài khoản và mật khẩu!</p>
+			<div class="card">
+				<h3 class="card-header">
+					<i class="fa fa-user" aria-hidden="true"
+						style="margin-right: 10px;"></i> Đổi Mật Khẩu
+				</h3>
+				<div class="card-body">
+					<form action="/sgu_j2ee/doi-password" method="post">
+						<div class="row">
+							<div class="col-12">
+								<div class="input__item">
+									<label for="">Mật khẩu hiện tại</label> <input required type="password"
+										name="inputOldPassword">
 								</div>
-							</c:if>
-							<c:if
-								test="${not empty requestScope.loginStatus and requestScope.loginStatus eq 'sendPassword'}">
-								<div class="error-message">
-									<p>Mật khẩu của bạn đã được gửi tới email. Vui lòng đăng nhập.</p>
-								</div>
-							</c:if>
-							<div class="row">
-								<div class="col-6">
-									<div class="checkRemember">
-										<input type="checkbox" name="checkRemember" id="checkRemember" />
-										<label for="checkRemember" class="terms-label"> <svg
-												class="checkbox-svg" viewBox="0 0 200 200" fill="none"
-												xmlns="http://www.w3.org/2000/svg">
-											<mask id="path-1-inside-1_476_5-37" fill="white">
-											  <rect width="200" height="200" />
-											</mask>
-											<rect width="200" height="200" class="checkbox-box"
-													stroke-width="40" mask="url(#path-1-inside-1_476_5-37)" />
-											<path class="checkbox-tick"
-													d="M52 111.018L76.9867 136L149 64" stroke-width="15" />
-										  </svg> <span class="label-text">Lưu mật khẩu</span>
-										</label>
+								<c:if
+									test="${not empty requestScope.changePasswordStatus and requestScope.changePasswordStatus eq 'wrong'}">
+									<div class="error-message">
+										<p>Mật khẩu không đúng!</p>
 									</div>
+								</c:if>				
+							</div>
+							
+							<div class="col-12">
+								<div class="input__item">
+									<label for="">Mật khẩu mới</label> <input required type="password"
+										name="inputNewPassword_1">
+								</div>					
+							</div>
+							<div class="col-12">
+								<div class="input__item">
+									<label for="">Xác nhận lại mật khẩu</label> <input required type="password"
+										name="inputNewPassword_2">
 								</div>
-								<div class="col-6 text-right" style="padding-top: 4px;">
-									<a href="${pageContext.request.contextPath}/views/Forget_Password.jsp">Quên mật khẩu ?</a>
-								</div>
+								<c:if
+									test="${not empty requestScope.changePasswordStatus and requestScope.changePasswordStatus eq 'not_similar'}">
+									<div class="error-message">
+										<p>Mật khẩu xác nhận không đúng!</p>
+									</div>
+								</c:if>	
+												
 							</div>
-							<div>
-								<button id="loginBtn" type="submit">Đăng Nhập</button>
+							<div class="col-6">
+								<button type="submit">
+									<i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu
+								</button>
+								<c:if
+									test="${not empty requestScope.changePasswordStatus and requestScope.changePasswordStatus eq 'success'}">
+									<div class="error-message">
+										<p>Đổi mật khẩu thành công!</p>
+									</div>
+								</c:if>	
 							</div>
-							<div>
-								<a href="${pageContext.request.contextPath}/views/SignUp.jsp">
-									<button type="button" id="signUpBtn">Chưa có tài
-										khoản? Đăng kí ngay!</button>
-								</a>
-							</div>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- Login Section End -->
+	<!-- Setting Section End -->
 </body>
+
+<!-- Js Plugins -->
 
 <!-- Js Plugins -->
 <script
@@ -149,6 +143,8 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/js_lib/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/reloadAvartar_setting.js"></script>
 
 </body>
 

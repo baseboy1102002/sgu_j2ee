@@ -47,6 +47,19 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>RecoverPassword</display-name>
+    <servlet-name>RecoverPassword</servlet-name>
+    <servlet-class>controller.web.RecoverPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controller.web.RecoverPassword</servlet-name>
+    <url-pattern>/quen-password</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+    <description></description>
     <display-name>FriendController</display-name>
     <servlet-name>FriendController</servlet-name>
     <servlet-class>controller.web.FriendController</servlet-class>

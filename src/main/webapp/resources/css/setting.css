@@ -1,7 +1,11 @@
 .setting {
     padding-top: 130px;
 }
-
+.setting .edit__information {
+    margin-bottom: 30px;
+    justify-content: center;
+    display: flex;
+}
 .setting .card {
 
     border-radius: 20px;
@@ -19,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 200px;
     height: 100%;
 }
 
@@ -37,7 +41,7 @@
 .setting .gear-icon {
     position: absolute;
     top: 10px;
-    left: 55%;
+    left: 72%;
     color: #eeeeee;
     font-size: 50px;
     text-shadow: 0 0 3px #000;
@@ -56,7 +60,8 @@
 }
 .setting button {
     height: 50px;
-    width: 150px;
+    width: max-content;
+    padding: 0px 40px 0 40px;
     background-color: #eeeeee;
     border: #53d068 1px solid;
     border-radius: 10px;

@@ -53,7 +53,7 @@ public class signupServlet extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "");
-
+			
 			// Use a prepared statement to prevent SQL injection
 			String queryCheckExists = "SELECT * FROM nguoidung WHERE Email = ?";
 			checkStatement = conn.prepareStatement(queryCheckExists);
@@ -91,10 +91,7 @@ public class signupServlet extends HttpServlet {
 					request.getRequestDispatcher("/views/Confirm_Account.jsp").forward(request, response);
 				} else {
 					// Handle insertion failure
-					request.setAttribute("userExists", userExists);
-					request.setAttribute("wrongPassword", wrongPassword);
 					System.out.println("Failed to insert a new account.");
-					request.getRequestDispatcher("/views/SignUp.jsp").forward(request, response);
 				}
 			}
 
@@ -125,15 +122,14 @@ public class signupServlet extends HttpServlet {
 			}
 		}
 
-		// Perform the redirection outside the try-catch block
 		if (userExists) {
-			System.out.println("User exists");
-			request.getRequestDispatcher("/views/SignUp.jsp").forward(request, response);
-		}
-		if (wrongPassword) {
-			System.out.println("Wrong password");
-			request.getRequestDispatcher("/views/SignUp.jsp").forward(request, response);
-		}
+		    System.out.println("User exists");
+		    request.setAttribute("signupStatus", "exists");
+		} else if (wrongPassword) {
+		    System.out.println("Wrong password");
+		    request.setAttribute("signupStatus", "wrong");
+		} 
+		request.getRequestDispatcher("/views/SignUp.jsp").forward(request, response);
 	}
 
 	private String generateConfirmationCode() {

@@ -60,5 +60,32 @@ public class SessionManager {
         int ID = (int) session.getAttribute("ID");
         return ID;
     }
+    
+    
+    
+    public static void setEmail(HttpServletRequest request, String email) {
+        HttpSession session = request.getSession();
+        session.setAttribute("Email", email);
+    }
+
+    public static void setPassword(HttpServletRequest request, String password) {
+        HttpSession session = request.getSession();
+        session.setAttribute("Password", password);
+    }
+
+    public static void setName(HttpServletRequest request, String name) {
+        HttpSession session = request.getSession();
+        session.setAttribute("Name", name);
+    }
+
+    public static void setPhone(HttpServletRequest request, String phone) {
+        HttpSession session = request.getSession();
+        session.setAttribute("Phone", phone);
+    }
+
+    public static void setDoB(HttpServletRequest request, Date dob) {
+        HttpSession session = request.getSession();
+        session.setAttribute("DoB", dob);
+    }
 }
 

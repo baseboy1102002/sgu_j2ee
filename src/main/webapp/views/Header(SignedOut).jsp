@@ -26,37 +26,6 @@
 							placeholder="Nhập từ khoá...">
 					</div>
 				</div>
-				<div class="col-lg-4 col-12">
-					<div class="header__right d-flex justify-content-between">
-
-						<!-- Friends -->
-						<a href="./login.html" class="icon_group_circle"> <i
-							class="fa fa-users" aria-hidden="true"></i>
-						</a>
-
-						<!-- Chat -->
-						<a href="./login.html" class="icon_group_circle"> <i
-							class="fa fa-comments" aria-hidden="true"></i>
-						</a>
-
-						<!-- Thông Báo -->
-						<a href="./login.html" class="icon_group_circle"> <i
-							class="fa fa-bell" aria-hidden="true"></i>
-						</a>
-
-						<div class="dropdown">
-							<a href="#" class="dropdown-toggle icon_group_circle"
-								id="profileDropdown" data-toggle="dropdown"> <i
-								class="fa fa-user" aria-hidden="true"></i>
-							</a>
-							<div class="dropdown-menu" aria-labelledby="profileDropdown">
-								<!-- Login -->
-								<a class="dropdown-item" href="/sgu_j2ee/views/Index.jsp">Đăng
-									Nhập</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</header>

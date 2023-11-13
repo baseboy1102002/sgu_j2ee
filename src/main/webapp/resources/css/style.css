@@ -193,18 +193,27 @@ ol {
 	color: #53D068;
 	padding: 17px 0 17px;
 }
-.icon_group_circle {
+
+.header__right .icon_group_circle {
   border-radius: 50%;
   width: 50px;
   height: 50px;
   background-color: #eeeeee;
 }
-
+.header__right .direct:hover .icon_group_circle{
+  background-color: #53D068;
+  transition: background-color 0.3s ease-in-out;
+}
+.header__right .direct:hover i{
+  color: #eeeeee;
+  transition: color 0.3s ease-in-out;
+}
 .header__right a {
 	display: inline-block;
 	font-size: 18px;
 	color: #53D068;
 }
+
 
 .header__right .dropdown-toggle::after {
     display: none;
@@ -215,4 +224,12 @@ ol {
 .header__right .dropdown-item:hover {
 	background-color: #53D068;
 	color:black;
+}
+
+/*---------------------
+  Error message
+-----------------------*/
+.error-message p {
+    color: #53D068;
+    font-weight: bold;
 }

@@ -52,7 +52,9 @@ public class confirmServlet extends HttpServlet {
             if (rowsUpdated > 0) {
                 // Confirmation code matched, and the status is updated
                 System.out.println("Account confirmed: Email=" + inputEmail + ", ConfirmationCode=" + inputConfirmCode);
-		    	response.sendRedirect(request.getContextPath() + "/views/Index.jsp"); 
+                request.setAttribute("inputEmail", SessionManager.getEmail(request));
+                request.setAttribute("inputPassword", SessionManager.getPassword(request));
+                request.getRequestDispatcher("/views/Index.jsp").forward(request, response);
                 // You can redirect to a success page or perform further actions here
             } else {
                 // Handle incorrect confirmation code or email
