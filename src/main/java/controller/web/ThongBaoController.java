@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.NguoiDung;
 import model.ThongBao;
+import model.ThongTinKetBan;
 import model.TimeDifference;
 import service.ThongbaoService;
 
@@ -49,7 +50,13 @@ public class ThongBaoController extends HttpServlet {
 			timeDiff.setTimeDiff(formatTime.formatTimeDifferences(ThongBao.getBaiviet().getNgayDang()));
 			timeDifference.add(timeDiff);
 		}
-
+		
+		int count = 0;
+		for (ThongBao ThongBao : ThongBaos) {
+				count++;
+		}
+		
+		request.setAttribute("soThongBao", count);
 		request.setAttribute("timeDifference", timeDifference);
 		request.setAttribute("thongbaos", ThongBaos);
 		request.getRequestDispatcher("views/thong-bao.jsp").forward(request, response);

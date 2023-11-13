@@ -32,7 +32,7 @@
 						</div>
 						<div
 							class="noti-header-number-container ms-4 col-lg-1 col-md-2 col-1 d-flex align-items-start">
-							<span>20</span>
+							<span>${soThongBao}</span>
 						</div>
 					</div>
 				</div>

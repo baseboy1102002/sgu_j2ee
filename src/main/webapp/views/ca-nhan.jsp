@@ -92,35 +92,43 @@
 				</div>
 				<p class="h4 text-center">${nguoiDung.hoVaTen}</p>
 			</div>
-			<div class="profile-header-actions col-4 d-flex align-items-end justify-content-end">
+			<div
+				class="profile-header-actions col-4 d-flex align-items-end justify-content-end">
 
-				<c:set var="cUID" value="${currentUID}"/>
-				<c:set var="UserID" value="${nguoiDung.maNguoiDung}"/>
+				<c:set var="cUID" value="${currentUID}" />
+				<c:set var="UserID" value="${nguoiDung.maNguoiDung}" />
 
 				<c:choose>
 					<c:when test="${cUID eq UserID}">
 						<button type="button"
-							class="button-addfriend btn btn-primary col-6"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square me-2" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-</svg>Thông tin cá nhân</button>
+							class="button-addfriend btn btn-primary col-6">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-pencil-square me-2"
+								viewBox="0 0 16 16">
+  <path
+									d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+  <path fill-rule="evenodd"
+									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+</svg>
+							Thông tin cá nhân
+						</button>
 					</c:when>
 					<c:when test="${cUID ne UserID}">
 						<button type="button"
 							class="button-addfriend btn btn-primary col-6">Kết bạn</button>
-							<button type="button" class="button-message btn btn-primary col-6">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-						fill="currentColor" class="bi bi-chat-dots-fill"
-						viewBox="0 0 16 16">
+						<button type="button" class="button-message btn btn-primary col-6">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-chat-dots-fill"
+								viewBox="0 0 16 16">
                         <path
-							d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+									d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                     </svg>
-					Nhắn tin
-				</button>
+							Nhắn tin
+						</button>
 					</c:when>
 				</c:choose>
 
-				
+
 			</div>
 		</div>
 		<div class="profile-content-container">
@@ -130,24 +138,27 @@
 					<div
 						class="profile-introduction d-flex justify-content-center flex-wrap flex-column p-4">
 						<span class="fw-bold text-center">Giới thiệu</span> <span>${nguoiDung.email}</span>
-						<span>${nguoiDung.soDienThoai}</span> <span>Có
-							${songuoiban} người bạn</span>
+						<span>${nguoiDung.soDienThoai}</span> 
+						<span><a>Có ${songuoiban} người bạn</a></span>
 					</div>
 				</div>
 				<div
 					class="profile-content-right container col d-flex flex-wrap flex-column ms-4">
 					<div
-						class="profile-create-post d-flex flex-column justify-content-end flex-wrap col mb-4 p-4">
-						<div class="profile-post-posting mb-3 col">
-							<label for="labelPosting"
+						class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4">
+						<div class="profile-post-posting col">
+							<label for="inputPosting"
 								class="profile-post-label form-label fs-3 mb-4">Tạo bài
 								viết</label>
-							<textarea class="form-control" id="labelPosting" rows="3"></textarea>
+							 
+							<div class="profile-post-button col d-flex justify-content-end">
+							<img class="profile-post-image me-2" src="/sgu_j2ee/files/user.jpg" alt="" />
+							<input type="text" id="inputPosting" class="profile-posting-input form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<button class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4 col-2 ms-2">
+								Tạo bài viết</button>
 						</div>
-						<div class="profile-post-button col d-flex justify-content-end">
-							<button class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4">
-								Đăng bài</button>
 						</div>
+						
 					</div>
 					<div class="profile-posts col mt-5">
 						<c:forEach var="baiVietView" items="${baiVietViews}">
