@@ -12,6 +12,7 @@ public class FriendService {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
+	private DBContext dbc = new DBContext();
 
 	public List<NguoiDung> getAllBanBeByID(int id) {
 		List<NguoiDung> nguoiDungList = new ArrayList<>();
@@ -22,7 +23,7 @@ public class FriendService {
 					+ "ThongTinKetBan.manguoidung2 = NguoiDung.manguoidung) "
 					+ "WHERE (ThongTinKetBan.manguoidung1 = ? OR " + "ThongTinKetBan.manguoidung2 = ?) AND "
 					+ "ThongTinKetBan.trangthai = 'daketban'";
-			conn = new DBContext().getConnection();
+			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, id);
@@ -39,6 +40,8 @@ public class FriendService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			dbc.closeConnection(conn);
 		}
 		return nguoiDungList;
 	}
@@ -52,7 +55,7 @@ public class FriendService {
 					+ "FROM ThongTinKetBan "
 					+ "INNER JOIN NguoiDung ON ThongTinKetBan.manguoidung1 = NguoiDung.manguoidung "
 					+ "WHERE ThongTinKetBan.manguoidung2 = ? AND ThongTinKetBan.trangthai = 'chochapnhan'";
-			conn = new DBContext().getConnection();
+			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
@@ -65,6 +68,8 @@ public class FriendService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			dbc.closeConnection(conn);
 		}
 		return nguoiDungList;
 	}
@@ -77,7 +82,7 @@ public class FriendService {
 					+ "FROM ThongTinKetBan "
 					+ "INNER JOIN NguoiDung ON ThongTinKetBan.manguoidung2 = NguoiDung.manguoidung "
 					+ "WHERE ThongTinKetBan.manguoidung1 = ? AND ThongTinKetBan.trangthai = 'chochapnhan'";
-			conn = new DBContext().getConnection();
+			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
@@ -90,6 +95,8 @@ public class FriendService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			dbc.closeConnection(conn);
 		}
 		return nguoiDungList;
 	}
@@ -101,7 +108,7 @@ public class FriendService {
 					+ "FROM ThongTinKetBan "
 					+ "INNER JOIN NguoiDung ON ThongTinKetBan.manguoidung2 = NguoiDung.manguoidung "
 					+ "WHERE ThongTinKetBan.manguoidung1 = ? AND ThongTinKetBan.trangthai = 'chan'";
-			conn = new DBContext().getConnection();
+			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
@@ -115,6 +122,8 @@ public class FriendService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			dbc.closeConnection(conn);
 		}
 		return nguoiDungList;
 	}

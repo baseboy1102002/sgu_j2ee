@@ -59,9 +59,9 @@
 		                    <div class="chatbox_norcall">
 		                        <i class="fa-solid fa-phone"></i>
 		                    </div>
-		                    <a href="/sgu_j2ee/views/call.jsp" target="_blank" class="chatbox_vidcall">
+		                    <div class="chatbox_vidcall">
 		                        <i class="fa-solid fa-video"></i>
-		                    </a>
+		                    </div>
 		                </div>
 		            </div>
 		            <hr class="separateline">
