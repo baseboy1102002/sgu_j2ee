@@ -27,7 +27,7 @@
             <ul class="sidebar_listfriend">
             	<c:forEach items="${userlist}" var="user">
 	                <li class="sidebar_listfriend_item" id="${user.maNguoiDung}" onclick="loadNewUser(${sessionScope.ID}, ${user.maNguoiDung})">
-	                    <img src="/sgu_j2ee/files/${user.hinhDaiDien}.png" alt="" class="sidebar_listfriend_item_img">
+	                    <img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="" class="sidebar_listfriend_item_img">
 	                    <div class="sidebar_listfriend_item_name">
 	                        ${user.hoVaTen}
 	                    </div>
@@ -41,8 +41,8 @@
 			<c:choose>
 			    <c:when test="${ndfocus.maNguoiDung != 1}">
 			        <div class="chatbox_header">
-		                <a href="" class="chatbox_header_info_wrapper">
-		                    <img src="/sgu_j2ee/files/${ndfocus.hinhDaiDien}.png" alt="" class="chatbox_header_image">
+		                <a href="/sgu_j2ee/profile?userID=${ndfocus.maNguoiDung}" class="chatbox_header_info_wrapper">
+		                    <img src="/sgu_j2ee/files/${ndfocus.hinhDaiDien}" alt="" class="chatbox_header_image">
 		                    <div class="chatbox_header_info">
 		                        <div class="chatbox_info_name">
 		                            ${ndfocus.hoVaTen}
@@ -59,9 +59,9 @@
 		                    <div class="chatbox_norcall">
 		                        <i class="fa-solid fa-phone"></i>
 		                    </div>
-		                    <div class="chatbox_vidcall">
-		                        <i class="fa-solid fa-video"></i>
-		                    </div>
+		                    <a href="/sgu_j2ee/callvid?userid1=${sessionScope.ID}&userid2=${ndfocus.maNguoiDung}" class="chatbox_vidcall">
+			                    <i class="fa-solid fa-video"></i>
+		                    </a>
 		                </div>
 		            </div>
 		            <hr class="separateline">
@@ -69,7 +69,7 @@
 		            	<c:forEach items="${messlist}" var="mess" varStatus="status">
 		            		<c:if test="${mess.maNguoiNhan == ndfocus.maNguoiDung}">
 							    <div class="chatbox_content_receiver">
-							        <img src="/sgu_j2ee/files/${ndfocus.hinhDaiDien}.png" alt="" class="receiver_image"></img>
+							        <img src="/sgu_j2ee/files/${ndfocus.hinhDaiDien}" alt="" class="receiver_image"></img>
 							        <div class="receiver_value">
 							            <div class="receiver_time">${timelist[status.index]}</div>
 							            <div class="receiver_message">${mess.noiDung}</div>
@@ -83,7 +83,7 @@
 				                        <div class="sender_time">${timelist[status.index]}</div>
 				                        <div class="sender_message">${mess.noiDung}</div>
 				                    </div>
-				                    <img src="/sgu_j2ee/files/user.png" alt="" class="sender_image"></img>
+				                    <img src="/sgu_j2ee/files/${sessionScope.IMG}" alt="" class="sender_image"></img>
 				                </div>
 		            		</c:if>
 		            	</c:forEach>

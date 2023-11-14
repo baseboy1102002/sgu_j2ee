@@ -41,8 +41,8 @@
 			<c:forEach items="${userlist}" var="user" varStatus="loop">
 				<c:if test="${loop.index < 8}">
 					<li class="listfriend_item">
-						<a href="action?type=dsbb&nameact=trangcanhan&userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="item_info">
-							<img src="/sgu_j2ee/files/${user.hinhDaiDien}.png" alt="ảnh người dùng" class="item_info_img">
+						<a href="/sgu_j2ee/profile?userID=${user.maNguoiDung}" class="item_info">
+							<img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="ảnh người dùng" class="item_info_img">
 							<div class="item_info_name">${user.hoVaTen}</div>
 						</a>
 	
