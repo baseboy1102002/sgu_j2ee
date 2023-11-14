@@ -60,7 +60,7 @@
 		                        <i class="fa-solid fa-phone"></i>
 		                    </div>
 		                    <div class="chatbox_vidcall">
-		                        <i class="fa-solid fa-video"></i>
+		                    	<a href="/sgu_j2ee/views/call.jsp" target="_blank"><i class="fa-solid fa-video"></i></a>
 		                    </div>
 		                </div>
 		            </div>
