@@ -129,7 +129,7 @@
 
 		<div class="bai-viet-data">
 			<div class="react-data">
-				<c:forEach var="item" items="${baiVietView.top3TuongTac }">
+				<c:forEach var="item" items="${baiVietView.top3TuongTac}">
 					<div class="react-data-item">
 						<img alt=""
 							src="<c:url value='/assets/images/${item.trangThai }.png' />">

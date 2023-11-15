@@ -23,6 +23,10 @@
 
 <title>Insert title here</title>
 </head>
+
+<c:set var="cUID" value="${currentUID}" />
+<c:set var="UserID" value="${nguoiDung.maNguoiDung}" />
+
 <body>
 
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
@@ -95,13 +99,12 @@
 			<div
 				class="profile-header-actions col-4 d-flex align-items-end justify-content-end">
 
-				<c:set var="cUID" value="${currentUID}" />
-				<c:set var="UserID" value="${nguoiDung.maNguoiDung}" />
+				
 
 				<c:choose>
 					<c:when test="${cUID eq UserID}">
 						<button type="button"
-							class="button-addfriend btn btn-primary col-6">
+							class="profile-action-button btn btn-primary col-6"  >
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-pencil-square me-2"
 								viewBox="0 0 16 16">
@@ -114,8 +117,9 @@
 						</button>
 					</c:when>
 					<c:when test="${cUID ne UserID}">
-						<button type="button"
-							class="button-addfriend btn btn-primary col-6">Kết bạn</button>
+					<c:if test="${showButton eq 'disabled'}">
+						<button type="button"  ${showButton}  
+							class="profile-action-button btn btn-primary col-6" >${btnDescriptionString}</button>
 						<button type="button" class="button-message btn btn-primary col-6">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-chat-dots-fill"
@@ -125,6 +129,23 @@
                     </svg>
 							Nhắn tin
 						</button>
+					</c:if>
+					
+					<c:if test="${showButton ne 'disabled'}">
+						<button type="button"
+							class="profile-action-button btn btn-primary col-6" onclick="handleOnClickAddFriend(this)" data-button-type="thong-tin" data-this-user=${UserID} data-current-user=${cUID} >${btnDescriptionString}</button>
+						<button type="button" class="button-message btn btn-primary col-6">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-chat-dots-fill"
+								viewBox="0 0 16 16">
+                        <path
+									d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                    </svg>
+							Nhắn tin
+						</button>
+					</c:if>
+					
+					
 					</c:when>
 				</c:choose>
 
@@ -144,6 +165,7 @@
 				</div>
 				<div
 					class="profile-content-right container col d-flex flex-wrap flex-column ms-4">
+					<c:if test="${postingDisplayString eq 'yes'}">
 					<div
 						class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4">
 						<div class="profile-post-posting col">
@@ -160,6 +182,7 @@
 						</div>
 						
 					</div>
+					</c:if>
 					<div class="profile-posts col mt-5">
 						<c:forEach var="baiVietView" items="${baiVietViews}">
 							<c:set var="baiVietView" value="${baiVietView}" scope="request" />
@@ -192,6 +215,7 @@
 		src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
 	<script type="text/javascript"
 		src="<c:url value='/resources/js/post-edit-form.js' />"></script>
+		
 
 </body>
 </html>

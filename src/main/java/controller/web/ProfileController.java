@@ -1,6 +1,7 @@
 package controller.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.eclipse.jdt.internal.compiler.IDebugRequestor;
+
+import com.google.gson.JsonObject;
 
 import model.BaiViet;
 import model.BaiVietView;
@@ -28,7 +33,7 @@ import service.TuongTacBinhLuanService;
 /**
  * Servlet implementation class ProfileController
  */
-@WebServlet("/ProfileController")
+@WebServlet("/profile")
 public class ProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BaiVietService baiVietService = new BaiVietService();
@@ -37,42 +42,82 @@ public class ProfileController extends HttpServlet {
 	private TuongTacBinhLuanService tuongTacBinhLuanService = new TuongTacBinhLuanService();
 	private BinhLuanBaiVietService binhLuanBaiVietService = new BinhLuanBaiVietService();
 	private ThongTinKetBanService thongTinKetBanService = new ThongTinKetBanService();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProfileController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
+	public ProfileController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 //		String userID = request.getAttribute("userID").toString();
-		String userID = "4";
-		int currentUID = 4;
-//		int user = Integer.parseInt(request.getParameter("id"));
+//		String sessionID = request.getAttribute("sessionID").toString();
+
+		String userID = "9";
+		int currentUID = 6;
+		ThongTinKetBan isfriend = new ThongTinKetBan();
+
 		List<BaiViet> baiviets = new ArrayList<>();
 		BaiVietService bvSV = new BaiVietService();
-		baiviets = bvSV.getBaiVietsByUserID(userID);
 		List<BaiVietView> baiVietViews = new ArrayList<>();
-		NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(Integer.parseInt(userID));
-		List<ThongTinKetBan> friends = thongTinKetBanService.geThongTinKetBansLaBan(Integer.parseInt(userID));
+		List<ThongTinKetBan> friendsOfUser = thongTinKetBanService.geThongTinKetBansLaBan(Integer.parseInt(userID));
+		
+		String postingDisplayString = "yes";
+		String showButton = "";
+		String btnDescriptionString = "";
+		//Lấy số người bạn của User
+		int count = getFriendsOfUser(friendsOfUser);
+		
+		//Lấy thông tin của button
+		if (Integer.parseInt(userID) != currentUID) {
+			postingDisplayString = "no";
+			isfriend = thongTinKetBanService.getTrangThaiKetBanHaiNguoiDung(currentUID, Integer.parseInt(userID));
+			String friendStatuString = "";
+			if(isfriend != null) {
+				friendStatuString = isfriend.getTrangThai();
+			}
+			switch (friendStatuString) {
+			case "daketban": {
+				showButton = "disabled";
+				btnDescriptionString = "Đã kết bạn";
 
-		int count = 0;
-		for (ThongTinKetBan friend : friends) {
-			if("daketban".equals(friend.getTrangThai())) {
-				count++;
+				break;
+			}
+			case "chochapnhan":{
+				showButton = "disabled";
+				btnDescriptionString = "Chờ chấp nhận";
+				break;
+			}
+			case "chan": {
+				btnDescriptionString = "Bạn đã bị chặn";
+				showButton = "disabled";
+				break;
+			}
+			default:
+				showButton = "";
+				btnDescriptionString = "Kết bạn";
 			}
 		}
+//		int user = Integer.parseInt(request.getParameter("id"));
 		
+		//Lấy thông tin User
+		NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(Integer.parseInt(userID));
+		//Lấy các bài viết của User và cho vào ViewModel
+		baiviets = bvSV.getBaiVietsByUserID(userID);
 		for (BaiViet baiViet : baiviets) {
 			baiVietViews.add(getDataBaiVietForView(baiViet.getMaBaiViet(), Integer.parseInt(userID)));
 		}
+
 		
-		
+		//Thay đổi thuộc tính của Button
+		request.setAttribute("postingDisplayString", postingDisplayString);
+		request.setAttribute("showButton", showButton);
+		request.setAttribute("btnDescriptionString", btnDescriptionString);
+		//Thông tin chung trong trang cá nhân
 		request.setAttribute("currentUID", currentUID);
 		request.setAttribute("songuoiban", count);
 		request.setAttribute("baiVietViews", baiVietViews);
@@ -81,14 +126,47 @@ public class ProfileController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String CUID = request.getParameter("CUID");
+		String UID = request.getParameter("UID");
+		PrintWriter printWriter = response.getWriter();
+		JsonObject jsonResponse = new JsonObject();
+		
+		Integer id = thongTinKetBanService.insertNewFriend(Integer.parseInt(CUID), Integer.parseInt(UID));
+		if(id != null) {
+			jsonResponse.addProperty("status", "success");
+		} else {
+			jsonResponse.addProperty("status", "failure");
+		}
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		
+		
+		printWriter.write(jsonResponse.toString());
 	}
-
+	
+	
+	public int getFriendsOfUser(List<ThongTinKetBan> friendsOfUser) {
+		int count = 0;
+		if (friendsOfUser == null) {
+			return count;
+		}
+		else {
+			for (ThongTinKetBan friend : friendsOfUser) {
+				if ("daketban".equals(friend.getTrangThai())) {
+					count++;
+				}
+			}
+		}
+		return count;
+	}
 	public BaiVietView getDataBaiVietForView(int maBaiViet, int maLoginUser) {
 
 		BaiViet baiViet = baiVietService.getBaiVietById(maBaiViet);
@@ -118,8 +196,6 @@ public class ProfileController extends HttpServlet {
 
 		BaiVietView baiVietView = new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems,
 				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, anhDaiDienNguoiDang, hoVaTenNguoiDang);
-		System.out.println("maBaiViet "+maBaiViet);
-		System.out.println("top3 TT "+top3TuongTacBaiViets);
 		return baiVietView;
 
 	}
