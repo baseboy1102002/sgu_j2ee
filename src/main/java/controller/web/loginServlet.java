@@ -45,7 +45,7 @@ public class loginServlet extends HttpServlet {
 		String inputEmail = request.getParameter("inputEmail");
 		String inputPassword = request.getParameter("inputPassword");
 		String checkRemember = request.getParameter("checkRemember");
-		String userName = null, userConfirmCode = null, userPhone = null;
+		String userName = null, userConfirmCode = null, userPhone = null, userAvatar = null;
 		Date userDoB = null; 
 		int userID = 0;
 		//JDBC connection
@@ -66,6 +66,7 @@ public class loginServlet extends HttpServlet {
 		        userPhone = rs.getString("SoDienThoai");
 		        userDoB = rs.getDate("NgaySinh");
 		        userID = rs.getInt("MaNguoiDung");
+		        userAvatar = rs.getString("HinhDaiDien");
 		    }
 		} catch (ClassNotFoundException e) {
 		    e.printStackTrace();
@@ -100,7 +101,7 @@ public class loginServlet extends HttpServlet {
 		// Perform the redirection outside the try-catch block
 		if (userExists) {
 		    // Store user information in session
-		    SessionManager.storeUserInfo(request, inputEmail, inputPassword, userName, userConfirmCode, userPhone, userDoB, userID);
+		    SessionManager.storeUserInfo(request, inputEmail, inputPassword, userName, userConfirmCode, userPhone, userDoB, userID, userAvatar);
 		    System.out.println("ok");
 		    
 		    // Redirect to a different page (e.g., home page)

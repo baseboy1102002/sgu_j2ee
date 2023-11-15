@@ -77,7 +77,7 @@
 								<div class="image-container"
 									onclick="document.getElementById('inputImage').click();">
 									<img
-										src="https://i.pinimg.com/1200x/c0/29/5a/c0295a690ba4e121e0ab092279d8ed6b.jpg"
+										src="/sgu_j2ee/files/${sessionScope.IMG}"
 										alt="Image" class="circle-image" id="previewImage" name="previewImage">  
 										<i class="fa fa-cog gear-icon" aria-hidden="true"></i> 
 									<input

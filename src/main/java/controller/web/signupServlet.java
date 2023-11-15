@@ -42,6 +42,7 @@ public class signupServlet extends HttpServlet {
 		String inputCheckPassword = request.getParameter("inputCheckPassword");
 		String confirmationCode = generateConfirmationCode();
 		int userID = 0;
+		String IMG = "user.png";
 		// JDBC connection
 		Connection conn = null;
 		PreparedStatement checkStatement = null;
@@ -73,7 +74,7 @@ public class signupServlet extends HttpServlet {
 				insertStatement.setString(4, inputPassword);
 				insertStatement.setString(5, " ");
 				insertStatement.setString(6, " ");
-				insertStatement.setString(7, " ");
+				insertStatement.setString(7, IMG);
 				
 				Date now = new Date(1); 
 				insertStatement.setDate(8, now);
@@ -87,7 +88,7 @@ public class signupServlet extends HttpServlet {
 					System.out.println(
 							"New account inserted: Email=" + inputEmail + ", ConfirmationCode=" + confirmationCode);
 					EmailSender.sendActivationCode(inputEmail, inputName, confirmationCode);
-					SessionManager.storeUserInfo(request, inputEmail, inputPassword, inputName, confirmationCode, SessionManager.getPhone(request), SessionManager.getDoB(request), userID); 
+					SessionManager.storeUserInfo(request, inputEmail, inputPassword, inputName, confirmationCode, SessionManager.getPhone(request), SessionManager.getDoB(request), userID, IMG); 
 					request.getRequestDispatcher("/views/Confirm_Account.jsp").forward(request, response);
 				} else {
 					// Handle insertion failure

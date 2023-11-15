@@ -32,14 +32,16 @@ public class settingServlet extends HttpServlet {
 		String Strdob = request.getParameter("inputDoB");
 		String phone = request.getParameter("inputPhone");
 
+		Part photo = request.getPart("inputImage");
+		String newFileName = SessionManager.getID(request) + "_ProfilePicture.png";
 		File dir = new File(request.getServletContext().getRealPath("/files"));
+	    if (!dir.exists()) {
+	        dir.mkdirs();
+	    }
+	    File newPhotoFile = new File(dir, newFileName);
+	    photo.write(newPhotoFile.getAbsolutePath());
 		System.out.println(dir);
-		if (!dir.exists()) { // tạo nếu chưa tồn tại
-			dir.mkdirs();
-		}
-		Part photo = request.getPart("photo_file"); // file hình
-		File photoFile = new File(dir, photo.getSubmittedFileName());
-		photo.write(photoFile.getAbsolutePath());
+		System.out.println(newFileName);
 
 		// Convert the String to java.sql.Date
 		java.sql.Date dob = java.sql.Date.valueOf(Strdob);
@@ -54,13 +56,14 @@ public class settingServlet extends HttpServlet {
 
 			// Query to update the confirmation status when the confirmation code matches
 			// the email
-			String updateQuery = "UPDATE nguoidung SET HoVaTen = ?, Email = ?, NgaySinh = ?, SoDienThoai = ? WHERE MaNguoiDung = ?";
+			String updateQuery = "UPDATE nguoidung SET HoVaTen = ?, Email = ?, NgaySinh = ?, SoDienThoai = ?, HinhDaiDien = ? WHERE MaNguoiDung = ?";
 			updateStatement = conn.prepareStatement(updateQuery);
 			updateStatement.setString(1, name);
 			updateStatement.setString(2, email);
 			updateStatement.setDate(3, dob);
 			updateStatement.setString(4, phone);
-			updateStatement.setLong(5, SessionManager.getID(request));
+			updateStatement.setString(5, newFileName);
+			updateStatement.setLong(6, SessionManager.getID(request));
 			System.out.println(SessionManager.getDoB(request));
 			int rowsUpdated = updateStatement.executeUpdate();
 
@@ -71,6 +74,7 @@ public class settingServlet extends HttpServlet {
 				SessionManager.setEmail(request, email);
 				SessionManager.setName(request, name);
 				SessionManager.setPhone(request, phone);
+				SessionManager.setIMG(request, newFileName);
 			} else {
 				
 				System.out.println("not ok");
