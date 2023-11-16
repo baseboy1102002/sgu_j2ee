@@ -44,8 +44,11 @@
 				<div class="noti-detail-container">
 					<!---------------------------------------------------------Bắt đầu info--------------------------------------------------------->
 					<!-- Mỗi class noti-info-wrapper là một thông báo -->
+
 					<c:forEach items="${thongbaos}" var="thisItem" varStatus="status1">
+
 						<div
+							data-url="/sgu_j2ee/chitietbaiviet?maBaiViet=${thisItem.baiviet.maBaiViet}"
 							class="noti-info-wrapper col-lg-10 col container mx-auto p-lg-2 p-md-2 mb-3">
 							<div class="noti-info-container col row p-lg-1 ml-md-2 mb-2">
 								<!-- Hình ảnh thông báo -->
@@ -61,15 +64,16 @@
 										<!-- Hiển thị tên người dùng và bài đăng -->
 										<div class="d-flex">
 											<span style="font-weight: 500"
-												class="noti-username me-2 text-nowrap">${thisItem.usersPost}</span> <span
-												class="text-nowrap me-2">vừa mới tạo một bài đăng: </span> <span
-												style="font-weight: 500; max-width: 500px;"
+												class="noti-username me-2 text-nowrap">${thisItem.usersPost}</span>
+											<span class="text-nowrap me-2">vừa mới tạo một bài
+												đăng: </span> <span style="font-weight: 500; max-width: 500px;"
 												class="text-nowrap d-inline-block text-truncate">${thisItem.baiviet.noiDung}</span>
 										</div>
 										<!-- Hiển thị thời gian -->
 										<div class="noti-info-time mt-3">
 											<span id="time-stamp" style="color: rgb(160, 160, 160)">
-												<c:forEach items="${timeDifference}" var="thisTime" varStatus="status2">
+												<c:forEach items="${timeDifference}" var="thisTime"
+													varStatus="status2">
 													<c:if test="${status1.index eq status2.index}">
 														${thisTime.timeDiff}
 													</c:if>
@@ -90,5 +94,15 @@
 
 </body>
 <script type="text/javascript"
+	src="<c:url value='/jquery/jquery-3.7.1.min.js' />"></script>
+<script type="text/javascript"
 	src="<c:url value='/bootstrap/js/bootstrap.bundle.js' />"></script>
+<script>
+//Chuyển sang trang chi tiết bài viết khi ấn vào
+	$(".noti-info-wrapper").on("click", function() {
+		var url = $(this).data("url");
+
+		window.location.href = url;
+	});
+</script>
 </html>

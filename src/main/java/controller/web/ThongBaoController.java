@@ -33,14 +33,15 @@ public class ThongBaoController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		String currentUser = request.getParameter("userID").toString();
 		ThongbaoService tbService = new ThongbaoService();
 		List<ThongBao> ThongBaos = new ArrayList<>();
 		NguoiDung user = new NguoiDung(1, null, null);
+//		String currentUser = "4";
 
-
-
-		ThongBaos = tbService.getThongBao(user);
+		
+		ThongBaos = tbService.getThongBao(Integer.parseInt(currentUser));
 		formatTime fTime = new formatTime();
 		List<TimeDifference> timeDifference = new ArrayList<>();
 
