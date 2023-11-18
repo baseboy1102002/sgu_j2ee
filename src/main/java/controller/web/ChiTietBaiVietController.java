@@ -295,9 +295,10 @@ public class ChiTietBaiVietController extends HttpServlet {
 		
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
+		int maNguoiDang = nguoiDang.getMaNguoiDung();
 
 		BaiVietView baiVietView = new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems,
-				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, maNguoiDang, anhDaiDienNguoiDang, hoVaTenNguoiDang);
 
 		return baiVietView;
 
@@ -312,9 +313,10 @@ public class ChiTietBaiVietController extends HttpServlet {
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(binhLuanBaiViet.getMaNguoiDung());
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
+		int maNguoiDang = nguoiDang.getMaNguoiDung();
 
 		BinhLuanView binhLuanView = new BinhLuanView(binhLuanBaiViet, tongLuotTT, loginUserTuongTacBinhLuan,
-				top3TuongTacBinhLuans, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+				top3TuongTacBinhLuans, anhDaiDienNguoiDang, hoVaTenNguoiDang, maNguoiDang);
 
 		return binhLuanView;
 	}

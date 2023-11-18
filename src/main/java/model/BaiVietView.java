@@ -10,6 +10,7 @@ public class BaiVietView {
 	private List<TuongTacBaiViet> top3TuongTac;
 	private int binhLuanCount;
 	private int tongLuotTuongTac;
+	private int maNguoiDang;
 	private String anhDaiDienNguoiDang;
 	private String hoVaTenNguoiDang;
 	
@@ -22,7 +23,7 @@ public class BaiVietView {
 
 	public BaiVietView(BaiViet baiViet, TuongTacBaiViet loginUserTuongTacBaiViet, List<FileBaiViet> fileHinhAnhs,
 			List<FileBaiViet> fileDinhKems, List<TuongTacBaiViet> top3TuongTac, int binhLuanCount, int tongLuotTuongTac,
-			String anhDaiDienNguoiDang, String hoVaTenNguoiDang) {
+			int maNguoiDang, String anhDaiDienNguoiDang, String hoVaTenNguoiDang) {
 		this.baiViet = baiViet;
 		this.loginUserTuongTacBaiViet = loginUserTuongTacBaiViet;
 		this.fileHinhAnhs = fileHinhAnhs;
@@ -32,6 +33,7 @@ public class BaiVietView {
 		this.tongLuotTuongTac = tongLuotTuongTac;
 		this.anhDaiDienNguoiDang = anhDaiDienNguoiDang;
 		this.hoVaTenNguoiDang = hoVaTenNguoiDang;
+		this.maNguoiDang = maNguoiDang;
 	}
 
 	public BaiViet getBaiViet() {
@@ -113,11 +115,16 @@ public class BaiVietView {
 
 
 
+	public int getMaNguoiDang() {
+		return maNguoiDang;
+	}
 
 
 
 
-
+	public void setMaNguoiDang(int maNguoiDang) {
+		this.maNguoiDang = maNguoiDang;
+	}
 	
 	
 }

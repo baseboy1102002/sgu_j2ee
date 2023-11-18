@@ -10,10 +10,9 @@
 	data-is-detail-mode=${param.isDetailMode } data-user-login="4">
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
-			<div class="profile-img">
-				<img src="/sgu_j2ee/files/${anhDaiDienNguoiDung}"
-						alt="" />
-			</div>
+			<a href="/sgu_j2ee/profile?userID=${baiVietView.maNguoiDang}" class="profile-img">
+				<img src="/sgu_j2ee/files/${anhDaiDienNguoiDung}" alt="" />
+			</a>
 			<div class="profile-info">
 				<h1>${baiVietView.hoVaTenNguoiDang}</h1>
 				<span>Đã đăng vào lúc ${baiVietView.baiViet.ngayDang} </span>
@@ -25,7 +24,8 @@
 			<i class="fa fa-ellipsis-h"></i>
 			<div class="profile-more-hover">
 
-				<button type="button" class="btn profile-item edit-post-btn">
+				<button type="button" class="btn profile-item edit-post-btn"
+				onclick="editPost(this)">
 					<i class="fa fa-cog" aria-hidden="true"></i><span> Chỉnh sửa
 					</span>
 				</button>
@@ -93,9 +93,9 @@
 			</c:if>
 		</c:if>
 		<c:if test="${param.isDetailMode }">
-			<c:if test="${!empty baiVietView.fileHinhAnhs }">
+			<c:if test="${!empty baiVietView.fileDinhKems }">
 				<div class="attachments">
-					<c:forEach var="attachment" items="${baiVietView.fileHinhAnhs}">
+					<c:forEach var="attachment" items="${baiVietView.fileDinhKems}">
 						<div class="attachment">
 							<a href="/sgu_j2ee/files/${attachment.tenFile}"
 								download="/sgu_j2ee/files/${attachment.tenFile}"> <span
