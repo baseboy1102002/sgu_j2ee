@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+#search_page {
+	position: relative;
+}
+
+#sp_container_left {
+	padding: 10px 10px 10px 20px;
+	background-color: #fff;
+	height: 100vh;
+	position: fixed;
+}
+
+#sp_container_left hr {
+	margin: 5px 0;
+}
+
+#sp_container_left .cp_button {
+	display: flex;
+	align-items: center;
+}
+
+.sp_container_left_header {
+	margin-bottom: 10px;
+}
+
+.cp_button a {
+	width: 100%;
+}
+
+.cp_button > svg {
+	margin-right: 10px;
+}
+
+.cp_button button {
+	width: 100%;
+	font-size: 16px;
+	height: 30px;
+	background-color: #fff;
+}
+
+.cp_button button:hover {
+	background-color: #ccc;
+	border-radius: 5px;
+	transition: .2s;
+}
+
+.cp_button button.active {
+	background-color: #ccc;
+	border-radius: 5px;
+	color: #fff;
+}
+
+#sp_container_right {
+	margin: 0 50px;
+}
+
+
+#sp_all .sp_user_info{
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	background-color: #fff;
+	margin: 10px;
+	border-radius: 5px;
+	box-shadow: 0 0 6px 1px rgba(0,0,0,.1);
+}
+
+#sp_all .sp_user_info button{
+	height: 30px;
+	font-size: 14px;
+	background-color: green;
+	padding: 0 10px;
+	color: #fff;
+	border-radius: 5px;	
+}
+
+#sp_all .sp_user_info button:active{
+	transform: scale(.98);	
+}
+
+#sp_all .sp_user_info div:nth-child(1) i {
+	padding: 10px;
+}
+
+#sp_all .sp_user_info div:nth-child(2) {
+	text-align: right;
+}
+
+#sp_all .sp_all_post {
+	margin-top: 20px;
+}
+
+#sp_all .sp_post {
+	padding: 20px 0;
+	background-color: #fff;
+	margin: 20px 10px;
+	border-radius: 5px;
+	box-shadow: 0 0 6px 1px rgba(0,0,0,.1);
+}
+
