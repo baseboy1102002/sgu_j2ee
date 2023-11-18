@@ -10,7 +10,7 @@ public class BinhLuanBaiViet {
 	private String trangThai;
 	private String noiDung;
 	private String anhBinhLuan;
-	
+
 	public BinhLuanBaiViet() {
 		super();
 	}
@@ -73,6 +73,6 @@ public class BinhLuanBaiViet {
 				+ ", ngayGioBinhLuan=" + ngayGioBinhLuan + ", trangThai=" + trangThai + ", noiDung=" + noiDung
 				+ ", anhBinhLuan=" + anhBinhLuan + "]";
 	}
-	
-	
+
+
 }

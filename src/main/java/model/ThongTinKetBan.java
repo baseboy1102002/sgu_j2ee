@@ -8,8 +8,8 @@ public class ThongTinKetBan {
 	public ThongTinKetBan() {
 		super();
 	}
-	
-	
+
+
 
 	public ThongTinKetBan(int maNguoiDung1, int maNguoidung2, String trangThai) {
 		this.maNguoiDung1 = maNguoiDung1;
@@ -49,6 +49,6 @@ public class ThongTinKetBan {
 				+ trangThai + "]";
 	}
 
-	
-	
+
+
 }

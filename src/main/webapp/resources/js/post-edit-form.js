@@ -240,6 +240,7 @@ $('#modal_post_save_btn').click(function (e) {
 			if ($('#modal_post').data('type') === 'create') {
 				appendBaiViet(response)				
 		        $('#modal_post').modal('hide')
+		        clear_post_modal()
 			} else {
 				if ($(`div[data-post-id="${postId}"]`).data('is-detail-mode') === true) {
 					$('#carouselExampleIndicators .carousel-indicators').empty()
@@ -273,9 +274,9 @@ $('#modal_post_save_btn').click(function (e) {
 					   $('.bai-viet-main-content .attachments').append(fileDiv)
 					})
 				}
-				console.log($(`div[data-post-id="${postId}"] .bai-viet-main-content p`))
 				$(`div[data-post-id="${postId}"] .bai-viet-main-content p`).text(response.baiViet.noiDung)
 				$('#modal_post').modal('hide')
+				clear_post_modal()
 			}
 	    }
 	})
@@ -333,23 +334,23 @@ function appendBaiViet(baiVietView) {
 					<div class="more-action">
 						<div class="react-action-item" data-react="like"
 							onclick="onReactClick(this)">
-							<img alt="" src="<c:url value='/assets/images/like.png' />">
+							<img alt="" src="/assets/images/like.png">
 						</div>
 						<div class="react-action-item" data-react=heart
 							onclick="onReactClick(this)">
-							<img alt="" src="<c:url value='/assets/images/heart.png' />">
+							<img alt="" src="/assets/images/heart.png">
 						</div>
 						<div class="react-action-item" data-react="sad"
 							onclick="onReactClick(this)">
-							<img alt="" src="<c:url value='/assets/images/sad.png' />">
+							<img alt="" src="/assets/images/sad.png">
 						</div>
 						<div class="react-action-item" data-react="haha"
 							onclick="onReactClick(this)">
-							<img alt="" src="<c:url value='/assets/images/haha.png' />">
+							<img alt="" src="/assets/images/haha.png">
 						</div>
 						<div class="react-action-item" data-react="mad"
 							onclick="onReactClick(this)">
-							<img alt="" src="<c:url value='/assets/images/mad.png' />">
+							<img alt="" src="/assets/images/mad.png">
 						</div>
 					</div>
 				</div>
@@ -361,5 +362,5 @@ function appendBaiViet(baiVietView) {
 		</div>
 		</div>
 	`
-	$('.bai-viet-wrapper').append(baiVietDiv)
+	$('.profile-posts').prepend(baiVietDiv)
 }

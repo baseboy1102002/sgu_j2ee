@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import model.TuongTacBaiViet;
@@ -64,12 +63,12 @@ public class TuongTacBaiVietService extends DAOService<TuongTacBaiViet> {
 		String sql="UPDATE `tuongtacbaiviet` SET  `NgayGioTuongTac` = ?, `TrangThai` = ? WHERE `tuongtacbaiviet`.`MaNguoiDung` = ? AND `tuongtacbaiviet`.`MaBaiViet` = ?";
 		return update(sql, tuongTacBaiViet.getNgayGioTuongTac(),tuongTacBaiViet.getTrangThai(),tuongTacBaiViet.getMaNguoiDung(),tuongTacBaiViet.getMaBaiViet());
 	}
-	
+
 	public boolean deleteTuongTacBaiViet(int maBaiViet, int maNguoiDung) {
 		String sql="DELETE FROM `tuongtacbaiviet` WHERE `tuongtacbaiviet`.`MaNguoiDung` = ? AND `tuongtacbaiviet`.`MaBaiViet` = ?";
 		return update(sql, maNguoiDung,maBaiViet);
-		
-		
+
+
 	}
-	
+
 }

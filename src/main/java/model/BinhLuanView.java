@@ -10,9 +10,9 @@ public class BinhLuanView {
 	private String anhDaiDienNguoiDang;
 	private String hoVaTenNguoiDang;
 	private int maNguoiDang;
-	
-	
-	
+
+
+
 	public BinhLuanView() {
 	}
 
@@ -123,8 +123,8 @@ public class BinhLuanView {
 		this.maNguoiDang = maNguoiDang;
 	}
 
-	
-	
-	
-	
+
+
+
+
 }

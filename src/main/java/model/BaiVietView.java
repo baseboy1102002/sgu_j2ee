@@ -13,13 +13,13 @@ public class BaiVietView {
 	private int maNguoiDang;
 	private String anhDaiDienNguoiDang;
 	private String hoVaTenNguoiDang;
-	
-	
+
+
 	public BaiVietView() {
 	}
 
-	
-	
+
+
 
 	public BaiVietView(BaiViet baiViet, TuongTacBaiViet loginUserTuongTacBaiViet, List<FileBaiViet> fileHinhAnhs,
 			List<FileBaiViet> fileDinhKems, List<TuongTacBaiViet> top3TuongTac, int binhLuanCount, int tongLuotTuongTac,
@@ -91,8 +91,8 @@ public class BaiVietView {
 	public void setTongLuotTuongTac(int tongLuotTuongTac) {
 		this.tongLuotTuongTac = tongLuotTuongTac;
 	}
-	
-	
+
+
 	public String getAnhDaiDienNguoiDang() {
 		return anhDaiDienNguoiDang;
 	}
@@ -125,6 +125,6 @@ public class BaiVietView {
 	public void setMaNguoiDang(int maNguoiDang) {
 		this.maNguoiDang = maNguoiDang;
 	}
-	
-	
+
+
 }

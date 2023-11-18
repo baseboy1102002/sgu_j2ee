@@ -28,11 +28,11 @@ public class PostApi extends HttpServlet {
 	private static final long serialVersionUID = 3739265568460414533L;
 	private BaiVietService baiVietService = new BaiVietService();
 	private FileBaiVietService fileBaiVietService = new FileBaiVietService();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		
+
 		int MaBaiViet = Integer.parseInt(req.getParameter("MaBaiViet"));
 		BaiViet baiViet = baiVietService.getBaiVietById(MaBaiViet);
 		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(MaBaiViet);
@@ -42,7 +42,7 @@ public class PostApi extends HttpServlet {
 		baiVietView.setBaiViet(baiViet);
 		baiVietView.setFileHinhAnhs(fileHinhAnhs);
 		baiVietView.setFileDinhKems(fileDinhKems);
-		
+
 		String responseJson = new Gson().toJson(baiVietView);
 		System.out.println(responseJson);
 		resp.setContentType("application/json");
@@ -55,7 +55,7 @@ public class PostApi extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		BaiViet baiviet = new BaiViet();
 		baiviet.setNoiDung(req.getParameter("NoiDung"));
-		baiviet.setMaNguoiDung(1);
+		baiviet.setMaNguoiDung(4);
 		baiviet.setTrangThai("yes");
 		baiviet.setNgayDang(new Date());
 		int postId = baiVietService.saveBaiViet(baiviet);
@@ -66,10 +66,10 @@ public class PostApi extends HttpServlet {
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 req.setCharacterEncoding("UTF-8"); 
+		 req.setCharacterEncoding("UTF-8");
 		 resp.setContentType("text/plain");
-		 resp.setCharacterEncoding("UTF-8"); 
-		 int MaBaiViet = Integer.parseInt(req.getParameter("MaBaiViet")); 
+		 resp.setCharacterEncoding("UTF-8");
+		 int MaBaiViet = Integer.parseInt(req.getParameter("MaBaiViet"));
 		 String requestBody = req.getReader().lines().collect(Collectors.joining());
 		 JsonObject json = new Gson().fromJson(requestBody, JsonObject.class);
 		 String NoiDung = json.get("noi_dung").getAsString();
@@ -79,7 +79,7 @@ public class PostApi extends HttpServlet {
 			 List<Integer> ListMaFile = new ArrayList<>();
 			 jsonMaFile.forEach(e-> ListMaFile.add(e.getAsInt()));
 			 List<String> ListTenFile = new ArrayList<>();
-			 jsonTenFile.forEach(e-> ListTenFile.add(e.getAsString()));			 
+			 jsonTenFile.forEach(e-> ListTenFile.add(e.getAsString()));
 			 if (fileBaiVietService.deleteFileBaiViet(ListMaFile, ListTenFile, req));
 			 baiVietService.updateBaiViet(NoiDung, MaBaiViet);
 		 } else {
@@ -97,7 +97,7 @@ public class PostApi extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 		resp.getWriter().write(responseJson);
-		
+
 	}
 
 	@Override

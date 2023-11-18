@@ -38,8 +38,8 @@ public class BinhLuanBaiVietService extends DAOService<BinhLuanBaiViet> {
 	public Boolean deleteBinhLuanById(int maBinhLuan) {
 		String sql = "UPDATE `binhluanbaiviet` SET  TrangThai = ?  WHERE `binhluanbaiviet`.`MaBinhLuan` = ? ";
 		return update(sql,"xoa" ,maBinhLuan);
-	
+
 	}
-	
+
 
 }

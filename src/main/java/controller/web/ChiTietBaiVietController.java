@@ -65,6 +65,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -74,17 +75,17 @@ public class ChiTietBaiVietController extends HttpServlet {
 		int maNguoiDung = 4;
 
 
-		
-		
+
+
 		BaiVietView baiVietView = getDataBaiVietForView(Integer.parseInt(maBaiViet), maNguoiDung);
-		List<BinhLuanView> binhLuanViews = new ArrayList<BinhLuanView>();
+		List<BinhLuanView> binhLuanViews = new ArrayList<>();
 		List<BinhLuanBaiViet> binhLuanBaiViets = binhLuanBaiVietService
 				.getBinhLuansByBaiVietId(Integer.parseInt(maBaiViet));
 		for (BinhLuanBaiViet binhLuanBaiViet : binhLuanBaiViets) {
 			binhLuanViews.add(getDataForBinhLuanView(binhLuanBaiViet, maNguoiDung));
 		}
 
-		
+
 		request.setAttribute("baiVietView", baiVietView);
 		request.setAttribute("binhLuanBaiViewList", binhLuanViews);
 
@@ -96,6 +97,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
@@ -140,7 +142,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 			NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(maNguoiDung);
 			Integer maBinhLuan = binhLuanBaiVietService.addBinhLuan(binhLuanBaiViet);
 
-			Map<String, String> json = new LinkedHashMap<String, String>();
+			Map<String, String> json = new LinkedHashMap<>();
 			json.put("maBinhLuan", String.valueOf(maBinhLuan));
 			json.put("anhBinhLuan", fileName);
 			json.put("ngayGioBinhLuan", formattedDate);
@@ -191,7 +193,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 				fileName = "";
 			} else {
 				// No new file is selected, delete the old file
-				
+
 			}
 			binhLuanBaiViet.setAnhBinhLuan(fileName);
 			binhLuanBaiViet.setNoiDung(noiDung);
@@ -207,7 +209,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			printWriter.write(jsonObject);
-			
+
 			break;
 		}
 		case "react":{
@@ -217,8 +219,8 @@ public class ChiTietBaiVietController extends HttpServlet {
 			Date ngayGioTuong = new Date();
 			TuongTacBinhLuan loginUserTuongTacBinhLuanBaiViet = tuongTacBinhLuanService.getUserTuongTacBinhLuan(maBinhLuan, maNguoiDung);
 			if(loginUserTuongTacBinhLuanBaiViet == null) {
-				
-				
+
+
 				TuongTacBinhLuan tempTuongTacBinhLuan = new TuongTacBinhLuan(maNguoiDung, maBinhLuan, ngayGioTuong, trangThai);
 				tuongTacBinhLuanService.addTuongTacBinhLuan(tempTuongTacBinhLuan);
 			}
@@ -227,39 +229,39 @@ public class ChiTietBaiVietController extends HttpServlet {
 				loginUserTuongTacBinhLuanBaiViet.setTrangThai(trangThai);
 				tuongTacBinhLuanService.updateTuongTacBinhLuan(loginUserTuongTacBinhLuanBaiViet);
 			}
-			
+
 			printWriter.print(layDuLieuTuongTacTraVe(maBinhLuan));
-			
+
 			break;
 		}
 		case "deleteTuongBinhLuan":{
 			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan")) ;
 			int maNguoiDung = 4;
-		
-			
+
+
 			tuongTacBinhLuanService.deleteTuongTacBinhLuan(maBinhLuan, maNguoiDung);
-			
-			
+
+
 //			get dữ liệu trả về
 			response.setContentType("application/json");
 			response.setContentType("UTF-8");
 			printWriter.print(layDuLieuTuongTacTraVe(maBinhLuan));
-			
+
 			break;
 		}
 		case "deleteComment":{
 			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan")) ;
 
-			
+
 			BinhLuanBaiViet binhLuanBaiViet = binhLuanBaiVietService.getBinhLuanBaiVietById(maBinhLuan);
 			File oldFile = new File(dir,binhLuanBaiViet.getAnhBinhLuan());
 			if(oldFile.exists()) {
 				oldFile.delete();
 			}
-			
-			
+
+
 			printWriter.print(binhLuanBaiVietService.deleteBinhLuanById(maBinhLuan));
-			
+
 			break;
 		}
 		default:
@@ -281,8 +283,8 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 		FileBaiVietService fileBaiVietService = new FileBaiVietService();
 		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(maBaiViet);
-		List<FileBaiViet> fileHinhAnhs = new ArrayList<FileBaiViet>();
-		List<FileBaiViet> fileDinhKems = new ArrayList<FileBaiViet>();
+		List<FileBaiViet> fileHinhAnhs = new ArrayList<>();
+		List<FileBaiViet> fileDinhKems = new ArrayList<>();
 		for (FileBaiViet fileBaiViet : fileBaiViets) {
 			if (fileBaiViet.getLoaiFile().equals("Anh")) {
 				fileHinhAnhs.add(fileBaiViet);
@@ -292,7 +294,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		}
 		System.out.println(baiViet.getMaNguoiDung());
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
-		
+
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 		int maNguoiDang = nguoiDang.getMaNguoiDung();
@@ -320,18 +322,18 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 		return binhLuanView;
 	}
-	
-	
+
+
 	private String layDuLieuTuongTacTraVe(int maBinhLuan) {
 		List<TuongTacBinhLuan> top3TuongTacBinhLuans = tuongTacBinhLuanService.getTop3TuongTacBinhLuan(maBinhLuan);
-		List<String> top3TuongTacBinhLuanStrings = new ArrayList<String>();
+		List<String> top3TuongTacBinhLuanStrings = new ArrayList<>();
 		int tongLuotTT = tuongTacBinhLuanService.getTongSoTuongTacBinhLuan(maBinhLuan);
 		for(TuongTacBinhLuan tuongTacBinhLuan : top3TuongTacBinhLuans) {
 			top3TuongTacBinhLuanStrings.add(tuongTacBinhLuan.getTrangThai());
 		}
 		JsonArray top3TuongJsonArray = new Gson().toJsonTree(top3TuongTacBinhLuanStrings).getAsJsonArray();
 
-		Map<String, String> json = new LinkedHashMap<String, String>();
+		Map<String, String> json = new LinkedHashMap<>();
 		json.put("tongLuotTT", String.valueOf(tongLuotTT));
 		json.put("topTuongTac", top3TuongJsonArray.toString());
 		String jsonObject = new Gson().toJson(json);

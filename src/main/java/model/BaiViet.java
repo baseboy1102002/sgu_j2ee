@@ -2,15 +2,13 @@ package model;
 
 import java.util.Date;
 
-import java.sql.Timestamp;
-
 public class BaiViet {
 	private int maBaiViet;
 	private Date ngayDang;
 	private String noiDung;
 	private String trangThai;
 	private int maNguoiDung;
-	
+
 	public BaiViet() {
 		super();
 	}
@@ -32,7 +30,7 @@ public class BaiViet {
 		this.maBaiViet = maBaiViet;
 	}
 
-	
+
 
 	public Date getNgayDang() {
 		return ngayDang;
@@ -71,6 +69,6 @@ public class BaiViet {
 		return "BaiViet [maBaiViet=" + maBaiViet + ", ngayDang=" + ngayDang + ", noiDung=" + noiDung + ", trangThai="
 				+ trangThai + ", maNguoiDung=" + maNguoiDung + "]";
 	}
-	
-	
+
+
 }

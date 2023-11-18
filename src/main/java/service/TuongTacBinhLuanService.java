@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.BinhLuanBaiViet;
 import model.TuongTacBinhLuan;
 import modelMapper.TuongTacBinhLuanMapper;
 
@@ -71,5 +70,5 @@ public class TuongTacBinhLuanService extends DAOService<TuongTacBinhLuan> {
 		String sql = "delete from tuongtacbinhluan where MaBinhLuan = ? And MaNguoiDung =?";
 		return update(sql, maBinhLuan,maNguoiDung);
 	}
-	
+
 }

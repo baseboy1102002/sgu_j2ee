@@ -6,7 +6,7 @@ public class Post {
 	private String content;
 	private String authorName;
 	private Timestamp uploadDate;
-	
+
 	public String getContent() {
 		return content;
 	}
@@ -25,6 +25,6 @@ public class Post {
 	public void setUploadDate(Timestamp uploadDate) {
 		this.uploadDate = uploadDate;
 	}
-	
-	
+
+
 }

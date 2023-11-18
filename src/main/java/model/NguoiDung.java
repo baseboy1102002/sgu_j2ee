@@ -15,10 +15,10 @@ public class NguoiDung {
 	private String maXacNhan;
 	private String matKhau;
 	private String trangThai;
-	
-	
-	
-	
+
+
+
+
 	public NguoiDung() {
 		super();
 	}
@@ -124,8 +124,8 @@ public class NguoiDung {
 				+ ", tenTaiKhoan=" + tenTaiKhoan + ", loaiTaiKhoan=" + loaiTaiKhoan + ", maXacNhan=" + maXacNhan
 				+ ", matKhau=" + matKhau + ", trangThai=" + trangThai + "]";
 	}
-	
-	
 
-	
+
+
+
 }

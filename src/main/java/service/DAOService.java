@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
 import modelMapper.rowMapper;
 
 
@@ -19,9 +21,9 @@ public class DAOService<T> {
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
 		}
-		
+
 	}
-	
+
 	public void closeConnection(Connection conn, PreparedStatement pstm, ResultSet rs) {
 		try {
 			if(conn!=null)
@@ -34,7 +36,7 @@ public class DAOService<T> {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void rollBackconnection(Connection conn) {
 		if(conn!=null) {
 			try {
@@ -44,7 +46,7 @@ public class DAOService<T> {
 			}
 		}
 	}
-	
+
 	public List<T> query(String sql, rowMapper<T> rmp, Object...params) {
 		List<T> results = new ArrayList<>();
 		Connection conn = null;
@@ -66,7 +68,7 @@ public class DAOService<T> {
 			closeConnection(conn, pstm, rs);
 		}
 	}
-	
+
 	public Integer insert(String sql, Object...params) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -75,7 +77,7 @@ public class DAOService<T> {
 		try {
 			conn = getConnection();
 			conn.setAutoCommit(false);
-			pstm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			pstm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			setParamaters(pstm, params);
 			pstm.executeUpdate();
 			rs = pstm.getGeneratedKeys();
@@ -112,7 +114,7 @@ public class DAOService<T> {
 			closeConnection(conn, pstm, null);
 		}
 	}
-	
+
 	public int count(String sql, Object... params) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -137,7 +139,7 @@ public class DAOService<T> {
 			closeConnection(conn, pstm, null);
 		}
 	}
-	
+
 	public void setParamaters(PreparedStatement pstm, Object...params) {
 		try {
 			for(int i=0; i<params.length; i++) {

@@ -10,7 +10,7 @@ public class BinhLuanBaiVietMapper implements rowMapper<BinhLuanBaiViet> {
 	public BinhLuanBaiViet mapRow(ResultSet rs) {
 		// TODO Auto-generated method stub
 		BinhLuanBaiViet binhLuanBaiViet = new BinhLuanBaiViet();
-		
+
 		try {
 			binhLuanBaiViet.setMaBinhLuan(rs.getInt("MaBinhLuan"));
 			binhLuanBaiViet.setMaBaiViet(rs.getInt("MaBaiViet"));
@@ -26,5 +26,5 @@ public class BinhLuanBaiVietMapper implements rowMapper<BinhLuanBaiViet> {
 		}
 		return null;
 	}
-	
+
 }
