@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.FilenameUtils;
+
 import com.google.gson.Gson;
 
 import model.FileBaiViet;
@@ -22,7 +24,7 @@ import service.FileBaiVietService;
 @WebServlet (urlPatterns = {"/api/post_file"})
 @MultipartConfig(
   fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
-  maxFileSize = 1024 * 1024 * 10,      // 10 MB
+  maxFileSize = 1024 * 1024 * 20,      // 20 MB
   maxRequestSize = 1024 * 1024 * 100   // 100 MB
 )
 public class PostFile extends HttpServlet{
@@ -57,23 +59,13 @@ public class PostFile extends HttpServlet{
 		Map<String, String> json = new LinkedHashMap<>();
 		json.put("file_id", String.valueOf(fileId));
 		json.put("file_name", fileBaiViet.getTenFile());
+		if (fileBaiViet.getLoaiFile().equals("File"))
+			json.put("file_extension", FilenameUtils.getExtension(fileName).toUpperCase());
 		String jsonObject = new Gson().toJson(json);
 		
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 		resp.getWriter().write(jsonObject);
-	}
-	
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		req.setCharacterEncoding("UTF-8");
-//		resp.setContentType("text/plain");
-//		resp.setCharacterEncoding("UTF-8");
-//		int MaFile = Integer.parseInt(req.getParameter("MaFile"));
-//		String TenFile = req.getParameter("TenFile");
-//		File filetoDelete = new File(req.getServletContext().getRealPath("/files/"+TenFile));
-//		fileBaiVietService.deleteFileBaiViet(MaFile, filetoDelete);
-//		resp.getWriter().write("Xóa file thành công");
 	}
 	
 }

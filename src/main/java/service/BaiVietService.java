@@ -6,6 +6,13 @@ import model.BaiViet;
 import modelMapper.BaiVietMapper;
 
 public class BaiVietService extends DAOService<BaiViet>{
+	
+	public BaiViet getBaiVietById(int maBaiViet) {
+		String sql = "select * from baiviet where MaBaiViet = ?";
+		List<BaiViet> baiViets = query(sql, new BaiVietMapper(), maBaiViet);
+		return baiViets.isEmpty() ? null : baiViets.get(0);
+	}
+	
 	public int saveBaiViet(BaiViet baiviet) {
 		String sql="insert into baiviet (NgayDang, NoiDung, TrangThai, MaNguoiDung)"
 				+ "values (?, ?, ?, ?)";

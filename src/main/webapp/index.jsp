@@ -16,6 +16,12 @@
             <button id="btn_add_post" type="button" class="btn btn-primary">
                 Thêm bài viết
             </button>
+            
+            <button id="btn_update_post" type="button" class="btn btn-primary">
+                Sửa bài viết
+            </button>
+            
+            <div class="bai-viet-wrapper"></div>
 
             <!-- Modal -->
             <%@include file="/components/post-edit-form.jsp" %>

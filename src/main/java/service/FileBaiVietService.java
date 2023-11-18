@@ -11,6 +11,11 @@ import modelMapper.FileBaiVietMapper;
 
 public class FileBaiVietService extends DAOService<FileBaiViet>{
 	
+	public List<FileBaiViet> getFileBaiVietsByMaBaiViet(int maBaiViet){
+		String sql = "Select * From filebaiviet where MaBaiViet = ?";
+		return query(sql, new FileBaiVietMapper(), maBaiViet);
+	}
+	
 	public int saveFileBaiViet(FileBaiViet file) {
 		String sql = "insert into filebaiviet (TenFile, LoaiFile, MaBaiViet, TrangThai) values (?, ?, ?, ?)";
 		return insert(sql, file.getTenFile(), file.getLoaiFile(), file.getMaBaiViet(), file.getTrangThai());

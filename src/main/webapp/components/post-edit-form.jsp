@@ -9,14 +9,18 @@
                             <div id="post_content">
                                 <textarea name="post_text" id="post_text" rows="10" placeholder="Hãy viết gì đó đi ..." class="w-100 p-2"></textarea>
                             </div>
-                            <div id="post_file" class="d-flex justify-content-between align-items-center p-3">
-                                <div>
-                                    <h6 class="mb-0">
-                                        <span class="badge rounded-pill">DOCX</span>
-                                        Tên file
-                                    </h6>
-                                </div>
-                                <span><i class="fa-regular fa-circle-xmark"></i></span>
+                            <div id="post_file">
+                            	<div class="row g-1">
+	                                <!-- <div class="col-6">
+		                                <div class="p-2 d-flex justify-content-between align-items-center">
+		                                    <a class="flex-grow-1 p-2">
+		                                        <span class="badge rounded-pill">DOCX</span>
+		                                        Tên file
+		                                    </a>
+		                                	<span><i class="fa-regular fa-circle-xmark"></i></span>	                                
+		                                </div>
+	                                </div>  -->      		
+                            	</div>
                             </div>
                             <div id="post_image" class="mt-1">
                                 <div class="row g-1">

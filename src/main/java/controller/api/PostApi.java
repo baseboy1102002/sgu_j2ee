@@ -1,8 +1,6 @@
 package controller.api;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +17,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import model.BaiViet;
+import model.BaiVietView;
+import model.FileBaiViet;
 import service.BaiVietService;
 import service.FileBaiVietService;
 
@@ -28,6 +28,26 @@ public class PostApi extends HttpServlet {
 	private static final long serialVersionUID = 3739265568460414533L;
 	private BaiVietService baiVietService = new BaiVietService();
 	private FileBaiVietService fileBaiVietService = new FileBaiVietService();
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
+		int MaBaiViet = Integer.parseInt(req.getParameter("MaBaiViet"));
+		BaiViet baiViet = baiVietService.getBaiVietById(MaBaiViet);
+		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(MaBaiViet);
+		List<FileBaiViet> fileHinhAnhs = fileBaiViets.stream().filter(e->e.getLoaiFile().equals("Anh")).toList();
+		List<FileBaiViet> fileDinhKems = fileBaiViets.stream().filter(e->e.getLoaiFile().equals("File")).toList();
+		BaiVietView baiVietView = new BaiVietView();
+		baiVietView.setBaiViet(baiViet);
+		baiVietView.setFileHinhAnhs(fileHinhAnhs);
+		baiVietView.setFileDinhKems(fileDinhKems);
+		
+		String responseJson = new Gson().toJson(baiVietView);
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		resp.getWriter().write(responseJson);
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -64,6 +84,19 @@ public class PostApi extends HttpServlet {
 		 } else {
 			 baiVietService.updateBaiViet(NoiDung, MaBaiViet);
 		 }
+		BaiViet baiViet = baiVietService.getBaiVietById(MaBaiViet);
+		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(MaBaiViet);
+		List<FileBaiViet> fileHinhAnhs = fileBaiViets.stream().filter(e->e.getLoaiFile().equals("Anh")).toList();
+		List<FileBaiViet> fileDinhKems = fileBaiViets.stream().filter(e->e.getLoaiFile().equals("File")).toList();
+		BaiVietView baiVietView = new BaiVietView();
+		baiVietView.setBaiViet(baiViet);
+		baiVietView.setFileHinhAnhs(fileHinhAnhs);
+		baiVietView.setFileDinhKems(fileDinhKems);
+		String responseJson = new Gson().toJson(baiVietView);
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		resp.getWriter().write(responseJson);
+		
 	}
 
 	@Override
@@ -72,8 +105,8 @@ public class PostApi extends HttpServlet {
 		resp.setContentType("text/plain");
 		resp.setCharacterEncoding("UTF-8");
 		int MaBaiViet = Integer.parseInt(req.getParameter("MaBaiViet"));
-		if (fileBaiVietService.deleteFileBaiVietByMaBaiViet(MaBaiViet, req))
-			baiVietService.deleteBaiViet(MaBaiViet);
+		fileBaiVietService.deleteFileBaiVietByMaBaiViet(MaBaiViet, req);
+		baiVietService.deleteBaiViet(MaBaiViet);
 		resp.getWriter().write("Xóa bài viết thành công");
 	}
 }

@@ -12,7 +12,7 @@ textarea {
     border-radius: 5px;
 }
 
-#post_file {
+#post_file > div > div > div{
     background-color: #ccc;
     border-radius: 5px;
 }
