@@ -21,7 +21,6 @@ public NguoiDung mapRow(ResultSet rs) {
 		nguoiDung.setMaXacNhan(rs.getString("MaXacNhan"));
 		nguoiDung.setMatKhau(rs.getString("MatKhau"));
 		nguoiDung.setTrangThai(rs.getString("TrangThai"));
-		nguoiDung.setTenTaiKhoan(rs.getString("TenTaiKhoan"));
 		return nguoiDung;
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
