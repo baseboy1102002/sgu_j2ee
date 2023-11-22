@@ -6,6 +6,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/header.css"
+	type="text/css">
 </head>
 <body>
 	<header class="header">

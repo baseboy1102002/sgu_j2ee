@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/header.css"
+	href="${pageContext.request.contextPath}/resources/css/header_admin.css"
 	type="text/css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 				<div class="col-lg-3 col-4">
 					<div class="header__logo">
 						<a href="/sgu_j2ee/views/Home.jsp"> <img
-							src="${pageContext.request.contextPath}/assets/images/logo.png"
+							src="${pageContext.request.contextPath}/assets/images/logo_admin.png"
 							alt="">
 						</a>
 					</div>
