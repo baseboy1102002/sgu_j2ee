@@ -1,5 +1,49 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?&family=Ubuntu:wght@300;400;500;700&display=swap');
 
+/* Default css */
+:root {
+    --primaryColor: #53D068;
+    --primaryLighterColor: rgba(33, 174, 132, .65);
+    --secondaryColor: rgba(34, 147, 209, 1);
+    --greyColorText: rgba(77, 77, 77, 1);
+    --greyDisabledColor: rgba(202, 202, 202, 1);
+    --errorColor: rgba(238, 52, 37, 1);
+    --warningColor: rgba(247, 188, 10, 1);
+    --fadeBackground: rgba(26, 26, 26, .37);
+    --bodyBackground: #ebebeb;
+}
+
+* {
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+html {
+    font-size: 62.5% !important;
+}
+
+body {
+    line-height: 1 !important;
+    font-size: 1.6rem !important;
+    text-rendering: optimizeSpeed !important;
+    background-color: var(--bodyBackground) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input {
+    outline: none !important;
+    background-color: transparent !important;
+}
+
+button {
+    border: none !important;
+}
+
+a[href] {
+    text-decoration: none !important;
+}
 /*1 thông báo*/
 .noti-info-image img {
 	height: 60px !important;

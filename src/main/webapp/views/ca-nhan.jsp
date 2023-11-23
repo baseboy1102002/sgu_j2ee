@@ -4,14 +4,9 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/globalstyle.css' />">
-<link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/ca-nhan.css' />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/bootstrap/css/bootstrap.css' />">
-<%-- 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/bai-viet-component.css' />"> --%>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/post-edit-form.css' />">
 

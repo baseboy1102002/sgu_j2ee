@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@charset "ISO-8859-1";
 
 
 
@@ -1047,4 +1046,33 @@ img.comment-record-img {
 	padding: 0.375rem 0.75rem !important;
     font-size: 1.2em !important;
     cursor: pointer;
+}
+
+
+/**************Model thêm bài viết*************/
+.modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable {
+    margin: auto !important;
+}
+
+button#modal_post_close_btn {
+    font-size: 1.05em;
+    padding: 5px 15px 5px 15px !important;
+    margin-right: 0.6em !important;
+}
+
+button#modal_post_save_btn {
+    font-size: 1.05em;
+    padding: 5px 15px 5px 15px !important;
+}
+
+button#btn_file {
+    font-size: 1.15em;
+}
+
+button#btn_image {
+    font-size: 1.15em;
+}
+
+h1.modal-title.fs-5 {
+    font-size: 1.25em !important;
 }
