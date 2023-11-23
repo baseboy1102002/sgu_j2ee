@@ -971,7 +971,38 @@ img.comment-record-img {
 
 }
 
+.modal-dialog {
+    margin: auto !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
 
+h5#exampleModalLabel {
+    font-size: 1.25em;
+}
+
+button.btn.btn-secondary.me-3 {
+    font-size: 1.15em;
+    padding: 0.375rem 0.75rem!important;
+}
+
+button#delete-baiviet-btn {
+    font-size: 1.15em;
+    padding: 0.375rem 0.75rem!important;
+}
+
+.modal-body {
+    padding: 1em !important;
+}
+
+.modal-footer {
+    padding: 0.75em !important;
+}
+
+.modal-header {
+    padding: 1em !important;
+}
 
 
 
