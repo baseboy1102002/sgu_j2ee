@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import service.NguoiDungService;
+
 @WebServlet("/cai-dat")
 @MultipartConfig
 public class settingServlet extends HttpServlet {
@@ -42,64 +44,26 @@ public class settingServlet extends HttpServlet {
 	    photo.write(newPhotoFile.getAbsolutePath());
 		System.out.println(dir);
 		System.out.println(newFileName);
-
-		// Convert the String to java.sql.Date
-		java.sql.Date dob = java.sql.Date.valueOf(Strdob);
-
-		// JDBC connection
-		Connection conn = null;
-		PreparedStatement updateStatement = null;
-
+		
+		NguoiDungService userService = new NguoiDungService();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "");
-
-			// Query to update the confirmation status when the confirmation code matches
-			// the email
-			String updateQuery = "UPDATE nguoidung SET HoVaTen = ?, Email = ?, NgaySinh = ?, SoDienThoai = ?, HinhDaiDien = ? WHERE MaNguoiDung = ?";
-			updateStatement = conn.prepareStatement(updateQuery);
-			updateStatement.setString(1, name);
-			updateStatement.setString(2, email);
-			updateStatement.setDate(3, dob);
-			updateStatement.setString(4, phone);
-			updateStatement.setString(5, newFileName);
-			updateStatement.setLong(6, SessionManager.getID(request));
-			System.out.println(SessionManager.getDoB(request));
-			int rowsUpdated = updateStatement.executeUpdate();
-
-			if (rowsUpdated > 0) {
-				// Confirmation code matched, and the status is updated
-				System.out.println("ok");
+            if (userService.CaiDat(email, newFileName, name, phone, Strdob, SessionManager.getID(request))) {
+                // Confirmation code matched, and the status is updated
+            	System.out.println("ok");
+        		java.sql.Date dob = java.sql.Date.valueOf(Strdob);
 				SessionManager.setDoB(request, dob);
 				SessionManager.setEmail(request, email);
 				SessionManager.setName(request, name);
 				SessionManager.setPhone(request, phone);
 				SessionManager.setIMG(request, newFileName);
-			} else {
-				
-				System.out.println("not ok");
-				
-			}
+            } else {
+            	System.out.println("not ok");
+            }
 
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// Close resources in a finally block
-			if (updateStatement != null) {
-				try {
-					updateStatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+        } finally {
+            // Close resources in a finally block
+            
+        }
 
 		request.getRequestDispatcher("views/Setting.jsp").forward(request, response);
 	}
