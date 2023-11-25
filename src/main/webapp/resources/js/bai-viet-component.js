@@ -178,6 +178,17 @@ function handleOnClickReact(e) {
 
 
 
+/*Xử lí set id cho popup report khi nhấn báo cáo*/
+function handleReport(e) {
+	var parentElement = getParentElement(e, ".bai-viet-content-wrapper");
+	var baiVietId = $(parentElement).data("post-id");
+	$("#reportPostPopUp").data("post-id", baiVietId);
+	$("#report-post-input").val(null)
+	$("#submit-post-report-btn").prop("disabled", true)
+
+}
+
+
 $(document).ready(function() {
 
 	/*Xử lí khi bấm nút confirm của cái thông báo*/
@@ -194,7 +205,6 @@ $(document).ready(function() {
 			}
 	
 		})*/
-
 
 	/*xác nhận xóa baiviet */
 	$("#delete-baiviet-btn").click(function(e) {
@@ -217,7 +227,7 @@ $(document).ready(function() {
 						if (isDetailMode) {
 							history.back();
 						}
-						
+
 					}
 					$("#deletePostConfirm").modal('hide');
 					notify(true, "Xóa thành công", handleOnClickSubmit)
@@ -235,6 +245,46 @@ $(document).ready(function() {
 				//Do Something to handle error
 			}
 		});
+	})
+
+	$("#report-post-input").change(function(e) {
+		if (e.target.value) {
+			$("#submit-post-report-btn").prop("disabled", false)
+		}
+		else {
+			$("#submit-post-report-btn").prop("disabled", true)
+		}
+	})
+
+
+	/*Xác nhận báo cáo*/
+	$("#submit-post-report-btn").click(function(e) {
+		var reportReason = $("#report-post-input").val();
+
+		if (reportReason) {
+			var postId = $("#reportPostPopUp").data("post-id")
+			$.ajax({
+				url: "/sgu_j2ee/baiviet",
+				type: "post", //send it through get method
+				data: {
+					maBaiViet: postId,
+					liDo: reportReason,
+					action: "report"
+				},
+				success: function(response) {
+					//Do Something
+					$("#reportPostPopUp").modal('hide');
+					notify(true, "Hệ thống đã ghi nhận báo cáo")
+					$(".bai-viet-content-wrapper[data-post-id=" + postId + "] .profile-right").remove()
+				},
+				error: function(xhr) {
+					//Do Something to handle error
+				}
+			});
+		}
+		else {
+			notify(false, "Vui lòng nhập lý do báo cáo")
+		}
 	})
 
 

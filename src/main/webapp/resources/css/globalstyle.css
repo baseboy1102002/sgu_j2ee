@@ -5,7 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css2?&family=Ubuntu:wght@300;400;500;700&display=swap');
 
-Default css
+/*Default css*/
 :root {
     --primaryColor: #53D068;
     --primaryLighterColor: rgba(33, 174, 132, .65);

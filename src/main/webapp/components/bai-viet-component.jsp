@@ -29,14 +29,15 @@
 					<i class="fa fa-cog" aria-hidden="true"></i><span> Chỉnh sửa
 					</span>
 				</button>
-
-
-
-
 				<button type="button" class="btn profile-item delete-post-btn"
 					data-bs-toggle="modal" data-bs-target="#deletePostConfirm"
 					onclick="onPostDeleteClick(this)">
 					<i class="fa fa-trash" aria-hidden="true"></i> <span> Xóa </span>
+				</button>
+				<button type="button" class="btn profile-item report-post-btn"
+					data-bs-toggle="modal" data-bs-target="#reportPostPopUp" onclick="handleReport(this)">
+					<i class="fa-solid fa-flag"></i>
+					<span> Báo cáo </span>
 				</button>
 			</div>
 		</div>
@@ -108,14 +109,6 @@
 			</c:if>
 
 		</c:if>
-
-
-
-
-
-
-
-
 
 		<div class="bai-viet-data">
 			<div class="react-data">

@@ -24,6 +24,7 @@ import com.google.gson.JsonArray;
 
 import model.BaiViet;
 import model.BaiVietView;
+import model.BaoCaoBinhLuan;
 import model.BinhLuanBaiViet;
 import model.BinhLuanView;
 import model.FileBaiViet;
@@ -31,6 +32,7 @@ import model.NguoiDung;
 import model.TuongTacBaiViet;
 import model.TuongTacBinhLuan;
 import service.BaiVietService;
+import service.BaoCaoBinhLuanService;
 import service.BinhLuanBaiVietService;
 import service.FileBaiVietService;
 import service.NguoiDungService;
@@ -264,6 +266,17 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 			break;
 		}
+		case "commentReport":{
+			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan"));
+			String liDo = request.getParameter("liDo");
+			int maNguoiDung = 4;
+			BaoCaoBinhLuanService baoCaoBinhLuanService = new BaoCaoBinhLuanService();
+			BaoCaoBinhLuan baoCaoBinhLuan = new BaoCaoBinhLuan(maNguoiDung, maBinhLuan, new Date(), liDo);
+			response.setContentType("UTF-8");
+			printWriter.print(baoCaoBinhLuanService.insert(baoCaoBinhLuan));
+			
+			break;
+		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + action);
 		}
@@ -292,7 +305,6 @@ public class ChiTietBaiVietController extends HttpServlet {
 				fileDinhKems.add(fileBaiViet);
 			}
 		}
-		System.out.println(baiViet.getMaNguoiDung());
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
 
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();

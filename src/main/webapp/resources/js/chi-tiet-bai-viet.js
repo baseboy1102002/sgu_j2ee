@@ -275,6 +275,45 @@ $(document).ready(function() {
 		});
 	})
 
+	
+	$("#report-comment-input").change(function(e) {
+		if (e.target.value) {
+			$("#submit-comment-report-btn").prop("disabled", false)
+		}
+		else {
+			$("#submit-comment-report-btn").prop("disabled", true)
+		}
+	})
+
+	/*Xác nhận báo cáo*/
+	$("#submit-comment-report-btn").click(function(e) {
+		var reportReason = $("#report-comment-input").val();
+
+		if (reportReason) {
+			var commentId = $("#reportCommentPopUp").data("comment-id")
+			$.ajax({
+				url: "/sgu_j2ee/chitietbaiviet",
+				type: "post", //send it through get method
+				data: {
+					maBinhLuan: commentId,
+					liDo: reportReason,
+					action: "commentReport"
+				},
+				success: function(response) {
+					//Do Something
+					$("#reportCommentPopUp").modal('hide');
+					notify(true, "Hệ thống đã ghi nhận báo cáo")
+					$(".comment-record-item[data-id=" + commentId + "] .comment-record-title-right").remove()
+				},
+				error: function(xhr) {
+					//Do Something to handle error
+				}
+			});
+		}
+		else {
+			notify(false, "Vui lòng nhập lý do báo cáo")
+		}
+	})
 });
 /* tắt mở cái more bên phải của comment */
 function handleShowMore(e) {
@@ -302,7 +341,6 @@ function handleClickEditComment(e) {
 	$("#updateCommentPopup .comment-pop-up-body .img-wrapper img").attr("src", imageSrc)
 
 }
-
 
 /*Set id cho pop-up khi nhấn xóa */
 function handleSetId(e) {
@@ -415,4 +453,16 @@ function handleOnClickReactComment(e) {
 
 		}
 	});
+}
+
+
+
+/*Set id khi chọn nút báo cáo bình luận*/
+function handleCommentReport(e) {
+	var parentElement = getParentElement(e, ".comment-record-item");
+	var commentId = $(parentElement).data("id");
+	$("#reportCommentPopUp").data("comment-id", commentId);
+	$("#report-comment-input").val(null)
+	$("#submit-comment-report-btn").prop("disabled", true)
+
 }

@@ -19,7 +19,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/bai-viet-component.css' />">
- <link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/post-edit-form.css' />">
 
 <link rel="stylesheet" type="text/css"
@@ -60,29 +60,6 @@
 					<img src="/sgu_j2ee/assets/images/loading.gif" alt="Loading..." />
 				</div>
 				<!-- Kết thúc nội dung modal -->
-			</div>
-		</div>
-	</div>
-
-
-
-
-	<div class="modal fade" id="deletePostConfirm" tabindex="-1"
-		aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Bạn có chắc chắn muốn xóa bài viết này</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Hủy bỏ</button>
-					<button type="button" class="btn btn-primary"
-						id="delete-baiviet-btn">Xác nhận</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -156,15 +133,85 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="reportCommentPopUp" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Báo cáo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body comment-pop-up-body">
 
+					<textarea id="report-comment-input" name="reportCommentInput"
+						rows="5" placeholder="Nhập lý do báo cáo">
+							
+					</textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary dismiss-btn"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="submit-comment-report-btn">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="modal fade" id="deletePostConfirm" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Bạn có chắc chắn muốn xóa bài viết này</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="delete-baiviet-btn">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="reportPostPopUp" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Báo cáo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body comment-pop-up-body">
+
+					<textarea id="report-post-input" name="reportPostInput" rows="5"
+						placeholder="Nhập lý do báo cáo">
+							
+					</textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary dismiss-btn"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="submit-post-report-btn">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container d-flex flex-column chi-tiet-wrapper">
 		<div>Header</div>
 
 		<div class="d-flex flex-column content ">
-
-
-	
 
 			<c:set var="baiVietView" value="${baiVietView}" scope="request" />
 			<jsp:include page="../components/bai-viet-component.jsp">
@@ -201,8 +248,9 @@
 
 						<div class="comment-record-item"
 							data-id=${item.binhLuanBaiViet.maBinhLuan }>
-							<a href="/sgu_j2ee/profile?userID=${item.maNguoiDang}"><img class="comment-record-profile-img"
-									src="/sgu_j2ee/files/${item.anhDaiDienNguoiDang}" /></a>
+							<a href="/sgu_j2ee/profile?userID=${item.maNguoiDang}"><img
+								class="comment-record-profile-img"
+								src="/sgu_j2ee/files/${item.anhDaiDienNguoiDang}" /></a>
 
 
 							<div class="comment-record-right">
@@ -229,6 +277,12 @@
 													onclick="handleSetId(this)">
 													<i class="fa fa-trash" aria-hidden="true"></i> <span>
 														Xóa </span>
+												</button>
+												<button type="button"
+													class="btn profile-item report-post-btn"
+													data-bs-toggle="modal" data-bs-target="#reportCommentPopUp"
+													onclick="handleCommentReport(this)">
+													<i class="fa-solid fa-flag"></i> <span> Báo cáo </span>
 												</button>
 											</div>
 

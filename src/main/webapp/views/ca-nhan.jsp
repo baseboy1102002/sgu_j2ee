@@ -78,6 +78,33 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="reportPostPopUp" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Báo cáo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body comment-pop-up-body">
+
+					<textarea id="report-post-input" name="reportPostInput" rows="5"
+						placeholder="Nhập lý do báo cáo">
+							
+					</textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary dismiss-btn"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="submit-post-report-btn">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 
 	<div class="profile-page">
 		<div
