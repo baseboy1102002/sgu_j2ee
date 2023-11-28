@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<div class="header"></div>
+	<jsp:include page="Header.jsp"></jsp:include>
 
 	<div class="content">
 		<div class="content_header">
@@ -67,6 +67,8 @@
 			<li class="pagination_item" id="nextButton" onclick="nextClick(${sessionScope.ID}")>Sau</li>
 		</ul>
 	</div>
+	
+	<jsp:include page="Footer.jsp"></jsp:include>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/friend.js"></script>

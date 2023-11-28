@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shared_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <body>
-    <div class="header">
-
-    </div>
+    <jsp:include page="Header.jsp"></jsp:include>
 
     <div class="content">
         <div class="sidebar">
@@ -114,6 +112,8 @@
 			</c:choose>
         </div>
     </div>
+    
+    <jsp:include page="Footer.jsp"></jsp:include>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/message.js"></script>

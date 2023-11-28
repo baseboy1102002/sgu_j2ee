@@ -56,7 +56,7 @@ public class loginServlet extends HttpServlet {
 					user.getNgaySinh(), user.getMaNguoiDung(), user.getHinhDaiDien());
 			// Redirect to a different page (e.g., home page)
 			if (SessionManager.getConfirmCode(request).equals("confirmed!")) {
-				response.sendRedirect(request.getContextPath() + "/views/Home.jsp");
+				response.sendRedirect(request.getContextPath() + "/views/Home_Admin.jsp");
 				return;
 			} else {
 				response.sendRedirect(request.getContextPath() + "/views/Confirm_Account.jsp");
