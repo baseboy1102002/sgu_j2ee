@@ -7,6 +7,8 @@
 <html lang="en">
 
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Message Page</title>
@@ -15,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shared_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <body>
-    <jsp:include page="Header.jsp"></jsp:include>
+    <jsp:include page="Layout/Header.jsp"></jsp:include>
 
     <div class="content">
         <div class="sidebar">
@@ -113,7 +115,7 @@
         </div>
     </div>
     
-    <jsp:include page="Footer.jsp"></jsp:include>
+    <jsp:include page="Layout/Footer.jsp"></jsp:include>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/message.js"></script>

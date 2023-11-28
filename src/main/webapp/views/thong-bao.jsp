@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 
 <html>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/bootstrap-5.0.2-dist/css/bootstrap.css' />">
 

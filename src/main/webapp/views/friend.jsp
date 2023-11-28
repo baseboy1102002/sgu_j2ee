@@ -7,6 +7,8 @@
 <html lang="en">
 
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -20,7 +22,7 @@
 </head>
 
 <body>
-	<jsp:include page="Header.jsp"></jsp:include>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
 
 	<div class="content">
 		<div class="content_header">
@@ -68,7 +70,7 @@
 		</ul>
 	</div>
 	
-	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/friend.js"></script>

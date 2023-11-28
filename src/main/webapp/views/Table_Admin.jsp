@@ -6,11 +6,15 @@
 <html lang="en">
 
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/header.css"
+		type="text/css">
 <title>Trang Chủ - NienHope</title>
-<link rel="icon" require="image/x-icon" href="${pageContext.request.contextPath}/assets/images/favicon.png">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css" type="text/css">
 </head>
 <body>
-	<jsp:include page="Header(Admin).jsp"></jsp:include>
+	<jsp:include page="Layout/Header(Admin).jsp"></jsp:include>
 
 	<section class="admin__table">
 		<div class="container mt-5">
@@ -162,6 +166,6 @@
 		</div>
 	</section>
 	
-	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 </body>
 </html>

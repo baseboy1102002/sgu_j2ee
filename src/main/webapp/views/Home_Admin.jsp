@@ -4,12 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 <title>Trang Chủ - NienHope</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css" type="text/css">
 </head>
 
 <body>
-	<jsp:include page="Header(Admin).jsp"></jsp:include>
+	<jsp:include page="Layout/Header(Admin).jsp"></jsp:include>
 
 	<section class="admin__controlpanel">
 		<div class="container">
@@ -74,7 +76,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 </body>
 
 </html>

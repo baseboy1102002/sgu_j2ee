@@ -6,6 +6,8 @@
 <html lang="en">
 
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 <title>Đổi Mật Khẩu - NienHope</title>
 <!-- Css Styles -->
 <link rel="stylesheet"
@@ -15,7 +17,7 @@
 
 <body>
 	<!-- Header Section Begin -->
-	<jsp:include page="Header.jsp"></jsp:include>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
 	<!-- Header End -->
 
 	<!-- Setting Section Begin -->
@@ -79,7 +81,6 @@
 		</div>
 	</section>
 	<!-- Setting Section End -->
-</body>
 
 <!-- Js Plugins -->
 <script
