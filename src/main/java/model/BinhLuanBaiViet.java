@@ -74,5 +74,4 @@ public class BinhLuanBaiViet {
 				+ ", anhBinhLuan=" + anhBinhLuan + "]";
 	}
 
-
 }

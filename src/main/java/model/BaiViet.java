@@ -70,5 +70,4 @@ public class BaiViet {
 				+ trangThai + ", maNguoiDung=" + maNguoiDung + "]";
 	}
 
-
 }
