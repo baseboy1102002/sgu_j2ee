@@ -24,6 +24,7 @@ import com.google.gson.JsonArray;
 
 import model.BaiViet;
 import model.BaiVietView;
+import model.BaoCaoBinhLuan;
 import model.BinhLuanBaiViet;
 import model.BinhLuanView;
 import model.FileBaiViet;
@@ -31,6 +32,7 @@ import model.NguoiDung;
 import model.TuongTacBaiViet;
 import model.TuongTacBinhLuan;
 import service.BaiVietService;
+import service.BaoCaoBinhLuanService;
 import service.BinhLuanBaiVietService;
 import service.FileBaiVietService;
 import service.NguoiDungService;
@@ -72,7 +74,8 @@ public class ChiTietBaiVietController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String maBaiViet = request.getParameter("maBaiViet");
-		int maNguoiDung = 2;
+		int maNguoiDung = 4;
+
 
 
 
@@ -263,6 +266,17 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 			break;
 		}
+		case "commentReport":{
+			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan"));
+			String liDo = request.getParameter("liDo");
+			int maNguoiDung = 4;
+			BaoCaoBinhLuanService baoCaoBinhLuanService = new BaoCaoBinhLuanService();
+			BaoCaoBinhLuan baoCaoBinhLuan = new BaoCaoBinhLuan(maNguoiDung, maBinhLuan, new Date(), liDo);
+			response.setContentType("UTF-8");
+			printWriter.print(baoCaoBinhLuanService.insert(baoCaoBinhLuan));
+			
+			break;
+		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + action);
 		}
@@ -291,13 +305,14 @@ public class ChiTietBaiVietController extends HttpServlet {
 				fileDinhKems.add(fileBaiViet);
 			}
 		}
-
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
+
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
+		int maNguoiDang = nguoiDang.getMaNguoiDung();
 
 		BaiVietView baiVietView = new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems,
-				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, maNguoiDang, anhDaiDienNguoiDang, hoVaTenNguoiDang);
 
 		return baiVietView;
 
@@ -312,9 +327,10 @@ public class ChiTietBaiVietController extends HttpServlet {
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(binhLuanBaiViet.getMaNguoiDung());
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
+		int maNguoiDang = nguoiDang.getMaNguoiDung();
 
 		BinhLuanView binhLuanView = new BinhLuanView(binhLuanBaiViet, tongLuotTT, loginUserTuongTacBinhLuan,
-				top3TuongTacBinhLuans, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+				top3TuongTacBinhLuans, anhDaiDienNguoiDang, hoVaTenNguoiDang, maNguoiDang);
 
 		return binhLuanView;
 	}

@@ -15,6 +15,9 @@ public class NguoiDung {
 	private String matKhau;
 	private String trangThai;
 
+
+
+
 	public NguoiDung() {
 		super();
 	}

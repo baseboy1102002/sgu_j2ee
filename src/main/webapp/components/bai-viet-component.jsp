@@ -2,8 +2,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
-
-<c:set var = "anh" value = "${baiVietView.anhDaiDienNguoiDang}" />
+<c:set var="anhDaiDienNguoiDung" value="${baiVietView.anhDaiDienNguoiDang }"/>
 
 
 <div class="d-flex flex-column  bai-viet-content-wrapper"
@@ -11,19 +10,9 @@
 	data-is-detail-mode=${param.isDetailMode } data-user-login="4">
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
-			<div class="profile-img">
-<%-- 				<c:if test="${empty baiVietView.anhDaiDienNguoiDang }">
-					<img src="<c:url value='/assets/images/defaultProfileImage.png' />"
-						alt="" />
-
-				</c:if> --%>
-<%-- 				<c:if test="${!empty baiVietView.anhDaiDienNguoiDang }"> --%>
-					
-					<img src="/sgu_j2ee/files/${anh}"
-						alt="" />
-
-<%-- 				</c:if> --%>
-			</div>
+			<a href="/sgu_j2ee/profile?userID=${baiVietView.maNguoiDang}" class="profile-img">
+				<img src="/sgu_j2ee/files/${anhDaiDienNguoiDung}" alt="" />
+			</a>
 			<div class="profile-info">
 				<h1>${baiVietView.hoVaTenNguoiDang}</h1>
 				<span>Đã đăng vào lúc ${baiVietView.baiViet.ngayDang} </span>
@@ -35,18 +24,20 @@
 			<i class="fa fa-ellipsis-h"></i>
 			<div class="profile-more-hover">
 
-				<button type="button" class="btn profile-item edit-post-btn">
+				<button type="button" class="btn profile-item edit-post-btn"
+				onclick="editPost(this)">
 					<i class="fa fa-cog" aria-hidden="true"></i><span> Chỉnh sửa
 					</span>
 				</button>
-
-
-
-
 				<button type="button" class="btn profile-item delete-post-btn"
 					data-bs-toggle="modal" data-bs-target="#deletePostConfirm"
 					onclick="onPostDeleteClick(this)">
 					<i class="fa fa-trash" aria-hidden="true"></i> <span> Xóa </span>
+				</button>
+				<button type="button" class="btn profile-item report-post-btn"
+					data-bs-toggle="modal" data-bs-target="#reportPostPopUp" onclick="handleReport(this)">
+					<i class="fa-solid fa-flag"></i>
+					<span> Báo cáo </span>
 				</button>
 			</div>
 		</div>
@@ -103,9 +94,9 @@
 			</c:if>
 		</c:if>
 		<c:if test="${param.isDetailMode }">
-			<c:if test="${!empty baiVietView.fileHinhAnhs }">
+			<c:if test="${!empty baiVietView.fileDinhKems }">
 				<div class="attachments">
-					<c:forEach var="attachment" items="${baiVietView.fileHinhAnhs}">
+					<c:forEach var="attachment" items="${baiVietView.fileDinhKems}">
 						<div class="attachment">
 							<a href="/sgu_j2ee/files/${attachment.tenFile}"
 								download="/sgu_j2ee/files/${attachment.tenFile}"> <span
@@ -119,17 +110,9 @@
 
 		</c:if>
 
-
-
-
-
-
-
-
-
 		<div class="bai-viet-data">
 			<div class="react-data">
-				<c:forEach var="item" items="${baiVietView.top3TuongTac}">
+				<c:forEach var="item" items="${baiVietView.top3TuongTac }">
 					<div class="react-data-item">
 						<img alt=""
 							src="<c:url value='/assets/images/${item.trangThai }.png' />">

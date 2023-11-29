@@ -3,7 +3,6 @@ package controller.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,8 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.eclipse.jdt.internal.compiler.IDebugRequestor;
 
 import com.google.gson.JsonObject;
 
@@ -55,21 +52,22 @@ public class ProfileController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String userID = request.getParameter("userID").toString();
-//		String currentUID = request.getAttribute("sessionID").toString();
-		int currentUID = 4;
+		
+		int currentUID = SessionManager.getID(request);
+//		int currentUID = 4;
 		ThongTinKetBan isfriend = new ThongTinKetBan();
 
 		List<BaiViet> baiviets = new ArrayList<>();
 		BaiVietService bvSV = new BaiVietService();
 		List<BaiVietView> baiVietViews = new ArrayList<>();
 		List<ThongTinKetBan> friendsOfUser = thongTinKetBanService.geThongTinKetBansLaBan(Integer.parseInt(userID));
-		
+
 		String postingDisplayString = "yes";
 		String showButton = "";
 		String btnDescriptionString = "";
 		//Lấy số người bạn của User
 		int count = getFriendsOfUser(friendsOfUser);
-		
+
 		//Lấy thông tin của button
 		if (Integer.parseInt(userID) != currentUID) {
 			postingDisplayString = "no";
@@ -101,7 +99,7 @@ public class ProfileController extends HttpServlet {
 			}
 		}
 //		int user = Integer.parseInt(request.getParameter("id"));
-		
+
 		//Lấy thông tin User
 		NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(Integer.parseInt(userID));
 		//Lấy các bài viết của User và cho vào ViewModel
@@ -110,7 +108,7 @@ public class ProfileController extends HttpServlet {
 			baiVietViews.add(getDataBaiVietForView(baiViet.getMaBaiViet(), Integer.parseInt(userID)));
 		}
 
-		
+
 		//Thay đổi thuộc tính của Button
 		request.setAttribute("postingDisplayString", postingDisplayString);
 		request.setAttribute("showButton", showButton);
@@ -134,23 +132,23 @@ public class ProfileController extends HttpServlet {
 		String UID = request.getParameter("UID");
 		PrintWriter printWriter = response.getWriter();
 		JsonObject jsonResponse = new JsonObject();
-		
+
 		Integer id = thongTinKetBanService.insertNewFriend(Integer.parseInt(CUID), Integer.parseInt(UID));
 		if(id != null) {
 			jsonResponse.addProperty("status", "success");
 		} else {
 			jsonResponse.addProperty("status", "failure");
 		}
-		
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
-		
-		
+
+
+
 		printWriter.write(jsonResponse.toString());
 	}
-	
-	
+
+
 	public int getFriendsOfUser(List<ThongTinKetBan> friendsOfUser) {
 		int count = 0;
 		if (friendsOfUser == null) {
@@ -191,9 +189,11 @@ public class ProfileController extends HttpServlet {
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
+		int maNguoiDang = nguoiDang.getMaNguoiDung();
 
 		BaiVietView baiVietView = new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems,
-				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, maNguoiDang, anhDaiDienNguoiDang, hoVaTenNguoiDang);
+
 		return baiVietView;
 
 	}

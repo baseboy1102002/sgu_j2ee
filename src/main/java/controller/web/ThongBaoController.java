@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.NguoiDung;
 import model.ThongBao;
-import model.ThongTinKetBan;
 import model.TimeDifference;
 import service.ThongbaoService;
 
@@ -33,14 +32,15 @@ public class ThongBaoController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String currentUser = request.getParameter("userID").toString();
 		ThongbaoService tbService = new ThongbaoService();
 		List<ThongBao> ThongBaos = new ArrayList<>();
 		NguoiDung user = new NguoiDung(1, null, null);
+//		String currentUser = String.valueOf(SessionManager.getID(request));
 //		String currentUser = "4";
 
-		
+
 		ThongBaos = tbService.getThongBao(Integer.parseInt(currentUser));
 		formatTime fTime = new formatTime();
 		List<TimeDifference> timeDifference = new ArrayList<>();
@@ -51,12 +51,12 @@ public class ThongBaoController extends HttpServlet {
 			timeDiff.setTimeDiff(formatTime.formatTimeDifferences(ThongBao.getBaiviet().getNgayDang()));
 			timeDifference.add(timeDiff);
 		}
-		
+
 		int count = 0;
 		for (ThongBao ThongBao : ThongBaos) {
 				count++;
 		}
-		
+
 		request.setAttribute("soThongBao", count);
 		request.setAttribute("timeDifference", timeDifference);
 		request.setAttribute("thongbaos", ThongBaos);

@@ -14,7 +14,6 @@ public class BinhLuanBaiViet {
 	public BinhLuanBaiViet() {
 		super();
 	}
-
 	public BinhLuanBaiViet(int maBinhLuan, int maNguoiDung, int maBaiViet, Date ngayGioBinhLuan, String trangThai,
 			String noiDung, String anhBinhLuan) {
 		super();
@@ -74,4 +73,5 @@ public class BinhLuanBaiViet {
 				+ ", ngayGioBinhLuan=" + ngayGioBinhLuan + ", trangThai=" + trangThai + ", noiDung=" + noiDung
 				+ ", anhBinhLuan=" + anhBinhLuan + "]";
 	}
+
 }

@@ -4,16 +4,11 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/globalstyle.css' />">
-<link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/ca-nhan.css' />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/bootstrap/css/bootstrap.css' />">
-<%-- 
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/bai-viet-component.css' />"> --%>
-<%-- <link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/post-edit-form.css' />"> --%>
+	href="<c:url value='/resources/css/post-edit-form.css' />">
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/fontawesome6/css/all.min.css' />">
@@ -23,12 +18,16 @@
 
 <title>Insert title here</title>
 </head>
+<jsp:include page="Layout/Head.jsp"></jsp:include>
 
 <c:set var="cUID" value="${currentUID}" />
 <c:set var="UserID" value="${nguoiDung.maNguoiDung}" />
 
 <body>
 
+<jsp:include page="Layout/Header.jsp"></jsp:include>
+
+	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
 		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
 		tabindex="-1">
@@ -83,6 +82,33 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="reportPostPopUp" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Báo cáo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body comment-pop-up-body">
+
+					<textarea id="report-post-input" name="reportPostInput" rows="5"
+						placeholder="Nhập lý do báo cáo">
+							
+					</textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary dismiss-btn"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="submit-post-report-btn">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 
 	<div class="profile-page">
 		<div
@@ -133,7 +159,7 @@
 					
 					<c:if test="${showButton ne 'disabled'}">
 						<button type="button"
-							class="profile-action-button btn btn-primary col-6" onclick="handleOnClickAddFriend(this)" data-button-type="thong-tin" data-this-user=${UserID} data-current-user=${cUID} >${btnDescriptionString}</button>
+							class="profile-action-button btn btn-primary col-6" onclick="handleOnClickAddFriend(this)" data-button-type="thong-tin" data-this-user=${UserID} data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
 						<button type="button" class="button-message btn btn-primary col-6">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-chat-dots-fill"
@@ -176,7 +202,7 @@
 							<div class="profile-post-button col d-flex justify-content-end">
 							<img class="profile-post-image me-2" src="/sgu_j2ee/files/user.jpg" alt="" />
 							<input type="text" id="inputPosting" class="profile-posting-input form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-							<button class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4 col-2 ms-2">
+							<button class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4 col-2 ms-2" id="btn_add_post">
 								Tạo bài viết</button>
 						</div>
 						</div>
@@ -197,6 +223,7 @@
 		</div>
 	</div>
 
+<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="<c:url value='/jquery/jquery-3.7.1.min.js' />"></script>
 	<script type="text/javascript"

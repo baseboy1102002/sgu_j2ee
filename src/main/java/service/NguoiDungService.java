@@ -1,5 +1,14 @@
 package service;
 
+import java.util.List;
+
+import model.NguoiDung;
+import modelMapper.NguoiDungMapper;
+
+
+
+
+
 import model.NguoiDung;
 
 import java.sql.Connection;
@@ -12,7 +21,7 @@ import DBContext.DBContext;
 import controller.web.EmailSender;
 import controller.web.SessionManager;
 
-public class NguoiDungService {
+public class NguoiDungService extends DAOService<NguoiDung>{
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
@@ -239,13 +248,11 @@ public class NguoiDungService {
 			e.printStackTrace();
 		}
 	}
-	public NguoiDungService() {
-
-	}
-
 	public NguoiDung getNguoiDungById(int maNguoiDung) {
 		String sql = "select * from nguoidung where MaNguoiDung =?";
 		List<NguoiDung> nguoiDungs = query(sql, new NguoiDungMapper(), maNguoiDung);
+
 		return nguoiDungs.isEmpty() ? null : nguoiDungs.get(0);
+
 	}
 }

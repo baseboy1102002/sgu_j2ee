@@ -2,7 +2,6 @@ package modelMapper;
 
 import java.sql.ResultSet;
 
-import model.ThongBao;
 import model.ThongTinKetBan;
 
 public class ThongTinKetBanMapper implements rowMapper<ThongTinKetBan>{

@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
+import model.BaoCaoBaiviet;
 import model.TuongTacBaiViet;
 import service.BaiVietService;
+import service.BaoCaoBaiVietService;
+import service.FileBaiVietService;
 import service.TuongTacBaiVietService;
 
 /**
@@ -29,6 +32,7 @@ public class BaiVietController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TuongTacBaiVietService tuongTacBaiVietService ;
 	private BaiVietService baiVietService;
+	private FileBaiVietService fileBaiVietService;
 
 
 	/**
@@ -38,6 +42,7 @@ public class BaiVietController extends HttpServlet {
 		super();
 		baiVietService = new BaiVietService();
 		tuongTacBaiVietService = new TuongTacBaiVietService();
+		fileBaiVietService = new FileBaiVietService();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -63,13 +68,13 @@ public class BaiVietController extends HttpServlet {
 		switch (action) {
 		case "delete": {
 			String maBaiViet = request.getParameter("maBaiViet");
-
+			fileBaiVietService.deleteFileBaiVietByMaBaiViet(Integer.parseInt(maBaiViet), request);
 			printWriter.print(baiVietService.deleteBaiVietById(Integer.parseInt(maBaiViet)));
 			break;
 		}
 		case "react": {
 			String maBaiViet = request.getParameter("maBaiViet");
-			int maNguoiDung = 4; //Session
+			int maNguoiDung = SessionManager.getID(request); //Session
 			String trangThai = request.getParameter("trangThai");
 			TuongTacBaiViet tuongTacBaiViet = tuongTacBaiVietService.getUserTuongTacBaiViet(Integer.parseInt(maBaiViet),
 					maNguoiDung);
@@ -117,6 +122,17 @@ public class BaiVietController extends HttpServlet {
 
 			break;
 
+		}
+		case "report":{
+			BaoCaoBaiVietService baoCaoBaiVietService = new BaoCaoBaiVietService();
+			int maNguoiDung = 4;
+			String liDo = request.getParameter("liDo");
+			int maBaiViet = Integer.parseInt( request.getParameter("maBaiViet"));
+			BaoCaoBaiviet baoCaoBaiviet = new BaoCaoBaiviet(maNguoiDung, maBaiViet, new Date(), liDo);
+			
+			response.setContentType("UTF-8");
+			Integer result = baoCaoBaiVietService.insert(baoCaoBaiviet);
+			break;
 		}
 
 		default:

@@ -9,6 +9,7 @@ public class BinhLuanView {
 	private List<TuongTacBinhLuan> top3TuongTac;
 	private String anhDaiDienNguoiDang;
 	private String hoVaTenNguoiDang;
+	private int maNguoiDang;
 
 
 
@@ -19,13 +20,14 @@ public class BinhLuanView {
 
 	public BinhLuanView(BinhLuanBaiViet binhLuanBaiViet, int tongLuotTuongTac,
 			TuongTacBinhLuan loginUserTuongTacBinhLuan, List<TuongTacBinhLuan> top3TuongTac, String anhDaiDienNguoiDang,
-			String hoVaTenNguoiDang) {
+			String hoVaTenNguoiDang,  int maNguoiDang) {
 		this.binhLuanBaiViet = binhLuanBaiViet;
 		this.tongLuotTuongTac = tongLuotTuongTac;
 		this.loginUserTuongTacBinhLuan = loginUserTuongTacBinhLuan;
 		this.top3TuongTac = top3TuongTac;
 		this.anhDaiDienNguoiDang = anhDaiDienNguoiDang;
 		this.hoVaTenNguoiDang = hoVaTenNguoiDang;
+		this.setMaNguoiDang(maNguoiDang);
 	}
 
 
@@ -107,6 +109,18 @@ public class BinhLuanView {
 		return "BinhLuanView [binhLuanBaiViet=" + binhLuanBaiViet + ", tongLuotTuongTac=" + tongLuotTuongTac
 				+ ", loginUserTuongTacBinhLuan=" + loginUserTuongTacBinhLuan + ", top3TuongTac=" + top3TuongTac
 				+ ", anhDaiDienNguoiDang=" + anhDaiDienNguoiDang + ", hoVaTenNguoiDang=" + hoVaTenNguoiDang + "]";
+	}
+
+
+
+	public int getMaNguoiDang() {
+		return maNguoiDang;
+	}
+
+
+
+	public void setMaNguoiDang(int maNguoiDang) {
+		this.maNguoiDang = maNguoiDang;
 	}
 
 

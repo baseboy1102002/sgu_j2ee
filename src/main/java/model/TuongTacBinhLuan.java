@@ -58,5 +58,4 @@ public class TuongTacBinhLuan {
 				+ ngayGioTuongTac + ", trangThai=" + trangThai + "]";
 	}
 
-
 }
