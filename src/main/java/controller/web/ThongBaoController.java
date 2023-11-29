@@ -37,6 +37,7 @@ public class ThongBaoController extends HttpServlet {
 		ThongbaoService tbService = new ThongbaoService();
 		List<ThongBao> ThongBaos = new ArrayList<>();
 		NguoiDung user = new NguoiDung(1, null, null);
+//		String currentUser = String.valueOf(SessionManager.getID(request));
 //		String currentUser = "4";
 
 

@@ -29,7 +29,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/searchPage.css" />
 
 </head>
+<jsp:include page="Layout/Head.jsp"></jsp:include>
 <body>
+
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
 		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
 		tabindex="-1">
@@ -97,14 +99,8 @@
 		</div>
 	</div>
 	
-	
-	<div>
-		<span>Header</span>
-		<form action="${pageContext.request.contextPath}/search" method="GET">
-			<input type="text" class="form-control" name="keySearch" id="search-box" placeholder="Input here">
-			<button>Find</button>	
-		</form>
-	</div>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
+
 	<div class="row" id="search_page">
 		<div class="col-xl-2">
 			<div id="sp_container_left">
@@ -204,7 +200,7 @@
 			</div>
 		</div>
 	</div>
-	<div>Footer</div>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 
 	<script type="text/javascript"
 		src="<c:url value='/bootstrap/js/bootstrap.min.js' />"></script>

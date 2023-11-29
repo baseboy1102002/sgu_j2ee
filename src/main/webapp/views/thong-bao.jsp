@@ -9,8 +9,7 @@
 <!DOCTYPE html>
 
 <html>
-	<jsp:include page="Layout/Head.jsp"></jsp:include>
-	
+<jsp:include page="Layout/Head.jsp"></jsp:include>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/bootstrap/css/bootstrap.min.css' />">
@@ -21,6 +20,7 @@
 <title>NienHope | Thông báo</title>
 </head>
 <body>
+<jsp:include page="Layout/Header.jsp"></jsp:include>
 	<div class="noti-wrapper pt-5 d-flex justify-content-center">
 		<div class="noti-container col-10">
 			<div class="noti-header d-flex flex-column mb-2">
@@ -91,7 +91,7 @@
 		</div>
 	</div>
 
-
+<jsp:include page="Layout/Footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript"
 	src="<c:url value='/jquery/jquery-3.7.1.min.js' />"></script>

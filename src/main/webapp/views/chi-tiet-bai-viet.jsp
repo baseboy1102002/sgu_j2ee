@@ -4,7 +4,9 @@
 
 <!DOCTYPE html>
 <html>
+<jsp:include page="Layout/Head.jsp"></jsp:include>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
@@ -28,7 +30,7 @@
 
 </head>
 <body>
-
+<jsp:include page="Layout/Header.jsp"></jsp:include>
 	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
 		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
@@ -380,6 +382,7 @@
 
 	</div>
 
+<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="<c:url value='/bootstrap/js/bootstrap.min.js' />"></script>
 

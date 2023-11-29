@@ -52,8 +52,9 @@ public class ProfileController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String userID = request.getParameter("userID").toString();
-//		String currentUID = request.getAttribute("sessionID").toString();
-		int currentUID = 4;
+		
+		int currentUID = SessionManager.getID(request);
+//		int currentUID = 4;
 		ThongTinKetBan isfriend = new ThongTinKetBan();
 
 		List<BaiViet> baiviets = new ArrayList<>();

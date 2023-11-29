@@ -25,5 +25,4 @@ public class ThongTinKetBanService extends DAOService<ThongTinKetBan>{
 		String sql = "INSERT INTO thongtinketban(MaNguoiDung1, MaNguoiDung2, TrangThai) VALUE(?, ?, 'chochapnhan')";
 		return insert(sql, maNguoiDung1, maNguoiDung2);
 	}
-
 }

@@ -18,11 +18,15 @@
 
 <title>Insert title here</title>
 </head>
+<jsp:include page="Layout/Head.jsp"></jsp:include>
 
 <c:set var="cUID" value="${currentUID}" />
 <c:set var="UserID" value="${nguoiDung.maNguoiDung}" />
 
 <body>
+
+<jsp:include page="Layout/Header.jsp"></jsp:include>
+
 	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
 		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
@@ -155,7 +159,7 @@
 					
 					<c:if test="${showButton ne 'disabled'}">
 						<button type="button"
-							class="profile-action-button btn btn-primary col-6" onclick="handleOnClickAddFriend(this)" data-button-type="thong-tin" data-this-user=${UserID} data-current-user=${cUID} >${btnDescriptionString}</button>
+							class="profile-action-button btn btn-primary col-6" onclick="handleOnClickAddFriend(this)" data-button-type="thong-tin" data-this-user=${UserID} data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
 						<button type="button" class="button-message btn btn-primary col-6">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-chat-dots-fill"
@@ -219,6 +223,7 @@
 		</div>
 	</div>
 
+<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="<c:url value='/jquery/jquery-3.7.1.min.js' />"></script>
 	<script type="text/javascript"
