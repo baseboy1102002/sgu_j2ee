@@ -1,0 +1,79 @@
+/*---------------------
+  Admin controlpanel
+-----------------------*/
+
+.admin__controlpanel {
+	padding-top: 130px;
+	background-color: #eeeeee;
+	height: max-content;
+}
+
+.admin__controlpanel .row {
+	padding-top: 30px;
+}
+
+.admin__controlpanel .function {
+	border: 1px solid black;
+	border-radius: 15px;
+	height: 150px;
+	background-color: white;
+	padding: 15px;
+	overflow: hidden;
+	position: relative;
+}
+
+@media (max-width: 976px) {
+	.admin__controlpanel {
+		padding-top: 180px;
+	}
+}
+
+.admin__controlpanel .function i {
+	font-size: 170px;
+	border-radius: 50%;
+	transform: scale(0.7) rotate(20deg);
+	right: -15px;
+	top: 15px;
+	position: absolute;
+  	transition: transform 1s ease-in-out;
+}
+.function:hover i {
+  transform: scale(1) rotate(1030deg);
+}
+.function p, .function h2 {
+  z-index: 2; 
+  position: relative;
+}
+/*---------------------
+  Coloring
+-----------------------*/
+.admin__controlpanel .post i{
+	color: yellow;
+}
+.admin__controlpanel .hpost i{
+	color: red;
+}
+.admin__controlpanel .user i{
+	color: pink;
+}
+.admin__controlpanel .huser i{
+	color: blue;
+}
+.admin__controlpanel .comment i{
+	color: green;
+}
+.admin__controlpanel .hcomment i{
+	color: purple;
+}
+/*---------------------
+  Admin table
+-----------------------*/
+
+.admin__table {
+	padding-top: 130px;
+	background-color: #eeeeee;
+	height: 1000px;
+}
+.admin__table .table {
+	background-color: #fff;
+}

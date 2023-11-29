@@ -1,6 +1,7 @@
 package controller.api;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ public class PostApi extends HttpServlet{
 	private static final long serialVersionUID = 3739265568460414533L;
 	private BaiVietService baiVietService = new BaiVietService();
 	private FileBaiVietService fileBaiVietService = new FileBaiVietService();
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -34,7 +35,7 @@ public class PostApi extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		resp.getWriter().write(String.valueOf(postId));
 	}
-
+	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -44,7 +45,7 @@ public class PostApi extends HttpServlet{
 		String NoiDung = req.getReader().lines().collect(Collectors.joining());
 		baiVietService.updateBaiViet(NoiDung, MaBaiViet);
 	}
-
+	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
