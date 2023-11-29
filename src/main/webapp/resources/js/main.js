@@ -19,10 +19,7 @@
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
-    /*------------------
-        Niceselect
-    --------------------*/
-    $('select').niceSelect();
+    
 
 })(jQuery);
 

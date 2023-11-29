@@ -3,17 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<title>Đăng Nhập - NienHope</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/login_logup.css"
-	type="text/css">
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
+	<title>Đăng Nhập - NienHope</title>
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/login_logup.css"
+		type="text/css">
 </head>
 
 <body>
 	<!-- Header Section Begin -->
-	<jsp:include page="Header(SignedOut).jsp"></jsp:include>
+	<jsp:include page="Layout/Header(SignedOut).jsp"></jsp:include>
 	<!-- Header End -->
 
 	<!-- Login Section Begin -->
@@ -41,6 +42,12 @@
 								test="${not empty requestScope.loginStatus and requestScope.loginStatus eq 'failed'}">
 								<div class="error-message">
 									<p>Đăng nhâp thất bại. Vui lòng kiểm tra lại tài khoản và mật khẩu!</p>
+								</div>
+							</c:if>
+							<c:if
+								test="${not empty requestScope.loginStatus and requestScope.loginStatus eq 'ban'}">
+								<div class="error-message">
+									<p>Tài khoản bị cấm!</p>
 								</div>
 							</c:if>
 							<c:if
@@ -87,10 +94,9 @@
 		</div>
 	</section>
 	<!-- Login Section End -->
-</body>
 
 	<!-- Footer Section Begin -->
-	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<!-- Footer End -->
-
+</body>
 </html>

@@ -63,7 +63,7 @@ public class signupServlet extends HttpServlet {
 						"New account inserted: Email=" + inputEmail + ", ConfirmationCode=" + confirmationCode);
 				EmailSender.sendActivationCode(inputEmail, inputName, confirmationCode);
 				SessionManager.storeUserInfo(request, inputEmail, inputPassword, inputName, confirmationCode,
-						user.getSoDienThoai(), user.getNgaySinh(), user.getMaNguoiDung(), user.getHinhDaiDien());
+						user.getSoDienThoai(), user.getNgaySinh(), user.getMaNguoiDung(), user.getHinhDaiDien(), user.getLoaiTaiKhoan(), user.getTrangThai());
 				request.getRequestDispatcher("/views/Confirm_Account.jsp").forward(request, response);
 				return;
 			} else {

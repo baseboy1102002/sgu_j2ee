@@ -6,6 +6,8 @@
 <html lang="en">
 
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 <title>Điều Khoản Sử Dụng - NienHope</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/setting.css"
@@ -14,7 +16,7 @@
 
 <body>
 	<!-- Header Section Begin -->
-	<jsp:include page="Header(SignedOut).jsp"></jsp:include>
+	<jsp:include page="Layout/Header(SignedOut).jsp"></jsp:include>
 	<!-- Header End -->
 
 	<!-- Setting Section Begin -->
@@ -106,7 +108,7 @@
 </body>
 
 	<!-- Footer Section Begin -->
-	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<!-- Footer End -->
 
 </body>

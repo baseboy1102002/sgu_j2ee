@@ -7,6 +7,8 @@
 <html lang="en">
 
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -20,7 +22,7 @@
 </head>
 
 <body>
-	<div class="header"></div>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
 
 	<div class="content">
 		<div class="content_header">
@@ -67,6 +69,8 @@
 			<li class="pagination_item" id="nextButton" onclick="nextClick(${sessionScope.ID}")>Sau</li>
 		</ul>
 	</div>
+	
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/friend.js"></script>

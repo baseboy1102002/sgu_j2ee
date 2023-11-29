@@ -5,6 +5,8 @@
 <html lang="en">
 
 <head>
+<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 <title>Đăng Kí - NienHope</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/login_logup.css"
@@ -13,7 +15,7 @@
 
 <body>
 	<!-- Header Section Begin -->
-	<jsp:include page="Header(SignedOut).jsp"></jsp:include>
+	<jsp:include page="Layout/Header(SignedOut).jsp"></jsp:include>
 	<!-- Header End -->
 
 	<!-- Login Section Begin -->
@@ -110,7 +112,7 @@
 </script>
 
 	<!-- Header Section Begin -->
-	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<!-- Header End -->
 
 </body>
