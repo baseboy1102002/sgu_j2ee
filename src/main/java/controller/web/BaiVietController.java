@@ -73,7 +73,7 @@ public class BaiVietController extends HttpServlet {
 		}
 		case "react": {
 			String maBaiViet = request.getParameter("maBaiViet");
-			int maNguoiDung = 4; //Session
+			int maNguoiDung = SessionManager.getID(request); //Session
 			String trangThai = request.getParameter("trangThai");
 			TuongTacBaiViet tuongTacBaiViet = tuongTacBaiVietService.getUserTuongTacBaiViet(Integer.parseInt(maBaiViet),
 					maNguoiDung);
