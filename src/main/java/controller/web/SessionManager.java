@@ -10,7 +10,7 @@ public class SessionManager {
     public static void startSession(HttpServletRequest request) {
         HttpSession session = request.getSession();
     }
-    public static void storeUserInfo(HttpServletRequest request, String Email, String Password, String Name, String ConfirmCode, String Phone, Date DoB, int ID, String IMG) {
+    public static void storeUserInfo(HttpServletRequest request, String Email, String Password, String Name, String ConfirmCode, String Phone, Date DoB, int ID, String IMG, String LoaiTaiKhoan, String TrangThai) {
         HttpSession session = request.getSession();
         session.setAttribute("Email", Email);
         session.setAttribute("Password", Password);
@@ -20,6 +20,8 @@ public class SessionManager {
         session.setAttribute("DoB", DoB);
         session.setAttribute("ID", ID);
         session.setAttribute("IMG", IMG);
+        session.setAttribute("LoaiTaiKhoan", LoaiTaiKhoan);
+        session.setAttribute("TrangThai", TrangThai);
     }
     
     public static String getEmail(HttpServletRequest request) {
@@ -66,6 +68,16 @@ public class SessionManager {
         String IMG = (String) session.getAttribute("IMG");
         return IMG;
     }
+    public static String getLoaiTaiKhoan(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String LoaiTaiKhoan = (String) session.getAttribute("LoaiTaiKhoan");
+        return LoaiTaiKhoan;
+    }
+    public static String getTrangThai(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String TrangThai = (String) session.getAttribute("TrangThai");
+        return TrangThai;
+    }
     
     
     public static void setEmail(HttpServletRequest request, String email) {
@@ -95,6 +107,14 @@ public class SessionManager {
     public static void setIMG(HttpServletRequest request, String IMG) {
         HttpSession session = request.getSession();
         session.setAttribute("IMG", IMG);
+    }
+    public static void setLoaiTaiKhoan(HttpServletRequest request, String LoaiTaiKhoan) {
+        HttpSession session = request.getSession();
+        session.setAttribute("LoaiTaiKhoan", LoaiTaiKhoan);
+    }
+    public static void setTrangThai(HttpServletRequest request, String TrangThai) {
+        HttpSession session = request.getSession();
+        session.setAttribute("TrangThai", TrangThai);
     }
 }
 

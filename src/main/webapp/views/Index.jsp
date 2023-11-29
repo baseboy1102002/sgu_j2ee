@@ -45,6 +45,12 @@
 								</div>
 							</c:if>
 							<c:if
+								test="${not empty requestScope.loginStatus and requestScope.loginStatus eq 'ban'}">
+								<div class="error-message">
+									<p>Tài khoản bị cấm!</p>
+								</div>
+							</c:if>
+							<c:if
 								test="${not empty requestScope.loginStatus and requestScope.loginStatus eq 'sendPassword'}">
 								<div class="error-message">
 									<p>Mật khẩu của bạn đã được gửi tới email. Vui lòng đăng nhập.</p>

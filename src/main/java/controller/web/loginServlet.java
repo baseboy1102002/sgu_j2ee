@@ -53,19 +53,34 @@ public class loginServlet extends HttpServlet {
 		
 		if (user != null) {
 			SessionManager.storeUserInfo(request, inputEmail, inputPassword, user.getHoVaTen(), user.getMaXacNhan(), user.getSoDienThoai(),
-					user.getNgaySinh(), user.getMaNguoiDung(), user.getHinhDaiDien());
-			// Redirect to a different page (e.g., home page)
-			if (SessionManager.getConfirmCode(request).equals("confirmed!")) {
-				response.sendRedirect(request.getContextPath() + "/views/Home_Admin.jsp");
+					user.getNgaySinh(), user.getMaNguoiDung(), user.getHinhDaiDien(), user.getLoaiTaiKhoan(), user.getTrangThai());
+			if (SessionManager.getTrangThai(request).equals("systembanned")) {
+				request.setAttribute("loginStatus", "ban");
+				System.out.println("system banned");
+				request.getRequestDispatcher("/views/Index.jsp").forward(request, response);
 				return;
-			} else {
-				response.sendRedirect(request.getContextPath() + "/views/Confirm_Account.jsp");
-				return;
+			}
+			else {
+				if (!SessionManager.getConfirmCode(request).equals("confirmed!")){
+					response.sendRedirect(request.getContextPath() + "/views/Confirm_Account.jsp");
+					return;
+				}
+				else {
+					if (SessionManager.getLoaiTaiKhoan(request).equals("admin")) {
+						response.sendRedirect(request.getContextPath() + "/views/Home_Admin.jsp");
+						return;
+					}
+					if (SessionManager.getLoaiTaiKhoan(request).equals("user")) {
+						response.sendRedirect(request.getContextPath() + "/views/Home.jsp");
+						return;
+					}
+				}
 			}
 		} else {
 			request.setAttribute("loginStatus", "failed");
 			System.out.println("login failed");
 			request.getRequestDispatcher("/views/Index.jsp").forward(request, response);
+			return;
 		}
 
 	}
