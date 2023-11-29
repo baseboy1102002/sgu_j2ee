@@ -13,6 +13,7 @@
 				</div>
 			</div>
 			<div class="col-lg-5 col-8">
+			
 				<div class="form-group has-search">
 					<span class="fa fa-search form-control-feedback"></span> <input
 						type="text" id="SearchInput" class="form-control"
@@ -42,7 +43,7 @@
 
 					<!-- Thông Báo -->
 					<div class="direct">
-						<a href="/sgu_j2ee/profile?userID=${sessionScope.ID}"
+						<a href="/sgu_j2ee/thongbao?userID=${sessionScope.ID}"
 							class="icon_group_circle"> <i class="fa fa-bell"
 							aria-hidden="true"></i>
 						</a>
