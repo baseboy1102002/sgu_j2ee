@@ -25,7 +25,7 @@
 
 <body>
 
-<jsp:include page="Layout/Header.jsp"></jsp:include>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
 
 	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
@@ -107,13 +107,53 @@
 			</div>
 		</div>
 	</div>
-	
 
+	<div class="modal fade" id="reportUserPopUp" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Báo cáo người
+						dùng</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body comment-pop-up-body">
+
+					<textarea id="report-user-input" name="reportUserInput" rows="5"
+						placeholder="Nhập lý do báo cáo">
+							
+					</textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary dismiss-btn"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="submit-user-report-btn" data-this-user=${UserID
+						}
+								data-current-user=${sessionScope.ID} >Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="profile-page">
 		<div
 			class="profile-header-container container row justify-content-around p-4">
-			<div class="profile-placeholder col-3"></div>
+			<div
+				class="profile-placeholder col-3 d-flex align-items-end justify-content-start">
+				<button type="button" class="button-message btn btn-primary col-6"
+					id="btn-baocaoND" data-bs-toggle="modal"
+					data-bs-target="#reportUserPopUp">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-exclamation-diamond-fill"
+						viewBox="0 0 16 16">
+  <path
+							d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+</svg>
+					Báo cáo
+				</button>
+			</div>
 			<div
 				class="profile-header-user col-4 d-flex flex-wrap justify-content-center flex-column">
 				<div
@@ -125,12 +165,10 @@
 			<div
 				class="profile-header-actions col-4 d-flex align-items-end justify-content-end">
 
-				
-
 				<c:choose>
 					<c:when test="${cUID eq UserID}">
 						<button type="button"
-							class="profile-action-button btn btn-primary col-6"  >
+							class="profile-action-button btn btn-primary col-6">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-pencil-square me-2"
 								viewBox="0 0 16 16">
@@ -143,35 +181,41 @@
 						</button>
 					</c:when>
 					<c:when test="${cUID ne UserID}">
-					<c:if test="${showButton eq 'disabled'}">
-						<button type="button"  ${showButton}  
-							class="profile-action-button btn btn-primary col-6" >${btnDescriptionString}</button>
-						<button type="button" class="button-message btn btn-primary col-6">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chat-dots-fill"
-								viewBox="0 0 16 16">
+						<c:if test="${showButton eq 'disabled'}">
+							<button type="button" ${showButton}
+								class="profile-action-button btn btn-primary col-6">${btnDescriptionString}</button>
+							<button type="button"
+								class="button-message btn btn-primary col-6">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-chat-dots-fill"
+									viewBox="0 0 16 16">
                         <path
-									d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+										d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                     </svg>
-							Nhắn tin
-						</button>
-					</c:if>
-					
-					<c:if test="${showButton ne 'disabled'}">
-						<button type="button"
-							class="profile-action-button btn btn-primary col-6" onclick="handleOnClickAddFriend(this)" data-button-type="thong-tin" data-this-user=${UserID} data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
-						<button type="button" class="button-message btn btn-primary col-6">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chat-dots-fill"
-								viewBox="0 0 16 16">
+								Nhắn tin
+							</button>
+						</c:if>
+
+						<c:if test="${showButton ne 'disabled'}">
+							<button type="button"
+								class="profile-action-button btn btn-primary col-6"
+								onclick="handleOnClickAddFriend(this)"
+								data-button-type="thong-tin" data-this-user=${UserID
+								}
+								data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
+							<button type="button"
+								class="button-message btn btn-primary col-6">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-chat-dots-fill"
+									viewBox="0 0 16 16">
                         <path
-									d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+										d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                     </svg>
-							Nhắn tin
-						</button>
-					</c:if>
-					
-					
+								Nhắn tin
+							</button>
+						</c:if>
+
+
 					</c:when>
 				</c:choose>
 
@@ -185,31 +229,35 @@
 					<div
 						class="profile-introduction d-flex justify-content-center flex-wrap flex-column p-4">
 						<span class="fw-bold text-center">Giới thiệu</span> <span>${nguoiDung.email}</span>
-						<span>${nguoiDung.soDienThoai}</span> 
-						<span><a>Có ${songuoiban} người bạn</a></span>
+						<span>${nguoiDung.soDienThoai}</span> <span><a>Có
+								${songuoiban} người bạn</a></span>
 					</div>
 				</div>
 				<div
 					class="profile-content-right container col d-flex flex-wrap flex-column ms-4">
 					<c:if test="${postingDisplayString eq 'yes'}">
-					<div
-						class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4">
-						<div class="profile-post-posting col">
-							<label for="inputPosting"
-								class="profile-post-label form-label fs-3 mb-4">Tạo bài
-								viết</label>
-							 
-							<div class="profile-post-button col d-flex justify-content-end">
-							<img class="profile-post-image me-2" src="/sgu_j2ee/files/user.jpg" alt="" />
-							<input type="text" id="inputPosting" class="profile-posting-input form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-							<button class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4 col-2 ms-2" id="btn_add_post">
-								Tạo bài viết</button>
+						<div
+							class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4 mb-5">
+							<div class="profile-post-posting col">
+								<label for="inputPosting"
+									class="profile-post-label form-label fs-3 mb-4">Tạo bài
+									viết</label>
+
+								<div class="profile-post-button col d-flex justify-content-end">
+									<img class="profile-post-image me-2"
+										src="/sgu_j2ee/files/user.jpg" alt="" /> <input type="text"
+										id="inputPosting" class="profile-posting-input form-control"
+										aria-label="Sizing example input"
+										aria-describedby="inputGroup-sizing-sm">
+									<button
+										class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4 col-2 ms-2"
+										id="btn_add_post">Tạo bài viết</button>
+								</div>
+							</div>
+
 						</div>
-						</div>
-						
-					</div>
 					</c:if>
-					<div class="profile-posts col mt-5">
+					<div class="profile-posts col">
 						<c:forEach var="baiVietView" items="${baiVietViews}">
 							<c:set var="baiVietView" value="${baiVietView}" scope="request" />
 
@@ -223,7 +271,7 @@
 		</div>
 	</div>
 
-<jsp:include page="Layout/Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="<c:url value='/jquery/jquery-3.7.1.min.js' />"></script>
 	<script type="text/javascript"
@@ -242,7 +290,7 @@
 		src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
 	<script type="text/javascript"
 		src="<c:url value='/resources/js/post-edit-form.js' />"></script>
-		
+
 
 </body>
 </html>

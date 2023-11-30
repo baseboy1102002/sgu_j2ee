@@ -3,6 +3,7 @@ package controller.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,11 +16,14 @@ import com.google.gson.JsonObject;
 
 import model.BaiViet;
 import model.BaiVietView;
+import model.BaoCaoNguoiDung;
 import model.FileBaiViet;
 import model.NguoiDung;
 import model.ThongTinKetBan;
 import model.TuongTacBaiViet;
 import service.BaiVietService;
+import service.BaoCaoBaiVietService;
+import service.BaoCaoNguoiDungService;
 import service.BinhLuanBaiVietService;
 import service.FileBaiVietService;
 import service.NguoiDungService;
@@ -39,6 +43,7 @@ public class ProfileController extends HttpServlet {
 	private TuongTacBinhLuanService tuongTacBinhLuanService = new TuongTacBinhLuanService();
 	private BinhLuanBaiVietService binhLuanBaiVietService = new BinhLuanBaiVietService();
 	private ThongTinKetBanService thongTinKetBanService = new ThongTinKetBanService();
+	private BaoCaoNguoiDungService baoCaoNguoiDungService = new BaoCaoNguoiDungService();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -128,24 +133,58 @@ public class ProfileController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String CUID = request.getParameter("CUID");
-		String UID = request.getParameter("UID");
-		PrintWriter printWriter = response.getWriter();
-		JsonObject jsonResponse = new JsonObject();
+		String action = request.getParameter("action");
+		
+		switch (action) {
+		case "ketban": {
+			String CUID = request.getParameter("CUID");
+			String UID = request.getParameter("UID");
+			PrintWriter printWriter = response.getWriter();
+			JsonObject jsonResponse = new JsonObject();
 
-		Integer id = thongTinKetBanService.insertNewFriend(Integer.parseInt(CUID), Integer.parseInt(UID));
-		if(id != null) {
-			jsonResponse.addProperty("status", "success");
-		} else {
-			jsonResponse.addProperty("status", "failure");
+			Integer id = thongTinKetBanService.insertNewFriend(Integer.parseInt(CUID), Integer.parseInt(UID));
+			if(id != null) {
+				jsonResponse.addProperty("status", "success");
+			} else {
+				jsonResponse.addProperty("status", "failure");
+			}
+
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			printWriter.write(jsonResponse.toString());
+			break;
+		}
+		case "baocao": {
+			PrintWriter printWriter = response.getWriter();
+			int CUID = Integer.parseInt(request.getParameter("CUID"));
+			int UID = Integer.parseInt(request.getParameter("UID"));
+			String NoiDung = request.getParameter("NoiDung");
+			Date date = new Date();  
+			BaoCaoNguoiDung baoCaoNguoiDung = new BaoCaoNguoiDung();
+			
+			baoCaoNguoiDung.setMaNguoiDungBaoCao(CUID);
+			baoCaoNguoiDung.setMaNguoiDungBiBaoCao(UID);
+			baoCaoNguoiDung.setNgayGioBaoCao(date);
+			baoCaoNguoiDung.setLiDo(NoiDung);
+			
+			JsonObject jsonResponse = new JsonObject();
+			
+			Integer id = baoCaoNguoiDungService.insert(baoCaoNguoiDung);
+			if(id != null) {
+				jsonResponse.addProperty("status", "success");
+			} else {
+				jsonResponse.addProperty("status", "failure");
+			}
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			printWriter.write(jsonResponse.toString());
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + action);
 		}
 
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-
-
-
-		printWriter.write(jsonResponse.toString());
 	}
 
 

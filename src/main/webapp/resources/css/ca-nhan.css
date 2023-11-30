@@ -57,8 +57,11 @@ a[href] {
 /* Phần đầu người dùng */
 .profile-header-container{
     border-radius: 15px !important;
+    
 }
-
+.profile-header-container.container.row.justify-content-around.p-4{
+	margin: 0px !important;
+}
 .profile-header-container{
     background-color: white !important;
     margin: auto!important;
@@ -1106,4 +1109,27 @@ button#btn_image {
 
 h1.modal-title.fs-5 {
     font-size: 1.25em !important;
+}
+
+
+
+
+button.btn.btn-secondary.dismiss-btn {
+    font-size: 1.05em;
+    padding: 5px 15px 5px 15px !important;
+    margin-right: 0.5em !important;
+}
+
+button#submit-post-report-btn {
+    font-size: 1.05em;
+    padding: 5px 15px 5px 15px !important;
+    margin-right: 0.5em !important;
+}
+
+textarea#report-post-input {
+    padding: 10px !important;
+}
+
+textarea#report-user-input {
+    padding: 10px !important;
 }
