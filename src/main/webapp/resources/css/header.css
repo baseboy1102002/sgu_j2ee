@@ -18,7 +18,9 @@
 .header__logo {
 	padding: 20px 20px 17px 0;
 }
-
+.header__logo .logo_img{
+	height: 50px !important;
+}
 .header__logo .logo {
 	display: inline-block;
 }
