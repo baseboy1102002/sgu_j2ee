@@ -1125,7 +1125,11 @@ button#submit-post-report-btn {
     padding: 5px 15px 5px 15px !important;
     margin-right: 0.5em !important;
 }
-
+button#submit-user-report-btn {
+    font-size: 1.05em;
+    padding: 5px 15px 5px 15px !important;
+    margin-right: 0.5em !important;
+}
 textarea#report-post-input {
     padding: 10px !important;
 }
