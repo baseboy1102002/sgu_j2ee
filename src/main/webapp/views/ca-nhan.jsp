@@ -3,29 +3,21 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/ca-nhan.css' />">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/bootstrap/css/bootstrap.css' />">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/post-edit-form.css' />">
-
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/fontawesome6/css/all.min.css' />">
-
 <head>
-<meta charset="UTF-8">
-
-<title>Insert title here</title>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/ca-nhan.css' />">
+	<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/post-edit-form.css' />">
+	<title>Insert title here</title>
 </head>
-<jsp:include page="Layout/Head.jsp"></jsp:include>
 
 <c:set var="cUID" value="${currentUID}" />
 <c:set var="UserID" value="${nguoiDung.maNguoiDung}" />
 
 <body>
 
-<jsp:include page="Layout/Header.jsp"></jsp:include>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
 
 	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
@@ -107,7 +99,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 
 	<div class="profile-page">
@@ -125,12 +117,12 @@
 			<div
 				class="profile-header-actions col-4 d-flex align-items-end justify-content-end">
 
-				
+
 
 				<c:choose>
 					<c:when test="${cUID eq UserID}">
 						<button type="button"
-							class="profile-action-button btn btn-primary col-6"  >
+							class="profile-action-button btn btn-primary col-6">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-pencil-square me-2"
 								viewBox="0 0 16 16">
@@ -143,35 +135,40 @@
 						</button>
 					</c:when>
 					<c:when test="${cUID ne UserID}">
-					<c:if test="${showButton eq 'disabled'}">
-						<button type="button"  ${showButton}  
-							class="profile-action-button btn btn-primary col-6" >${btnDescriptionString}</button>
-						<button type="button" class="button-message btn btn-primary col-6">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chat-dots-fill"
-								viewBox="0 0 16 16">
+						<c:if test="${showButton eq 'disabled'}">
+							<button type="button" ${showButton}
+								class="profile-action-button btn btn-primary col-6">${btnDescriptionString}</button>
+							<button type="button"
+								class="button-message btn btn-primary col-6">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-chat-dots-fill"
+									viewBox="0 0 16 16">
                         <path
-									d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+										d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                     </svg>
-							Nhắn tin
-						</button>
-					</c:if>
-					
-					<c:if test="${showButton ne 'disabled'}">
-						<button type="button"
-							class="profile-action-button btn btn-primary col-6" onclick="handleOnClickAddFriend(this)" data-button-type="thong-tin" data-this-user=${UserID} data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
-						<button type="button" class="button-message btn btn-primary col-6">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chat-dots-fill"
-								viewBox="0 0 16 16">
+								Nhắn tin
+							</button>
+						</c:if>
+
+						<c:if test="${showButton ne 'disabled'}">
+							<button type="button"
+								class="profile-action-button btn btn-primary col-6"
+								onclick="handleOnClickAddFriend(this)"
+								data-button-type="thong-tin" data-this-user=${UserID
+								} data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
+							<button type="button"
+								class="button-message btn btn-primary col-6">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-chat-dots-fill"
+									viewBox="0 0 16 16">
                         <path
-									d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+										d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                     </svg>
-							Nhắn tin
-						</button>
-					</c:if>
-					
-					
+								Nhắn tin
+							</button>
+						</c:if>
+
+
 					</c:when>
 				</c:choose>
 
@@ -185,29 +182,33 @@
 					<div
 						class="profile-introduction d-flex justify-content-center flex-wrap flex-column p-4">
 						<span class="fw-bold text-center">Giới thiệu</span> <span>${nguoiDung.email}</span>
-						<span>${nguoiDung.soDienThoai}</span> 
-						<span><a>Có ${songuoiban} người bạn</a></span>
+						<span>${nguoiDung.soDienThoai}</span> <span><a>Có
+								${songuoiban} người bạn</a></span>
 					</div>
 				</div>
 				<div
 					class="profile-content-right container col d-flex flex-wrap flex-column ms-4">
 					<c:if test="${postingDisplayString eq 'yes'}">
-					<div
-						class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4">
-						<div class="profile-post-posting col">
-							<label for="inputPosting"
-								class="profile-post-label form-label fs-3 mb-4">Tạo bài
-								viết</label>
-							 
-							<div class="profile-post-button col d-flex justify-content-end">
-							<img class="profile-post-image me-2" src="/sgu_j2ee/files/user.jpg" alt="" />
-							<input type="text" id="inputPosting" class="profile-posting-input form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-							<button class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4 col-2 ms-2" id="btn_add_post">
-								Tạo bài viết</button>
+						<div
+							class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4">
+							<div class="profile-post-posting col">
+								<label for="inputPosting"
+									class="profile-post-label form-label fs-3 mb-4">Tạo bài
+									viết</label>
+
+								<div class="profile-post-button col d-flex justify-content-end">
+									<img class="profile-post-image me-2"
+										src="/sgu_j2ee/files/user.jpg" alt="" /> <input type="text"
+										id="inputPosting" class="profile-posting-input form-control"
+										aria-label="Sizing example input"
+										aria-describedby="inputGroup-sizing-sm">
+									<button
+										class="btn btn-primary fs-3 pt-2 pb-2 ps-4 pe-4 col-2 ms-2"
+										id="btn_add_post">Tạo bài viết</button>
+								</div>
+							</div>
+
 						</div>
-						</div>
-						
-					</div>
 					</c:if>
 					<div class="profile-posts col mt-5">
 						<c:forEach var="baiVietView" items="${baiVietViews}">
@@ -223,7 +224,7 @@
 		</div>
 	</div>
 
-<jsp:include page="Layout/Footer.jsp"></jsp:include>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="<c:url value='/jquery/jquery-3.7.1.min.js' />"></script>
 	<script type="text/javascript"
@@ -242,7 +243,7 @@
 		src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
 	<script type="text/javascript"
 		src="<c:url value='/resources/js/post-edit-form.js' />"></script>
-		
+
 
 </body>
 </html>

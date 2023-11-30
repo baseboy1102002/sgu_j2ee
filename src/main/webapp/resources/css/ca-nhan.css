@@ -18,11 +18,6 @@
     --bodyBackground: #ebebeb;
 }
 
-* {
-    box-sizing: border-box !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
 
 html {
     font-size: 62.5% !important;
@@ -49,6 +44,7 @@ a[href] {
     text-decoration: none !important;
 }
 .profile-page {
+	padding-top: 130px !important;
     width: 80% !important;
     height: 100vh !important;
     margin: auto !important;
