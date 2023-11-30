@@ -72,9 +72,12 @@ public class ProfileController extends HttpServlet {
 		String btnDescriptionString = "";
 		//Lấy số người bạn của User
 		int count = getFriendsOfUser(friendsOfUser);
-
+		boolean isReported = false;
 		//Lấy thông tin của button
 		if (Integer.parseInt(userID) != currentUID) {
+			
+			isReported = baoCaoNguoiDungService.getBaoCaoNguoiDung(currentUID, Integer.parseInt(userID));
+			
 			postingDisplayString = "no";
 			isfriend = thongTinKetBanService.getTrangThaiKetBanHaiNguoiDung(currentUID, Integer.parseInt(userID));
 			String friendStatuString = "";
@@ -115,6 +118,7 @@ public class ProfileController extends HttpServlet {
 
 
 		//Thay đổi thuộc tính của Button
+		request.setAttribute("isReported", isReported);
 		request.setAttribute("postingDisplayString", postingDisplayString);
 		request.setAttribute("showButton", showButton);
 		request.setAttribute("btnDescriptionString", btnDescriptionString);
