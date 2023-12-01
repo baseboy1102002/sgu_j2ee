@@ -30,6 +30,8 @@ public class BaiViet {
 		this.maBaiViet = maBaiViet;
 	}
 
+
+
 	public Date getNgayDang() {
 		return ngayDang;
 	}

@@ -7,6 +7,8 @@
 <html lang="en">
 
 <head>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -20,7 +22,7 @@
 </head>
 
 <body>
-	<div class="header"></div>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
 
 	<div class="content">
 		<div class="content_header">
@@ -41,8 +43,8 @@
 			<c:forEach items="${userlist}" var="user" varStatus="loop">
 				<c:if test="${loop.index < 8}">
 					<li class="listfriend_item">
-						<a href="action?type=dsbb&nameact=trangcanhan&userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="item_info">
-							<img src="/sgu_j2ee/files/${user.hinhDaiDien}.png" alt="ảnh người dùng" class="item_info_img">
+						<a href="/sgu_j2ee/profile?userID=${user.maNguoiDung}" class="item_info">
+							<img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="ảnh người dùng" class="item_info_img">
 							<div class="item_info_name">${user.hoVaTen}</div>
 						</a>
 	
@@ -67,6 +69,8 @@
 			<li class="pagination_item" id="nextButton" onclick="nextClick(${sessionScope.ID}")>Sau</li>
 		</ul>
 	</div>
+	
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/friend.js"></script>

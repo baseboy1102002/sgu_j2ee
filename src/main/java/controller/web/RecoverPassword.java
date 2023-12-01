@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.NguoiDungService;
+
 /**
  * Servlet implementation class RecoverPassword
  */
@@ -26,31 +28,23 @@ public class RecoverPassword extends HttpServlet {
      */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String inputEmail = request.getParameter("inputEmail");
-		String password = null, name = null;
-        // JDBC connection
-		Connection conn = null;
-		Statement st = null;
-		ResultSet rs = null;
+		NguoiDungService userService = new NguoiDungService();
+		
+		try {
+            if (userService.QuenMatKhau(inputEmail)) {
+            	request.setAttribute("loginStatus", "sendPassword");
+    		    System.out.println("send");
+                request.getRequestDispatcher("/views/Index.jsp").forward(request, response);
+            } else {
+                // Handle incorrect confirmation code or email
+                System.out.println("no can do brother!");
+                // You can redirect to an error page or perform further actions heree
+            }
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "");
-            String query = "select * from nguoidung where Email = '" + inputEmail + "'";
-		    st = conn.createStatement();
-		    rs = st.executeQuery(query);
-		   
-		    if (rs.next()) {
-		        password = rs.getString("MatKhau");
-		        name = rs.getString("HoVaTen");
-		        EmailSender.sendForgetPassword(inputEmail, name, password);
-		    }
-		    request.setAttribute("loginStatus", "sendPassword");
-		    System.out.println("send");
-            request.getRequestDispatcher("/views/Index.jsp").forward(request, response);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } finally {
+            // Close resources in a finally block
+            
         }
-
 	}
 }
 

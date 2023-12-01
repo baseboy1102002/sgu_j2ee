@@ -5,7 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css2?&family=Ubuntu:wght@300;400;500;700&display=swap');
 
-/* Default css */
+/*Default css*/
 :root {
     --primaryColor: #53D068;
     --primaryLighterColor: rgba(33, 174, 132, .65);
@@ -15,22 +15,15 @@
     --errorColor: rgba(238, 52, 37, 1);
     --warningColor: rgba(247, 188, 10, 1);
     --fadeBackground: rgba(26, 26, 26, .37);
-    --bodyBackground: #ebebeb;
+    --bodyBackground: #f1f6ff;
+    --controlBackground : #f5f5f5;
 }
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
 
-html {
-    font-size: 62.5%;
-}
+
 
 body {
     line-height: 1;
-    font-size: 1.6rem;
     text-rendering: optimizeSpeed;
     background-color: var(--bodyBackground);
 }
@@ -47,5 +40,5 @@ button {
 a[href] {
     text-decoration: none;
 }
-
+ 
 

@@ -80,8 +80,8 @@ public class FriendLoadController extends HttpServlet {
 			indexing += 1;
 			start += 1;
 			out.println("<li class=\"listfriend_item\">\r\n"
-					+ "		<a href=\"action?type="+ type +"&nameact=trangcanhan&userid1=" + iuserid + "&userid2=" + nd.getMaNguoiDung() + "\" class=\"item_info\">\r\n"
-					+ "			<img src=\"/sgu_j2ee/files/" + nd.getHinhDaiDien() + ".png\" alt=\"ảnh người dùng\" class=\"item_info_img\">\r\n"
+					+ "		<a href=\"/sgu_j2ee/profile?userID=" + nd.getMaNguoiDung() + "\" class=\"item_info\">\r\n"
+					+ "			<img src=\"/sgu_j2ee/files/" + nd.getHinhDaiDien() + "\" alt=\"ảnh người dùng\" class=\"item_info_img\">\r\n"
 					+ "			<div class=\"item_info_name\">" + nd.getHoVaTen() + "</div>\r\n"
 					+ "		</a>\r\n"
 					+ "\r\n");

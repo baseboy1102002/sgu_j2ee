@@ -11,7 +11,5 @@
 
         if (file) {
             reader.readAsDataURL(file);
-        } else {
-            preview.src = "https://i.pinimg.com/1200x/c0/29/5a/c0295a690ba4e121e0ab092279d8ed6b.jpg";
         }
     }

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import service.NguoiDungService;
+
 @WebServlet("/cai-dat")
 @MultipartConfig
 public class settingServlet extends HttpServlet {
@@ -32,70 +34,36 @@ public class settingServlet extends HttpServlet {
 		String Strdob = request.getParameter("inputDoB");
 		String phone = request.getParameter("inputPhone");
 
+		Part photo = request.getPart("inputImage");
+		String newFileName = SessionManager.getID(request) + "_ProfilePicture.png";
 		File dir = new File(request.getServletContext().getRealPath("/files"));
+	    if (!dir.exists()) {
+	        dir.mkdirs();
+	    }
+	    File newPhotoFile = new File(dir, newFileName);
+	    photo.write(newPhotoFile.getAbsolutePath());
 		System.out.println(dir);
-		if (!dir.exists()) { // tạo nếu chưa tồn tại
-			dir.mkdirs();
-		}
-		Part photo = request.getPart("photo_file"); // file hình
-		File photoFile = new File(dir, photo.getSubmittedFileName());
-		photo.write(photoFile.getAbsolutePath());
-
-		// Convert the String to java.sql.Date
-		java.sql.Date dob = java.sql.Date.valueOf(Strdob);
-
-		// JDBC connection
-		Connection conn = null;
-		PreparedStatement updateStatement = null;
-
+		System.out.println(newFileName);
+		
+		NguoiDungService userService = new NguoiDungService();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "");
-
-			// Query to update the confirmation status when the confirmation code matches
-			// the email
-			String updateQuery = "UPDATE nguoidung SET HoVaTen = ?, Email = ?, NgaySinh = ?, SoDienThoai = ? WHERE MaNguoiDung = ?";
-			updateStatement = conn.prepareStatement(updateQuery);
-			updateStatement.setString(1, name);
-			updateStatement.setString(2, email);
-			updateStatement.setDate(3, dob);
-			updateStatement.setString(4, phone);
-			updateStatement.setLong(5, SessionManager.getID(request));
-			System.out.println(SessionManager.getDoB(request));
-			int rowsUpdated = updateStatement.executeUpdate();
-
-			if (rowsUpdated > 0) {
-				// Confirmation code matched, and the status is updated
-				System.out.println("ok");
+            if (userService.CaiDat(email, newFileName, name, phone, Strdob, SessionManager.getID(request))) {
+                // Confirmation code matched, and the status is updated
+            	System.out.println("ok");
+        		java.sql.Date dob = java.sql.Date.valueOf(Strdob);
 				SessionManager.setDoB(request, dob);
 				SessionManager.setEmail(request, email);
 				SessionManager.setName(request, name);
 				SessionManager.setPhone(request, phone);
-			} else {
-				
-				System.out.println("not ok");
-				
-			}
+				SessionManager.setIMG(request, newFileName);
+            } else {
+            	System.out.println("not ok");
+            }
 
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// Close resources in a finally block
-			if (updateStatement != null) {
-				try {
-					updateStatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+        } finally {
+            // Close resources in a finally block
+            
+        }
 
 		request.getRequestDispatcher("views/Setting.jsp").forward(request, response);
 	}

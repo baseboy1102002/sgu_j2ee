@@ -1,0 +1,440 @@
+@charset "ISO-8859-1";
+
+
+
+
+/*Custom nút button disabled*/
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #333;
+    background-color: var(--greyDisabledColor);
+    border-color: var(--greyDisabledColor);
+}
+
+
+/* content wrapper */
+.bai-viet-content-wrapper {
+	width: 100%;
+	padding: 0 2rem;
+	gap: 10px;
+}
+
+/* profile */
+
+.profile-wrapper {
+	width: 100%;
+}
+
+/* profile left */
+
+.profile-left {
+	gap: 5px;
+}
+
+.profile-img {
+	--width: 35px;
+	width: var(--width);
+	height: var(--width);
+	border-radius: 9999px;
+	background-color: var(--greyDisabledColor);
+
+	display: flex;
+	justify-content: center;
+}
+
+.profile-img img {
+	margin: auto 0;
+	width: 100%;
+    height: 100%;
+    border-radius: 100%;
+
+}
+
+.profile-info h1 {
+	font-size: 13px;
+	margin-bottom: 0;
+}
+
+
+.profile-info span {
+	font-size: 11px;
+	color: var(--greyDisabledColor);
+}
+
+
+
+/* profile :right*/
+
+
+.profile-right {
+	width: 30px;
+	height: 30px;
+	color: var(--greyColorText);
+	background-color: var(--controlBackground);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 9999px;
+	position: relative;
+	cursor: pointer;
+}
+
+.profile-right:hover {
+	background: var(--primaryColor);
+	color: white;
+}
+
+
+
+
+.profile-more-hover {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	padding: 10px;
+	background-color: var(--controlBackground);
+	color: var(--greyColorText);
+	right: 0;
+	top: 98%;
+	border-radius: 5px;
+	gap: 5px;
+	visibility: hidden;
+	z-index: 9999;
+}
+
+
+
+
+.profile-more-hover span {
+	text-align: left;
+	width: 70px;
+}
+
+.profile-item {
+	padding: 0;
+	gap: 6px;
+	font-size: 14px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	padding: 3px 5px;
+}
+
+.profile-item:hover {
+	color: white;
+	background-color: var(--primaryColor);
+}
+
+
+/* main content */
+
+
+.not-detail-mode p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	/* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+
+.see-more {
+	justify-content: center;
+	display: flex;
+}
+
+
+.bai-viet-data {
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.img-content {
+	width: 100%;
+	height: 500px;
+	margin-bottom: 10px;
+
+}
+
+
+.img-content img {
+	object-fit: cover;
+}
+
+/* data */
+
+.react-data {
+	display: flex;
+	gap: 2px;
+	align-items: center;
+}
+
+.react-data-item {
+	--iconWidth: 15px;
+	width: var(--iconWidth);
+	height: var(--iconWidth);
+}
+
+.react-data-item img {
+	width: 100%;
+	height: 100%;
+}
+
+.comment-data {
+	display: flex;
+	align-items: center;
+}
+
+
+/* actions */
+
+.react-action,
+.comment-action {
+	align-items: center;
+
+}
+
+
+
+
+.react-action-btn img {
+	width: 20px;
+	height: 20px;
+}
+
+.react-action-btn {
+	width: 100%;
+	height: 100%;
+	padding: 4px 5px;
+	display: flex;
+	gap: 5px;
+	/* padding: 4px 5px; */
+	border-radius: 5px;
+	align-items: center;
+}
+
+.react-action-btn:hover {
+	color: white;
+	background-color: var(--primaryColor);
+	cursor: pointer;
+}
+
+
+.react-action-btn.active {
+	background: #eeeeee;
+}
+
+
+.bai-viet-actions {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+
+.more-action {
+	background-color: var(--bodyBackground);
+	padding: 5px;
+	bottom: 100%;
+	left: 0;
+	position: absolute;
+	gap: 2px;
+	display: none;
+	border-radius: 10px;
+}
+
+.react-action span,
+.comment-action span {
+	font-size: 12px;
+	text-transform: capitalize;
+}
+
+.comment-action a {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: transparent;
+}
+
+.comment-action {
+	display: flex;
+	border-radius: 5px;
+	padding: 0 5px;
+	gap: 5px;
+	align-items: center;
+}
+
+.like {
+	color: #2d86ff;
+}
+
+.heart {
+	color: #f34260;
+}
+
+.haha,
+.sad {
+	color: #facb57;
+}
+
+.mad {
+	color: rgb(233, 113, 15);
+}
+
+
+
+.comment-action:hover {
+	color: white;
+	background-color: var(--primaryColor);
+	cursor: pointer;
+}
+
+.react-action:hover .more-action {
+	display: flex;
+}
+
+.react-action-item {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.react-action-item:hover {
+	transition: .3s all ease-in-out;
+	transform: translateY(-10%);
+}
+
+.react-action-item img {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* notify */
+
+#notifyModal .modal-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	gap: 1.5rem;
+}
+
+#notifyModal .modal-body svg {
+	font-size: 10rem;
+}
+
+#notifyModal .modal-body p {
+	font-size: 20px;
+}
+
+#notifyModal .modal-footer {
+	justify-content: center;
+}
+
+#confirm-notify-btn {
+	font-size: 14px;
+	padding: 1rem 5rem;
+}
+
+#notifyModal #exampleModalToggleLabel {
+	font-size: 28px;
+}
+
+.success-notify {
+	color: var(--primaryColor);
+}
+
+.fail-notify {
+	color: var(--errorColor);
+}
+
+.fail-notify #confirm-notify-btn {
+	background: var(--errorColor);
+}
+
+#notifyModal .modal-header {
+	justify-content: center;
+}
+
+
+/*ChÃ¡Â»â€” Ã„â€˜ÃƒÂ­nh kÃƒÂ¨m file*/
+/* CSS cho mÃƒÂ n hÃƒÂ¬nh lÃ¡Â»â€ºn */
+.attachments {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.attachment {
+	flex: 0 0 calc(33.33% - 20px);
+	/* Ã„ÂÃ¡Â»Æ’ lÃ¡ÂºÂ¡i khoÃ¡ÂºÂ£ng cÃƒÂ¡ch 20px cho margin giÃ¡Â»Â¯a cÃƒÂ¡c item */
+	box-sizing: border-box;
+	padding: 10px;
+	text-align: center;
+	border-radius: 8px;
+	background-color: #f2f2f2;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.attachment:hover {
+	background-color: #e0e0e0;
+	/* color: white; */
+}
+
+.attachment-icon {
+	font-size: 20px;
+	margin-bottom: 5px;
+	display: block;
+}
+
+.attachment-name {
+	display: block;
+	margin-bottom: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.attachment-download {
+	text-decoration: none;
+	color: #007bff;
+	display: block;
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #007bff;
+	border-radius: 5px;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.attachment-download:hover {
+	background-color: #007bff;
+	color: #fff;
+}
+
+
+/**/
+#report-post-input {
+	width: 100%;
+	padding: 5px;
+	resize: none;
+	border: 1px solid #3333;
+	background-color: #eeeeee;
+	border-radius: 10px;
+}
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+	.attachment {
+		flex: 0 0 calc(50% - 20px);
+	
+	}
+}
+
+@media (max-width: 767px) {
+	.attachment {
+		flex: 0 0 calc(50% - 20px);
+	}
+}
