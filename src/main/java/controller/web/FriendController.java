@@ -19,6 +19,8 @@ public class FriendController extends HttpServlet {
 		List<NguoiDung> userlist = FS.getAllBanBeByID(iuserid);
 		int listlength = userlist.size();
 		int numpage = listlength / 8 + 1;
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 
 		request.setAttribute("type", "dsbb");
 		request.setAttribute("userlist", userlist);

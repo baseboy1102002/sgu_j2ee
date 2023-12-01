@@ -17,7 +17,7 @@ public class DAOService<T> {
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "amip");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "Ha145220!");
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
 		}

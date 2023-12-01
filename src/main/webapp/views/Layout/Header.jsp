@@ -57,10 +57,9 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<!-- Trang cá nhân -->
-								<a class="dropdown-item" href="/sgu_j2ee/views/Setting.jsp"">Cài
-									Đặt</a>
+								<a class="dropdown-item" href="/sgu_j2ee/profile?userID=${sessionScope.ID}">Trang Cá Nhân</a>
 								<!-- Cài Đặt -->
-								<a class="dropdown-item" href="/sgu_j2ee/views/Setting.jsp"">Cài
+								<a class="dropdown-item" href="/sgu_j2ee/views/Setting.jsp">Cài
 									Đặt</a>
 								<!-- Logout -->
 								<a class="dropdown-item" href="/sgu_j2ee/dang-xuat">Đăng

@@ -87,6 +87,7 @@
 
 	<!-- Footer Section Begin -->
 	<jsp:include page="Layout/Footer.jsp"></jsp:include>
+	<script src="${pageContext.request.contextPath}/resources/js/reloadAvartar_setting.js"></script>
 	<!-- Footer End -->
 
 </body>
