@@ -43,8 +43,9 @@ public class TuongTacBaiVietService extends DAOService<TuongTacBaiViet> {
 
 //	Cái này để lấy ra top 3 tương tác của bài viết
 	public List<TuongTacBaiViet> getTop3TuongTacBaiViet(int maBaiViet) {
-		String sql = "SELECT * FROM `tuongtacbaiviet` WHERE MaBaiViet = ? GROUP BY TrangThai ORDER BY COUNT(TrangThai) DESC LIMIT 3";
-		return query(sql, new TuongTacBaiVietMapper(), maBaiViet);
+		String sql = "SELECT tb.MaNguoiDung, tb.MaBaiViet, tb.NgayGioTuongTac, tb.TrangThai  FROM `tuongtacbaiviet` AS tb WHERE MaBaiViet = ? GROUP BY tb.TrangThai ORDER BY COUNT(tb.TrangThai) DESC LIMIT 3";
+		List<TuongTacBaiViet> tuongTacBaiViets = query(sql, new TuongTacBaiVietMapper(), maBaiViet);
+		return tuongTacBaiViets.isEmpty() ? null : tuongTacBaiViets;
 	}
 
 //	Cái này để lấy tương tác của người dùng cụ thể với một bài viết cụ thể

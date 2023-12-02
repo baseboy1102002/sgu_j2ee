@@ -16,8 +16,8 @@
 
 * {
     box-sizing: border-box !important;
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
 }
 
 html {
@@ -46,6 +46,7 @@ a[href] {
 }
 /*1 thông báo*/
 .noti-info-image img {
+	padding: 0px !important;
 	height: 60px !important;
 	width: 60px !important;
 	border: solid 1px !important;

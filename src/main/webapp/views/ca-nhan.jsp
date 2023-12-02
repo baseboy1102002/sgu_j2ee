@@ -100,12 +100,70 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="reportUserPopUp" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Báo cáo người
+						dùng</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body comment-pop-up-body">
 
+					<textarea id="report-user-input" name="reportUserInput" rows="5"
+						placeholder="Nhập lý do báo cáo">
+							
+					</textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary dismiss-btn"
+						data-bs-dismiss="modal">Hủy bỏ</button>
+					<button type="button" class="btn btn-primary"
+						id="submit-user-report-btn" data-this-user=${UserID
+						}
+						data-current-user=${sessionScope.ID} >Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="profile-page">
 		<div
 			class="profile-header-container container row justify-content-around p-4">
-			<div class="profile-placeholder col-3"></div>
+
+			<div
+				class="profile-placeholder col-3 d-flex align-items-end justify-content-start">
+				<c:if test="${cUID ne UserID}">
+				<c:if test="${isReported eq true}">
+					<button type="button" disabled class="button-message btn btn-primary col-6"
+						>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-exclamation-diamond-fill"
+							viewBox="0 0 16 16">
+  <path
+								d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+</svg>
+						Báo cáo
+					</button>
+				</c:if>
+				<c:if test="${isReported eq false}">
+					<button type="button" class="button-message btn btn-primary col-6"
+						id="btn-baocaoND" data-bs-toggle="modal"
+						data-bs-target="#reportUserPopUp">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-exclamation-diamond-fill"
+							viewBox="0 0 16 16">
+  <path
+								d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+</svg>
+						Báo cáo
+					</button>
+				</c:if>
+				</c:if>
+
+			</div>
 			<div
 				class="profile-header-user col-4 d-flex flex-wrap justify-content-center flex-column">
 				<div
@@ -116,8 +174,6 @@
 			</div>
 			<div
 				class="profile-header-actions col-4 d-flex align-items-end justify-content-end">
-
-
 
 				<c:choose>
 					<c:when test="${cUID eq UserID}">
@@ -155,7 +211,8 @@
 								class="profile-action-button btn btn-primary col-6"
 								onclick="handleOnClickAddFriend(this)"
 								data-button-type="thong-tin" data-this-user=${UserID
-								} data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
+								}
+								data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
 							<button type="button"
 								class="button-message btn btn-primary col-6">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -177,7 +234,7 @@
 		</div>
 		<div class="profile-content-container">
 			<div
-				class="profile-content-wrapper container flex-row d-flex justify-content-between p-0">
+				class="profile-content-wrapper container flex-row d-flex justify-content-between p-0 m-0">
 				<div class="profile-content-left container col-3 m-0 p-0">
 					<div
 						class="profile-introduction d-flex justify-content-center flex-wrap flex-column p-4">
@@ -187,11 +244,11 @@
 					</div>
 				</div>
 				<div
-					class="profile-content-right container col d-flex flex-wrap flex-column ms-4">
+					class="profile-content-right container col d-flex flex-wrap flex-column ms-4 p-0">
 					<c:if test="${postingDisplayString eq 'yes'}">
 						<div
-							class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4">
-							<div class="profile-post-posting col">
+							class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4 mb-5">
+							<div class="profile-post-posting col p-0">
 								<label for="inputPosting"
 									class="profile-post-label form-label fs-3 mb-4">Tạo bài
 									viết</label>
@@ -210,7 +267,7 @@
 
 						</div>
 					</c:if>
-					<div class="profile-posts col mt-5">
+					<div class="profile-posts col p-0">
 						<c:forEach var="baiVietView" items="${baiVietViews}">
 							<c:set var="baiVietView" value="${baiVietView}" scope="request" />
 

@@ -26,7 +26,7 @@ public NguoiDung mapRow(ResultSet rs) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
+
 	// TODO Auto-generated method stub
 	return null;
 }
