@@ -11,6 +11,7 @@ public class DBContext {
 	private final String userID = "root";
 	private final String password = "";
 
+
 	public Connection getConnection() throws Exception {
 		String url = "jdbc:mysql://" + serverName + ":" + portNumber + "/" + dbName;
 		Class.forName("com.mysql.cj.jdbc.Driver");

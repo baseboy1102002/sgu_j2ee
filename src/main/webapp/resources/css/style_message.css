@@ -147,6 +147,7 @@ body {
 
 .chatbox_header_info_wrapper:hover {
     background-color: var(--hover-background-color);
+    color: var(--black-color);
 }
 
 .chatbox_header_image {

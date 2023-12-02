@@ -19,11 +19,11 @@ public class CallVidController extends HttpServlet {
 		if(iuserid1<10) {
 			request.setAttribute("callerId", "user1");
 			request.setAttribute("calleeId", "user2");
-			request.setAttribute("token", "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLnBYTEtMUmhUcUY5eGNZUjkzZkk4VndwNXY5bFg4OC0xNzAwMTQxMjEyIiwiaXNzIjoiU0suMC5wWExLTFJoVHFGOXhjWVI5M2ZJOFZ3cDV2OWxYODgiLCJleHAiOjE3MDI3MzMyMTIsInVzZXJJZCI6InVzZXIxIn0.brP74DaAZKpKR08ngYA9gxexaTKLxW6JsqWoDw-yo_I");
+			request.setAttribute("token", "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLlJOdFNOQUtINnVkNUppME5zZlZRVTV4UFBsNTFvc2JtLTE3MDE0ODI5OTEiLCJpc3MiOiJTSy4wLlJOdFNOQUtINnVkNUppME5zZlZRVTV4UFBsNTFvc2JtIiwiZXhwIjoxNzA0MDc0OTkxLCJ1c2VySWQiOiJ1c2VyMSJ9.5AqaJE9mvQ3AqBQX8JR1VD5MApYRm7X3gKFRbfIR1vI");
 		} else {
 			request.setAttribute("callerId", "user2");
 			request.setAttribute("calleeId", "user1");
-			request.setAttribute("token", "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLnBYTEtMUmhUcUY5eGNZUjkzZkk4VndwNXY5bFg4OC0xNzAwMTQxMzY0IiwiaXNzIjoiU0suMC5wWExLTFJoVHFGOXhjWVI5M2ZJOFZ3cDV2OWxYODgiLCJleHAiOjE3MDI3MzMzNjQsInVzZXJJZCI6InVzZXIyIn0.cZ08gisPbnYgQHHmwsvP7c9nfK2Fo38te3-eqH0BpC8");
+			request.setAttribute("token", "eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLlJOdFNOQUtINnVkNUppME5zZlZRVTV4UFBsNTFvc2JtLTE3MDE0ODMwMDQiLCJpc3MiOiJTSy4wLlJOdFNOQUtINnVkNUppME5zZlZRVTV4UFBsNTFvc2JtIiwiZXhwIjoxNzA0MDc1MDA0LCJ1c2VySWQiOiJ1c2VyMiJ9.xFxh7B3Os6SfeEN08CdNyf2GlmIIakMOnoxaOcR0Uj8");
 		}
 		
 		request.getRequestDispatcher("/views/call.jsp").forward(request, response);

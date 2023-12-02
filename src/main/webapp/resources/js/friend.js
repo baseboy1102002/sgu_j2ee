@@ -1,32 +1,34 @@
 var currentPage = 1;
 
 function loadContent(page, userid) {
-	var select = document.getElementById('type');
-	var selectedValue = select.options[select.selectedIndex].value;
+    var select = document.getElementById('type');
+    var selectedValue = select.options[select.selectedIndex].value;
 
-	var searchInput = document.getElementById('search_input');
-	var searchInputValue = searchInput.value || "";
+    var searchInput = document.getElementById('search_input');
+    var searchInputValue = searchInput.value || "";
 
-	currentPage = page;
+    currentPage = page;
 
-	$.ajax({
-		url: "/sgu_j2ee/friendload",
-		type: "get",
-		data: {
-			type: selectedValue,
-			indexpage: page,
-			search: searchInputValue,
-			userid: userid
-		},
-		success: function(response) {
-			var content_listfriend = document.getElementById("content_listfriend");
-			content_listfriend.innerHTML = response;
-		},
-		error: function(xhr) {
-			alert(xhr);
-		}
-	});
+    $.ajax({
+        url: "/sgu_j2ee/friendload",
+        type: "get",
+        data: {
+            type: selectedValue,
+            indexpage: page,
+            search: searchInputValue,
+            userid: userid
+        },
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8", // Set UTF-8 here
+        success: function (response) {
+            var content_listfriend = document.getElementById("content_listfriend");
+            content_listfriend.innerHTML = response;
+        },
+        error: function (xhr) {
+            alert(xhr);
+        }
+    });
 }
+
 
 function nextClick(id) {
 	var listItems = document.getElementsByClassName("listfriend_item");

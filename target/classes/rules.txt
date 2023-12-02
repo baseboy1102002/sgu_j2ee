@@ -1,0 +1,4 @@
+Trạng thái trong bảng Thông Tin Kết Bạn
++ daketban -> 2 người đã kết bạn và chấp nhận 								Ngày 31/10
++ dangcho -> đã gửi lời mời nhưng chưa chấp nhận, đang chờ được chấp nhận	Ngày 31/10
++ chan -> người dùng chặn nhau												Ngày 31/10

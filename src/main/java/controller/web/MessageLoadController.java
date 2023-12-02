@@ -21,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 public class MessageLoadController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MessageService MS = new MessageService();
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		int userid1 = Integer.parseInt(request.getParameter("userid1"));
 		int userid2 = Integer.parseInt(request.getParameter("userid2"));
 		String type = request.getParameter("type");
