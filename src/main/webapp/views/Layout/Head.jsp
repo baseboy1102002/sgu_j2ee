@@ -31,5 +31,8 @@
 		href="${pageContext.request.contextPath}/resources/css/style.css"
 		type="text/css">
 	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/globalstyle.css"
+		type="text/css">
+	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/header.css"
 		type="text/css">

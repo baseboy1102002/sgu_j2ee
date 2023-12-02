@@ -102,12 +102,12 @@ ol {
 /*---------------------
   Search
 -----------------------*/
-.form-group.has-search {
+.search__bar {
 	position: relative;
 	padding: 25px 0 17px;
   }
   
-  .form-control-feedback {
+  .search__bar__icon {
 	position: absolute;
 	top: 45%;
 	left: 20px; /* Adjust this value to control the icon's position */
@@ -117,6 +117,7 @@ ol {
   }
   
   #SearchInput {
+	width: 100%;
 	padding-left: 50px; /* Adjust this value to make space for the icon */
 	height: 50px;
 	border-radius: 10px;

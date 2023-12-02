@@ -3,22 +3,14 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/ca-nhan.css' />">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/bootstrap/css/bootstrap.css' />">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/css/post-edit-form.css' />">
-
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/fontawesome6/css/all.min.css' />">
-
 <head>
-<meta charset="UTF-8">
-
-<title>Insert title here</title>
+	<jsp:include page="Layout/Head.jsp"></jsp:include>
+	<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/ca-nhan.css' />">
+	<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/post-edit-form.css' />">
+	<title>Insert title here</title>
 </head>
-<jsp:include page="Layout/Head.jsp"></jsp:include>
 
 <c:set var="cUID" value="${currentUID}" />
 <c:set var="UserID" value="${nguoiDung.maNguoiDung}" />
