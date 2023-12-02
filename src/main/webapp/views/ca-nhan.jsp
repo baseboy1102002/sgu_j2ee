@@ -247,7 +247,7 @@
 					class="profile-content-right container col d-flex flex-wrap flex-column ms-4 p-0">
 					<c:if test="${postingDisplayString eq 'yes'}">
 						<div
-							class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4 mb-5">
+							class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4 mb-4">
 							<div class="profile-post-posting col p-0">
 								<label for="inputPosting"
 									class="profile-post-label form-label fs-3 mb-4">Tạo bài

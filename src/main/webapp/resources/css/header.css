@@ -134,3 +134,7 @@
 	background-color: #53D068;
 	color:black;
 }
+
+a.dropdown-item {
+    padding: 8px 15px !important;
+}

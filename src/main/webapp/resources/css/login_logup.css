@@ -6,7 +6,7 @@
 .login {
 	padding-top: 130px;
 	padding-bottom: 120px;
-	background-color: #eeeeee;
+	background-color: #f1f6ff;
 	height: max-content;
 }
 .login .container {
@@ -116,7 +116,7 @@
 	color: white;
 }
 #signUpBtn {
-	background-color: #A3B18A;
+	background-color: #66ff8d;
 	color: #344E41;
 }
 #signUpBtn:hover {

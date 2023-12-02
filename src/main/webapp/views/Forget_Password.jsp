@@ -46,11 +46,6 @@
 								<button id="loginBtn" type="submit">Xác Nhận</button>
 							</div>
 
-							<div>
-								<a href="https://i.pinimg.com/736x/86/b2/cd/86b2cd76b0279353babf717fac80c180.jpg">
-									<button type="button" id="signUpBtn">Đã quên địa chỉ Email rồi? Ấn vào đây.</button>
-								</a>
-							</div>
 						</form>
 					</div>
 				</div>

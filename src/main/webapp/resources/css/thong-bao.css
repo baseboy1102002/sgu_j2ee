@@ -11,7 +11,7 @@
     --errorColor: rgba(238, 52, 37, 1);
     --warningColor: rgba(247, 188, 10, 1);
     --fadeBackground: rgba(26, 26, 26, .37);
-    --bodyBackground: #ebebeb;
+    --bodyBackground: #f1f6ff;
 }
 
 * {
@@ -98,4 +98,11 @@ a[href] {
 	background-color: black;
 	margin-top: 5px;
 	margin-bottom: 1em;
+}
+
+
+
+#SearchInput {
+    background-color: #EEEEE9 !important;
+
 }

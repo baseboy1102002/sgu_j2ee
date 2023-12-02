@@ -22,7 +22,7 @@
     <div class="content">
         <div class="sidebar">
             <div class="sidebar_header">
-                Friends
+                Bạn bè
             </div>
             <ul class="sidebar_listfriend">
             	<c:forEach items="${userlist}" var="user">
