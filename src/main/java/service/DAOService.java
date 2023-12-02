@@ -17,7 +17,7 @@ public class DAOService<T> {
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "amip");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "");
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
 		}
@@ -68,7 +68,31 @@ public class DAOService<T> {
 			closeConnection(conn, pstm, rs);
 		}
 	}
-
+	
+	
+//	Tạo để lấy danh sách bài viết ở trang chủ
+	public List<Integer> query2(String sql, Object...params) {
+		List<Integer> results = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			pstm = conn.prepareStatement(sql);
+			setParamaters(pstm, params);
+			rs = pstm.executeQuery();
+			while(rs.next()) {
+				results.add(rs.getInt("MaBaiViet"));
+			}
+			return results;
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return results;
+		} finally {
+			closeConnection(conn, pstm, rs);
+		}
+	}
+	
 	public Integer insert(String sql, Object...params) {
 		Connection conn = null;
 		PreparedStatement pstm = null;

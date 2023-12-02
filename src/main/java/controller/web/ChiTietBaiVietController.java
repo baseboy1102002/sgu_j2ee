@@ -74,7 +74,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String maBaiViet = request.getParameter("maBaiViet");
-		int maNguoiDung = 4;
+		int maNguoiDung = SessionManager.getID(request);
 
 
 
@@ -117,7 +117,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 			String noiDung = request.getParameter("noiDung");
 			int maBaiViet = Integer.parseInt(request.getParameter("maBaiViet"));
-			int maNguoiDung = 4;
+			int maNguoiDung = SessionManager.getID(request);
 			Date ngayGioBinhLuan = new Date();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.0");
 			SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
@@ -216,7 +216,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		}
 		case "react":{
 			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan"));
-			int maNguoiDung = 4; //Lấy session
+			int maNguoiDung = SessionManager.getID(request); //Lấy session
 			String trangThai = request.getParameter("trangThai");
 			Date ngayGioTuong = new Date();
 			TuongTacBinhLuan loginUserTuongTacBinhLuanBaiViet = tuongTacBinhLuanService.getUserTuongTacBinhLuan(maBinhLuan, maNguoiDung);
@@ -238,7 +238,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		}
 		case "deleteTuongBinhLuan":{
 			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan")) ;
-			int maNguoiDung = 4;
+			int maNguoiDung = SessionManager.getID(request);
 
 
 			tuongTacBinhLuanService.deleteTuongTacBinhLuan(maBinhLuan, maNguoiDung);
@@ -269,7 +269,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		case "commentReport":{
 			int maBinhLuan = Integer.parseInt(request.getParameter("maBinhLuan"));
 			String liDo = request.getParameter("liDo");
-			int maNguoiDung = 4;
+			int maNguoiDung = SessionManager.getID(request);
 			BaoCaoBinhLuanService baoCaoBinhLuanService = new BaoCaoBinhLuanService();
 			BaoCaoBinhLuan baoCaoBinhLuan = new BaoCaoBinhLuan(maNguoiDung, maBinhLuan, new Date(), liDo);
 			response.setContentType("UTF-8");

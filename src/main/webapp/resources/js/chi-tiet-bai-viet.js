@@ -303,7 +303,7 @@ $(document).ready(function() {
 					//Do Something
 					$("#reportCommentPopUp").modal('hide');
 					notify(true, "Hệ thống đã ghi nhận báo cáo")
-					$(".comment-record-item[data-id=" + commentId + "] .comment-record-title-right").remove()
+					
 				},
 				error: function(xhr) {
 					//Do Something to handle error

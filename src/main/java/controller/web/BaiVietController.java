@@ -124,7 +124,7 @@ public class BaiVietController extends HttpServlet {
 		}
 		case "report":{
 			BaoCaoBaiVietService baoCaoBaiVietService = new BaoCaoBaiVietService();
-			int maNguoiDung = 4;
+			int maNguoiDung = SessionManager.getID(request);
 			String liDo = request.getParameter("liDo");
 			int maBaiViet = Integer.parseInt( request.getParameter("maBaiViet"));
 			BaoCaoBaiviet baoCaoBaiviet = new BaoCaoBaiviet(maNguoiDung, maBaiViet, new Date(), liDo);

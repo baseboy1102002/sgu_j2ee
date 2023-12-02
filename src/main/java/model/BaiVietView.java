@@ -36,6 +36,7 @@ public class BaiVietView {
 		this.maNguoiDang = maNguoiDang;
 	}
 
+
 	public BaiViet getBaiViet() {
 		return baiViet;
 	}

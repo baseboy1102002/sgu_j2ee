@@ -57,4 +57,16 @@ public class BaiVietService extends DAOService<BaiViet> {
 		return query(sql, new BaiVietMapper(), UserID);
 
 	}
+	
+	public List<Integer> getBaiVietForHomePage(int logginUserID) {
+		String sql = "SELECT DISTINCT bv.MaBaiViet\r\n"
+				+ "FROM baiviet bv\r\n"
+				+ "JOIN nguoidung nd ON bv.MaNguoiDung = nd.MaNguoiDung\r\n"
+				+ "JOIN thongtinketban ttkb ON (nd.MaNguoiDung = ttkb.MaNguoiDung1 OR nd.MaNguoiDung = ttkb.MaNguoiDung2)\r\n"
+				+ "WHERE (ttkb.MaNguoiDung1 = ? OR ttkb.MaNguoiDung2 = ?) \r\n"
+				+ "  AND ttkb.TrangThai = 'daketban'\r\n"
+				+ "  AND bv.MaNguoiDung != ?; ";
+		return query2(sql, logginUserID,logginUserID,logginUserID);
+	}
+	
 }

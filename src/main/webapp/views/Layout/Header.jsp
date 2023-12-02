@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-4">
 				<div class="header__logo">
-					<a class="logo" href="/sgu_j2ee/views/Home.jsp"> <img class="logo_img"
+					<a class="logo" href="/sgu_j2ee/trang-chu"> <img class="logo_img"
 						src="${pageContext.request.contextPath}/assets/images/logo.png"
 						alt="">
 					</a>

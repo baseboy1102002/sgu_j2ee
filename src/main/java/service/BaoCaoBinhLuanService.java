@@ -10,6 +10,7 @@ public class BaoCaoBinhLuanService extends DAOService<BaoCaoBinhLuan> {
 	}
 
 	public Integer insert(BaoCaoBinhLuan baoCaoBinhLuan) {
+
 		String sql="insert into baocaobinhluan (MaNguoiDung, MaBinhLuan,NgayGioBaoCao,LiDo)"
 				+ "values (?,?,?,?)";
 		return insert(sql, baoCaoBinhLuan.getMaNguoiDung(),baoCaoBinhLuan.getMaBinhLuan(),baoCaoBinhLuan.getNgayGioBaoCao(),baoCaoBinhLuan.getLiDo());

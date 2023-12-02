@@ -275,7 +275,6 @@ $(document).ready(function() {
 					//Do Something
 					$("#reportPostPopUp").modal('hide');
 					notify(true, "Hệ thống đã ghi nhận báo cáo")
-					$(".bai-viet-content-wrapper[data-post-id=" + postId + "] .profile-right").remove()
 				},
 				error: function(xhr) {
 					//Do Something to handle error

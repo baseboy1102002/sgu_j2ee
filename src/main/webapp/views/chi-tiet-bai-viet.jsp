@@ -30,7 +30,7 @@
 
 </head>
 <body>
-<jsp:include page="Layout/Header.jsp"></jsp:include>
+	<jsp:include page="Layout/Header.jsp"></jsp:include>
 	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
 		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
@@ -210,179 +210,186 @@
 		</div>
 	</div>
 
-	<div class="container d-flex flex-column chi-tiet-wrapper">
-		<div>Header</div>
+	<section class="">
 
-		<div class="d-flex flex-column content ">
+		<div class="container d-flex flex-column chi-tiet-wrapper">
 
-			<c:set var="baiVietView" value="${baiVietView}" scope="request" />
-			<jsp:include page="../components/bai-viet-component.jsp">
-				<jsp:param value="true" name="isDetailMode" />
-			</jsp:include>
+			<div class="d-flex flex-column content ">
+
+				<c:set var="baiVietView" value="${baiVietView}" scope="request" />
+				<jsp:include page="../components/bai-viet-component.jsp">
+					<jsp:param value="true" name="isDetailMode" />
+				</jsp:include>
 
 
-			<div class="comment-wrapper"
-				data-post-id="${baiVietView.baiViet.maBaiViet }">
-				<div class="comment-form-wrapper">
-					<div class="comment-form">
-						<i class="fa-solid fa-comment" id="comment-icon"></i> <input
-							placeholder="Nhập bình luận..." id="comment-input"
-							name="comment-input" /> <label id="image-comment-label"
-							for="imageCommentFile"> <i class="fa-solid fa-image"></i>
-							<input type="file" id="imageCommentFile" style="display: none"
-							name="imageCommentFile"
-							accept="image/gif,image/jpeg,image/jpg,image/png" multiple=""
-							data-original-title="upload photos">
-						</label>
-						<button id="submit-comment-btn" disabled>
-							<i class="fa-solid fa-paper-plane"></i>
-						</button>
+				<div class="comment-wrapper"
+					data-post-id="${baiVietView.baiViet.maBaiViet }">
+					<div class="comment-form-wrapper">
+						<div class="comment-form">
+							<i class="fa-solid fa-comment" id="comment-icon"></i> <input
+								placeholder="Nhập bình luận..." id="comment-input"
+								name="comment-input" /> <label id="image-comment-label"
+								for="imageCommentFile"> <i class="fa-solid fa-image"></i>
+								<input type="file" id="imageCommentFile" style="display: none"
+								name="imageCommentFile"
+								accept="image/gif,image/jpeg,image/jpg,image/png" multiple=""
+								data-original-title="upload photos">
+							</label>
+							<button id="submit-comment-btn" disabled>
+								<i class="fa-solid fa-paper-plane"></i>
+							</button>
+						</div>
+						<div class="comment-image-attach" id="comment-image-attach">
+							<img id="comment-show-img" src="" /> <span
+								id="comment-file-name"></span>
+							<button id="comment-delete-file">
+								<i class="fa-solid fa-circle-xmark"></i>
+							</button>
+						</div>
 					</div>
-					<div class="comment-image-attach" id="comment-image-attach">
-						<img id="comment-show-img" src="" /> <span id="comment-file-name"></span>
-						<button id="comment-delete-file">
-							<i class="fa-solid fa-circle-xmark"></i>
-						</button>
-					</div>
-				</div>
-				<div class="comment-record-wrapper" id="comment-record-wrapper">
-					<c:forEach var="item" items="${binhLuanBaiViewList}">
+					<div class="comment-record-wrapper" id="comment-record-wrapper">
+						<c:forEach var="item" items="${binhLuanBaiViewList}">
 
-						<div class="comment-record-item"
-							data-id=${item.binhLuanBaiViet.maBinhLuan }>
-							<a href="/sgu_j2ee/profile?userID=${item.maNguoiDang}"><img
-								class="comment-record-profile-img"
-								src="/sgu_j2ee/files/${item.anhDaiDienNguoiDang}" /></a>
+							<div class="comment-record-item"
+								data-id=${item.binhLuanBaiViet.maBinhLuan }>
+								<a href="/sgu_j2ee/profile?userID=${item.maNguoiDang}"><img
+									class="comment-record-profile-img"
+									src="/sgu_j2ee/files/${item.anhDaiDienNguoiDang}" /></a>
 
 
-							<div class="comment-record-right">
-								<div class="comment-record-content">
-									<div class="comment-record-title">
-										<div class="comment-record-title-content">
-											<h5>${item.hoVaTenNguoiDang }</h5>
-											<span> ${item.binhLuanBaiViet.ngayGioBinhLuan } </span>
-										</div>
-										<div class="comment-record-title-right"
-											onclick="handleShowMore(this)">
-											<i class="fa fa-ellipsis-h"></i>
-											<div class="comment-more-hover">
-
-												<button type="button" class="btn edit-comment-btn  "
-													data-bs-toggle="modal" data-bs-target="#updateCommentPopup"
-													onclick="handleClickEditComment(this)">
-													<i class="fa fa-cog" aria-hidden="true"></i><span>
-														Chỉnh sửa </span>
-												</button>
-												<button type="button" class="btn delete-comment-btn "
-													data-bs-toggle="modal"
-													data-bs-target="#deleteCommentConfirm"
-													onclick="handleSetId(this)">
-													<i class="fa fa-trash" aria-hidden="true"></i> <span>
-														Xóa </span>
-												</button>
-												<button type="button"
-													class="btn profile-item report-post-btn"
-													data-bs-toggle="modal" data-bs-target="#reportCommentPopUp"
-													onclick="handleCommentReport(this)">
-													<i class="fa-solid fa-flag"></i> <span> Báo cáo </span>
-												</button>
+								<div class="comment-record-right">
+									<div class="comment-record-content">
+										<div class="comment-record-title">
+											<div class="comment-record-title-content">
+												<h5>${item.hoVaTenNguoiDang }</h5>
+												<span> ${item.binhLuanBaiViet.ngayGioBinhLuan } </span>
 											</div>
-
-										</div>
-									</div>
-									<p>${item.binhLuanBaiViet.noiDung }</p>
-									<div class="comment-record-react">
-										<div class="react-data">
-											<c:forEach var="tuongTacBinhLuan"
-												items="${item.top3TuongTac }">
-												<div class="react-data-item">
-													<img alt=""
-														src="<c:url value='/assets/images/${tuongTacBinhLuan.trangThai }.png' />">
+											<div class="comment-record-title-right"
+												onclick="handleShowMore(this)">
+												<i class="fa fa-ellipsis-h"></i>
+												<div class="comment-more-hover">
+													<c:if test="${sessionScope.ID eq baiVietView.maNguoiDang }">
+														<button type="button" class="btn edit-comment-btn  "
+															data-bs-toggle="modal"
+															data-bs-target="#updateCommentPopup"
+															onclick="handleClickEditComment(this)">
+															<i class="fa fa-cog" aria-hidden="true"></i><span>
+																Chỉnh sửa </span>
+														</button>
+														<button type="button" class="btn delete-comment-btn "
+															data-bs-toggle="modal"
+															data-bs-target="#deleteCommentConfirm"
+															onclick="handleSetId(this)">
+															<i class="fa fa-trash" aria-hidden="true"></i> <span>
+																Xóa </span>
+														</button>
+													</c:if>
+													<button type="button"
+														class="btn profile-item report-post-btn"
+														data-bs-toggle="modal"
+														data-bs-target="#reportCommentPopUp"
+														onclick="handleCommentReport(this)">
+														<i class="fa-solid fa-flag"></i> <span> Báo cáo </span>
+													</button>
 												</div>
 
-											</c:forEach>
+											</div>
+										</div>
+										<p>${item.binhLuanBaiViet.noiDung }</p>
+										<div class="comment-record-react">
+											<div class="react-data">
+												<c:forEach var="tuongTacBinhLuan"
+													items="${item.top3TuongTac }">
+													<div class="react-data-item">
+														<img alt=""
+															src="<c:url value='/assets/images/${tuongTacBinhLuan.trangThai }.png' />">
+													</div>
 
-											<span> <c:if test="${item.tongLuotTuongTac > 0}">
+												</c:forEach>
+
+												<span> <c:if test="${item.tongLuotTuongTac > 0}">
        								 ${item.tongLuotTuongTac}
    												 </c:if>
-											</span>
+												</span>
 
+											</div>
+											<button class="comment-record-react-action">
+												<div
+													class=" comment-record-react-action-btn ${empty item.loginUserTuongTacBinhLuan ? '' : 'active' } "
+													data-active=${empty item.loginUserTuongTacBinhLuan ? false : true }
+													onclick="handleOnClickReactComment(this)">
+													<c:if test="${empty item.loginUserTuongTacBinhLuan }">
+
+														<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+														<span>Thích</span>
+													</c:if>
+
+													<c:if test="${!empty item.loginUserTuongTacBinhLuan }">
+
+
+														<img alt=""
+															src="<c:url value='/assets/images/${item.loginUserTuongTacBinhLuan.trangThai }.png' />">
+														<span class="${item.loginUserTuongTacBinhLuan.trangThai }">${item.loginUserTuongTacBinhLuan.trangThai }</span>
+
+													</c:if>
+
+												</div>
+
+												<div class="comment-record-more-action">
+													<div class="comment-record-react-item"
+														data-trang-thai="like" onclick="reactHoverComment(this)">
+														<img alt=""
+															src="<c:url value='/assets/images/like.png' />">
+													</div>
+													<div class="comment-record-react-item"
+														data-trang-thai="heart" onclick="reactHoverComment(this)">
+														<img alt=""
+															src="<c:url value='/assets/images/heart.png' />">
+													</div>
+													<div class="comment-record-react-item"
+														data-trang-thai="sad" onclick="reactHoverComment(this)">
+														<img alt="" src="<c:url value='/assets/images/sad.png' />">
+													</div>
+													<div class="comment-record-react-item"
+														data-trang-thai="haha" onclick="reactHoverComment(this)">
+														<img alt=""
+															src="<c:url value='/assets/images/haha.png' />">
+													</div>
+													<div class="comment-record-react-item"
+														data-trang-thai="mad" onclick="reactHoverComment(this)">
+														<img alt="" src="<c:url value='/assets/images/mad.png' />">
+													</div>
+												</div>
+											</button>
 										</div>
-										<button class="comment-record-react-action">
-											<div
-												class=" comment-record-react-action-btn ${empty item.loginUserTuongTacBinhLuan ? '' : 'active' } "
-												data-active=${empty item.loginUserTuongTacBinhLuan ? false : true }
-												onclick="handleOnClickReactComment(this)">
-												<c:if test="${empty item.loginUserTuongTacBinhLuan }">
-
-													<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-													<span>Thích</span>
-												</c:if>
-
-												<c:if test="${!empty item.loginUserTuongTacBinhLuan }">
-
-
-													<img alt=""
-														src="<c:url value='/assets/images/${item.loginUserTuongTacBinhLuan.trangThai }.png' />">
-													<span class="${item.loginUserTuongTacBinhLuan.trangThai }">${item.loginUserTuongTacBinhLuan.trangThai }</span>
-
-												</c:if>
-
-											</div>
-
-											<div class="comment-record-more-action">
-												<div class="comment-record-react-item"
-													data-trang-thai="like" onclick="reactHoverComment(this)">
-													<img alt="" src="<c:url value='/assets/images/like.png' />">
-												</div>
-												<div class="comment-record-react-item"
-													data-trang-thai="heart" onclick="reactHoverComment(this)">
-													<img alt=""
-														src="<c:url value='/assets/images/heart.png' />">
-												</div>
-												<div class="comment-record-react-item" data-trang-thai="sad"
-													onclick="reactHoverComment(this)">
-													<img alt="" src="<c:url value='/assets/images/sad.png' />">
-												</div>
-												<div class="comment-record-react-item"
-													data-trang-thai="haha" onclick="reactHoverComment(this)">
-													<img alt="" src="<c:url value='/assets/images/haha.png' />">
-												</div>
-												<div class="comment-record-react-item" data-trang-thai="mad"
-													onclick="reactHoverComment(this)">
-													<img alt="" src="<c:url value='/assets/images/mad.png' />">
-												</div>
-											</div>
-										</button>
 									</div>
+									<c:choose>
+										<c:when test="${not empty item.binhLuanBaiViet.anhBinhLuan}">
+											<img class="comment-record-img"
+												src="/sgu_j2ee/files/${item.binhLuanBaiViet.anhBinhLuan}" />
+										</c:when>
+										<c:otherwise>
+											<img class="comment-record-img" src="" />
+										</c:otherwise>
+									</c:choose>
+
 								</div>
-								<c:choose>
-									<c:when test="${not empty item.binhLuanBaiViet.anhBinhLuan}">
-										<img class="comment-record-img"
-											src="/sgu_j2ee/files/${item.binhLuanBaiViet.anhBinhLuan}" />
-									</c:when>
-									<c:otherwise>
-										<img class="comment-record-img" src="" />
-									</c:otherwise>
-								</c:choose>
-
 							</div>
-						</div>
 
-					</c:forEach>
+						</c:forEach>
 
+					</div>
 				</div>
+
 			</div>
 
+
+
+
+
 		</div>
-
-
-
-
-
-	</div>
-
-<jsp:include page="Layout/Footer.jsp"></jsp:include>
+	</section>
+	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="<c:url value='/bootstrap/js/bootstrap.min.js' />"></script>
 

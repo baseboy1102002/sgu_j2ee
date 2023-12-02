@@ -436,3 +436,13 @@ img.comment-record-img {
 #loadingModal .modal-content {
     background: transparent;
 }
+
+/*Chi tiet bai viet wrapper*/
+
+section{
+	background-color: var(--bodyBackground);
+}
+
+.chi-tiet-wrapper{
+	padding-top: 100px;
+}

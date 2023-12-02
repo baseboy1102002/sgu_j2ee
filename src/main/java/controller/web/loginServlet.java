@@ -71,7 +71,8 @@ public class loginServlet extends HttpServlet {
 						return;
 					}
 					if (SessionManager.getLoaiTaiKhoan(request).equals("user")) {
-						response.sendRedirect(request.getContextPath() + "/views/Home.jsp");
+						
+						response.sendRedirect(request.getContextPath() + "/trang-chu");
 						return;
 					}
 				}

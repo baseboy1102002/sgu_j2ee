@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import controller.web.SessionManager;
 import model.BaiViet;
 import model.BaiVietView;
 import model.FileBaiViet;
@@ -44,7 +45,6 @@ public class PostApi extends HttpServlet {
 		baiVietView.setFileDinhKems(fileDinhKems);
 
 		String responseJson = new Gson().toJson(baiVietView);
-		System.out.println(responseJson);
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 		resp.getWriter().write(responseJson);
@@ -55,7 +55,7 @@ public class PostApi extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		BaiViet baiviet = new BaiViet();
 		baiviet.setNoiDung(req.getParameter("NoiDung"));
-		baiviet.setMaNguoiDung(4);
+		baiviet.setMaNguoiDung(SessionManager.getID(req));
 		baiviet.setTrangThai("yes");
 		baiviet.setNgayDang(new Date());
 		int postId = baiVietService.saveBaiViet(baiviet);
@@ -80,7 +80,7 @@ public class PostApi extends HttpServlet {
 			 jsonMaFile.forEach(e-> ListMaFile.add(e.getAsInt()));
 			 List<String> ListTenFile = new ArrayList<>();
 			 jsonTenFile.forEach(e-> ListTenFile.add(e.getAsString()));
-			 if (fileBaiVietService.deleteFileBaiViet(ListMaFile, ListTenFile, req));
+			 fileBaiVietService.deleteFileBaiViet(ListMaFile, ListTenFile, req);
 			 baiVietService.updateBaiViet(NoiDung, MaBaiViet);
 		 } else {
 			 baiVietService.updateBaiViet(NoiDung, MaBaiViet);

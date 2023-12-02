@@ -2,7 +2,8 @@
 <%@ page pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
-<c:set var="anhDaiDienNguoiDung" value="${baiVietView.anhDaiDienNguoiDang }"/>
+<c:set var="anhDaiDienNguoiDung"
+	value="${baiVietView.anhDaiDienNguoiDang }" />
 
 
 <div class="d-flex flex-column  bai-viet-content-wrapper"
@@ -10,8 +11,9 @@
 	data-is-detail-mode=${param.isDetailMode } data-user-login="4">
 	<div class=" d-flex justify-content-between profile-wrapper">
 		<div class="d-flex profile-left">
-			<a href="/sgu_j2ee/profile?userID=${baiVietView.maNguoiDang}" class="profile-img">
-				<img src="/sgu_j2ee/files/${anhDaiDienNguoiDung}" alt="" />
+			<a href="/sgu_j2ee/profile?userID=${baiVietView.maNguoiDang}"
+				class="profile-img"> <img
+				src="/sgu_j2ee/files/${anhDaiDienNguoiDung}" alt="" />
 			</a>
 			<div class="profile-info">
 				<h1>${baiVietView.hoVaTenNguoiDang}</h1>
@@ -24,20 +26,23 @@
 			<i class="fa fa-ellipsis-h"></i>
 			<div class="profile-more-hover">
 
-				<button type="button" class="btn profile-item edit-post-btn"
-				onclick="editPost(this)">
-					<i class="fa fa-cog" aria-hidden="true"></i><span> Chỉnh sửa
-					</span>
-				</button>
-				<button type="button" class="btn profile-item delete-post-btn"
-					data-bs-toggle="modal" data-bs-target="#deletePostConfirm"
-					onclick="onPostDeleteClick(this)">
-					<i class="fa fa-trash" aria-hidden="true"></i> <span> Xóa </span>
-				</button>
+				<c:if test="${sessionScope.ID eq baiVietView.maNguoiDang }">
+					<button type="button" class="btn profile-item edit-post-btn"
+						onclick="editPost(this)">
+						<i class="fa fa-cog" aria-hidden="true"></i><span> Chỉnh
+							sửa </span>
+					</button>
+					<button type="button" class="btn profile-item delete-post-btn"
+						data-bs-toggle="modal" data-bs-target="#deletePostConfirm"
+						onclick="onPostDeleteClick(this)">
+						<i class="fa fa-trash" aria-hidden="true"></i> <span> Xóa </span>
+					</button>
+				</c:if>
+
 				<button type="button" class="btn profile-item report-post-btn"
-					data-bs-toggle="modal" data-bs-target="#reportPostPopUp" onclick="handleReport(this)">
-					<i class="fa-solid fa-flag"></i>
-					<span> Báo cáo </span>
+					data-bs-toggle="modal" data-bs-target="#reportPostPopUp"
+					onclick="handleReport(this)">
+					<i class="fa-solid fa-flag"></i> <span> Báo cáo </span>
 				</button>
 			</div>
 		</div>
@@ -173,16 +178,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="comment-action">
-				<c:if test="${!param.isDetailMode }">
-					<a
-						href="/sgu_j2ee/chitietbaiviet?maBaiViet=${baiVietView.baiViet.maBaiViet }"></a>
-				</c:if>
-				<i class="fa fa-comment" aria-hidden="true"></i> <span>Bình
-					luận</span>
-			</div>
+
+			<c:if test="${!param.isDetailMode }">
+				<a class="comment-action"
+					href="/sgu_j2ee/chitietbaiviet?maBaiViet=${baiVietView.baiViet.maBaiViet }">
+					<i class="fa fa-comment" aria-hidden="true"></i> <span>Bình
+						luận</span>
+				</a>
+			</c:if>
+			<c:if test="${param.isDetailMode }">
+				<div class="comment-action">
+					<i class="fa fa-comment" aria-hidden="true"></i> <span>Bình
+						luận</span>
+				</div>
+			</c:if>
+
 		</div>
 
 	</div>
-
 </div>
