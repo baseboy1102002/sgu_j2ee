@@ -101,8 +101,8 @@
 	
 	<jsp:include page="Layout/Header.jsp"></jsp:include>
 
-	<div class="row" id="search_page">
-		<div class="col-xl-2">
+	<div class="row" id="search_page" style="margin-top: 100px; background-color: #eee; ">
+		<div class="col-xm-2 col-lg-2 col-xl-2">
 			<div id="sp_container_left">
 				<div class="sp_container_left_header">
 					<h2>Kết quả tìm kiếm</h2>
@@ -158,11 +158,11 @@
 				</ul>
 			</div>
 		</div>
-		<div class="col-xl-10">
+		<div class="col-xm-10 col-lg-10 col-xl-10">
 			<div id="sp_container_right">
-				<div id="sp_all" class="flex-column">
+				<div id="sp_all" class="flex-column" style="height: 100vh">
 					<c:if test = "${users == null && posts == null}">
-						Khong co ket qua tim kiem<p>
+						<div>Khong co ket qua tim kiem</div>
 					</c:if>
 					<c:if test = "${users != null}">
 						<div class="sp_all_user">
@@ -172,13 +172,16 @@
 					<c:forEach items="${users}" var="user">
 				         <div class="sp_user_info row">
 							<div class="col-sm-8">
-								<a href="/sgu_j2ee/profile?userID=${user.getMaNguoiDung() }">
-								<i class="fa-solid fa-user"></i>
+								<a href="/sgu_j2ee/profile?userID=${user.getMaNguoiDung() }" style="color: #000">
+								<!-- <i class="fa-solid fa-user"></i> -->
+								<img alt="" src="/sgu_j2ee/files/${user.getHinhDaiDien() }" width="40" style="border-radius: 50%; margin-right: 10px;">
 								<span>${user.getHoVaTen()}</span>													
 								</a>
 							</div>
 							<div class="col-sm-4">
-								<button>Thêm bạn bè</button>
+								
+								<button class="add-friend" data-set="${user.getMaNguoiDung()}" onclick="addFriend('${pageContext.request.contextPath}/search/add-friend?friendId=${user.getMaNguoiDung()}', '${user.getMaNguoiDung()}')">Thêm bạn bè</button>								
+								
 							</div>
 						</div>
 				    </c:forEach>
@@ -200,6 +203,18 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		async function addFriend(url, id) {
+		 	const response = await fetch(url);
+			const buttons = document.querySelectorAll(".add-friend")
+			for(let i of buttons){
+				if(i.getAttribute("data-set") == id){
+					i.innerHTML = "Đã gửi yêu cầu"
+					i.style.backgroundColor = "#ccc"
+				}
+			}
+		}
+	</script>
 	<jsp:include page="Layout/Footer.jsp"></jsp:include>
 
 	<script type="text/javascript"
