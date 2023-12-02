@@ -234,7 +234,7 @@
 		</div>
 		<div class="profile-content-container">
 			<div
-				class="profile-content-wrapper container flex-row d-flex justify-content-between p-0">
+				class="profile-content-wrapper container flex-row d-flex justify-content-between p-0 m-0">
 				<div class="profile-content-left container col-3 m-0 p-0">
 					<div
 						class="profile-introduction d-flex justify-content-center flex-wrap flex-column p-4">
@@ -244,11 +244,11 @@
 					</div>
 				</div>
 				<div
-					class="profile-content-right container col d-flex flex-wrap flex-column ms-4">
+					class="profile-content-right container col d-flex flex-wrap flex-column ms-4 p-0">
 					<c:if test="${postingDisplayString eq 'yes'}">
 						<div
 							class="profile-create-post d-flex flex-column justify-content-end flex-wrap col p-4 mb-5">
-							<div class="profile-post-posting col">
+							<div class="profile-post-posting col p-0">
 								<label for="inputPosting"
 									class="profile-post-label form-label fs-3 mb-4">Tạo bài
 									viết</label>
@@ -267,7 +267,7 @@
 
 						</div>
 					</c:if>
-					<div class="profile-posts col">
+					<div class="profile-posts col p-0">
 						<c:forEach var="baiVietView" items="${baiVietViews}">
 							<c:set var="baiVietView" value="${baiVietView}" scope="request" />
 

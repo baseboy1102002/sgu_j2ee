@@ -56,7 +56,7 @@ function logReportUserInput() {
 			NoiDung: reportUserInputValue
 		},
 		success: function(response) {
-			
+			$('#btn-baocaoND').remove()
 		},
 		error: function(error){
 			console.error("Error adding baocaonguoidung:", error);
