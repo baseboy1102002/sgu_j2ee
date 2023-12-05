@@ -1,5 +1,6 @@
 package controller.web;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import service.TuongTacBinhLuanService;
 /**
  * Servlet implementation class SearchController
  */
-@WebServlet("/search")
+@WebServlet({"/search", "/search/add-friend"})
 public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BaiVietService baiVietService = new BaiVietService();
@@ -60,8 +61,8 @@ public class SearchServlet extends HttpServlet {
 
 		FileBaiVietService fileBaiVietService = new FileBaiVietService();
 		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(maBaiViet);
-		List<FileBaiViet> fileHinhAnhs = new ArrayList<FileBaiViet>();
-		List<FileBaiViet> fileDinhKems = new ArrayList<FileBaiViet>();
+		List<FileBaiViet> fileHinhAnhs = new ArrayList<>();
+		List<FileBaiViet> fileDinhKems = new ArrayList<>();
 		for (FileBaiViet fileBaiViet : fileBaiViets) {
 			if (fileBaiViet.getLoaiFile().equals("Anh")) {
 				fileHinhAnhs.add(fileBaiViet);
@@ -69,15 +70,15 @@ public class SearchServlet extends HttpServlet {
 				fileDinhKems.add(fileBaiViet);
 			}
 		}
-		System.out.println(baiViet.getMaNguoiDung());
-		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
 		
+		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
+
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 		int maNguoiDang = nguoiDang.getMaNguoiDung();
+
 		BaiVietView baiVietView = new BaiVietView(baiViet, loginUserTuongTacBaiViet, fileHinhAnhs, fileDinhKems,
 				top3TuongTacBaiViets, binhLuanCount, tongLuotTuongTac, maNguoiDang, anhDaiDienNguoiDang, hoVaTenNguoiDang);
-
 
 		return baiVietView;
 
@@ -87,25 +88,35 @@ public class SearchServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String keySearch = request.getParameter("keySearch");
 		String context = request.getParameter("type");
+		String myId = String.valueOf(SessionManager.getID(request));
+		
+		// add friend
+		Boolean isBoolean = request.getRequestURL().toString().contains("add-friend");
+		String friendId = request.getParameter("friendId");
+		if(isBoolean) {
+			searchService.addFriend(myId, friendId);
+		}
+		
+		// search
 		if(keySearch != null && !keySearch.equalsIgnoreCase("")) {
 			if(context != null && context.equalsIgnoreCase("users")) {
-				List<NguoiDung> users = searchService.findUsers(keySearch, 1);
+				List<NguoiDung> users = searchService.findUsers(keySearch, myId);
 				request.setAttribute("users", users.isEmpty() ? null : users);
 			} else if(context != null && context.equalsIgnoreCase("posts")) {
 				List<BaiViet> baiViets = searchService.findPosts(keySearch);
 				List<BaiVietView> baiVietViews = new ArrayList<BaiVietView>();
 				for(BaiViet i : baiViets) {
-					baiVietViews.add(getDataBaiVietForView(i.getMaBaiViet(), 4));
+					baiVietViews.add(getDataBaiVietForView(i.getMaBaiViet(), Integer.valueOf(myId)));
 				}
 				request.setAttribute("posts", baiVietViews.isEmpty() ? null : baiVietViews);
 			} else {
-				List<NguoiDung> users = searchService.findUsers(keySearch, 4);
+				List<NguoiDung> users = searchService.findUsers(keySearch, myId);
 				request.setAttribute("users", users.isEmpty() ? null : users);
 				
 				List<BaiViet> baiViets = searchService.findPosts(keySearch);
 				List<BaiVietView> baiVietViews = new ArrayList<BaiVietView>();
 				for(BaiViet i : baiViets) {
-					baiVietViews.add(getDataBaiVietForView(i.getMaBaiViet(), 4));
+					baiVietViews.add(getDataBaiVietForView(i.getMaBaiViet(), Integer.valueOf(myId)));
 				}
 				request.setAttribute("posts", baiVietViews.isEmpty() ? null : baiVietViews);
 			}			
@@ -120,7 +131,7 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doGet(request, response);			
 	}
 
 }
