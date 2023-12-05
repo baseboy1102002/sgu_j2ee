@@ -2,14 +2,12 @@ package service;
 
 import java.util.List;
 
-import model.BaoCaoBinhLuan;
 import model.BaoCaoNguoiDung;
 import modelMapper.BaoCaoNguoiDungMapper;
-import modelMapper.rowMapper;
 
 public class BaoCaoNguoiDungService extends DAOService<BaoCaoNguoiDung>{
 	public BaoCaoNguoiDungService() {
-		
+
 	}
 	public Integer insert(BaoCaoNguoiDung baoCaoNguoiDungo) {
 		String sql="insert into baocaonguoidung (MaNguoiDungBaoCao, MaNguoiDungBiBaoCao, NgayGioBaoCao, LiDo)"

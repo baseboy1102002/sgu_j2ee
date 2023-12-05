@@ -1,12 +1,11 @@
 package service;
 
-import model.BaoCaoBaiviet;
 import model.BaoCaoBinhLuan;
 
 public class BaoCaoBinhLuanService extends DAOService<BaoCaoBinhLuan> {
-	
+
 	public BaoCaoBinhLuanService () {
-		
+
 	}
 
 	public Integer insert(BaoCaoBinhLuan baoCaoBinhLuan) {
@@ -15,5 +14,5 @@ public class BaoCaoBinhLuanService extends DAOService<BaoCaoBinhLuan> {
 				+ "values (?,?,?,?)";
 		return insert(sql, baoCaoBinhLuan.getMaNguoiDung(),baoCaoBinhLuan.getMaBinhLuan(),baoCaoBinhLuan.getNgayGioBaoCao(),baoCaoBinhLuan.getLiDo());
 	}
-	
+
 }

@@ -9,8 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 import DBContext.DBContext;
-
-import model.*;
+import model.BaoCaoBaiviet;
+import model.BaoCaoBinhLuan;
+import model.BaoCaoNguoiDung;
+import model.QuanLyBaiViet;
+import model.QuanLyBinhLuan;
+import model.QuanLyNguoiDung;
 
 public class AdminService {
 	private Connection conn = null;
@@ -41,7 +45,7 @@ public class AdminService {
 		}
 		return baocaobaivietList;
 	}
-	
+
 	public List<BaoCaoNguoiDung> getAllBaoCaoNguoiDung() {
 		List<BaoCaoNguoiDung> baocaonguoidungList = new ArrayList<>();
 		try {
@@ -65,7 +69,7 @@ public class AdminService {
 		}
 		return baocaonguoidungList;
 	}
-	
+
 	public List<BaoCaoBinhLuan> getAllBaoCaoBinhLuan() {
 		List<BaoCaoBinhLuan> baocaobinhluanList = new ArrayList<>();
 		try {
@@ -89,7 +93,7 @@ public class AdminService {
 		}
 		return baocaobinhluanList;
 	}
-	
+
 	public List<QuanLyBaiViet> getAllQuanLyBaiViet() {
 		List<QuanLyBaiViet> quanlybaivietList = new ArrayList<>();
 		try {
@@ -113,7 +117,7 @@ public class AdminService {
 		}
 		return quanlybaivietList;
 	}
-	
+
 	public List<QuanLyNguoiDung> getAllQuanLyNguoiDung() {
 		List<QuanLyNguoiDung> quanlynguoidungList = new ArrayList<>();
 		try {
@@ -137,7 +141,7 @@ public class AdminService {
 		}
 		return quanlynguoidungList;
 	}
-	
+
 	public List<QuanLyBinhLuan> getAllQuanLyBinhLuan() {
 		List<QuanLyBinhLuan> quanlybinhluanList = new ArrayList<>();
 		try {
@@ -161,7 +165,7 @@ public class AdminService {
 		}
 		return quanlybinhluanList;
 	}
-	
+
 	public void banBaiViet(int mabaiviet, int maquanly) {
 		try {
 			String deleteSql = "DELETE FROM BaoCaoBaiViet WHERE MaBaiViet = ?";
@@ -174,14 +178,14 @@ public class AdminService {
 	        pstmt = conn.prepareStatement(insertSql);
 	        pstmt.setInt(1, maquanly);
 	        pstmt.setInt(2, mabaiviet);
-	        
+
 	        Date now = new Date();
 	        Timestamp timestamp = new Timestamp(now.getTime());
 
 	        pstmt.setTimestamp(3, timestamp);
 	        pstmt.setString(4, "Cam bai viet");
 	        pstmt.executeUpdate();
-	        
+
 	        String updateSql = "UPDATE BaiViet SET TrangThai = 'systembanned' WHERE MaBaiViet = ?";
 	        pstmt = conn.prepareStatement(updateSql);
 	        pstmt.setInt(1, mabaiviet);
@@ -192,7 +196,7 @@ public class AdminService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void undoBanBaiViet(int mabaiviet, int maquanly) {
 		try {
 	        String insertSql = "INSERT INTO QuanLyBaiViet (MaQuanLy, MaBaiViet, NgayGioCapNhat, ChiTietCapNhat) VALUES (?, ?, ?, ?)";
@@ -200,14 +204,14 @@ public class AdminService {
 	        pstmt = conn.prepareStatement(insertSql);
 	        pstmt.setInt(1, maquanly);
 	        pstmt.setInt(2, mabaiviet);
-	        
+
 	        Date now = new Date();
 	        Timestamp timestamp = new Timestamp(now.getTime());
 
 	        pstmt.setTimestamp(3, timestamp);
 	        pstmt.setString(4, "Huy cam bai viet");
 	        pstmt.executeUpdate();
-	        
+
 	        String updateSql = "UPDATE BaiViet SET TrangThai = 'yes' WHERE MaBaiViet = ?";
 	        pstmt = conn.prepareStatement(updateSql);
 	        pstmt.setInt(1, mabaiviet);
@@ -218,7 +222,7 @@ public class AdminService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void banNguoiDung(int manguoidung, int maquanly) {
 		try {
 			String deleteSql = "DELETE FROM BaoCaoNguoiDung WHERE MaNguoiDungBiBaoCao = ?";
@@ -231,14 +235,14 @@ public class AdminService {
 	        pstmt = conn.prepareStatement(insertSql);
 	        pstmt.setInt(1, maquanly);
 	        pstmt.setInt(2, manguoidung);
-	        
+
 	        Date now = new Date();
 	        Timestamp timestamp = new Timestamp(now.getTime());
 
 	        pstmt.setTimestamp(3, timestamp);
 	        pstmt.setString(4, "Cam nguoi dung");
 	        pstmt.executeUpdate();
-	        
+
 	        String updateSql = "UPDATE NguoiDung SET TrangThai = 'systembanned' WHERE MaNguoiDung = ?";
 	        pstmt = conn.prepareStatement(updateSql);
 	        pstmt.setInt(1, manguoidung);
@@ -249,7 +253,7 @@ public class AdminService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void undoBanNguoiDung(int manguoidung, int maquanly) {
 		try {
 	        String insertSql = "INSERT INTO QuanLyNguoiDung (MaQuanLy, MaNguoiDung, NgayGioCapNhat, ChiTietCapNhat) VALUES (?, ?, ?, ?)";
@@ -257,14 +261,14 @@ public class AdminService {
 	        pstmt = conn.prepareStatement(insertSql);
 	        pstmt.setInt(1, maquanly);
 	        pstmt.setInt(2, manguoidung);
-	        
+
 	        Date now = new Date();
 	        Timestamp timestamp = new Timestamp(now.getTime());
 
 	        pstmt.setTimestamp(3, timestamp);
 	        pstmt.setString(4, "Huy cam bai viet");
 	        pstmt.executeUpdate();
-	        
+
 	        String updateSql = "UPDATE NguoiDung SET TrangThai = 'normal' WHERE MaNguoiDung = ?";
 	        pstmt = conn.prepareStatement(updateSql);
 	        pstmt.setInt(1, manguoidung);
@@ -275,7 +279,7 @@ public class AdminService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void banBinhLuan(int mabinhluan, int maquanly) {
 		try {
 			String deleteSql = "DELETE FROM BaoCaoBinhLuan WHERE MaBinhLuan = ?";
@@ -288,14 +292,14 @@ public class AdminService {
 	        pstmt = conn.prepareStatement(insertSql);
 	        pstmt.setInt(1, maquanly);
 	        pstmt.setInt(2, mabinhluan);
-	        
+
 	        Date now = new Date();
 	        Timestamp timestamp = new Timestamp(now.getTime());
 
 	        pstmt.setTimestamp(3, timestamp);
 	        pstmt.setString(4, "Cam binh luan");
 	        pstmt.executeUpdate();
-	        
+
 	        String updateSql = "UPDATE BinhLuanBaiViet SET TrangThai = 'systembanned' WHERE MaBinhLuan = ?";
 	        pstmt = conn.prepareStatement(updateSql);
 	        pstmt.setInt(1, mabinhluan);
@@ -306,7 +310,7 @@ public class AdminService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void undoBanBinhLuan(int mabinhluan, int maquanly) {
 		try {
 	        String insertSql = "INSERT INTO QuanLyBinhLuan (MaQuanLy, MaBinhLuan, NgayGioCapNhat, ChiTietCapNhat) VALUES (?, ?, ?, ?)";
@@ -314,14 +318,14 @@ public class AdminService {
 	        pstmt = conn.prepareStatement(insertSql);
 	        pstmt.setInt(1, maquanly);
 	        pstmt.setInt(2, mabinhluan);
-	        
+
 	        Date now = new Date();
 	        Timestamp timestamp = new Timestamp(now.getTime());
 
 	        pstmt.setTimestamp(3, timestamp);
 	        pstmt.setString(4, "Huy cam binh luan");
 	        pstmt.executeUpdate();
-	        
+
 	        String updateSql = "UPDATE BinhLuanBaiViet SET TrangThai = 'new' WHERE MaBinhLuan = ?";
 	        pstmt = conn.prepareStatement(updateSql);
 	        pstmt.setInt(1, mabinhluan);
@@ -332,5 +336,5 @@ public class AdminService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 }

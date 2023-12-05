@@ -1,19 +1,20 @@
 package controller.web;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import model.NguoiDung;
-import service.FriendActionService;
-import service.FriendService;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.NguoiDung;
+import service.FriendActionService;
+import service.FriendService;
+
 public class FriendActionController extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String type = request.getParameter("type");
@@ -26,12 +27,12 @@ public class FriendActionController extends HttpServlet {
 		FriendService FS = new FriendService();
 		FriendActionService FAS = new FriendActionService();
 		List<NguoiDung> userlist = new ArrayList<>();
-		
+
 		switch (type) {
 		case "dsbb": {
 			switch (action) {
 				case "nhantin": {
-	
+
 					break;
 				}
 				case "huy": {
@@ -107,7 +108,7 @@ public class FriendActionController extends HttpServlet {
 		int listlength = userlist.size();
 
 		int numpage = listlength / 8 + 1;
-		
+
 		request.setAttribute("type", type);
 		request.setAttribute("userlist", userlist);
 		request.setAttribute("numpage", numpage);

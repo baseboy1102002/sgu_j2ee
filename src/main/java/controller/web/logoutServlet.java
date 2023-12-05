@@ -13,7 +13,8 @@ import javax.servlet.http.HttpSession;
 public class logoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Invalidate the session
         HttpSession session = request.getSession();
@@ -23,7 +24,8 @@ public class logoutServlet extends HttpServlet {
         response.sendRedirect("views/Index.jsp"); // Replace with your login page
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

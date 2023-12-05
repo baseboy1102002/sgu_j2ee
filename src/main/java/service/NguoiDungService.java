@@ -1,25 +1,16 @@
 package service;
 
-import java.util.List;
-
-import model.NguoiDung;
-import modelMapper.NguoiDungMapper;
-
-
-
-
-
-import model.NguoiDung;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import DBContext.DBContext;
 import controller.web.EmailSender;
-import controller.web.SessionManager;
+import model.NguoiDung;
+import modelMapper.NguoiDungMapper;
 
 public class NguoiDungService extends DAOService<NguoiDung>{
 	private Connection conn = null;
@@ -56,7 +47,7 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 		try {
 			String sql = "INSERT INTO nguoidung (Email, HoVaTen, MaXacNhan, MatKhau, MaQR, SoDienThoai, HinhDaiDien, NgaySinh, LoaiTaiKhoan, TrangThai, TenTaiKhoan) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			
+
 			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
@@ -66,17 +57,17 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 			pstmt.setString(5, " ");
 			pstmt.setString(6, " ");
 			pstmt.setString(7, "user.png");
-			
-			Date now = new Date(1); 
+
+			Date now = new Date(1);
 			pstmt.setDate(8, now);
-			
+
 			pstmt.setString(9, "user");
 			pstmt.setString(10, "online");
 			pstmt.setString(11, " ");
 			rowsInserted = pstmt.executeUpdate();
 			if (rowsInserted > 0) {
 				// User exists, create and return a NguoiDung object
-				return new NguoiDung(getID(email), email, name, " ", "user.png", " ", now, 
+				return new NguoiDung(getID(email), email, name, " ", "user.png", " ", now,
 						"user", confirmCode, password, " ");
 			}
 		} catch (Exception e) {
@@ -90,7 +81,7 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 	public boolean XacNhanTaiKhoan(String email, String confirmCode) {
 		try {
 			String sql = "UPDATE nguoidung SET MaXacNhan = 'confirmed!' WHERE MaXacNhan = ? AND Email = ?";
-			
+
 			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, confirmCode);
@@ -127,11 +118,11 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 		}
 		return false;
 	}
-	
+
 	public boolean DoiMatKhau(String email, String password, String name) {
 		try {
 			String sql = "UPDATE nguoidung SET MatKhau = ? WHERE Email = ?";
-			
+
 			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, password);
@@ -149,7 +140,7 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 		}
 		return false; // Return null if no user found
 	}
-	
+
 	public int getID(String email) {
 		try {
 			String sql = "SELECT * FROM nguoidung WHERE Email = ?";
@@ -169,7 +160,7 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 		}
 		return 0; // Return null if no user found
 	}
-	
+
 	public int getMaXacNhan(String email) {
 		try {
 			String sql = "SELECT * FROM nguoidung WHERE Email = ?";

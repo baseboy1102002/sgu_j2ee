@@ -28,7 +28,7 @@ public class NguoiDung {
 		this.hoVaTen = hoVaTen;
 		this.hinhDaiDien = hinhDaiDien;
 	}
-	
+
 	public NguoiDung(int maNguoiDung, String hoVaTen, String hinhDaiDien, String trangThai) {
 		super();
 		this.maNguoiDung = maNguoiDung;

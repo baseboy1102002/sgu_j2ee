@@ -1,12 +1,6 @@
 package controller.web;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,14 +16,15 @@ import service.NguoiDungService;
 @WebServlet("/quen-password")
 public class RecoverPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String inputEmail = request.getParameter("inputEmail");
 		NguoiDungService userService = new NguoiDungService();
-		
+
 		try {
             if (userService.QuenMatKhau(inputEmail)) {
             	request.setAttribute("loginStatus", "sendPassword");
@@ -43,7 +38,7 @@ public class RecoverPassword extends HttpServlet {
 
         } finally {
             // Close resources in a finally block
-            
+
         }
 	}
 }

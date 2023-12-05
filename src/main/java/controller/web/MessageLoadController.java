@@ -1,14 +1,5 @@
 package controller.web;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import model.NguoiDung;
-import model.TinNhan;
-import service.MessageService;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
@@ -18,7 +9,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.NguoiDung;
+import model.TinNhan;
+import service.MessageService;
+
 public class MessageLoadController extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MessageService MS = new MessageService();
 		request.setCharacterEncoding("utf-8");
@@ -26,11 +27,11 @@ public class MessageLoadController extends HttpServlet {
 		int userid1 = Integer.parseInt(request.getParameter("userid1"));
 		int userid2 = Integer.parseInt(request.getParameter("userid2"));
 		String type = request.getParameter("type");
-		
+
 		NguoiDung nd1 = MS.getNguoiDungFocus(userid1);
 		NguoiDung nd2 = MS.getNguoiDungFocus(userid2);
 		String color = "";
-		
+
 		switch(nd2.getTrangThai()) {
 			case "offline": {
 				color = "gray";
@@ -49,12 +50,12 @@ public class MessageLoadController extends HttpServlet {
 				break;
 			}
 		}
-		
+
 		List<TinNhan> listtn = MS.getAllTinNhanById(userid1, userid2);
 		List<String> timeformattedlist = FormatList(listtn);
-		
+
 		PrintWriter out = response.getWriter();
-		
+
 		if(type.equalsIgnoreCase("loadall")) {
 			out.println("            <div class=\"chatbox_header\">\r\n"
 					+ "                <a href=\"/sgu_j2ee/profile?userID=" + nd2.getMaNguoiDung() + "\" class=\"chatbox_header_info_wrapper\" id=\"chatbox_header_info_wrapper\">\r\n"
@@ -104,7 +105,7 @@ public class MessageLoadController extends HttpServlet {
 			}
 			index++;
 		}
-		
+
 		if(type.equalsIgnoreCase("loadall")) {
 			out.println("</div>\r\n"
 					+ "            <div class=\"chatbox_inputs\">\r\n"
@@ -118,7 +119,7 @@ public class MessageLoadController extends HttpServlet {
 					+ "            </div>");
 		}
 	}
-	
+
 	public List<String> FormatList(List<TinNhan> messlist) {
 	    List<String> timeformattedlist = new ArrayList<>();
 	    SimpleDateFormat shortFormat = new SimpleDateFormat("hh:mm a");

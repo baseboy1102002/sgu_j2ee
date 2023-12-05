@@ -1,12 +1,6 @@
 package controller.web;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +29,7 @@ public class ChangePasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -45,6 +40,7 @@ public class ChangePasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -56,12 +52,12 @@ public class ChangePasswordServlet extends HttpServlet {
 		NguoiDungService userService = new NguoiDungService();
 		boolean wrongPassword_2 = !inputNewPassword_1.equals(inputNewPassword_2); // Compare passwords
 		boolean wrongPassword_1 = !inputOldPassword.equals(SessionManager.getPassword(request)); // Compare passwords
-		
-		
-		if (wrongPassword_1 == false && wrongPassword_2 == false) {
+
+
+		if (!wrongPassword_1 && !wrongPassword_2) {
 			try {
 				if (userService.DoiMatKhau(SessionManager.getEmail(request), inputNewPassword_1, SessionManager.getName(request))) {
-					System.out.println("Changed Password: Email=" + SessionManager.getEmail(request) + 
+					System.out.println("Changed Password: Email=" + SessionManager.getEmail(request) +
 							", password =" + inputOldPassword);
 					request.setAttribute("changePasswordStatus", "success");
 					SessionManager.setPassword(request, inputNewPassword_1);
@@ -76,7 +72,7 @@ public class ChangePasswordServlet extends HttpServlet {
 
 			}
 		}
-		
+
 		// Perform the redirection outside the try-catch block
 		if (wrongPassword_1) {
 			System.out.println("Wrong password");

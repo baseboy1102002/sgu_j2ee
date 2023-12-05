@@ -1,16 +1,17 @@
 package controller.web;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import model.NguoiDung;
-import service.FriendService;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.NguoiDung;
+import service.FriendService;
 
 public class FriendLoadController extends HttpServlet {
 	@Override
@@ -24,7 +25,7 @@ public class FriendLoadController extends HttpServlet {
 		List<NguoiDung> userlist;
 		String type = request.getParameter("type");
 		String search = request.getParameter("search");
-				
+
 		switch (type) {
 		case "dsbb": {
 			userlist = FS.getAllBanBeByID(iuserid);
@@ -45,7 +46,7 @@ public class FriendLoadController extends HttpServlet {
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + type);
 		}
-		
+
 		if(search!=null) {
 			for (NguoiDung nd : new ArrayList<>(userlist)) {
 				if(!nd.getHoVaTen().toLowerCase().contains(search.toLowerCase())) {
@@ -55,7 +56,7 @@ public class FriendLoadController extends HttpServlet {
 		}
 
 		PrintWriter out = response.getWriter();
-				
+
 		int start = 0;
 		int end = 0;
 		int ipage = 0;
@@ -67,7 +68,7 @@ public class FriendLoadController extends HttpServlet {
 		} catch (Exception e) {
 			ipage = 1;
 		}
-				
+
 		start = (ipage - 1) * 8;
 		end = ipage * 8;
 
@@ -87,7 +88,7 @@ public class FriendLoadController extends HttpServlet {
 					+ "			<div class=\"item_info_name\">" + nd.getHoVaTen() + "</div>\r\n"
 					+ "		</a>\r\n"
 					+ "\r\n");
-			
+
 			switch (type) {
 			case "dsbb": {
 				out.println("<div class=\"item_action\">\r\n"
@@ -120,7 +121,7 @@ public class FriendLoadController extends HttpServlet {
 			}
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + type);
-			}								
+			}
 		}
 	}
 }

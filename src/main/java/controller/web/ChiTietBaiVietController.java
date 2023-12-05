@@ -274,7 +274,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 			BaoCaoBinhLuan baoCaoBinhLuan = new BaoCaoBinhLuan(maNguoiDung, maBinhLuan, new Date(), liDo);
 			response.setContentType("UTF-8");
 			printWriter.print(baoCaoBinhLuanService.insert(baoCaoBinhLuan));
-			
+
 			break;
 		}
 		default:

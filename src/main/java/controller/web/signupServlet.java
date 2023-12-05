@@ -23,11 +23,13 @@ public class signupServlet extends HttpServlet {
 		super();
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -43,7 +45,7 @@ public class signupServlet extends HttpServlet {
 
 		boolean wrongPassword = !inputPassword.equals(inputCheckPassword); // Compare passwords
 		boolean userExists = userService.KiemTraTaiKhoanTonTai(inputEmail);
-		
+
 		if (userExists) {
 			System.out.println("User exists");
 			request.setAttribute("signupStatus", "exists");
@@ -53,8 +55,8 @@ public class signupServlet extends HttpServlet {
 			request.setAttribute("signupStatus", "wrong");
 			return;
 		}
-		
-		if (wrongPassword == false && userExists == false) {
+
+		if (!wrongPassword && !userExists) {
 
 			user = userService.DangKi(inputEmail, inputPassword, inputName, confirmationCode);
 			if (user != null) {

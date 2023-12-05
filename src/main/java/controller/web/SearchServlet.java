@@ -1,6 +1,5 @@
 package controller.web;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +16,10 @@ import model.FileBaiViet;
 import model.NguoiDung;
 import model.TuongTacBaiViet;
 import service.BaiVietService;
-import service.BinhLuanBaiVietService;
 import service.FileBaiVietService;
 import service.NguoiDungService;
 import service.SearchService;
 import service.TuongTacBaiVietService;
-import service.TuongTacBinhLuanService;
 
 /**
  * Servlet implementation class SearchController
@@ -33,7 +30,7 @@ public class SearchServlet extends HttpServlet {
 	private BaiVietService baiVietService = new BaiVietService();
 	private TuongTacBaiVietService tuongTacBaiVietService = new TuongTacBaiVietService();
 	private NguoiDungService nguoiDungService = new NguoiDungService();
-	
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -47,7 +44,7 @@ public class SearchServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
+
     public BaiVietView getDataBaiVietForView(int maBaiViet, int maLoginUser) {
 
 		BaiViet baiViet = baiVietService.getBaiVietById(maBaiViet);
@@ -70,7 +67,7 @@ public class SearchServlet extends HttpServlet {
 				fileDinhKems.add(fileBaiViet);
 			}
 		}
-		
+
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
 
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
@@ -83,20 +80,21 @@ public class SearchServlet extends HttpServlet {
 		return baiVietView;
 
 	}
-     
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String keySearch = request.getParameter("keySearch");
 		String context = request.getParameter("type");
 		String myId = String.valueOf(SessionManager.getID(request));
-		
+
 		// add friend
 		Boolean isBoolean = request.getRequestURL().toString().contains("add-friend");
 		String friendId = request.getParameter("friendId");
 		if(isBoolean) {
 			searchService.addFriend(myId, friendId);
 		}
-		
+
 		// search
 		if(keySearch != null && !keySearch.equalsIgnoreCase("")) {
 			if(context != null && context.equalsIgnoreCase("users")) {
@@ -104,7 +102,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("users", users.isEmpty() ? null : users);
 			} else if(context != null && context.equalsIgnoreCase("posts")) {
 				List<BaiViet> baiViets = searchService.findPosts(keySearch);
-				List<BaiVietView> baiVietViews = new ArrayList<BaiVietView>();
+				List<BaiVietView> baiVietViews = new ArrayList<>();
 				for(BaiViet i : baiViets) {
 					baiVietViews.add(getDataBaiVietForView(i.getMaBaiViet(), Integer.valueOf(myId)));
 				}
@@ -112,14 +110,14 @@ public class SearchServlet extends HttpServlet {
 			} else {
 				List<NguoiDung> users = searchService.findUsers(keySearch, myId);
 				request.setAttribute("users", users.isEmpty() ? null : users);
-				
+
 				List<BaiViet> baiViets = searchService.findPosts(keySearch);
-				List<BaiVietView> baiVietViews = new ArrayList<BaiVietView>();
+				List<BaiVietView> baiVietViews = new ArrayList<>();
 				for(BaiViet i : baiViets) {
 					baiVietViews.add(getDataBaiVietForView(i.getMaBaiViet(), Integer.valueOf(myId)));
 				}
 				request.setAttribute("posts", baiVietViews.isEmpty() ? null : baiVietViews);
-			}			
+			}
 		}
 		request.setAttribute("context", context);
 		request.setAttribute("keySearch", keySearch);
@@ -129,9 +127,10 @@ public class SearchServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);			
+		doGet(request, response);
 	}
 
 }

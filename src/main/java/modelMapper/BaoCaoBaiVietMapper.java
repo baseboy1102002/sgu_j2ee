@@ -14,7 +14,7 @@ public class BaoCaoBaiVietMapper {
 			baoCaoBaiviet.setMaBaiViet(rs.getInt("MaBaiViet"));
 			baoCaoBaiviet.setNgayGioBaoCao(rs.getTimestamp("NgayGioBaoCao"));
 			baoCaoBaiviet.setMaNguoiDung(rs.getInt("MaNguoiDung"));
-			
+
 			return baoCaoBaiviet;
 
 		} catch (SQLException e) {

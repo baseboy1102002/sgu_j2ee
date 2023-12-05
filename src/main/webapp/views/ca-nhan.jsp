@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="Layout/Head.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css"
+<jsp:include page="Layout/Head.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/ca-nhan.css' />">
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/post-edit-form.css' />">
-	<title>Insert title here</title>
+<title>Insert title here</title>
 </head>
 
 <c:set var="cUID" value="${currentUID}" />
@@ -136,31 +136,31 @@
 			<div
 				class="profile-placeholder col-3 d-flex align-items-end justify-content-start">
 				<c:if test="${cUID ne UserID}">
-				<c:if test="${isReported eq true}">
-					<button type="button" disabled class="button-message btn btn-primary col-6"
-						>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-							fill="currentColor" class="bi bi-exclamation-diamond-fill"
-							viewBox="0 0 16 16">
+					<c:if test="${isReported eq true}">
+						<button type="button" disabled
+							class="button-message btn btn-primary col-6">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-exclamation-diamond-fill"
+								viewBox="0 0 16 16">
   <path
-								d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+									d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
 </svg>
-						Báo cáo
-					</button>
-				</c:if>
-				<c:if test="${isReported eq false}">
-					<button type="button" class="button-message btn btn-primary col-6"
-						id="btn-baocaoND" data-bs-toggle="modal"
-						data-bs-target="#reportUserPopUp">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-							fill="currentColor" class="bi bi-exclamation-diamond-fill"
-							viewBox="0 0 16 16">
+							Báo cáo
+						</button>
+					</c:if>
+					<c:if test="${isReported eq false}">
+						<button type="button" class="button-message btn btn-primary col-6"
+							id="btn-baocaoND" data-bs-toggle="modal"
+							data-bs-target="#reportUserPopUp">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-exclamation-diamond-fill"
+								viewBox="0 0 16 16">
   <path
-								d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+									d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
 </svg>
-						Báo cáo
-					</button>
-				</c:if>
+							Báo cáo
+						</button>
+					</c:if>
 				</c:if>
 
 			</div>
@@ -194,14 +194,14 @@
 						<c:if test="${showButton eq 'disabled'}">
 							<button type="button" ${showButton}
 								class="profile-action-button btn btn-primary col-6">${btnDescriptionString}</button>
-							<button type="button"
-								class="button-message btn btn-primary col-6">
+							<button class="button-message btn btn-primary col-6"
+								onclick="MoveToPageMessage('${sessionScope.ID}', '${UserID}')">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 									fill="currentColor" class="bi bi-chat-dots-fill"
 									viewBox="0 0 16 16">
-                        <path
+        <path
 										d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                    </svg>
+    </svg>
 								Nhắn tin
 							</button>
 						</c:if>
@@ -213,14 +213,14 @@
 								data-button-type="thong-tin" data-this-user=${UserID
 								}
 								data-current-user=${sessionScope.ID} >${btnDescriptionString}</button>
-							<button type="button"
-								class="button-message btn btn-primary col-6">
+							<button class="button-message btn btn-primary col-6"
+								onclick="MoveToPageMessage('${sessionScope.ID}', '${UserID}')">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 									fill="currentColor" class="bi bi-chat-dots-fill"
 									viewBox="0 0 16 16">
-                        <path
+        <path
 										d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                    </svg>
+    </svg>
 								Nhắn tin
 							</button>
 						</c:if>
@@ -300,7 +300,11 @@
 		src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
 	<script type="text/javascript"
 		src="<c:url value='/resources/js/post-edit-form.js' />"></script>
-
+<script>
+    function MoveToPageMessage(userID1, userID2) {
+        indow.location.href = "mess?userid1=" + userID1 + "&userid2=" + userID2;
+    }
+</script>
 
 </body>
 </html>

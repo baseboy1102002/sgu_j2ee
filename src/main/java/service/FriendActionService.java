@@ -2,13 +2,14 @@ package service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
 import DBContext.DBContext;
 
 public class FriendActionService {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private DBContext dbc = new DBContext();
-	
+
 	public void ActionHuyKetBan(int user1, int user2) {
 	    try {
 	        String sql = "DELETE FROM ThongTinKetBan " +
@@ -26,7 +27,7 @@ public class FriendActionService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void UpdateActionChan(int user1, int user2) {
 	    try {
 	        String insertQuery = "INSERT INTO ThongTinKetBan (manguoidung1, manguoidung2, trangthai) VALUES (?, ?, 'chan')";
@@ -41,12 +42,12 @@ public class FriendActionService {
 	    	dbc.closeConnection(conn);
 	    }
 	}
-	
+
 	public void ActionChan(int user1, int user2) {
 		ActionHuyKetBan(user1, user2);
 		UpdateActionChan(user1, user2);
 	}
-	
+
 	public void ActionChapNhanKetBan(int user1, int user2) {
 		try {
 			String sql = "UPDATE ThongTinKetBan " +
@@ -63,7 +64,7 @@ public class FriendActionService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void ActionHuyLoiMoiKetBan1(int user1, int user2) {
 		try {
 	        String sql = "DELETE FROM ThongTinKetBan " +
@@ -79,7 +80,7 @@ public class FriendActionService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void ActionHuyLoiMoiKetBan2(int user1, int user2) {
 		try {
 	        String sql = "DELETE FROM ThongTinKetBan " +
@@ -95,7 +96,7 @@ public class FriendActionService {
 			dbc.closeConnection(conn);
 		}
 	}
-	
+
 	public void ActionBoChan(int user1, int user2) {
 		try {
 	        String sql = "DELETE FROM ThongTinKetBan " +

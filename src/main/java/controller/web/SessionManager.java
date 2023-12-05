@@ -23,7 +23,7 @@ public class SessionManager {
         session.setAttribute("LoaiTaiKhoan", LoaiTaiKhoan);
         session.setAttribute("TrangThai", TrangThai);
     }
-    
+
     public static String getEmail(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String Email = (String) session.getAttribute("Email");
@@ -35,19 +35,19 @@ public class SessionManager {
         String Password = (String) session.getAttribute("Password");
         return Password;
     }
-    
+
     public static String getName(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String Name = (String) session.getAttribute("Name");
         return Name;
     }
-    
+
     public static String getConfirmCode(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String ConfirmCode = (String) session.getAttribute("ConfirmCode");
         return ConfirmCode;
     }
-    
+
     public static String getPhone(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String Phone = (String) session.getAttribute("Phone");
@@ -78,8 +78,8 @@ public class SessionManager {
         String TrangThai = (String) session.getAttribute("TrangThai");
         return TrangThai;
     }
-    
-    
+
+
     public static void setEmail(HttpServletRequest request, String email) {
         HttpSession session = request.getSession();
         session.setAttribute("Email", email);

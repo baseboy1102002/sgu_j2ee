@@ -9,14 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.BaoCaoBaiviet;
+import model.BaoCaoBinhLuan;
+import model.BaoCaoNguoiDung;
+import model.QuanLyBaiViet;
+import model.QuanLyBinhLuan;
+import model.QuanLyNguoiDung;
 import service.AdminService;
-
-import model.*;
 
 @WebServlet({ "/AdminController", "/admin" })
 public class AdminController extends HttpServlet {
 	private AdminService AS = new AdminService();
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String require = request.getParameter("require");

@@ -22,7 +22,6 @@ import model.NguoiDung;
 import model.ThongTinKetBan;
 import model.TuongTacBaiViet;
 import service.BaiVietService;
-import service.BaoCaoBaiVietService;
 import service.BaoCaoNguoiDungService;
 import service.BinhLuanBaiVietService;
 import service.FileBaiVietService;
@@ -57,7 +56,7 @@ public class ProfileController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String userID = request.getParameter("userID").toString();
-		
+
 		int currentUID = SessionManager.getID(request);
 //		int currentUID = 4;
 		ThongTinKetBan isfriend = new ThongTinKetBan();
@@ -75,9 +74,9 @@ public class ProfileController extends HttpServlet {
 		boolean isReported = false;
 		//Lấy thông tin của button
 		if (Integer.parseInt(userID) != currentUID) {
-			
+
 			isReported = baoCaoNguoiDungService.getBaoCaoNguoiDung(currentUID, Integer.parseInt(userID));
-			
+
 			postingDisplayString = "no";
 			isfriend = thongTinKetBanService.getTrangThaiKetBanHaiNguoiDung(currentUID, Integer.parseInt(userID));
 			String friendStatuString = "";
@@ -138,7 +137,7 @@ public class ProfileController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		
+
 		switch (action) {
 		case "ketban": {
 			String CUID = request.getParameter("CUID");
@@ -163,23 +162,23 @@ public class ProfileController extends HttpServlet {
 			int CUID = Integer.parseInt(request.getParameter("CUID"));
 			int UID = Integer.parseInt(request.getParameter("UID"));
 			String NoiDung = request.getParameter("NoiDung");
-			Date date = new Date();  
+			Date date = new Date();
 			BaoCaoNguoiDung baoCaoNguoiDung = new BaoCaoNguoiDung();
-			
+
 			baoCaoNguoiDung.setMaNguoiDungBaoCao(CUID);
 			baoCaoNguoiDung.setMaNguoiDungBiBaoCao(UID);
 			baoCaoNguoiDung.setNgayGioBaoCao(date);
 			baoCaoNguoiDung.setLiDo(NoiDung);
-			
+
 			JsonObject jsonResponse = new JsonObject();
-			
+
 			Integer id = baoCaoNguoiDungService.insert(baoCaoNguoiDung);
 			if(id != null) {
 				jsonResponse.addProperty("status", "success");
 			} else {
 				jsonResponse.addProperty("status", "failure");
 			}
-			
+
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			printWriter.write(jsonResponse.toString());

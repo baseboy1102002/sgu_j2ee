@@ -19,7 +19,7 @@ import service.NguoiDungService;
 public class loginServlet extends HttpServlet {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 6568224008104939619L;
 
@@ -50,7 +50,7 @@ public class loginServlet extends HttpServlet {
 
 		NguoiDungService userService = new NguoiDungService();
 		NguoiDung user = userService.DangNhap(inputEmail, inputPassword);
-		
+
 		if (user != null) {
 			SessionManager.storeUserInfo(request, inputEmail, inputPassword, user.getHoVaTen(), user.getMaXacNhan(), user.getSoDienThoai(),
 					user.getNgaySinh(), user.getMaNguoiDung(), user.getHinhDaiDien(), user.getLoaiTaiKhoan(), user.getTrangThai());
@@ -71,7 +71,7 @@ public class loginServlet extends HttpServlet {
 						return;
 					}
 					if (SessionManager.getLoaiTaiKhoan(request).equals("user")) {
-						
+
 						response.sendRedirect(request.getContextPath() + "/trang-chu");
 						return;
 					}

@@ -20,12 +20,13 @@ import service.AdminService;
 @WebServlet({ "/AdminActionController", "/admin_action" })
 public class AdminActionController extends HttpServlet {
 	private AdminService AS = new AdminService();
-			
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String require = request.getParameter("require");
 		int id = Integer.parseInt(request.getParameter("id"));
 		int idadmin = 1;
-		
+
 		switch (require) {
 		case "QLBV": {
 			AS.banBaiViet(id, idadmin);
@@ -67,7 +68,7 @@ public class AdminActionController extends HttpServlet {
 			throw new IllegalArgumentException("Unexpected value: " + require);
 		}
 		}
-		
+
 		request.setAttribute("require", require);
 		request.getRequestDispatcher("/views/Table_Admin.jsp").forward(request, response);
 	}

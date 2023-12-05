@@ -57,7 +57,7 @@ public class BaiVietService extends DAOService<BaiViet> {
 		return query(sql, new BaiVietMapper(), UserID);
 
 	}
-	
+
 	public List<Integer> getBaiVietForHomePage(int logginUserID) {
 		String sql = "SELECT DISTINCT bv.MaBaiViet\r\n"
 				+ "FROM baiviet bv\r\n"
@@ -68,5 +68,5 @@ public class BaiVietService extends DAOService<BaiViet> {
 				+ "  AND bv.MaNguoiDung != ?; ";
 		return query2(sql, logginUserID,logginUserID,logginUserID);
 	}
-	
+
 }

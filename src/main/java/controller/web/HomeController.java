@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +29,7 @@ public class HomeController extends HttpServlet {
 	private TuongTacBaiVietService tuongTacBaiVietService = new TuongTacBaiVietService();
 	private NguoiDungService nguoiDungService = new NguoiDungService();
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -42,24 +41,32 @@ public class HomeController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		List<Integer> maBaiVietList = baiVietService.getBaiVietForHomePage(SessionManager.getID(request));
-		List<BaiVietView> baiVietViews =  maBaiVietList.stream().map(e -> getDataBaiVietForView(e, SessionManager.getID(request))).toList();
-
-		request.setAttribute("baiVietViews",baiVietViews);
+		
+		List<BaiVietView> baiVietViews = new ArrayList<>();
+		for (Integer baiVietID : maBaiVietList) {
+			baiVietViews.add(getDataBaiVietForView(baiVietID, SessionManager.getID(request) ));
+		}
+		
+		//List<Integer> maBaiVietList = baiVietService.getBaiVietForHomePage(SessionManager.getID(request));
+		//System.out.println(maBaiVietList);
+		//List<BaiVietView> baiVietViews =  maBaiVietList.stream().map(e -> getDataBaiVietForView(e, SessionManager.getID(request))).toList();
+		request.setAttribute("baiVietViews", baiVietViews);
 		request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
-	
+
 	public BaiVietView getDataBaiVietForView(int maBaiViet, int maLoginUser) {
 
 		BaiViet baiViet = baiVietService.getBaiVietById(maBaiViet);
@@ -82,8 +89,9 @@ public class HomeController extends HttpServlet {
 				fileDinhKems.add(fileBaiViet);
 			}
 		}
+		System.out.println(baiViet);
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
-
+		
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();
 		String hoVaTenNguoiDang = nguoiDang.getHoVaTen();
 		int maNguoiDang = nguoiDang.getMaNguoiDung();

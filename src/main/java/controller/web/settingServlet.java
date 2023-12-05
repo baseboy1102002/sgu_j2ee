@@ -2,10 +2,6 @@ package controller.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,10 +17,11 @@ import service.NguoiDungService;
 @MultipartConfig
 public class settingServlet extends HttpServlet {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -5777195563665546188L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Retrieve user information from session
@@ -44,7 +41,7 @@ public class settingServlet extends HttpServlet {
 	    photo.write(newPhotoFile.getAbsolutePath());
 		System.out.println(dir);
 		System.out.println(newFileName);
-		
+
 		NguoiDungService userService = new NguoiDungService();
 		try {
             if (userService.CaiDat(email, newFileName, name, phone, Strdob, SessionManager.getID(request))) {
@@ -62,12 +59,13 @@ public class settingServlet extends HttpServlet {
 
         } finally {
             // Close resources in a finally block
-            
+
         }
 
 		request.getRequestDispatcher("views/Setting.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

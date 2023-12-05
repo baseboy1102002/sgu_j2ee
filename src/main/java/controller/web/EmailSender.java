@@ -1,9 +1,15 @@
 package controller.web;
 
-import javax.mail.*;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 
 public class EmailSender {
     public static void sendActivationCode(String recipientEmail, String recipientName, String activationCode) {
@@ -12,7 +18,7 @@ public class EmailSender {
         String smtpPort = "587";
         final String email = "nienhope.sociala@gmail.com";
 		final String password = "egoj nivj yotj abtn";
-		
+
         // Email properties
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -60,14 +66,14 @@ public class EmailSender {
             e.printStackTrace();
         }
     }
-    
+
     public static void sendChangedPassword(String recipientEmail, String recipientName, String newPassword) {
         // SMTP server configuration
         String smtpHost = "smtp.gmail.com";
         String smtpPort = "587";
         final String email = "nienhope.sociala@gmail.com";
 		final String password = "egoj nivj yotj abtn";
-		
+
         // Email properties
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -115,14 +121,14 @@ public class EmailSender {
             e.printStackTrace();
         }
     }
-    
+
     public static void sendForgetPassword(String recipientEmail, String recipientName, String newPassword) {
         // SMTP server configuration
         String smtpHost = "smtp.gmail.com";
         String smtpPort = "587";
         final String email = "nienhope.sociala@gmail.com";
 		final String password = "egoj nivj yotj abtn";
-		
+
         // Email properties
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

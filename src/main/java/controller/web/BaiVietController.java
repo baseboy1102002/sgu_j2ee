@@ -129,7 +129,7 @@ public class BaiVietController extends HttpServlet {
 			String liDo = request.getParameter("liDo");
 			int maBaiViet = Integer.parseInt( request.getParameter("maBaiViet"));
 			BaoCaoBaiviet baoCaoBaiviet = new BaoCaoBaiviet(maNguoiDung, maBaiViet, new Date(), liDo);
-			
+
 			response.setContentType("UTF-8");
 			Integer result = baoCaoBaiVietService.insert(baoCaoBaiviet);
 			break;

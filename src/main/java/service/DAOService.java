@@ -68,8 +68,8 @@ public class DAOService<T> {
 			closeConnection(conn, pstm, rs);
 		}
 	}
-	
-	
+
+
 //	Tạo để lấy danh sách bài viết ở trang chủ
 	public List<Integer> query2(String sql, Object...params) {
 		List<Integer> results = new ArrayList<>();
@@ -92,7 +92,7 @@ public class DAOService<T> {
 			closeConnection(conn, pstm, rs);
 		}
 	}
-	
+
 	public Integer insert(String sql, Object...params) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
