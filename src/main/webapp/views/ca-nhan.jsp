@@ -300,11 +300,12 @@
 		src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
 	<script type="text/javascript"
 		src="<c:url value='/resources/js/post-edit-form.js' />"></script>
-<script>
-    function MoveToPageMessage(userID1, userID2) {
-        indow.location.href = "mess?userid1=" + userID1 + "&userid2=" + userID2;
-    }
-</script>
+	<script>
+		function MoveToPageMessage(userID1, userID2) {
+			indow.location.href = "mess?userid1=" + userID1 + "&userid2="
+					+ userID2;
+		}
+	</script>
 
 </body>
 </html>
