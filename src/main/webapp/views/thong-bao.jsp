@@ -55,7 +55,7 @@
 								<div
 									class="noti-info-image col-3 col-lg-1 col-md-1 media d-flex ml-auto justify-content-center p-lg-1 p-md-2 align-items-center">
 									<img class="mr-3 col-9"
-										src="<c:url value='/views/108410800_p0.png' />" alt="img" />
+										src="<c:url value='/sgu_j2ee/files/${thisItem.anhDaiDien}' />" alt="img" />
 								</div>
 								<!-- Thông tin thông báo -->
 								<div

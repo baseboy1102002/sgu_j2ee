@@ -11,6 +11,7 @@ public class ThongBaoMapper implements rowMapper<ThongBao> {
 		try {
 			ThongBao Thongbao = new ThongBao();
 			Thongbao.setUsersPost(rs.getString("HoVaTen"));
+			Thongbao.setAnhDaiDien(rs.getString("HinhDaiDien"));
 			BaiVietMapper bvMapper = new BaiVietMapper();
 			Thongbao.setBaiviet(bvMapper.mapRow(rs));
 			return Thongbao;
