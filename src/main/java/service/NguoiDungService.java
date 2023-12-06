@@ -45,8 +45,8 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 
 	public NguoiDung DangKi(String email, String password, String name, String confirmCode) {
 		try {
-			String sql = "INSERT INTO nguoidung (Email, HoVaTen, MaXacNhan, MatKhau, MaQR, SoDienThoai, HinhDaiDien, NgaySinh, LoaiTaiKhoan, TrangThai, TenTaiKhoan) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO nguoidung (Email, HoVaTen, MaXacNhan, MatKhau, MaQR, SoDienThoai, HinhDaiDien, NgaySinh, LoaiTaiKhoan, TrangThai) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			conn = dbc.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -63,7 +63,6 @@ public class NguoiDungService extends DAOService<NguoiDung>{
 
 			pstmt.setString(9, "user");
 			pstmt.setString(10, "online");
-			pstmt.setString(11, " ");
 			rowsInserted = pstmt.executeUpdate();
 			if (rowsInserted > 0) {
 				// User exists, create and return a NguoiDung object

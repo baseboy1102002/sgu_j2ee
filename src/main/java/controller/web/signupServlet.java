@@ -49,6 +49,7 @@ public class signupServlet extends HttpServlet {
 		if (userExists) {
 			System.out.println("User exists");
 			request.setAttribute("signupStatus", "exists");
+			request.getRequestDispatcher("views/SignUp.jsp").forward(request, response);
 			return;
 		} else if (wrongPassword) {
 			System.out.println("Wrong password");

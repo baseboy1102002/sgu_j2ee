@@ -19,7 +19,7 @@ public class SearchService{
 	}
 
 	public List<NguoiDung> findUsers(String name, String user_id) {
-		String sql = String.format("SELECT * FROM  nguoidung as ndR where NOT EXISTS ( SELECT * from nguoidung as nd, thongtinketban WHERE thongtinketban.MaNguoiDung1 = nd.MaNguoiDung and ndR.MaNguoiDung = thongtinketban.MaNguoiDung2) AND ndR.MaNguoiDung <> %s and ndR.HoVaTen like '%%%s%%'", user_id, name);
+		String sql = String.format("SELECT * FROM  nguoidung as ndR where NOT EXISTS ( SELECT * from nguoidung as nd, thongtinketban WHERE thongtinketban.MaNguoiDung1 = nd.MaNguoiDung and ndR.MaNguoiDung = thongtinketban.MaNguoiDung2 and nd.MaNguoiDung = %s) AND ndR.MaNguoiDung <> %s and ndR.HoVaTen like '%%%s%%'", user_id, user_id, name);
 //SELECT * FROM nguoidung as ndR where NOT EXISTS (
 		//SELECT * from nguoidung as nd, thongtinketban WHERE thongtinketban.MaNguoiDung1 = nd.MaNguoiDung and ndR.MaNguoiDung = thongtinketban.MaNguoiDung2
 	//) and ndR.MaNguoiDung <> 1 and ndR.HoVaTen like '%user%'

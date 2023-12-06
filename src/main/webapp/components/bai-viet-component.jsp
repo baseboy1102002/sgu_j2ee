@@ -39,11 +39,14 @@
 					</button>
 				</c:if>
 
-				<button type="button" class="btn profile-item report-post-btn"
-					data-bs-toggle="modal" data-bs-target="#reportPostPopUp"
-					onclick="handleReport(this)">
-					<i class="fa-solid fa-flag"></i> <span> Báo cáo </span>
-				</button>
+				<c:if test="${sessionScope.ID ne baiVietView.maNguoiDang }">
+					<button type="button" class="btn profile-item report-post-btn"
+						data-bs-toggle="modal" data-bs-target="#reportPostPopUp"
+						onclick="handleReport(this)">
+						<i class="fa-solid fa-flag"></i> <span> Báo cáo </span>
+					</button>
+				</c:if>
+
 			</div>
 		</div>
 

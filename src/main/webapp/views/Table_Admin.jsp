@@ -94,7 +94,7 @@
 						<td>${item.ngayGioBaoCao}</td>
 						<td>${item.liDo}</td>
 						<td>
-							<a href="/sgu_j2ee/admin_action?require=${require}&idadmin=${sessionScope.ID}&id=${item.maNguoiDungBiBaoCao}" class="btn btn-primary">View Detail</a>
+							<a href="/sgu_j2ee/profile?userID=${item.maNguoiDungBiBaoCao}" class="btn btn-primary">View Detail</a>
 							<a href="/sgu_j2ee/admin_action?require=${require}&idadmin=${sessionScope.ID}&id=${item.maNguoiDungBiBaoCao}" class="btn btn-danger">Ban</a>
 						</td>
 					</tr>
@@ -139,7 +139,7 @@
 						<td>${item.ngayGioCapNhat}</td>
 						<td>${item.chiTietCapNhat}</td>
 						<td>
-							<a href="/sgu_j2ee/admin_action?require=${require}&idadmin=${sessionScope.ID}&id=${item.maNguoiDung}" class="btn btn-primary">View Detail</a>
+							<a href="/sgu_j2ee/profile?userID=${item.maNguoiDung}"  class="btn btn-primary">View Detail</a>
 							<a href="/sgu_j2ee/admin_action?require=${require}&idadmin=${sessionScope.ID}&id=${item.maNguoiDung}" class="btn btn-danger">Undo</a>
 						</td>
 					</tr>

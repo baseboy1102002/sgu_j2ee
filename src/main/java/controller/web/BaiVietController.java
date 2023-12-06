@@ -108,9 +108,9 @@ public class BaiVietController extends HttpServlet {
 			break;
 		}
 		case "deleteTuongTacBaiViet": {
+		
 			String maBaiViet = request.getParameter("maBaiViet");
-			String maNguoiDung = request.getParameter("maNguoiDung");
-			tuongTacBaiVietService.deleteTuongTacBaiViet(Integer.parseInt(maBaiViet),Integer.parseInt(maNguoiDung));
+			tuongTacBaiVietService.deleteTuongTacBaiViet(Integer.parseInt(maBaiViet),SessionManager.getID(request));
 
 //			get dữ liệu trả về
 			response.setContentType("application/json");

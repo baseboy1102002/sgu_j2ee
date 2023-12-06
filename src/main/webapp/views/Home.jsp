@@ -116,7 +116,7 @@
 	<!-- Header End -->
 
 	<!-- Login Section Begin -->
-	<section class="home-wrapper" >
+	<section class="home-wrapper">
 		<div class="container list-container ">
 			
 			<c:forEach var="baiVietView" items="${baiVietViews}">

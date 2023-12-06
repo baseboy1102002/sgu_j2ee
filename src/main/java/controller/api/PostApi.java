@@ -20,8 +20,10 @@ import controller.web.SessionManager;
 import model.BaiViet;
 import model.BaiVietView;
 import model.FileBaiViet;
+import model.NguoiDung;
 import service.BaiVietService;
 import service.FileBaiVietService;
+import service.NguoiDungService;
 
 @WebServlet(urlPatterns = { "/api/post" })
 public class PostApi extends HttpServlet {
@@ -93,6 +95,10 @@ public class PostApi extends HttpServlet {
 		baiVietView.setBaiViet(baiViet);
 		baiVietView.setFileHinhAnhs(fileHinhAnhs);
 		baiVietView.setFileDinhKems(fileDinhKems);
+		NguoiDungService nguoiDungService = new NguoiDungService();
+		NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
+		baiVietView.setAnhDaiDienNguoiDang(nguoiDung.getHinhDaiDien());
+		baiVietView.setHoVaTenNguoiDang(nguoiDung.getHoVaTen());
 		String responseJson = new Gson().toJson(baiVietView);
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");

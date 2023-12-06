@@ -89,7 +89,6 @@ public class HomeController extends HttpServlet {
 				fileDinhKems.add(fileBaiViet);
 			}
 		}
-		System.out.println(baiViet);
 		NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(baiViet.getMaNguoiDung());
 		
 		String anhDaiDienNguoiDang = nguoiDang.getHinhDaiDien();

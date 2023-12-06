@@ -11,7 +11,7 @@ public class BinhLuanBaiVietService extends DAOService<BinhLuanBaiViet> {
 	}
 
 	public List<BinhLuanBaiViet> getBinhLuansByBaiVietId(int maBaiViet) {
-		String sql = "Select * from binhluanbaiviet where MaBaiViet = ? and TrangThai <> 'xoa' order by NgayGioBinhLuan desc";
+		String sql = "Select * from binhluanbaiviet where MaBaiViet = ? and TrangThai = 'new' order by NgayGioBinhLuan desc";
 		return query(sql, new BinhLuanBaiVietMapper(), maBaiViet);
 	}
 

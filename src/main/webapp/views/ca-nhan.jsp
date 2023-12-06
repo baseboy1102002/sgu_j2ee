@@ -168,7 +168,7 @@
 				class="profile-header-user col-4 d-flex flex-wrap justify-content-center flex-column">
 				<div
 					class="profile-header-avatar d-flex justify-content-center mb-3">
-					<img src="/sgu_j2ee/files/user.jpg" alt="" />
+					<img src="/sgu_j2ee/files/${nguoiDung.hinhDaiDien}" alt="" />
 				</div>
 				<p class="h4 text-center">${nguoiDung.hoVaTen}</p>
 			</div>

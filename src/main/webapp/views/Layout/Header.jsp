@@ -78,7 +78,7 @@
 	function checkEnterKey(event) {
 		
 		if (event.key === "Enter" && !event.shiftKey) {
-			var url = "/sgu_j2ee/search?keySearch=" + $("#SearchInput").val() + "&type=";
+			var url = "/sgu_j2ee/search?keySearch=" + $("#SearchInput").val();
 			window.location.href = url;
 
 		}
