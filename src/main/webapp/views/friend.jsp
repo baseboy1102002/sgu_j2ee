@@ -40,28 +40,98 @@
 		</div>
 		
 		<ul class="content_listfriend" id="content_listfriend">
-			<c:forEach items="${userlist}" var="user" varStatus="loop">
-				<c:if test="${loop.index < 8}">
-					<li class="listfriend_item">
-						<a href="/sgu_j2ee/profile?userID=${user.maNguoiDung}" class="item_info">
-							<img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="ảnh người dùng" class="item_info_img">
-							<div class="item_info_name">${user.hoVaTen}</div>
-						</a>
-	
-						<div class="item_action">
-							<a href="mess?userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="action_message"> 
-								<i class="fa-regular fa-comment" style="margin-right: 10px;"></i>Nhắn tin
-							</a>
-							<a href="action?type=dsbb&nameact=huy&userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="action_cancel">
-								<i class="fa-solid fa-xmark" style="margin-right: 10px;"></i> Hủy
-							</a>
-							<a href="action?type=dsbb&nameact=chan&userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="action_block">
-								<i class="fa-solid fa-ban" style="margin-right: 10px;"></i> Chặn
-							</a>
-						</div>
-					</li>
-				</c:if>
-			</c:forEach>
+		
+			<c:set var="type" value="${type}" />
+				<c:choose>
+				    <c:when test="${type eq 'dsbb'}">
+				        <c:forEach items="${userlist}" var="user" varStatus="loop">
+							<c:if test="${loop.index < 8}">
+								<li class="listfriend_item">
+									<a href="/sgu_j2ee/profile?userID=${user.maNguoiDung}" class="item_info">
+										<img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="ảnh người dùng" class="item_info_img">
+										<div class="item_info_name">${user.hoVaTen}</div>
+									</a>
+				
+									<div class="item_action">
+										<a href="mess?userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="action_message"> 
+											<i class="fa-regular fa-comment" style="margin-right: 10px;"></i>Nhắn tin
+										</a>
+										<a href="action?type=dsbb&nameact=huy&userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="action_cancel">
+											<i class="fa-solid fa-xmark" style="margin-right: 10px;"></i> Hủy
+										</a>
+										<a href="action?type=dsbb&nameact=chan&userid1=${sessionScope.ID}&userid2=${user.maNguoiDung}" class="action_block">
+											<i class="fa-solid fa-ban" style="margin-right: 10px;"></i> Chặn
+										</a>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+				    </c:when>
+				    <c:when test="${type eq 'dslm'}">
+				        <c:forEach items="${userlist}" var="user" varStatus="loop">
+							<c:if test="${loop.index < 8}">
+								<li class="listfriend_item">
+									<a href="/sgu_j2ee/profile?userID=${user.maNguoiDung}" class="item_info">
+										<img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="ảnh người dùng" class="item_info_img">
+										<div class="item_info_name">${user.hoVaTen}</div>
+									</a>
+				
+									<div class="item_action">
+									    <a href="action?type=${type}&nameact=chapnhan&userid1=${iuserid}&userid2=${nd.getMaNguoiDung()}" class="action_message">
+									        <i class="fa-regular fa-circle-check" style="margin-right: 10px;"></i> Chấp nhận
+									    </a>
+									    <a href="action?type=${type}&nameact=huy&userid1=${iuserid}&userid2=${nd.getMaNguoiDung()}" class="action_cancel">
+									        <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i> Hủy
+									    </a>
+									    <a href="action?type=${type}&nameact=huy&userid1=${iuserid}&userid2=${nd.getMaNguoiDung()}" class="action_block">
+									        <i class="fa-solid fa-ban" style="margin-right: 10px;"></i> Chặn
+									    </a>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+				    </c:when>
+				    <c:when test="${type eq 'dskbcb'}">
+				        <c:forEach items="${userlist}" var="user" varStatus="loop">
+							<c:if test="${loop.index < 8}">
+								<li class="listfriend_item">
+									<a href="/sgu_j2ee/profile?userID=${user.maNguoiDung}" class="item_info">
+										<img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="ảnh người dùng" class="item_info_img">
+										<div class="item_info_name">${user.hoVaTen}</div>
+									</a>
+				
+									<div class="item_action">
+									    <a href="action?type=${type}&nameact=huy&userid1=${iuserid}&userid2=${nd.getMaNguoiDung()}" class="action_cancel">
+									        <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i> Hủy
+									    </a>
+									    <a href="action?type=${type}&nameact=chan&userid1=${iuserid}&userid2=${nd.getMaNguoiDung()}" class="action_block">
+									        <i class="fa-solid fa-ban" style="margin-right: 10px;"></i> Chặn
+									    </a>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+				    </c:when>
+				    <c:when test="${type eq 'dsc'}">
+				        <c:forEach items="${userlist}" var="user" varStatus="loop">
+							<c:if test="${loop.index < 8}">
+								<li class="listfriend_item">
+									<a href="/sgu_j2ee/profile?userID=${user.maNguoiDung}" class="item_info">
+										<img src="/sgu_j2ee/files/${user.hinhDaiDien}" alt="ảnh người dùng" class="item_info_img">
+										<div class="item_info_name">${user.hoVaTen}</div>
+									</a>
+				
+									<div class="item_action">
+									    <a href="action?type=${type}&nameact=bochan&userid1=${iuserid}&userid2=${nd.getMaNguoiDung()}" class="action_cancel">
+									        <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i> Bỏ Chặn
+									    </a>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+				    </c:when>
+				</c:choose>
+			
 		</ul>
 	
 		<ul class="pagination">

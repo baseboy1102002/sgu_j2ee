@@ -47,6 +47,7 @@ function loadNewUser(id1, id2) {
 			manguoinhanGlobal = id2;
 			loadNewMessAutomatic();
 			setInterval(loadNewMessAutomatic, 1000);
+			scrollToBottom();
 		},
 		error: function(xhr) {
 			alert(xhr);
@@ -64,19 +65,29 @@ function loadNewMess(id1, id2) {
 			type: 'loadmess'
 		},
 		success: function(response) {
-			var chatbox_content = document.querySelector('.chatbox_content');
-			chatbox_content.innerHTML = response;
-			scrollToBottom();
-		},
+            var chatbox_content = document.querySelector('.chatbox_content');
+            var isScrollBarAtBottom = isScrollbarAtBottom(chatbox_content);
+
+            chatbox_content.innerHTML = response;
+
+            if (isScrollBarAtBottom) {
+                scrollToBottom();
+            }
+        },
 		error: function(xhr) {
 			alert(xhr);
 		}
 	});
 }
 
+function isScrollbarAtBottom(element, tolerance = 5) {
+    return element.scrollHeight - (element.scrollTop + element.clientHeight) <= tolerance;
+}
+
+
 function scrollToBottom() {
-	var chatboxContent = document.querySelector('.chatbox_content');
-	chatboxContent.scrollTop = chatboxContent.scrollHeight;
+    var chatboxContent = document.querySelector('.chatbox_content');
+    chatboxContent.scrollTop = chatboxContent.scrollHeight;
 }
 
 function checkEnterKey(event, manguoigui, manguoinhan) {
@@ -109,6 +120,7 @@ function sendMessage(manguoigui, manguoinhan) {
 	});
 
 	loadNewMess(manguoigui, manguoinhan);
+	scrollToBottom();
 	$('#inputs_text').val('').focus();
 }
 
