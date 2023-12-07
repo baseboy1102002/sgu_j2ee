@@ -2,6 +2,7 @@ package controller.api;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -44,12 +45,15 @@ public class PostFile extends HttpServlet{
 			isImageFile = true;
 		} else filePart = req.getPart("file");
 
-		String fileName = filePart.getSubmittedFileName()+String.valueOf(new Date().getTime());
-		File file = new File(dir, fileName);
+		String fileName = filePart.getSubmittedFileName();
+		String file_base_name = FilenameUtils.getBaseName(filePart.getSubmittedFileName())+String.valueOf(new Date().getTime());
+		String file_extension = FilenameUtils.getExtension(fileName);
+		String saveFileName = String.join(".", file_base_name, file_extension);
+		File file = new File(dir, saveFileName);
 		filePart.write(file.getAbsolutePath());
 
 		FileBaiViet fileBaiViet = new FileBaiViet();
-		fileBaiViet.setTenFile(fileName);
+		fileBaiViet.setTenFile(saveFileName);
 		fileBaiViet.setLoaiFile(isImageFile ? "Anh":"File");
 		fileBaiViet.setMaBaiViet(Integer.parseInt(req.getParameter("postId")));
 		fileBaiViet.setTrangThai("yes");
@@ -59,7 +63,7 @@ public class PostFile extends HttpServlet{
 		json.put("file_id", String.valueOf(fileId));
 		json.put("file_name", fileBaiViet.getTenFile());
 		if (fileBaiViet.getLoaiFile().equals("File"))
-			json.put("file_extension", FilenameUtils.getExtension(fileName).toUpperCase());
+			json.put("file_extension", file_extension.toUpperCase());
 		String jsonObject = new Gson().toJson(json);
 
 		resp.setContentType("application/json");

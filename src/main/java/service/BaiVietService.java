@@ -36,8 +36,9 @@ public class BaiVietService extends DAOService<BaiViet> {
 		return insert(sql, baiviet.getNgayDang(), baiviet.getNoiDung(), baiviet.getTrangThai(), baiviet.getMaNguoiDung());
 	}
 
+	// delete real
 	public Boolean deleteBaiViet(int MaBaiViet) {
-		String sql = "update baiviet set TrangThai = 'no' where MaBaiViet = ?";
+		String sql = "delete from baiviet where MaBaiViet=?";
 		return update(sql, MaBaiViet);
 	}
 

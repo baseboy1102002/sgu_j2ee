@@ -190,6 +190,7 @@ $('#modal_post_save_btn').click(function (e) {
 				appendBaiViet(response)				
 		        $('#modal_post').modal('hide')
 		        clear_post_modal()
+		        notify(true, "Tạo bài viết thành công!")
 			} else {
 				if ($(`div[data-post-id="${postId}"]`).data('is-detail-mode') === true) {
 					$('#carouselExampleIndicators .carousel-indicators').empty()
@@ -226,6 +227,7 @@ $('#modal_post_save_btn').click(function (e) {
 				$(`div[data-post-id="${postId}"] .bai-viet-main-content p`).text(response.baiViet.noiDung)
 				$('#modal_post').modal('hide')
 				clear_post_modal()
+				notify(true, "Đã cập nhật bài viết!")
 			}
 	    }
 	})
