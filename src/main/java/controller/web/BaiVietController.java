@@ -88,8 +88,7 @@ public class BaiVietController extends HttpServlet {
 				tempTuongTacBaiViet.setTrangThai(trangThai);
 				tuongTacBaiVietService.addTuongTacBaiViet(tempTuongTacBaiViet);
 //				get dữ liệu trả về
-
-				response.setContentType("application/json");
+								response.setContentType("application/json");
 				response.setContentType("UTF-8");
 				printWriter.print(getDuLieuTuongTacTraVe(Integer.parseInt(maBaiViet)));
 
@@ -145,8 +144,10 @@ public class BaiVietController extends HttpServlet {
 		List<TuongTacBaiViet> top3TuongTacBaiViets = tuongTacBaiVietService.getTop3TuongTacBaiViet(maBaiViet);
 		List<String> top3TuongTacStrings = new ArrayList<>();
 		int tongLuotTT = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
-		for (TuongTacBaiViet item : top3TuongTacBaiViets) {
-			top3TuongTacStrings.add(item.getTrangThai());
+		if(top3TuongTacBaiViets != null) {
+			for (TuongTacBaiViet item : top3TuongTacBaiViets) {
+				top3TuongTacStrings.add(item.getTrangThai());
+			}
 		}
 		JsonArray top3TuongJsonArray = new Gson().toJsonTree(top3TuongTacStrings).getAsJsonArray();
 

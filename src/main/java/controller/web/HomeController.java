@@ -16,6 +16,7 @@ import model.FileBaiViet;
 import model.NguoiDung;
 import model.TuongTacBaiViet;
 import service.BaiVietService;
+import service.BinhLuanBaiVietService;
 import service.FileBaiVietService;
 import service.NguoiDungService;
 import service.TuongTacBaiVietService;
@@ -28,6 +29,7 @@ public class HomeController extends HttpServlet {
 	private BaiVietService baiVietService = new BaiVietService();
 	private TuongTacBaiVietService tuongTacBaiVietService = new TuongTacBaiVietService();
 	private NguoiDungService nguoiDungService = new NguoiDungService();
+	private BinhLuanBaiVietService binhLuanBaiVietService = new BinhLuanBaiVietService();
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -76,7 +78,7 @@ public class HomeController extends HttpServlet {
 		List<TuongTacBaiViet> top3TuongTacBaiViets = tuongTacBaiVietService.getTop3TuongTacBaiViet(maBaiViet);
 		int tongLuotTuongTac = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
 
-		int binhLuanCount = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
+		int binhLuanCount = binhLuanBaiVietService.getTongLuotBinhLuanByBaiVietId(maBaiViet);
 
 		FileBaiVietService fileBaiVietService = new FileBaiVietService();
 		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(maBaiViet);

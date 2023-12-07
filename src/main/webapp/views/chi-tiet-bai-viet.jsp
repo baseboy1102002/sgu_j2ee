@@ -29,8 +29,14 @@
 
 
 </head>
-<body>
-	<jsp:include page="Layout/Header.jsp"></jsp:include>
+<body> 
+
+	 <c:if test="${sessionScope.LoaiTaiKhoan eq 'admin' }">
+			<jsp:include page="Layout/Header(Admin).jsp"></jsp:include>
+	</c:if>
+	<c:if test="${sessionScope.LoaiTaiKhoan eq 'user' }">
+			<jsp:include page="Layout/Header.jsp"></jsp:include>
+	</c:if> 
 	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
 		data-bs-backdrop="static" data-is-detail-mode="${param.isDetailMode }"
@@ -268,7 +274,7 @@
 												onclick="handleShowMore(this)">
 												<i class="fa fa-ellipsis-h"></i>
 												<div class="comment-more-hover">
-													<c:if test="${sessionScope.ID eq baiVietView.maNguoiDang }">
+													<c:if test="${sessionScope.ID eq item.maNguoiDang }">
 														<button type="button" class="btn edit-comment-btn  "
 															data-bs-toggle="modal"
 															data-bs-target="#updateCommentPopup"
@@ -284,13 +290,16 @@
 																Xóa </span>
 														</button>
 													</c:if>
-													<button type="button"
+													<c:if test="${sessionScope.ID ne item.maNguoiDang }">
+														<button type="button"
 														class="btn profile-item report-post-btn"
 														data-bs-toggle="modal"
 														data-bs-target="#reportCommentPopUp"
 														onclick="handleCommentReport(this)">
 														<i class="fa-solid fa-flag"></i> <span> Báo cáo </span>
 													</button>
+													</c:if>
+													
 												</div>
 
 											</div>

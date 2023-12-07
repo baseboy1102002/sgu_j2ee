@@ -38,7 +38,6 @@ body {
 
 input {
 	outline: none !important;
-	background-color: transparent !important;
 }
 
 button {
@@ -1160,4 +1159,11 @@ textarea#report-user-input {
 
 button#btn_add_post {
     font-size: 1em;
+}
+
+
+/*Thanh*/
+
+.profile-action-button a {
+    color: white;
 }

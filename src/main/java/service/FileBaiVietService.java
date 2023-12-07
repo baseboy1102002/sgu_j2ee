@@ -23,7 +23,7 @@ public class FileBaiVietService extends DAOService<FileBaiViet> {
 
 	public int saveFileBaiViet(FileBaiViet file) {
 		String sql = "insert into filebaiviet (TenFile, LoaiFile, MaBaiViet, TrangThai) values (?, ?, ?, ?)";
-		return insert(sql, file.getTenFile(), file.getLoaiFile(), file.getMaBaiViet(), file.getTrangThai());
+			return insert(sql, file.getTenFile(), file.getLoaiFile(), file.getMaBaiViet(), file.getTrangThai());
 	}
 
 	public Boolean deleteFileBaiViet(List<Integer> ListMaFile, List<String> ListTenFile , HttpServletRequest req) {

@@ -101,7 +101,7 @@
 	
 	<jsp:include page="Layout/Header.jsp"></jsp:include>
 
-	<div class="row" id="search_page" style="margin-top: 100px; background-color: #eee; ">
+	<div class="row" id="search_page" style="margin-top: 100px; background-color: #f1f6ff; ">
 		<div class="col-xm-2 col-lg-2 col-xl-2">
 			<div id="sp_container_left">
 				<div class="sp_container_left_header">

@@ -87,10 +87,11 @@ public class ChiTietBaiVietController extends HttpServlet {
 			binhLuanViews.add(getDataForBinhLuanView(binhLuanBaiViet, maNguoiDung));
 		}
 
-
+		
 		request.setAttribute("baiVietView", baiVietView);
 		request.setAttribute("binhLuanBaiViewList", binhLuanViews);
-
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("views/chi-tiet-bai-viet.jsp").forward(request, response);
 
 	}
@@ -102,6 +103,8 @@ public class ChiTietBaiVietController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		PrintWriter printWriter = response.getWriter();
 
@@ -112,10 +115,11 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 		switch (action) {
 		case "addBinhLuan": {
-
+			
 			BinhLuanBaiViet binhLuanBaiViet = new BinhLuanBaiViet();
 
 			String noiDung = request.getParameter("noiDung");
+			
 			int maBaiViet = Integer.parseInt(request.getParameter("maBaiViet"));
 			int maNguoiDung = SessionManager.getID(request);
 			Date ngayGioBinhLuan = new Date();
@@ -143,7 +147,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 
 			NguoiDung nguoiDang = nguoiDungService.getNguoiDungById(maNguoiDung);
 			Integer maBinhLuan = binhLuanBaiVietService.addBinhLuan(binhLuanBaiViet);
-
+		
 			Map<String, String> json = new LinkedHashMap<>();
 			json.put("maBinhLuan", String.valueOf(maBinhLuan));
 			json.put("anhBinhLuan", fileName);
@@ -154,7 +158,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 			String jsonObject = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(json);
 
 			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
+	
 			printWriter.write(jsonObject);
 
 			break;
@@ -292,7 +296,7 @@ public class ChiTietBaiVietController extends HttpServlet {
 		List<TuongTacBaiViet> top3TuongTacBaiViets = tuongTacBaiVietService.getTop3TuongTacBaiViet(maBaiViet);
 		int tongLuotTuongTac = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
 
-		int binhLuanCount = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
+		int binhLuanCount = binhLuanBaiVietService.getTongLuotBinhLuanByBaiVietId(maBaiViet);
 
 		FileBaiVietService fileBaiVietService = new FileBaiVietService();
 		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(maBaiViet);
@@ -340,8 +344,10 @@ public class ChiTietBaiVietController extends HttpServlet {
 		List<TuongTacBinhLuan> top3TuongTacBinhLuans = tuongTacBinhLuanService.getTop3TuongTacBinhLuan(maBinhLuan);
 		List<String> top3TuongTacBinhLuanStrings = new ArrayList<>();
 		int tongLuotTT = tuongTacBinhLuanService.getTongSoTuongTacBinhLuan(maBinhLuan);
-		for(TuongTacBinhLuan tuongTacBinhLuan : top3TuongTacBinhLuans) {
-			top3TuongTacBinhLuanStrings.add(tuongTacBinhLuan.getTrangThai());
+		if(top3TuongTacBinhLuans != null) {
+			for(TuongTacBinhLuan tuongTacBinhLuan : top3TuongTacBinhLuans) {
+				top3TuongTacBinhLuanStrings.add(tuongTacBinhLuan.getTrangThai());
+			}
 		}
 		JsonArray top3TuongJsonArray = new Gson().toJsonTree(top3TuongTacBinhLuanStrings).getAsJsonArray();
 

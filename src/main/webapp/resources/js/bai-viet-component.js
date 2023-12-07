@@ -122,9 +122,10 @@ function handleOnClickReact(e) {
 	var parentElement = getParentElement(e, ".bai-viet-content-wrapper");
 	var action = ''
 	var baiVietTuongTacId = $(parentElement).data("post-id");
-
+	console.log(baiVietTuongTacId);
 	var userLoginId = $(parentElement).data("user-login");
 	var reactValue = "like";
+	console.log(baiVietTuongTacId);
 	if ($(e).data("active")) {
 
 		action = 'deleteTuongTacBaiViet'

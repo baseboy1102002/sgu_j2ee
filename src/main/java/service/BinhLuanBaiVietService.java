@@ -1,5 +1,9 @@
 package service;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import model.BinhLuanBaiViet;
@@ -38,6 +42,31 @@ public class BinhLuanBaiVietService extends DAOService<BinhLuanBaiViet> {
 	public Boolean deleteBinhLuanById(int maBinhLuan) {
 		String sql = "UPDATE `binhluanbaiviet` SET  TrangThai = ?  WHERE `binhluanbaiviet`.`MaBinhLuan` = ? ";
 		return update(sql,"xoa" ,maBinhLuan);
+
+	}
+	
+	public int getTongLuotBinhLuanByBaiVietId(int maBaiViet) {
+		String sql = "Select COUNT(*) AS tongLuotBinhLuan from binhluanbaiviet where MaBaiViet = ? and TrangThai = 'new'";
+		Connection conn = getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet rSet = null;
+		int tongLuotBinhLuan = 0;
+		try {
+			preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setInt(1, maBaiViet);
+			rSet = preparedStatement.executeQuery();
+
+			if (rSet.next()) {
+				tongLuotBinhLuan = rSet.getInt("tongLuotBinhLuan");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			closeConnection(conn, preparedStatement, rSet);
+		}
+		return tongLuotBinhLuan;
 
 	}
 

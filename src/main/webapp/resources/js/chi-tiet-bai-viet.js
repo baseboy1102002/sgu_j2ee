@@ -48,7 +48,7 @@ $(document).ready(function() {
 			let parentElement = getParentElement(e.target, ".comment-wrapper");
 			let postId = $(parentElement).data("post-id");
 
-
+			console.log(commentInput)
 			const formData = new FormData();
 			formData.append('noiDung', commentInput);
 			formData.append('anhBinhLuan', img_file);
@@ -67,7 +67,7 @@ $(document).ready(function() {
 					$("#comment-delete-file").trigger('click')
 				},
 				success: function(response) {
-
+					console.log(response)
 					var newRecordHTML = `<div class="comment-record-item" data-id=${response.maBinhLuan}>`;
 					if (response.anhDaiDienNguoiDang === '') {
 						newRecordHTML += `<img class="comment-record-profile-img"
@@ -175,7 +175,7 @@ $(document).ready(function() {
 		var commentInput = $(parentElement).find("#comment-edit-input").val();
 
 		if (commentInput !== '') {
-
+			
 			var imageFile = $("#editImageCommentFile").prop('files')[0];
 			var imgSrc = $("#updateCommentPopup .comment-pop-up-body .img-wrapper img").attr("src");
 			var commentId = $(parentElement).data("id");

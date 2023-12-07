@@ -100,3 +100,7 @@
 	box-shadow: 0 0 6px 1px rgba(0,0,0,.1);
 }
 
+/*Thanh */
+.sp_all_user h2, .sp_all_post h2 {
+    margin: 10px;
+}

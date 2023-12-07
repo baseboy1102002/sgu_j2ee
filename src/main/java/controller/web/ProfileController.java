@@ -214,7 +214,7 @@ public class ProfileController extends HttpServlet {
 		List<TuongTacBaiViet> top3TuongTacBaiViets = tuongTacBaiVietService.getTop3TuongTacBaiViet(maBaiViet);
 		int tongLuotTuongTac = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
 
-		int binhLuanCount = tuongTacBaiVietService.getTongLuotTuongTacBaiViet(maBaiViet);
+		int binhLuanCount = binhLuanBaiVietService.getTongLuotBinhLuanByBaiVietId(maBaiViet);
 
 		FileBaiVietService fileBaiVietService = new FileBaiVietService();
 		List<FileBaiViet> fileBaiViets = fileBaiVietService.getFileBaiVietsByMaBaiViet(maBaiViet);

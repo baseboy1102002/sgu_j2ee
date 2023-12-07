@@ -167,7 +167,7 @@ $('#modal_post_close_btn').click(function (e) {
 
 function clear_post_modal() {
 	$('#post_image .row').empty()
-	$('#post_file').empty()
+	$('#post_file .row').empty()
 	$('#post_text').val('')
 }
 

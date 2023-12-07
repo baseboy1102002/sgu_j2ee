@@ -17,7 +17,12 @@
 
 <body>
 
-	<jsp:include page="Layout/Header.jsp"></jsp:include>
+	 <c:if test="${sessionScope.LoaiTaiKhoan eq 'admin' }">
+			<jsp:include page="Layout/Header(Admin).jsp"></jsp:include>
+	</c:if>
+	<c:if test="${sessionScope.LoaiTaiKhoan eq 'user' }">
+			<jsp:include page="Layout/Header.jsp"></jsp:include>
+	</c:if> 
 
 	<%@include file="/components/post-edit-form.jsp"%>
 	<div class="modal fade" id="notifyModal" aria-hidden="true"
@@ -179,6 +184,8 @@
 					<c:when test="${cUID eq UserID}">
 						<button type="button"
 							class="profile-action-button btn btn-primary col-6">
+							<a href="/sgu_j2ee/views/Setting.jsp">
+							
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-pencil-square me-2"
 								viewBox="0 0 16 16">
@@ -188,6 +195,7 @@
 									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 </svg>
 							Thông tin cá nhân
+							</a>
 						</button>
 					</c:when>
 					<c:when test="${cUID ne UserID}">
@@ -255,7 +263,7 @@
 
 								<div class="profile-post-button col d-flex justify-content-end">
 									<img class="profile-post-image me-2"
-										src="/sgu_j2ee/files/user.jpg" alt="" /> <input type="text"
+										src="/sgu_j2ee/files/${nguoiDung.hinhDaiDien}" alt="" /> <input type="text"
 										id="inputPosting" class="profile-posting-input form-control"
 										aria-label="Sizing example input"
 										aria-describedby="inputGroup-sizing-sm">

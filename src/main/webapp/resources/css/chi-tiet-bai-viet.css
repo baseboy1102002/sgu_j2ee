@@ -144,7 +144,7 @@ img[src=""] {
 .comment-record-right {
 	display: flex;
 	flex-direction: column;
-	/* flex: 1; */
+
 	gap: 10px;
 }
 
@@ -445,4 +445,8 @@ section{
 
 .chi-tiet-wrapper{
 	padding-top: 100px;
+}
+
+.comment-record-item a {
+    flex-shrink: 0;
 }

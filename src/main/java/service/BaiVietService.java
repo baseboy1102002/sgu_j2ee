@@ -66,7 +66,7 @@ public class BaiVietService extends DAOService<BaiViet> {
 				+ "JOIN thongtinketban ttkb ON (nd.MaNguoiDung = ttkb.MaNguoiDung1 OR nd.MaNguoiDung = ttkb.MaNguoiDung2)\r\n"
 				+ "WHERE (ttkb.MaNguoiDung1 = ? OR ttkb.MaNguoiDung2 = ?) \r\n"
 				+ "  AND ttkb.TrangThai = 'daketban' AND bv.TrangThai = 'yes' \r\n"
-				+ "  AND bv.MaNguoiDung != ?; ";
+				+ "  AND bv.MaNguoiDung != ? ORDER BY bv.NgayDang DESC  ";
 		return query2(sql, logginUserID,logginUserID,logginUserID);
 	}
 

@@ -5,7 +5,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-4">
 					<div class="header__logo">
-						<a href="/sgu_j2ee/views/Home_Admin"> <img
+						<a href="/sgu_j2ee/views/Home_Admin.jsp"> <img
 							src="${pageContext.request.contextPath}/assets/images/logo_admin.png"
 							alt="">
 						</a>

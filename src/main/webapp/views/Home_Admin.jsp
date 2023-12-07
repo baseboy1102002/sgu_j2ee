@@ -12,13 +12,14 @@
 
 <body>
 	<jsp:include page="Layout/Header(Admin).jsp"></jsp:include>
-
+	
 	<section class="admin__controlpanel">
 		<div class="container">
 			<div class="row">
 				<div class="col-4">
 					<a href="/sgu_j2ee/admin?require=QLBV">
 						<div class="function post">
+							
 							<p>Quản lý</p>
 							<h2>Bài Viết</h2>
 							<i class="fa fa-file-text-o" aria-hidden="true"></i>

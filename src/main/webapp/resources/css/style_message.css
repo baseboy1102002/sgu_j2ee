@@ -275,7 +275,7 @@ body {
 
 .receiver_value,
 .sender_value {
-	width: 90%;
+	max-width: 50%;
 	display: flex;
 	flex-direction: column;
 }
@@ -307,11 +307,16 @@ body {
 }
 
 .receiver_message {
-	background-color: #eeeeee;
+	background-color: #eee;
+	color:#333;
 }
 
 .sender_message {
 	background-color: var(--primary-color);
+}
+
+.chatbox_content_sender,.chatbox_content_receiver {
+    color: #fff;
 }
 
 .chatbox_inputs {
