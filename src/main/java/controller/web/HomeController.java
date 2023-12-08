@@ -2,6 +2,7 @@ package controller.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -46,16 +47,32 @@ public class HomeController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Integer> maBaiVietList = baiVietService.getBaiVietForHomePage(SessionManager.getID(request));
-		
+		List<BaiViet> loginUserBaiViets = baiVietService.getBaiVietsByUserID(String.valueOf(SessionManager.getID(request)));
+		List<BaiViet> baiViets = baiVietService.getAllBaiViet();
 		List<BaiVietView> baiVietViews = new ArrayList<>();
+		List<BaiVietView> goiYBaiVietViews  = new ArrayList<>();
 		for (Integer baiVietID : maBaiVietList) {
 			baiVietViews.add(getDataBaiVietForView(baiVietID, SessionManager.getID(request) ));
+		};
+		for(BaiViet baiViet : loginUserBaiViets) {
+			baiVietViews.add(getDataBaiVietForView(baiViet.getMaBaiViet(), SessionManager.getID(request) ));
 		}
+		
+		Collections.sort(baiVietViews);
+		
+		for(BaiViet baiViet : baiViets) {
+			
+			if(!maBaiVietList.contains(baiViet.getMaBaiViet()) && baiViet.getMaNguoiDung() != SessionManager.getID(request)) {
+				goiYBaiVietViews.add(getDataBaiVietForView(baiViet.getMaBaiViet(), SessionManager.getID(request) ));
+			}
+		}
+		
 		
 		//List<Integer> maBaiVietList = baiVietService.getBaiVietForHomePage(SessionManager.getID(request));
 		//System.out.println(maBaiVietList);
 		//List<BaiVietView> baiVietViews =  maBaiVietList.stream().map(e -> getDataBaiVietForView(e, SessionManager.getID(request))).toList();
 		request.setAttribute("baiVietViews", baiVietViews);
+		request.setAttribute("goiYBaiVietViews", goiYBaiVietViews);
 		request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 	}
 

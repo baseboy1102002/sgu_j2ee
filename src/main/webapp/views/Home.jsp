@@ -24,6 +24,8 @@
 	href="<c:url value='/resources/css/globalstyle.css' />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/homepage.css' />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/post-edit-form.css' />">
 </head>
 
 <body>
@@ -117,15 +119,41 @@
 
 	<!-- Login Section Begin -->
 	<section class="home-wrapper">
-		<div class="container list-container ">
-			
-			<c:forEach var="baiVietView" items="${baiVietViews}">
-				<c:set var="baiVietView" value="${baiVietView}" scope="request" />
 
-				<jsp:include page="../components/bai-viet-component.jsp">
-					<jsp:param value="false" name="isDetailMode" />
-				</jsp:include>
-			</c:forEach>
+		<div class="container list-container ">
+
+			<div class="add-post-wrapper">
+				<div class="add-post-img-wrapper">
+					<img src="/sgu_j2ee/files/${sessionScope.IMG}" />
+				</div>
+				<input id="home-add-post-input" placeholder="Bạn đang nghĩ gì?...." />
+				<button id="btn_add_post">
+					<i class="fa-regular fa-pen-to-square"></i> Thêm bài viết
+				</button>
+			</div>
+			<div class="list-container-content profile-posts">
+				<c:if test="${!empty baiVietViews }">
+				<h2>Bạn bè</h2>
+				<c:forEach var="baiVietView" items="${baiVietViews}">
+					<c:set var="baiVietView" value="${baiVietView}" scope="request" />
+
+					<jsp:include page="../components/bai-viet-component.jsp">
+						<jsp:param value="false" name="isDetailMode" />
+					</jsp:include>
+				</c:forEach>
+				</c:if>
+				<c:if test="${!empty goiYBaiVietViews }">
+				<h2>Gợi ý</h2>
+				<c:forEach var="baiVietView" items="${goiYBaiVietViews}">
+					<c:set var="baiVietView" value="${baiVietView}" scope="request" />
+
+					<jsp:include page="../components/bai-viet-component.jsp">
+						<jsp:param value="false" name="isDetailMode" />
+					</jsp:include>
+				</c:forEach>
+				</c:if>
+			</div>
+
 		</div>
 	</section>
 	<!-- Login Section End -->
@@ -153,7 +181,8 @@
 
 <script type="text/javascript"
 	src="<c:url value='/resources/js/bai-viet-component.js' />"></script>
-
+<script type="text/javascript"
+	src="<c:url value='/resources/js/post-edit-form.js' />"></script>
 </body>
 
 </html>

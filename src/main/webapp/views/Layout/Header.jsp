@@ -35,7 +35,7 @@
 
 					<!-- Chat -->
 					<div class="direct">
-						<a href="/sgu_j2ee/mess?userid1=${sessionScope.ID}&userid2=1"
+						<a href="/sgu_j2ee/mess?userid1=${sessionScope.ID}&userid2=3"
 							class="icon_group_circle"> <i class="header__icon fa fa-comments"
 							aria-hidden="true"></i>
 						</a>

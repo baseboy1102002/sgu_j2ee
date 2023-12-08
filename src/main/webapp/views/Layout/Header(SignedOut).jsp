@@ -12,14 +12,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-5 col-8">
-				<div class="search__bar">
-					<span class="fa fa-search search__bar__icon"></span> <input
-						type="text" id="SearchInput" class="search__bar__input"
-						onkeydown="checkEnterKey(event)" 
-						placeholder="Nhập từ khoá...">
-				</div>
-			</div>
+		
 		</div>
 	</div>
 </header>

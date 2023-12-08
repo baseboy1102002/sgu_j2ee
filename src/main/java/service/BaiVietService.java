@@ -14,7 +14,7 @@ public class BaiVietService extends DAOService<BaiViet> {
 
 
 	public List<BaiViet> getAllBaiViet() {
-		String sql = "select * from baiviet";
+		String sql = "select * from baiviet where TrangThai = 'yes' ORDER BY NgayDang DESC";
 		return query(sql,new BaiVietMapper());
 	}
 

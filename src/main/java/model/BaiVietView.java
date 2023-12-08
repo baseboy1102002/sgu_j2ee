@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class BaiVietView {
+public class BaiVietView implements Comparable<BaiVietView> {
 	private BaiViet baiViet;
 	private TuongTacBaiViet loginUserTuongTacBaiViet;
 	private List<FileBaiViet> fileHinhAnhs;
@@ -127,5 +127,9 @@ public class BaiVietView {
 		this.maNguoiDang = maNguoiDang;
 	}
 
-
+	@Override
+    public int compareTo(BaiVietView other) {
+        // Compare NgayDang in descending order
+        return other.getBaiViet().getNgayDang().compareTo(this.getBaiViet().getNgayDang());
+    }
 }
